@@ -11,7 +11,7 @@ de la [UPAEP](www.upaep.mx)
 
 # Información del proyecto
 ## Datos
-Responsables | <ul><li>Edna Patricia</li></ul>
+Responsables | <ul><li>[Edna]()</li><li>[Ricardo](https://github.com/ricardo-sosa-alvarado)</li><li>[José Carlo](https://github.com/jcguha)</li><li>[Julián Baruc]()</li><li>[Eduardo @me](https://github.com/eduardosanzb)</li></ul>
 ----- | ------
 Fecha de preparación | 2016/08/24 18:07
 
