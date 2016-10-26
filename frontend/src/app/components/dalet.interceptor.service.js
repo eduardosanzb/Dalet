@@ -10,9 +10,9 @@
       // Add authorization token to headers
       request: function(config) {
         config.headers = config.headers || {};
-        console.log(config);
+        //console.log(config);
         if($cookies.get('token') ) {
-          console.log('setting the header');
+          //console.log('setting the header');
           config.headers.Authorization = 'Bearer' +  $cookies.get('token');
         }
         return config;

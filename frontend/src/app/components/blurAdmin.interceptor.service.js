@@ -13,7 +13,7 @@
         config.headers = config.headers || {};
         //console.log(config);
         if($cookies.get('token') ) {
-          console.log("Setting the auth ");
+          //console.log("Setting the auth ");
           config.headers.Authorization = 'Bearer ' +  $cookies.get('token');
         }
         return config;
