@@ -11,7 +11,7 @@ de la [UPAEP](www.upaep.mx)
 
 # Información del proyecto
 ## Datos
-Responsables | <ul><li>[Edna]()</li><li>[Ricardo](https://github.com/ricardo-sosa-alvarado)</li><li>[José Carlo](https://github.com/jcguha)</li><li>[Julián Baruc]()</li><li>[Eduardo @me](https://github.com/eduardosanzb)</li></ul>
+Responsables | <ul><li>[Edna](https://github.com/)</li><li>[Ricardo](https://github.com/ricardo-sosa-alvarado)</li><li>[José Carlo](https://github.com/jcguha)</li><li>[Julián Baruc](https://github.com/baruc7)</li><li>[Eduardo @me](https://github.com/eduardosanzb)</li></ul>
 ----- | ------
 Fecha de preparación | 2016/08/24 18:07
 
@@ -27,7 +27,7 @@ Estas estadísticas necesitan ser consultadas con múltiples propósitos:
 # Configuración del proyecto *(Técnico)*
 El proyecto esta desarrollado esta separado de esta manera:
 .
-├── README.md
+ ├── README.md
 ├── backend
 └── frontend
 
