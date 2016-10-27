@@ -25,14 +25,14 @@ export default function(app) {
   var env = app.get('env');
   var allowCrossDomain = function(req, res, next){
       res.header('Access-Control-Allow-Origin', '*');
-      res.header('Access-Control-Allow-Methods', '*');
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
       res.header('Access-Control-Allow-Headers','Origin, Content-Type, X-Auth-Token , Authorization');
       //res.header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type');
       next();
   }
 
   if(env === 'development' || env === 'test') {
-    //app.use(express.static(__dirname + 'public'))
+    app.use(express.static(__dirname + './public'))
     app.use(express.static(path.join(config.root, '.tmp')));
   }
 
@@ -40,7 +40,7 @@ export default function(app) {
     app.use(favicon(path.join(config.root, 'client', 'favicon.ico')));
   }
 
-  app.set('appPath', path.join(config.root, 'client'));
+  app.set('appPath', path.join(config.root, 'server/public'));
   app.use(allowCrossDomain);
   app.use(express.static(app.get('appPath')));
   app.use(morgan('dev'));
