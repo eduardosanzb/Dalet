@@ -1,43 +1,3 @@
-// (function(){
-//   'use strict';
-
-//   angular.module('Dalet', [ 'ngCookies', 'ngResource','LocalStorageModule'])
-//   .constant('ServerUrl', 'http://localhost:5000')
-//   //.constant('ServerUrl', '')
-//   .config(function($httpProvider, $locationProvider){
-//     $httpProvider.interceptors.push('authInterceptor')
-//   })
-//   .factory('authInterceptor', authInterceptor);
-
-//   /** @ngInject */ 
-//   function authInterceptor($q, $cookies, $injector, Util){
-//       var state;
-//       return {
-//         // Add authorization token to headers
-//         request: function(config) {
-//           config.headers = config.headers || {};
-//           //console.log(config);
-//           if($cookies.get('token') ) {
-//             //console.log('setting the header');
-//             config.headers.Authorization = 'Bearer' +  $cookies.get('token');
-//           }
-//           return config;
-//         },
-
-//         // Intercept 401s and redirect you to login
-//         responseError: function(response) {
-//           if(response.status === 401) {
-//             (state || (state = $injector.get('$state')))
-//             .go('login');
-//             // remove any stale tokens
-//             $cookies.remove('token');
-//           }
-//           return $q.reject(response);
-//         }
-//       };
-//   }
-
-// })();
 /**
  * @author v.lugovsky
  * created on 16.12.2015
@@ -103,6 +63,46 @@
 
 })();
 
+// (function(){
+//   'use strict';
+
+//   angular.module('Dalet', [ 'ngCookies', 'ngResource','LocalStorageModule'])
+//   .constant('ServerUrl', 'http://localhost:5000')
+//   //.constant('ServerUrl', '')
+//   .config(function($httpProvider, $locationProvider){
+//     $httpProvider.interceptors.push('authInterceptor')
+//   })
+//   .factory('authInterceptor', authInterceptor);
+
+//   /** @ngInject */ 
+//   function authInterceptor($q, $cookies, $injector, Util){
+//       var state;
+//       return {
+//         // Add authorization token to headers
+//         request: function(config) {
+//           config.headers = config.headers || {};
+//           //console.log(config);
+//           if($cookies.get('token') ) {
+//             //console.log('setting the header');
+//             config.headers.Authorization = 'Bearer' +  $cookies.get('token');
+//           }
+//           return config;
+//         },
+
+//         // Intercept 401s and redirect you to login
+//         responseError: function(response) {
+//           if(response.status === 401) {
+//             (state || (state = $injector.get('$state')))
+//             .go('login');
+//             // remove any stale tokens
+//             $cookies.remove('token');
+//           }
+//           return $q.reject(response);
+//         }
+//       };
+//   }
+
+// })();
 /**
  * @author v.lugovsky
  * created on 15.12.2015
@@ -155,36 +155,6 @@
 })();
 
 /**
- * @author v.lugovsky
- * created on 16.12.2015
- */
-(function () {
-  'use strict';
-
-  routeConfig.$inject = ["$stateProvider"];
-  angular.module('BlurAdmin.pages.admin', [])
-      .config(routeConfig);
-
-  /** @ngInject */
-  function routeConfig($stateProvider) {
-    $stateProvider
-        .state('admin', {
-          url: '/admin',
-          templateUrl: 'app/pages/admin/admin.html',
-          title: 'Administración',
-          controller: 'MainController',
-          controllerAs: 'vm',
-          authentication: true,
-          sidebarMeta: {
-            icon: 'ion-android-home',
-            order: 0,
-          },
-        });
-  }
-
-})();
-
-/**
  * @author k.danovsky
  * created on 15.01.2016
  */
@@ -210,6 +180,36 @@
           sidebarMeta: {
             icon: 'ion-gear-a',
             order: 100,
+          },
+        });
+  }
+
+})();
+
+/**
+ * @author v.lugovsky
+ * created on 16.12.2015
+ */
+(function () {
+  'use strict';
+
+  routeConfig.$inject = ["$stateProvider"];
+  angular.module('BlurAdmin.pages.admin', [])
+      .config(routeConfig);
+
+  /** @ngInject */
+  function routeConfig($stateProvider) {
+    $stateProvider
+        .state('admin', {
+          url: '/admin',
+          templateUrl: 'app/pages/admin/admin.html',
+          title: 'Administración',
+          controller: 'MainController',
+          controllerAs: 'vm',
+          authentication: true,
+          sidebarMeta: {
+            icon: 'ion-android-home',
+            order: 0,
           },
         });
   }
@@ -4117,47 +4117,6 @@
   }
 
 })();
-(function(){
-    'use strict';
-      TabsService.$inject = ["$q"];
-    angular.module('BlurAdmin.pages.admin')
-      .factory('Tabs', TabsService);
-
-      /** @ngInject */ 
-      function TabsService($q){
-        var tabs = [
-          {
-            heading: 'Entradas a biblioteca',
-            active: true,
-            template: 'app/pages/admin/tabs/entradas/entradas.tab.html',
-            controller: 'EntradasController'
-          },
-          {
-            heading: 'Usuarios',
-            active: true,
-            template: 'app/pages/admin/tabs/usuarios/usuarios.tab.html',
-            controller: 'UsuariosController'
-          },
-          {
-            heading: 'Areas',
-            active: true,
-            template: 'app/pages/admin/tabs/areas/areas.tab.html',
-            controller: 'AreasController'
-          },
-          {
-            heading: 'Proveedores',
-            active: true,
-            template: 'app/pages/admin/tabs/proveedores/proveedores.tab.html',
-            controller: 'ProveedoresController'
-          }
-        ]
-        return {
-          loadAllItems : function(){
-            return $q.when(tabs)
-          }
-        }
-      }
-})()
 /**
  * @author v.lugovsky
  * created on 16.12.2015
@@ -4479,170 +4438,6 @@
         ( $(this).offset().top <= $(window).scrollTop() + $(window).height() * offset && $(this).find('.cd-timeline-img').hasClass('is-hidden') ) && $(this).find('.cd-timeline-img, .cd-timeline-content').removeClass('is-hidden').addClass('bounce-in');
       });
     }
-  }
-})();
-/**
- * @author v.lugovksy
- * created on 16.12.2015
- */
-(function () {
-  'use strict';
-
-  BlurFeedCtrl.$inject = ["$scope"];
-  angular.module('BlurAdmin.pages.dashboard')
-      .controller('BlurFeedCtrl', BlurFeedCtrl);
-
-  /** @ngInject */
-  function BlurFeedCtrl($scope) {
-    $scope.feed = [
-      {
-        type: 'text-message',
-        author: 'Kostya',
-        surname: 'Danovsky',
-        header: 'Posted new message',
-        text: 'Guys, check this out: \nA police officer found a perfect hiding place for watching for speeding motorists. One day, the officer was amazed when everyone was under the speed limit, so he investigated and found the problem. A 10 years old boy was standing on the side of the road with a huge hand painted sign which said "Radar Trap Ahead." A little more investigative work led the officer to the boy\'s accomplice: another boy about 100 yards beyond the radar trap with a sign reading "TIPS" and a bucket at his feet full of change.',
-        time: 'Today 11:55 pm',
-        ago: '25 minutes ago',
-        expanded: false,
-      }, {
-        type: 'video-message',
-        author: 'Andrey',
-        surname: 'Hrabouski',
-        header: 'Added new video',
-        text: '"Vader and Me"',
-        preview: 'app/feed/vader-and-me-preview.png',
-        link: 'https://www.youtube.com/watch?v=IfcpzBbbamk',
-        time: 'Today 9:30 pm',
-        ago: '3 hrs ago',
-        expanded: false,
-      }, {
-        type: 'image-message',
-        author: 'Vlad',
-        surname: 'Lugovsky',
-        header: 'Added new image',
-        text: '"My little kitten"',
-        preview: 'app/feed/my-little-kitten.png',
-        link: 'http://api.ning.com/files/DtcI2O2Ry7A7VhVxeiWfGU9WkHcMy4WSTWZ79oxJq*h0iXvVGndfD7CIYy-Ax-UAFCBCdqXI4GCBw3FOLKTTjQc*2cmpdOXJ/1082127884.jpeg',
-        time: 'Today 2:20 pm',
-        ago: '10 hrs ago',
-        expanded: false,
-      }, {
-        type: 'text-message',
-        author: 'Nasta',
-        surname: 'Linnie',
-        header: 'Posted new message',
-        text: 'Haha lol',
-        time: '11.11.2015',
-        ago: '2 days ago',
-        expanded: false,
-      }, {
-        type: 'geo-message',
-        author: 'Nick',
-        surname: 'Cat',
-        header: 'Posted location',
-        text: '"New York, USA"',
-        preview: 'app/feed/new-york-location.png',
-        link: 'https://www.google.by/maps/place/New+York,+NY,+USA/@40.7201111,-73.9893872,14z',
-        time: '11.11.2015',
-        ago: '2 days ago',
-        expanded: false,
-      }, {
-        type: 'text-message',
-        author: 'Vlad',
-        surname: 'Lugovsky',
-        header: 'Posted new message',
-        text: "First snake: I hope I'm not poisonous. Second snake: Why? First snake: Because I bit my lip!",
-        time: '12.11.2015',
-        ago: '3 days ago',
-        expanded: false,
-      }, {
-        type: 'text-message',
-        author: 'Andrey',
-        surname: 'Hrabouski',
-        header: 'Posted new message',
-        text: 'How do you smuggle an elephant across the border? Put a slice of bread on each side, and call him "lunch".',
-        time: '14.11.2015',
-        ago: '5 days ago',
-        expanded: false,
-      }, {
-        type: 'text-message',
-        author: 'Nasta',
-        surname: 'Linnie',
-        header: 'Posted new message',
-        text: 'When your hammer is C++, everything begins to look like a thumb.',
-        time: '14.11.2015',
-        ago: '5 days ago',
-        expanded: false,
-      }, {
-        type: 'text-message',
-        author: 'Alexander',
-        surname: 'Demeshko',
-        header: 'Posted new message',
-        text: '“I mean, they say you die twice. One time when you stop breathing and a second time, a bit later on, when somebody says your name for the last time." ©',
-        time: '15.11.2015',
-        ago: '6 days ago',
-        expanded: false,
-      }, {
-        type: 'image-message',
-        author: 'Nick',
-        surname: 'Cat',
-        header: 'Posted photo',
-        text: '"Protein Heroes"',
-        preview: 'app/feed/genom.png',
-        link: 'https://dribbble.com/shots/2504810-Protein-Heroes',
-        time: '16.11.2015',
-        ago: '7 days ago',
-        expanded: false,
-      },
-      {
-        type: 'text-message',
-        author: 'Kostya',
-        surname: 'Danovsky',
-        header: 'Posted new message',
-        text: 'Why did the CoffeeScript developer keep getting lost? Because he couldn\'t find his source without a map',
-        time: '18.11.2015',
-        ago: '9 days ago',
-        expanded: false,
-      }
-    ];
-
-    $scope.expandMessage = function(message){
-      message.expanded = !message.expanded;
-    }
-  }
-})();
-/**
- * @author v.lugovksy
- * created on 16.12.2015
- */
-(function () {
-  'use strict';
-
-  angular.module('BlurAdmin.pages.dashboard')
-      .directive('blurFeed', blurFeed);
-
-  /** @ngInject */
-  function blurFeed() {
-    return {
-      restrict: 'E',
-      controller: 'BlurFeedCtrl',
-      templateUrl: 'app/pages/dashboard/blurFeed/blurFeed.html'
-    };
-  }
-})();
-/**
- * @author v.lugovksy
- * created on 16.12.2015
- */
-(function () {
-  'use strict';
-
-  angular.module('BlurAdmin.pages.dashboard')
-      .service('dashboardCalendar', dashboardCalendar);
-
-  /** @ngInject */
-  function dashboardCalendar() {
-
   }
 })();
 /**
@@ -5030,6 +4825,211 @@
       ]
     }
 
+
+  }
+})();
+(function(){
+    'use strict';
+      TabsService.$inject = ["$q"];
+    angular.module('BlurAdmin.pages.admin')
+      .factory('Tabs', TabsService);
+
+      /** @ngInject */ 
+      function TabsService($q){
+        var tabs = [
+          {
+            heading: 'Entradas a biblioteca',
+            active: true,
+            template: 'app/pages/admin/tabs/entradas/entradas.tab.html',
+            controller: 'EntradasController'
+          },
+          {
+            heading: 'Usuarios',
+            active: true,
+            template: 'app/pages/admin/tabs/usuarios/usuarios.tab.html',
+            controller: 'UsuariosController'
+          },
+          {
+            heading: 'Areas',
+            active: true,
+            template: 'app/pages/admin/tabs/areas/areas.tab.html',
+            controller: 'AreasController'
+          },
+          {
+            heading: 'Proveedores',
+            active: true,
+            template: 'app/pages/admin/tabs/proveedores/proveedores.tab.html',
+            controller: 'ProveedoresController'
+          }
+        ]
+        return {
+          loadAllItems : function(){
+            return $q.when(tabs)
+          }
+        }
+      }
+})()
+/**
+ * @author v.lugovksy
+ * created on 16.12.2015
+ */
+(function () {
+  'use strict';
+
+  BlurFeedCtrl.$inject = ["$scope"];
+  angular.module('BlurAdmin.pages.dashboard')
+      .controller('BlurFeedCtrl', BlurFeedCtrl);
+
+  /** @ngInject */
+  function BlurFeedCtrl($scope) {
+    $scope.feed = [
+      {
+        type: 'text-message',
+        author: 'Kostya',
+        surname: 'Danovsky',
+        header: 'Posted new message',
+        text: 'Guys, check this out: \nA police officer found a perfect hiding place for watching for speeding motorists. One day, the officer was amazed when everyone was under the speed limit, so he investigated and found the problem. A 10 years old boy was standing on the side of the road with a huge hand painted sign which said "Radar Trap Ahead." A little more investigative work led the officer to the boy\'s accomplice: another boy about 100 yards beyond the radar trap with a sign reading "TIPS" and a bucket at his feet full of change.',
+        time: 'Today 11:55 pm',
+        ago: '25 minutes ago',
+        expanded: false,
+      }, {
+        type: 'video-message',
+        author: 'Andrey',
+        surname: 'Hrabouski',
+        header: 'Added new video',
+        text: '"Vader and Me"',
+        preview: 'app/feed/vader-and-me-preview.png',
+        link: 'https://www.youtube.com/watch?v=IfcpzBbbamk',
+        time: 'Today 9:30 pm',
+        ago: '3 hrs ago',
+        expanded: false,
+      }, {
+        type: 'image-message',
+        author: 'Vlad',
+        surname: 'Lugovsky',
+        header: 'Added new image',
+        text: '"My little kitten"',
+        preview: 'app/feed/my-little-kitten.png',
+        link: 'http://api.ning.com/files/DtcI2O2Ry7A7VhVxeiWfGU9WkHcMy4WSTWZ79oxJq*h0iXvVGndfD7CIYy-Ax-UAFCBCdqXI4GCBw3FOLKTTjQc*2cmpdOXJ/1082127884.jpeg',
+        time: 'Today 2:20 pm',
+        ago: '10 hrs ago',
+        expanded: false,
+      }, {
+        type: 'text-message',
+        author: 'Nasta',
+        surname: 'Linnie',
+        header: 'Posted new message',
+        text: 'Haha lol',
+        time: '11.11.2015',
+        ago: '2 days ago',
+        expanded: false,
+      }, {
+        type: 'geo-message',
+        author: 'Nick',
+        surname: 'Cat',
+        header: 'Posted location',
+        text: '"New York, USA"',
+        preview: 'app/feed/new-york-location.png',
+        link: 'https://www.google.by/maps/place/New+York,+NY,+USA/@40.7201111,-73.9893872,14z',
+        time: '11.11.2015',
+        ago: '2 days ago',
+        expanded: false,
+      }, {
+        type: 'text-message',
+        author: 'Vlad',
+        surname: 'Lugovsky',
+        header: 'Posted new message',
+        text: "First snake: I hope I'm not poisonous. Second snake: Why? First snake: Because I bit my lip!",
+        time: '12.11.2015',
+        ago: '3 days ago',
+        expanded: false,
+      }, {
+        type: 'text-message',
+        author: 'Andrey',
+        surname: 'Hrabouski',
+        header: 'Posted new message',
+        text: 'How do you smuggle an elephant across the border? Put a slice of bread on each side, and call him "lunch".',
+        time: '14.11.2015',
+        ago: '5 days ago',
+        expanded: false,
+      }, {
+        type: 'text-message',
+        author: 'Nasta',
+        surname: 'Linnie',
+        header: 'Posted new message',
+        text: 'When your hammer is C++, everything begins to look like a thumb.',
+        time: '14.11.2015',
+        ago: '5 days ago',
+        expanded: false,
+      }, {
+        type: 'text-message',
+        author: 'Alexander',
+        surname: 'Demeshko',
+        header: 'Posted new message',
+        text: '“I mean, they say you die twice. One time when you stop breathing and a second time, a bit later on, when somebody says your name for the last time." ©',
+        time: '15.11.2015',
+        ago: '6 days ago',
+        expanded: false,
+      }, {
+        type: 'image-message',
+        author: 'Nick',
+        surname: 'Cat',
+        header: 'Posted photo',
+        text: '"Protein Heroes"',
+        preview: 'app/feed/genom.png',
+        link: 'https://dribbble.com/shots/2504810-Protein-Heroes',
+        time: '16.11.2015',
+        ago: '7 days ago',
+        expanded: false,
+      },
+      {
+        type: 'text-message',
+        author: 'Kostya',
+        surname: 'Danovsky',
+        header: 'Posted new message',
+        text: 'Why did the CoffeeScript developer keep getting lost? Because he couldn\'t find his source without a map',
+        time: '18.11.2015',
+        ago: '9 days ago',
+        expanded: false,
+      }
+    ];
+
+    $scope.expandMessage = function(message){
+      message.expanded = !message.expanded;
+    }
+  }
+})();
+/**
+ * @author v.lugovksy
+ * created on 16.12.2015
+ */
+(function () {
+  'use strict';
+
+  angular.module('BlurAdmin.pages.dashboard')
+      .directive('blurFeed', blurFeed);
+
+  /** @ngInject */
+  function blurFeed() {
+    return {
+      restrict: 'E',
+      controller: 'BlurFeedCtrl',
+      templateUrl: 'app/pages/dashboard/blurFeed/blurFeed.html'
+    };
+  }
+})();
+/**
+ * @author v.lugovksy
+ * created on 16.12.2015
+ */
+(function () {
+  'use strict';
+
+  angular.module('BlurAdmin.pages.dashboard')
+      .service('dashboardCalendar', dashboardCalendar);
+
+  /** @ngInject */
+  function dashboardCalendar() {
 
   }
 })();
@@ -7090,6 +7090,195 @@
 })();
 
 /**
+ * @author v.lugovsky
+ * created on 23.12.2015
+ */
+(function () {
+  'use strict';
+
+  /**
+   * Includes basic panel layout inside of current element.
+   */
+  baPanel.$inject = ["baPanel", "baConfig"];
+  angular.module('BlurAdmin.theme')
+      .directive('baPanel', baPanel);
+
+  /** @ngInject */
+  function baPanel(baPanel, baConfig) {
+    return angular.extend({}, baPanel, {
+      template: function(el, attrs) {
+        var res = '<div  class="panel ' + (baConfig.theme.blur ? 'panel-blur' : '') + ' full-invisible ' + (attrs.baPanelClass || '');
+        res += '" zoom-in ' + (baConfig.theme.blur ? 'ba-panel-blur' : '') + '>';
+        res += baPanel.template(el, attrs);
+        res += '</div>';
+        return res;
+      }
+    });
+  }
+})();
+
+/**
+ * @author v.lugovsky
+ * created on 23.12.2015
+ */
+(function () {
+  'use strict';
+
+  angular.module('BlurAdmin.theme')
+      .factory('baPanel', baPanel);
+
+  /** @ngInject */
+  function baPanel() {
+
+    /** Base baPanel directive */
+    return {
+      restrict: 'A',
+      transclude: true,
+      template: function(elem, attrs) {
+        var res = '<div class="panel-body" ng-transclude></div>';
+        if (attrs.baPanelTitle) {
+          var titleTpl = '<div class="panel-heading clearfix"><h3 class="panel-title">' + attrs.baPanelTitle + '</h3></div>';
+          res = titleTpl + res; // title should be before
+        }
+
+        return res;
+      }
+    };
+  }
+
+})();
+
+/**
+ * @author v.lugovsky
+ * created on 15.01.2016
+ */
+(function () {
+  'use strict';
+
+  baPanelBlur.$inject = ["baPanelBlurHelper", "$window", "$rootScope"];
+  angular.module('BlurAdmin.theme')
+      .directive('baPanelBlur', baPanelBlur);
+
+  /** @ngInject */
+  function baPanelBlur(baPanelBlurHelper, $window, $rootScope) {
+    var bodyBgSize;
+
+    baPanelBlurHelper.bodyBgLoad().then(function() {
+      bodyBgSize = baPanelBlurHelper.getBodyBgImageSizes();
+    });
+
+    $window.addEventListener('resize', function() {
+      bodyBgSize = baPanelBlurHelper.getBodyBgImageSizes();
+    });
+
+    return {
+      restrict: 'A',
+      link: function($scope, elem) {
+        if(!$rootScope.$isMobile) {
+          baPanelBlurHelper.bodyBgLoad().then(function () {
+            setTimeout(recalculatePanelStyle);
+          });
+          $window.addEventListener('resize', recalculatePanelStyle);
+
+          $scope.$on('$destroy', function () {
+            $window.removeEventListener('resize', recalculatePanelStyle);
+          });
+        }
+
+        function recalculatePanelStyle() {
+          if (!bodyBgSize) {
+            return;
+          }
+          elem.css({
+            backgroundSize: Math.round(bodyBgSize.width) + 'px ' + Math.round(bodyBgSize.height) + 'px',
+            backgroundPosition: Math.floor(bodyBgSize.positionX) + 'px ' + Math.floor(bodyBgSize.positionY) + 'px'
+          });
+        }
+
+      }
+    };
+  }
+
+})();
+
+/**
+ * @author v.lugovsky
+ * created on 15.01.2016
+ */
+(function () {
+  'use strict';
+
+  baPanelBlurHelper.$inject = ["$q"];
+  angular.module('BlurAdmin.theme')
+      .service('baPanelBlurHelper', baPanelBlurHelper);
+
+  /** @ngInject */
+  function baPanelBlurHelper($q) {
+    var res = $q.defer();
+    var computedStyle = getComputedStyle(document.body, ':before');
+    var image = new Image();
+    image.src = computedStyle.backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2');
+    image.onerror = function() {
+      res.reject();
+    };
+    image.onload = function() {
+      res.resolve();
+    };
+
+    this.bodyBgLoad = function() {
+      return res.promise;
+    };
+
+    this.getBodyBgImageSizes = function() {
+      var elemW = document.documentElement.clientWidth;
+      var elemH = document.documentElement.clientHeight;
+      if(elemW <= 640) return;
+      var imgRatio = (image.height / image.width);       // original img ratio
+      var containerRatio = (elemH / elemW);     // container ratio
+
+      var finalHeight, finalWidth;
+      if (containerRatio > imgRatio) {
+        finalHeight = elemH;
+        finalWidth = (elemH / imgRatio);
+      } else {
+        finalWidth = elemW;
+        finalHeight = (elemW * imgRatio);
+      }
+      return { width: finalWidth, height: finalHeight, positionX: (elemW - finalWidth)/2, positionY: (elemH - finalHeight)/2};
+    };
+  }
+
+})();
+
+/**
+ * @author v.lugovsky
+ * created on 23.12.2015
+ */
+(function () {
+  'use strict';
+
+  /**
+   * Represents current element as panel, adding all necessary classes.
+   */
+  baPanelSelf.$inject = ["baPanel"];
+  angular.module('BlurAdmin.theme')
+      .directive('baPanelSelf', baPanelSelf);
+
+  /** @ngInject */
+  function baPanelSelf(baPanel) {
+    return angular.extend({}, baPanel, {
+      link: function(scope, el, attrs) {
+        el.addClass('panel panel-white');
+        if (attrs.baPanelClass) {
+          el.addClass(attrs.baPanelClass);
+        }
+      }
+    });
+  }
+
+})();
+
+/**
  * @author v.lugovksy
  * created on 16.12.2015
  */
@@ -7426,195 +7615,6 @@
         });
       }
     };
-  }
-
-})();
-
-/**
- * @author v.lugovsky
- * created on 23.12.2015
- */
-(function () {
-  'use strict';
-
-  /**
-   * Includes basic panel layout inside of current element.
-   */
-  baPanel.$inject = ["baPanel", "baConfig"];
-  angular.module('BlurAdmin.theme')
-      .directive('baPanel', baPanel);
-
-  /** @ngInject */
-  function baPanel(baPanel, baConfig) {
-    return angular.extend({}, baPanel, {
-      template: function(el, attrs) {
-        var res = '<div  class="panel ' + (baConfig.theme.blur ? 'panel-blur' : '') + ' full-invisible ' + (attrs.baPanelClass || '');
-        res += '" zoom-in ' + (baConfig.theme.blur ? 'ba-panel-blur' : '') + '>';
-        res += baPanel.template(el, attrs);
-        res += '</div>';
-        return res;
-      }
-    });
-  }
-})();
-
-/**
- * @author v.lugovsky
- * created on 23.12.2015
- */
-(function () {
-  'use strict';
-
-  angular.module('BlurAdmin.theme')
-      .factory('baPanel', baPanel);
-
-  /** @ngInject */
-  function baPanel() {
-
-    /** Base baPanel directive */
-    return {
-      restrict: 'A',
-      transclude: true,
-      template: function(elem, attrs) {
-        var res = '<div class="panel-body" ng-transclude></div>';
-        if (attrs.baPanelTitle) {
-          var titleTpl = '<div class="panel-heading clearfix"><h3 class="panel-title">' + attrs.baPanelTitle + '</h3></div>';
-          res = titleTpl + res; // title should be before
-        }
-
-        return res;
-      }
-    };
-  }
-
-})();
-
-/**
- * @author v.lugovsky
- * created on 15.01.2016
- */
-(function () {
-  'use strict';
-
-  baPanelBlur.$inject = ["baPanelBlurHelper", "$window", "$rootScope"];
-  angular.module('BlurAdmin.theme')
-      .directive('baPanelBlur', baPanelBlur);
-
-  /** @ngInject */
-  function baPanelBlur(baPanelBlurHelper, $window, $rootScope) {
-    var bodyBgSize;
-
-    baPanelBlurHelper.bodyBgLoad().then(function() {
-      bodyBgSize = baPanelBlurHelper.getBodyBgImageSizes();
-    });
-
-    $window.addEventListener('resize', function() {
-      bodyBgSize = baPanelBlurHelper.getBodyBgImageSizes();
-    });
-
-    return {
-      restrict: 'A',
-      link: function($scope, elem) {
-        if(!$rootScope.$isMobile) {
-          baPanelBlurHelper.bodyBgLoad().then(function () {
-            setTimeout(recalculatePanelStyle);
-          });
-          $window.addEventListener('resize', recalculatePanelStyle);
-
-          $scope.$on('$destroy', function () {
-            $window.removeEventListener('resize', recalculatePanelStyle);
-          });
-        }
-
-        function recalculatePanelStyle() {
-          if (!bodyBgSize) {
-            return;
-          }
-          elem.css({
-            backgroundSize: Math.round(bodyBgSize.width) + 'px ' + Math.round(bodyBgSize.height) + 'px',
-            backgroundPosition: Math.floor(bodyBgSize.positionX) + 'px ' + Math.floor(bodyBgSize.positionY) + 'px'
-          });
-        }
-
-      }
-    };
-  }
-
-})();
-
-/**
- * @author v.lugovsky
- * created on 15.01.2016
- */
-(function () {
-  'use strict';
-
-  baPanelBlurHelper.$inject = ["$q"];
-  angular.module('BlurAdmin.theme')
-      .service('baPanelBlurHelper', baPanelBlurHelper);
-
-  /** @ngInject */
-  function baPanelBlurHelper($q) {
-    var res = $q.defer();
-    var computedStyle = getComputedStyle(document.body, ':before');
-    var image = new Image();
-    image.src = computedStyle.backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2');
-    image.onerror = function() {
-      res.reject();
-    };
-    image.onload = function() {
-      res.resolve();
-    };
-
-    this.bodyBgLoad = function() {
-      return res.promise;
-    };
-
-    this.getBodyBgImageSizes = function() {
-      var elemW = document.documentElement.clientWidth;
-      var elemH = document.documentElement.clientHeight;
-      if(elemW <= 640) return;
-      var imgRatio = (image.height / image.width);       // original img ratio
-      var containerRatio = (elemH / elemW);     // container ratio
-
-      var finalHeight, finalWidth;
-      if (containerRatio > imgRatio) {
-        finalHeight = elemH;
-        finalWidth = (elemH / imgRatio);
-      } else {
-        finalWidth = elemW;
-        finalHeight = (elemW * imgRatio);
-      }
-      return { width: finalWidth, height: finalHeight, positionX: (elemW - finalWidth)/2, positionY: (elemH - finalHeight)/2};
-    };
-  }
-
-})();
-
-/**
- * @author v.lugovsky
- * created on 23.12.2015
- */
-(function () {
-  'use strict';
-
-  /**
-   * Represents current element as panel, adding all necessary classes.
-   */
-  baPanelSelf.$inject = ["baPanel"];
-  angular.module('BlurAdmin.theme')
-      .directive('baPanelSelf', baPanelSelf);
-
-  /** @ngInject */
-  function baPanelSelf(baPanel) {
-    return angular.extend({}, baPanel, {
-      link: function(scope, el, attrs) {
-        el.addClass('panel panel-white');
-        if (attrs.baPanelClass) {
-          el.addClass(attrs.baPanelClass);
-        }
-      }
-    });
   }
 
 })();
@@ -8063,6 +8063,99 @@
 (function () {
   'use strict';
 
+  BarChartCtrl.$inject = ["$scope", "baConfig", "$element", "layoutPaths"];
+  angular.module('BlurAdmin.pages.charts.amCharts')
+      .controller('BarChartCtrl', BarChartCtrl);
+
+  /** @ngInject */
+  function BarChartCtrl($scope, baConfig, $element, layoutPaths) {
+    var layoutColors = baConfig.colors;
+    var id = $element[0].getAttribute('id');
+    var barChart = AmCharts.makeChart(id, {
+      type: 'serial',
+      theme: 'blur',
+      color: layoutColors.defaultText,
+      dataProvider: [
+        {
+          country: 'USA',
+          visits: 3025,
+          color: layoutColors.primary
+        },
+        {
+          country: 'China',
+          visits: 1882,
+          color: layoutColors.danger
+
+        },
+        {
+          country: 'Japan',
+          visits: 1809,
+          color: layoutColors.info
+        },
+        {
+          country: 'Germany',
+          visits: 1322,
+          color: layoutColors.success
+        },
+        {
+          country: 'UK',
+          visits: 1122,
+          color: layoutColors.warning
+        },
+        {
+          country: 'France',
+          visits: 1114,
+          color: layoutColors.primaryLight
+        }
+      ],
+      valueAxes: [
+        {
+          axisAlpha: 0,
+          position: 'left',
+          title: 'Visitors from country',
+          gridAlpha: 0.5,
+          gridColor: layoutColors.border,
+        }
+      ],
+      startDuration: 1,
+      graphs: [
+        {
+          balloonText: '<b>[[category]]: [[value]]</b>',
+          fillColorsField: 'color',
+          fillAlphas: 0.7,
+          lineAlpha: 0.2,
+          type: 'column',
+          valueField: 'visits'
+        }
+      ],
+      chartCursor: {
+        categoryBalloonEnabled: false,
+        cursorAlpha: 0,
+        zoomable: false
+      },
+      categoryField: 'country',
+      categoryAxis: {
+        gridPosition: 'start',
+        labelRotation: 45,
+        gridAlpha: 0.5,
+        gridColor: layoutColors.border,
+      },
+      export: {
+        enabled: true
+      },
+      creditsPosition: 'top-right',
+      pathToImages: layoutPaths.images.amChart
+    });
+  }
+})();
+
+/**
+ * @author v.lugovsky
+ * created on 16.12.2015
+ */
+(function () {
+  'use strict';
+
   AreaChartCtrl.$inject = ["$scope", "baConfig", "$element", "layoutPaths"];
   angular.module('BlurAdmin.pages.charts.amCharts')
       .controller('AreaChartCtrl', AreaChartCtrl);
@@ -8203,99 +8296,6 @@
     }
   }
 
-})();
-
-/**
- * @author v.lugovsky
- * created on 16.12.2015
- */
-(function () {
-  'use strict';
-
-  BarChartCtrl.$inject = ["$scope", "baConfig", "$element", "layoutPaths"];
-  angular.module('BlurAdmin.pages.charts.amCharts')
-      .controller('BarChartCtrl', BarChartCtrl);
-
-  /** @ngInject */
-  function BarChartCtrl($scope, baConfig, $element, layoutPaths) {
-    var layoutColors = baConfig.colors;
-    var id = $element[0].getAttribute('id');
-    var barChart = AmCharts.makeChart(id, {
-      type: 'serial',
-      theme: 'blur',
-      color: layoutColors.defaultText,
-      dataProvider: [
-        {
-          country: 'USA',
-          visits: 3025,
-          color: layoutColors.primary
-        },
-        {
-          country: 'China',
-          visits: 1882,
-          color: layoutColors.danger
-
-        },
-        {
-          country: 'Japan',
-          visits: 1809,
-          color: layoutColors.info
-        },
-        {
-          country: 'Germany',
-          visits: 1322,
-          color: layoutColors.success
-        },
-        {
-          country: 'UK',
-          visits: 1122,
-          color: layoutColors.warning
-        },
-        {
-          country: 'France',
-          visits: 1114,
-          color: layoutColors.primaryLight
-        }
-      ],
-      valueAxes: [
-        {
-          axisAlpha: 0,
-          position: 'left',
-          title: 'Visitors from country',
-          gridAlpha: 0.5,
-          gridColor: layoutColors.border,
-        }
-      ],
-      startDuration: 1,
-      graphs: [
-        {
-          balloonText: '<b>[[category]]: [[value]]</b>',
-          fillColorsField: 'color',
-          fillAlphas: 0.7,
-          lineAlpha: 0.2,
-          type: 'column',
-          valueField: 'visits'
-        }
-      ],
-      chartCursor: {
-        categoryBalloonEnabled: false,
-        cursorAlpha: 0,
-        zoomable: false
-      },
-      categoryField: 'country',
-      categoryAxis: {
-        gridPosition: 'start',
-        labelRotation: 45,
-        gridAlpha: 0.5,
-        gridColor: layoutColors.border,
-      },
-      export: {
-        enabled: true
-      },
-      creditsPosition: 'top-right',
-      pathToImages: layoutPaths.images.amChart
-    });
-  }
 })();
 
 /**
@@ -9229,14 +9229,110 @@
 
 })();
 
+/**
+ * @author a.demeshko
+ * created on 24/12/15
+ */
+(function () {
+  'use strict';
+
+  composeBoxCtrl.$inject = ["subject", "to", "text"];
+  angular.module('BlurAdmin.pages.components.mail')
+    .controller('composeBoxCtrl', composeBoxCtrl);
+
+  /** @ngInject */
+  function composeBoxCtrl(subject, to, text) {
+    var vm = this;
+    vm.subject = subject;
+    vm.to = to;
+    vm.text = text;
+  }
+})();
+/**
+ * @author a.demeshko
+ * created on 12/24/15
+ */
+(function () {
+  'use strict';
+
+  composeModal.$inject = ["$uibModal"];
+  angular.module('BlurAdmin.pages.components.mail')
+    .service('composeModal', composeModal);
+
+  /** @ngInject */
+  function composeModal($uibModal) {
+      this.open = function(options){
+        return $uibModal.open({
+          animation: false,
+          templateUrl: 'app/pages/components/mail/composeBox/compose.html',
+          controller: 'composeBoxCtrl',
+          controllerAs: 'boxCtrl',
+          size: 'compose',
+          resolve: {
+            subject: function () {
+              return options.subject;
+            },
+            to: function () {
+              return options.to;
+            },
+            text: function () {
+              return options.text;
+            }
+          }
+        });
+      }
+
+  }
+
+})();
+/**
+ * @author a.demeshko
+ * created on 28.12.2015
+ */
+(function () {
+  'use strict';
+
+  MailDetailCtrl.$inject = ["$stateParams", "mailMessages"];
+  angular.module('BlurAdmin.pages.components.mail')
+    .controller('MailDetailCtrl', MailDetailCtrl);
+
+  /** @ngInject */
+  function MailDetailCtrl($stateParams, mailMessages) {
+    var vm = this;
+    vm.mail = mailMessages.getMessageById($stateParams.id);
+    vm.label = $stateParams.label;
+  }
+
+})();
+
+/**
+ * @author a.demeshko
+ * created on 28.12.2015
+ */
+(function () {
+  'use strict';
+
+  MailListCtrl.$inject = ["$stateParams", "mailMessages"];
+  angular.module('BlurAdmin.pages.components.mail')
+    .controller('MailListCtrl', MailListCtrl);
+
+  /** @ngInject */
+  function MailListCtrl($stateParams,  mailMessages) {
+    var vm = this;
+    vm.messages = mailMessages.getMessagesByLabel($stateParams.label);
+    vm.label = $stateParams.label;
+  }
+
+})();
+
 (function(){
     'use strict';
-      AreasController.$inject = ["Tabs"];
+      EntradasController.$inject = ["Tabs"];
     angular.module('BlurAdmin.pages.admin')
-      .controller('AreasController', AreasController);
+      .controller('EntradasController', EntradasController);
 
       /** @ngInject */ 
-      function AreasController(Tabs){
+      function EntradasController(Tabs){
         var vm = this;
         Tabs
           .loadAllItems()
@@ -9247,12 +9343,12 @@
 })()
 (function(){
     'use strict';
-      EntradasController.$inject = ["Tabs"];
+      AreasController.$inject = ["Tabs"];
     angular.module('BlurAdmin.pages.admin')
-      .controller('EntradasController', EntradasController);
+      .controller('AreasController', AreasController);
 
       /** @ngInject */ 
-      function EntradasController(Tabs){
+      function AreasController(Tabs){
         var vm = this;
         Tabs
           .loadAllItems()
@@ -9351,102 +9447,6 @@
       }
 })()
 /**
- * @author a.demeshko
- * created on 24/12/15
- */
-(function () {
-  'use strict';
-
-  composeBoxCtrl.$inject = ["subject", "to", "text"];
-  angular.module('BlurAdmin.pages.components.mail')
-    .controller('composeBoxCtrl', composeBoxCtrl);
-
-  /** @ngInject */
-  function composeBoxCtrl(subject, to, text) {
-    var vm = this;
-    vm.subject = subject;
-    vm.to = to;
-    vm.text = text;
-  }
-})();
-/**
- * @author a.demeshko
- * created on 12/24/15
- */
-(function () {
-  'use strict';
-
-  composeModal.$inject = ["$uibModal"];
-  angular.module('BlurAdmin.pages.components.mail')
-    .service('composeModal', composeModal);
-
-  /** @ngInject */
-  function composeModal($uibModal) {
-      this.open = function(options){
-        return $uibModal.open({
-          animation: false,
-          templateUrl: 'app/pages/components/mail/composeBox/compose.html',
-          controller: 'composeBoxCtrl',
-          controllerAs: 'boxCtrl',
-          size: 'compose',
-          resolve: {
-            subject: function () {
-              return options.subject;
-            },
-            to: function () {
-              return options.to;
-            },
-            text: function () {
-              return options.text;
-            }
-          }
-        });
-      }
-
-  }
-
-})();
-/**
- * @author a.demeshko
- * created on 28.12.2015
- */
-(function () {
-  'use strict';
-
-  MailDetailCtrl.$inject = ["$stateParams", "mailMessages"];
-  angular.module('BlurAdmin.pages.components.mail')
-    .controller('MailDetailCtrl', MailDetailCtrl);
-
-  /** @ngInject */
-  function MailDetailCtrl($stateParams, mailMessages) {
-    var vm = this;
-    vm.mail = mailMessages.getMessageById($stateParams.id);
-    vm.label = $stateParams.label;
-  }
-
-})();
-
-/**
- * @author a.demeshko
- * created on 28.12.2015
- */
-(function () {
-  'use strict';
-
-  MailListCtrl.$inject = ["$stateParams", "mailMessages"];
-  angular.module('BlurAdmin.pages.components.mail')
-    .controller('MailListCtrl', MailListCtrl);
-
-  /** @ngInject */
-  function MailListCtrl($stateParams,  mailMessages) {
-    var vm = this;
-    vm.messages = mailMessages.getMessagesByLabel($stateParams.label);
-    vm.label = $stateParams.label;
-  }
-
-})();
-
-/**
  * @author v.lugovsky
  * created on 16.12.2015
  */
@@ -9480,71 +9480,6 @@
 
 /* Minified js for jQuery BackTop */
 !function(o){o.fn.backTop=function(e){var n=this,i=o.extend({position:400,speed:500,color:"white"},e),t=i.position,c=i.speed,d=i.color;n.addClass("white"==d?"white":"red"==d?"red":"green"==d?"green":"black"),n.css({right:40,bottom:40,position:"fixed"}),o(document).scroll(function(){var e=o(window).scrollTop();e>=t?n.fadeIn(c):n.fadeOut(c)}),n.click(function(){o("html, body").animate({scrollTop:0},{duration:1200})})}}(jQuery);
-/**
- * @author v.lugovsky
- * created on 07.06.2016
- */
-(function () {
-  'use strict';
-
-  angular.module('BlurAdmin.pages.form')
-      .controller('SwitchPanelCtrl', SwitchPanelCtrl);
-
-  /** @ngInject */
-  function SwitchPanelCtrl() {
-    var vm = this;
-
-    vm.switcherValues = {
-      primary: true,
-      warning: true,
-      danger: true,
-      info: true,
-      success: true
-    };
-  }
-
-})();
-
-/**
- * @author v.lugovksy
- * created on 16.12.2015
- */
-(function () {
-  'use strict';
-
-  switchDirective.$inject = ["$timeout"];
-  angular.module('BlurAdmin.pages.form')
-      .directive('switch', switchDirective);
-
-  /** @ngInject */
-  function switchDirective($timeout) {
-    return {
-      restrict: 'EA',
-      replace: true,
-      scope: {
-        ngModel: '='
-      },
-      template: function(el, attrs) {
-        return '<div class="switch-container ' + (attrs.color || '') + '"><input type="checkbox" ng-model="ngModel"></div>';
-      },
-      link: function (scope, elem, attr) {
-        $timeout(function(){
-          var input = $(elem).find('input');
-          input.bootstrapSwitch({
-            size: 'small',
-            onColor: attr.color
-          });
-          input.on('switchChange.bootstrapSwitch', function(event, state) {
-            scope.ngModel = state;
-            scope.$apply();
-          });
-
-        });
-      }
-    };
-  }
-})();
-
 /**
  * @author v.lugovsky
  * created on 22.04.2016
@@ -9626,6 +9561,71 @@
 
 })();
 /**
+ * @author v.lugovsky
+ * created on 07.06.2016
+ */
+(function () {
+  'use strict';
+
+  angular.module('BlurAdmin.pages.form')
+      .controller('SwitchPanelCtrl', SwitchPanelCtrl);
+
+  /** @ngInject */
+  function SwitchPanelCtrl() {
+    var vm = this;
+
+    vm.switcherValues = {
+      primary: true,
+      warning: true,
+      danger: true,
+      info: true,
+      success: true
+    };
+  }
+
+})();
+
+/**
+ * @author v.lugovksy
+ * created on 16.12.2015
+ */
+(function () {
+  'use strict';
+
+  switchDirective.$inject = ["$timeout"];
+  angular.module('BlurAdmin.pages.form')
+      .directive('switch', switchDirective);
+
+  /** @ngInject */
+  function switchDirective($timeout) {
+    return {
+      restrict: 'EA',
+      replace: true,
+      scope: {
+        ngModel: '='
+      },
+      template: function(el, attrs) {
+        return '<div class="switch-container ' + (attrs.color || '') + '"><input type="checkbox" ng-model="ngModel"></div>';
+      },
+      link: function (scope, elem, attr) {
+        $timeout(function(){
+          var input = $(elem).find('input');
+          input.bootstrapSwitch({
+            size: 'small',
+            onColor: attr.color
+          });
+          input.on('switchChange.bootstrapSwitch', function(event, state) {
+            scope.ngModel = state;
+            scope.$apply();
+          });
+
+        });
+      }
+    };
+  }
+})();
+
+/**
  * @author v.lugovksy
  * created on 16.12.2015
  */
@@ -9649,9 +9649,9 @@
 })();
 angular.module("BlurAdmin").run(["$templateCache", function($templateCache) {$templateCache.put("app/pages/admin/admin.html","<uib-tabset active=\"$tabSetStatus.activeTab\"><uib-tab ng-repeat=\"tab in vm.tabs\" heading=\"{{tab.heading}}\"><div ng-include=\"tab.template\"></div></uib-tab></uib-tabset>");
 $templateCache.put("app/pages/dashboard/dashboard.html","<dashboard-pie-chart></dashboard-pie-chart><div class=\"row\"><div class=\"col-lg-6 col-md-12 col-sm-12\" ba-panel=\"\" ba-panel-title=\"Acquisition Channels\" ba-panel-class=\"medium-panel traffic-panel\"><traffic-chart></traffic-chart></div><div class=\"col-lg-6 col-md-12 col-sm-12\" ba-panel=\"\" ba-panel-title=\"Users by Country\" ba-panel-class=\"medium-panel\"><dashboard-map></dashboard-map></div></div><div class=\"row\"><div class=\"col-xlg-9 col-lg-6 col-md-6 col-sm-12 col-xs-12\"><div class=\"row\"><div class=\"col-xlg-8 col-lg-12 col-md-12 col-sm-7 col-xs-12\" ba-panel=\"\" ba-panel-title=\"Revenue\" ba-panel-class=\"medium-panel\"><dashboard-line-chart></dashboard-line-chart></div><div class=\"col-xlg-4 col-lg-12 col-md-12 col-sm-5 col-xs-12\" ba-panel=\"\" ba-panel-class=\"popular-app medium-panel\"><popular-app></popular-app></div></div></div><div class=\"col-xlg-3 col-lg-6 col-md-6 col-sm-12 col-xs-12\" ba-panel=\"\" ba-panel-title=\"Feed\" ba-panel-class=\"large-panel with-scroll feed-panel\"><blur-feed></blur-feed></div></div><div class=\"row shift-up\"><div class=\"col-xlg-3 col-lg-6 col-md-6 col-xs-12\" ba-panel=\"\" ba-panel-title=\"To Do List\" ba-panel-class=\"xmedium-panel feed-comply-panel with-scroll todo-panel\"><dashboard-todo></dashboard-todo></div><div class=\"col-xlg-6 col-lg-6 col-md-6 col-xs-12\" ba-panel=\"\" ba-panel-title=\"Calendar\" ba-panel-class=\"xmedium-panel feed-comply-panel with-scroll calendar-panel\"><dashboard-calendar></dashboard-calendar></div></div>");
-$templateCache.put("app/pages/maps/maps.html","<div class=\"widgets\"><div class=\"row\"><div class=\"col-md-12\" ui-view=\"\"></div></div></div>");
 $templateCache.put("app/pages/profile/profile.html","<div ba-panel=\"\" ba-panel-class=\"profile-page\"><div class=\"panel-content\"><div class=\"progress-info\">Your profile is 70% Complete</div><div class=\"progress\"><div class=\"progress-bar progress-bar-primary progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"70\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 70%\"></div></div><h3 class=\"with-line\">General Information</h3><div class=\"row\"><div class=\"col-md-6\"><div class=\"form-group row clearfix\"><label for=\"inputFirstName\" class=\"col-sm-3 control-label\">Picture</label><div class=\"col-sm-9\"><div class=\"userpic\"><div class=\"userpic-wrapper\"><img ng-src=\"{{ picture }}\" ng-click=\"uploadPicture()\"></div><i class=\"ion-ios-close-outline\" ng-click=\"removePicture()\" ng-if=\"!noPicture\"></i> <a href=\"\" class=\"change-userpic\" ng-click=\"uploadPicture()\">Change Profile Picture</a> <input type=\"file\" ng-show=\"false\" id=\"uploadFile\" ng-file-select=\"onFileSelect($files)\"></div></div></div></div><div class=\"col-md-6\"></div></div><div class=\"row\"><div class=\"col-md-6\"><div class=\"form-group row clearfix\"><label for=\"inputFirstName\" class=\"col-sm-3 control-label\">First Name</label><div class=\"col-sm-9\"><input type=\"text\" class=\"form-control\" id=\"inputFirstName\" placeholder=\"\" value=\"Anastasiya\"></div></div><div class=\"form-group row clearfix\"><label for=\"inputLastName\" class=\"col-sm-3 control-label\">Last Name</label><div class=\"col-sm-9\"><input type=\"text\" class=\"form-control\" id=\"inputLastName\" placeholder=\"\" value=\"\"></div></div></div><div class=\"col-md-6\"><div class=\"form-group row clearfix\"><label class=\"col-sm-3 control-label\">Department</label><div class=\"col-sm-9\"><select class=\"form-control\" selectpicker=\"\"><option>Web Development</option><option>System Development</option><option>Sales</option><option>Human Resources</option></select></div></div><div class=\"form-group row clearfix\"><label for=\"inputOccupation\" class=\"col-sm-3 control-label\">Occupation</label><div class=\"col-sm-9\"><input type=\"text\" class=\"form-control\" id=\"inputOccupation\" placeholder=\"\" value=\"Front End Web Developer\"></div></div></div></div><h3 class=\"with-line\">Change Password</h3><div class=\"row\"><div class=\"col-md-6\"><div class=\"form-group row clearfix\"><label for=\"inputPassword\" class=\"col-sm-3 control-label\">Password</label><div class=\"col-sm-9\"><input type=\"password\" class=\"form-control\" id=\"inputPassword\" placeholder=\"\" value=\"12345678\"></div></div></div><div class=\"col-md-6\"><div class=\"form-group row clearfix\"><label for=\"inputConfirmPassword\" class=\"col-sm-3 control-label\">Confirm Password</label><div class=\"col-sm-9\"><input type=\"password\" class=\"form-control\" id=\"inputConfirmPassword\" placeholder=\"\"></div></div></div></div><h3 class=\"with-line\">Contact Information</h3><div class=\"row\"><div class=\"col-md-6\"><div class=\"form-group row clearfix\"><label for=\"inputEmail3\" class=\"col-sm-3 control-label\">Email</label><div class=\"col-sm-9\"><input type=\"email\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"\" value=\"contact@akveo.com\"></div></div><div class=\"form-group row clearfix\"><label for=\"inputPhone\" class=\"col-sm-3 control-label\">Phone</label><div class=\"col-sm-9\"><input type=\"text\" class=\"form-control\" id=\"inputPhone\" placeholder=\"\" value=\"+1 (23) 456 7890\"></div></div></div><div class=\"col-md-6\"><div class=\"form-group row clearfix\"><label class=\"col-sm-3 control-label\">Office Location</label><div class=\"col-sm-9\"><select class=\"form-control\" title=\"Standard Select\" selectpicker=\"\"><option>San Francisco</option><option>London</option><option>Minsk</option><option>Tokio</option></select></div></div><div class=\"form-group row clearfix\"><label for=\"inputRoom\" class=\"col-sm-3 control-label\">Room</label><div class=\"col-sm-9\"><input type=\"text\" class=\"form-control\" id=\"inputRoom\" placeholder=\"\" value=\"303\"></div></div></div></div><h3 class=\"with-line\">Social Profiles</h3><div class=\"social-profiles row clearfix\"><div class=\"col-md-3 col-sm-4\" ng-repeat=\"item in socialProfiles\"><a class=\"sn-link\" href=\"\" ng-click=\"showModal(item)\" ng-if=\"!item.href\"><i class=\"socicon {{ item.icon }}\"></i> <span>{{ item.name }}</span></a> <a class=\"sn-link connected\" href=\"{{ item.href }}\" target=\"_blank\" ng-if=\"item.href\"><i class=\"socicon {{ item.icon }}\"></i> <span>{{ item.name }}</span> <em class=\"ion-ios-close-empty sn-link-close\" ng-mousedown=\"unconnect(item)\"></em></a></div></div><h3 class=\"with-line\">Send Email Notifications</h3><div class=\"notification row clearfix\"><div class=\"col-sm-6\"><div class=\"form-group row clearfix\"><label class=\"col-xs-8\">When I receive a message</label><div class=\"col-xs-4\"><switch color=\"primary\" ng-model=\"switches[0]\"></switch></div></div><div class=\"form-group row clearfix\"><label class=\"col-xs-8\">When Someone sends me an invitation</label><div class=\"col-xs-4\"><switch color=\"primary\" ng-model=\"switches[1]\"></switch></div></div><div class=\"form-group row clearfix\"><label class=\"col-xs-8\">When profile information changes</label><div class=\"col-xs-4\"><switch color=\"primary\" ng-model=\"switches[2]\"></switch></div></div></div><div class=\"col-sm-6\"><div class=\"form-group row clearfix\"><label class=\"col-xs-8\">When anyone logs into your account from a new device or browser</label><div class=\"col-xs-4\"><switch color=\"primary\" ng-model=\"switches[3]\"></switch></div></div><div class=\"form-group row clearfix\"><label class=\"col-xs-8\">Weekly Reports</label><div class=\"col-xs-4\"><switch color=\"primary\" ng-model=\"switches[4]\"></switch></div></div><div class=\"form-group row clearfix\"><label class=\"col-xs-8\">Daily Reports</label><div class=\"col-xs-4\"><switch color=\"primary\" ng-model=\"switches[5]\"></switch></div></div></div></div><button type=\"button\" class=\"btn btn-primary btn-with-icon save-profile\"><i class=\"ion-android-checkmark-circle\"></i>Update Profile</button></div></div>");
 $templateCache.put("app/pages/profile/profileModal.html","<div class=\"modal-content\"><div class=\"modal-header\"><button type=\"button\" class=\"close\" ng-click=\"$dismiss()\" aria-label=\"Close\"><em class=\"ion-ios-close-empty sn-link-close\"></em></button><h4 class=\"modal-title\" id=\"myModalLabel\">Add Account</h4></div><form name=\"linkForm\"><div class=\"modal-body\"><p>Paste a link to your profile into the box below</p><div class=\"form-group\"><input type=\"text\" class=\"form-control\" placeholder=\"Link to Profile\" ng-model=\"link\"></div></div><div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-primary\" ng-click=\"ok(link)\">Save changes</button></div></form></div>");
+$templateCache.put("app/pages/maps/maps.html","<div class=\"widgets\"><div class=\"row\"><div class=\"col-md-12\" ui-view=\"\"></div></div></div>");
 $templateCache.put("app/pages/charts/amCharts/charts.html","<div class=\"widgets\"><div class=\"row\"><div class=\"col-lg-4 col-md-6\" ba-panel=\"\" ba-panel-title=\"Bar Chart\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/charts/amCharts/barChart/barChart.html\'\"></div></div><div class=\"col-lg-4 col-md-6\" ba-panel=\"\" ba-panel-title=\"Area Chart\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/charts/amCharts/areaChart/areaChart.html\'\"></div></div><div class=\"col-lg-4 col-md-12\" ba-panel=\"\" ba-panel-title=\"Line Chart\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/charts/amCharts/lineChart/lineChart.html\'\"></div></div></div><div class=\"row\"><div class=\"col-md-6\" ba-panel=\"\" ba-panel-title=\"Pie Chart\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/charts/amCharts/pieChart/pieChart.html\'\"></div></div><div class=\"col-md-6\" ba-panel=\"\" ba-panel-title=\"Funnel Chart\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/charts/amCharts/funnelChart/funnelChart.html\'\"></div></div></div><div class=\"row\"><div class=\"col-md-12\" ba-panel=\"\" ba-panel-title=\"Combined bullet/column and line graphs with multiple value axes\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/charts/amCharts/combinedChart/combinedChart.html\'\"></div></div></div></div>");
 $templateCache.put("app/pages/charts/chartJs/chartJs.html","<div class=\"row\"><div class=\"col-md-4\" ng-controller=\"chartJs1DCtrl\"><div ba-panel=\"\" ba-panel-title=\"Pie\" ba-panel-class=\"with-scroll\"><canvas id=\"pie\" class=\"chart chart-pie\" chart-legend=\"true\" chart-options=\"options\" chart-data=\"data\" chart-labels=\"labels\" chart-click=\"changeData\"></canvas></div></div><div class=\"col-md-4\" ng-controller=\"chartJs1DCtrl\"><div ba-panel=\"\" ba-panel-title=\"Doughnut\" ba-panel-class=\"with-scroll\"><canvas id=\"doughnut\" chart-options=\"options\" class=\"chart chart-doughnut\" chart-legend=\"true\" chart-data=\"data\" chart-labels=\"labels\" chart-click=\"changeData\"></canvas></div></div><div class=\"col-md-4\" ng-controller=\"chartJs1DCtrl\"><div ba-panel=\"\" ba-panel-title=\"Polar\" ba-panel-class=\"with-scroll\"><canvas id=\"polar-area\" class=\"chart chart-polar-area\" chart-data=\"data\" chart-options=\"polarOptions\" chart-labels=\"labels\" chart-legend=\"true\" chart-click=\"changeData\"></canvas></div></div></div><div class=\"row\"><div class=\"col-md-6\" ng-controller=\"chartJsWaveCtrl\"><div ba-panel=\"\" ba-panel-title=\"Animated Radar\" ba-panel-class=\"with-scroll col-eq-height\"><canvas id=\"waveLine\" class=\"chart chart-radar\" chart-data=\"data\" chart-labels=\"labels\" chart-legend=\"false\"></canvas></div></div><div class=\"col-md-6\" ng-controller=\"chartJsWaveCtrl\"><div ba-panel=\"\" ba-panel-title=\"Animated Bars\" ba-panel-class=\"with-scroll col-eq-height\"><canvas id=\"waveBars\" class=\"chart chart-bar\" chart-data=\"data\" chart-labels=\"labels\" chart-legend=\"false\"></canvas></div></div></div><div class=\"row\"><div class=\"col-lg-4 col-md-6\" ng-controller=\"chartJs2DCtrl\"><div ba-panel=\"\" ba-panel-title=\"Radar\" ba-panel-class=\"with-scroll\"><canvas id=\"radar\" class=\"chart chart-radar\" chart-legend=\"false\" chart-series=\"series\" chart-data=\"data\" chart-labels=\"labels\" chart-click=\"changeData\"></canvas></div></div><div class=\"col-lg-4 col-md-6\" ng-controller=\"chartJs2DCtrl\"><div ba-panel=\"\" ba-panel-title=\"Line\" ba-panel-class=\"with-scroll\"><canvas id=\"line\" class=\"chart chart-line\" chart-data=\"data\" chart-labels=\"labels\" chart-legend=\"false\" chart-series=\"series\" chart-click=\"changeData\"></canvas></div></div><div class=\"col-lg-4 col-md-12\" ng-controller=\"chartJs2DCtrl\"><div ba-panel=\"\" ba-panel-title=\"Bars\" ba-panel-class=\"with-scroll\"><canvas id=\"bar\" class=\"chart chart-bar\" chart-data=\"data\" chart-labels=\"labels\" chart-series=\"series\" chart-click=\"changeData\"></canvas></div></div></div>");
 $templateCache.put("app/pages/charts/chartist/chartist.html","<section ng-controller=\"chartistCtrl\" class=\"chartist\"><div class=\"row\"><div class=\"col-md-6\"><div ba-panel=\"\" ba-panel-title=\"Lines\" ba-panel-class=\"with-scroll\"><h5>Simple line chart</h5><div id=\"line-chart\" class=\"ct-chart\"></div><h5>Line chart with area</h5><div id=\"area-chart\" class=\"ct-chart\"></div><h5>Bi-polar line chart with area only</h5><div id=\"bi-chart\" class=\"ct-chart\"></div></div></div><div class=\"col-md-6\"><div ba-panel=\"\" ba-panel-title=\"Bars\" ba-panel-class=\"with-scroll\"><h5>Simple bar chart</h5><div id=\"simple-bar\" class=\"ct-chart\"></div><h5>Multi-line labels bar chart</h5><div id=\"multi-bar\" class=\"ct-chart\"></div><h5>Stacked bar chart</h5><div id=\"stacked-bar\" class=\"ct-chart stacked-bar\"></div></div></div></div><div class=\"row\"><div class=\"col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Pies & Donuts\" ba-panel-class=\"with-scroll\"><div class=\"row\"><div class=\"col-md-12 col-lg-4\"><h5>Simple Pie</h5><div id=\"simple-pie\" class=\"ct-chart\"></div></div><div class=\"col-md-12 col-lg-4\"><h5>Pie with labels</h5><div id=\"label-pie\" class=\"ct-chart\"></div></div><div class=\"col-md-12 col-lg-4\"><h5>Donut</h5><div id=\"donut\" class=\"ct-chart\"></div></div></div></div></div></div></section>");
@@ -9668,13 +9668,13 @@ $templateCache.put("app/pages/dashboard/dashboardTodo/dashboardTodo.html","<div 
 $templateCache.put("app/pages/dashboard/popularApp/popularApp.html","<div class=\"popular-app-img-container\"><div class=\"popular-app-img\"><img ng-src=\"{{::( \'app/my-app-logo.png\' | appImage )}}\"> <span class=\"logo-text\">Super&nbspApp</span></div></div><div class=\"popular-app-cost row\"><div class=\"col-xs-9\">Most Popular App</div><div class=\"col-xs-3 text-right\">175$</div></div><div class=\"popular-app-info row\"><div class=\"col-xs-4 text-left\"><div class=\"info-label\">Total Visits</div><div>47,512</div></div><div class=\"col-xs-4 text-center\"><div class=\"info-label\">New Visits</div><div>9,217</div></div><div class=\"col-xs-4 text-right\"><div class=\"info-label\">Sales</div><div>2,928</div></div></div>");
 $templateCache.put("app/pages/dashboard/trafficChart/trafficChart.html","<div class=\"channels-block\" ng-class=\"{\'transparent\': transparent}\"><div class=\"chart-bg\"></div><div class=\"traffic-chart\" id=\"trafficChart\"><div class=\"canvas-holder\"><canvas id=\"chart-area\" width=\"300\" height=\"300\"></canvas><div class=\"traffic-text\">1,900,128 <span>Views Total</span></div></div><div class=\"traffic-legend\"></div></div><div class=\"channels-info\"><div><div class=\"channels-info-item\" ng-repeat=\"item in doughnutData | orderBy:\'order\'\"><div class=\"legend-color\" style=\"background-color: {{::item.color}}\"></div><p>{{::item.label}}<span class=\"channel-number\">+{{item.percentage}}%</span></p><div class=\"progress progress-sm channel-progress\"><div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"{{item.percentage}}\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: {{item.percentage}}%\"></div></div></div></div></div></div>");
 $templateCache.put("app/pages/dashboard/weather/weather.html","<div class=\"weather-wrapper\"><div class=\"weather-main-info\"><h5 class=\"city-date font-x1dot5\"><div>{{geoData.geoplugin_city}} - {{geoData.geoplugin_countryName | uppercase}}</div><div>{{ weather.days[weather.current].date | date : \'EEEE h:mm\'}}</div></h5><div class=\"weather-description font-x1dot5\"><i class=\"font-x3 {{weatherIcons[weather.days[weather.current].icon]}}\"></i><div class=\"weather-info\">{{weather.days[weather.current].main}} - {{weather.days[weather.current].description}}</div></div><div class=\"weather-temp font-x1dot5\"><i class=\"font-x2 ion-thermometer\"></i><div class=\"weather-info\" ng-switch=\"\" on=\"units\"><span ng-switch-when=\"metric\">{{weather.days[weather.current].temp}} °C | <a ng-click=\"switchUnits(\'imperial\')\" href=\"\">°F</a></span> <span ng-switch-when=\"imperial\">{{weather.days[weather.current].temp}} °F | <a ng-click=\"switchUnits(\'metric\')\" href=\"\">°C</a></span></div></div></div><div id=\"tempChart\" class=\"temp-by-time\"></div><div class=\"select-day\"><div class=\"day\" ng-repeat=\"day in weather.days\" ng-click=\"switchDay($index)\"><div><span class=\"font-x1dot25\">{{day.temp}}</span></div><div><i class=\"weatherIcon font-x2 {{weatherIcons[day.icon]}}\"></i> <span class=\"select-day-info\">{{day.main}}</span></div><div><span>{{day.date | date : \'EEE\'}}</span></div></div></div></div>");
-$templateCache.put("app/pages/form/inputs/inputs.html","<div class=\"widgets\"><div class=\"row\"><div class=\"col-md-6\"><div ba-panel=\"\" ba-panel-title=\"Standard Fields\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/form/inputs/widgets/standardFields.html\'\"></div></div><div ba-panel=\"\" ba-panel-title=\"Tags Input\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/form/inputs/widgets/tagsInput/tagsInput.html\'\"></div></div><div ba-panel=\"\" ba-panel-title=\"Input Groups\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/form/inputs/widgets/inputGroups.html\'\"></div></div><div ba-panel=\"\" ba-panel-title=\"Checkboxes & Radios\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/form/inputs/widgets/checkboxesRadios.html\'\"></div></div></div><div class=\"col-md-6\"><div ba-panel=\"\" ba-panel-title=\"Validation States\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/form/inputs/widgets/validationStates.html\'\"></div></div><div ba-panel=\"\" ba-panel-title=\"Selects\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/form/inputs/widgets/select/select.html\'\"></div></div><div ba-panel=\"\" ba-panel-title=\"On/Off Switches\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/form/inputs/widgets/switch/switch.html\'\"></div></div></div></div></div>");
 $templateCache.put("app/pages/form/layouts/layouts.html","<div class=\"widgets\"><div class=\"row\"><div class=\"col-md-12\" ba-panel=\"\" ba-panel-title=\"Inline Form\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/form/layouts/widgets/inlineForm.html\'\"></div></div></div><div class=\"row\"><div class=\"col-md-6\"><div ba-panel=\"\" ba-panel-title=\"Basic Form\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/form/layouts/widgets/basicForm.html\'\"></div></div><div ba-panel=\"\" ba-panel-title=\"Horizontal Form\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/form/layouts/widgets/horizontalForm.html\'\"></div></div></div><div class=\"col-md-6\"><div ba-panel=\"\" ba-panel-title=\"Form Without Labels\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/form/layouts/widgets/formWithoutLabels.html\'\"></div></div><div ba-panel=\"\" ba-panel-title=\"Block Form\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/form/layouts/widgets/blockForm.html\'\"></div></div></div></div></div>");
+$templateCache.put("app/pages/form/inputs/inputs.html","<div class=\"widgets\"><div class=\"row\"><div class=\"col-md-6\"><div ba-panel=\"\" ba-panel-title=\"Standard Fields\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/form/inputs/widgets/standardFields.html\'\"></div></div><div ba-panel=\"\" ba-panel-title=\"Tags Input\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/form/inputs/widgets/tagsInput/tagsInput.html\'\"></div></div><div ba-panel=\"\" ba-panel-title=\"Input Groups\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/form/inputs/widgets/inputGroups.html\'\"></div></div><div ba-panel=\"\" ba-panel-title=\"Checkboxes & Radios\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/form/inputs/widgets/checkboxesRadios.html\'\"></div></div></div><div class=\"col-md-6\"><div ba-panel=\"\" ba-panel-title=\"Validation States\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/form/inputs/widgets/validationStates.html\'\"></div></div><div ba-panel=\"\" ba-panel-title=\"Selects\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/form/inputs/widgets/select/select.html\'\"></div></div><div ba-panel=\"\" ba-panel-title=\"On/Off Switches\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/form/inputs/widgets/switch/switch.html\'\"></div></div></div></div></div>");
 $templateCache.put("app/pages/form/wizard/wizard.html","<div class=\"widgets\"><div class=\"row\"><div class=\"col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Form Wizard\" ba-panel-class=\"with-scroll\"><ba-wizard><ba-wizard-step title=\"Personal info\" form=\"vm.personalInfoForm\"><form name=\"vm.personalInfoForm\" novalidate=\"\"><div class=\"row\"><div class=\"col-md-6\"><div class=\"form-group has-feedback\" ng-class=\"{\'has-error\': vm.personalInfoForm.username.$invalid && (vm.personalInfoForm.username.$dirty || vm.personalInfoForm.$submitted)}\"><label for=\"exampleUsername1\">Username</label> <input type=\"text\" class=\"form-control\" id=\"exampleUsername1\" name=\"username\" placeholder=\"Username\" ng-model=\"vm.personalInfo.username\" required=\"\"> <span class=\"help-block error-block basic-block\">Required</span></div><div class=\"form-group\" ng-class=\"{\'has-error\': vm.personalInfoForm.email.$invalid && (vm.personalInfoForm.email.$dirty || vm.personalInfoForm.$submitted)}\"><label for=\"exampleInputEmail1\">Email address</label> <input type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" name=\"email\" placeholder=\"Email\" ng-model=\"vm.personalInfo.email\" required=\"\"> <span class=\"help-block error-block basic-block\">Proper email required</span></div></div><div class=\"col-md-6\"><div class=\"form-group\" ng-class=\"{\'has-error\': vm.personalInfoForm.password.$invalid && (vm.personalInfoForm.password.$dirty || vm.personalInfoForm.$submitted)}\"><label for=\"exampleInputPassword1\">Password</label> <input type=\"password\" class=\"form-control\" id=\"exampleInputPassword1\" name=\"password\" placeholder=\"Password\" ng-model=\"vm.personalInfo.password\" required=\"\"> <span class=\"help-block error-block basic-block\">Required</span></div><div class=\"form-group\" ng-class=\"{\'has-error\': !vm.arePersonalInfoPasswordsEqual() && (vm.personalInfoForm.confirmPassword.$dirty || vm.personalInfoForm.$submitted)}\"><label for=\"exampleInputConfirmPassword1\">Confirm Password</label> <input type=\"password\" class=\"form-control\" id=\"exampleInputConfirmPassword1\" name=\"confirmPassword\" placeholder=\"Confirm Password\" ng-model=\"vm.personalInfo.confirmPassword\" required=\"\"> <span class=\"help-block error-block basic-block\">Passwords should match</span></div></div></div></form></ba-wizard-step><ba-wizard-step title=\"Product Info\" form=\"vm.productInfoForm\"><form name=\"vm.productInfoForm\" novalidate=\"\"><div class=\"row\"><div class=\"col-md-6\"><div class=\"form-group has-feedback\" ng-class=\"{\'has-error\': vm.productInfoForm.productName.$invalid && (vm.productInfoForm.productName.$dirty || vm.productInfoForm.$submitted)}\"><label for=\"productName\">Product name</label> <input type=\"text\" class=\"form-control\" id=\"productName\" name=\"productName\" placeholder=\"Product name\" ng-model=\"vm.productInfo.productName\" required=\"\"> <span class=\"help-block error-block basic-block\">Required</span></div><div class=\"form-group\" ng-class=\"{\'has-error\': vm.productInfoForm.productId.$invalid && (vm.productInfoForm.productId.$dirty || vm.productInfoForm.$submitted)}\"><label for=\"productId\">Product id</label> <input type=\"text\" class=\"form-control\" id=\"productId\" name=\"productId\" placeholder=\"productId\" ng-model=\"vm.productInfo.productId\" required=\"\"> <span class=\"help-block error-block basic-block\">Required</span></div></div><div class=\"col-md-6\"><div class=\"form-group\"><label for=\"productName\">Category</label><select class=\"form-control\" title=\"Category\" selectpicker=\"\"><option selected=\"\">Electronics</option><option>Toys</option><option>Accessories</option></select></div></div></div></form></ba-wizard-step><ba-wizard-step title=\"Shipment\" form=\"vm.addressForm\"><form name=\"vm.addressForm\" novalidate=\"\"><div class=\"row\"><div class=\"col-md-6\"><div class=\"form-group has-feedback\" ng-class=\"{\'has-error\': vm.addressForm.address.$invalid && (vm.addressForm.address.$dirty || vm.addressForm.$submitted)}\"><label for=\"productName\">Shipment address</label> <input type=\"text\" class=\"form-control\" id=\"address\" name=\"address\" placeholder=\"Shipment address\" ng-model=\"vm.shipment.address\" required=\"\"> <span class=\"help-block error-block basic-block\">Required</span></div></div><div class=\"col-md-6\"><div class=\"form-group\"><label for=\"productName\">Shipment method</label><select class=\"form-control\" title=\"Category\" selectpicker=\"\"><option selected=\"\">Fast & expensive</option><option>Cheap & free</option></select></div></div></div><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\"> <span>Save shipment info</span></label></div></form></ba-wizard-step><ba-wizard-step title=\"Finish\"><form class=\"form-horizontal\" name=\"vm.finishForm\" novalidate=\"\">Congratulations! You have successfully filled the form!</form></ba-wizard-step></ba-wizard></div></div></div></div>");
 $templateCache.put("app/pages/maps/google-maps/google-maps.html","<div ba-panel=\"\" ba-panel-title=\"Google Maps\" class=\"viewport100\"><div id=\"google-maps\"></div></div>");
 $templateCache.put("app/pages/maps/leaflet/leaflet.html","<div ba-panel=\"\" ba-panel-title=\"Leaflet\" class=\"viewport100\"><div id=\"leaflet-map\"></div></div>");
-$templateCache.put("app/pages/maps/map-bubbles/map-bubbles.html","<div ba-panel=\"\" ba-panel-title=\"Map with Bubbles\" class=\"viewport100\"><div id=\"map-bubbles\"></div></div>");
 $templateCache.put("app/pages/maps/map-lines/map-lines.html","<div ba-panel=\"\" ba-panel-title=\"Line Map\" class=\"viewport100\"><div id=\"map-lines\"></div></div>");
+$templateCache.put("app/pages/maps/map-bubbles/map-bubbles.html","<div ba-panel=\"\" ba-panel-title=\"Map with Bubbles\" class=\"viewport100\"><div id=\"map-bubbles\"></div></div>");
 $templateCache.put("app/pages/tables/basic/tables.html","<div class=\"widgets\"><div class=\"row\"><div class=\"col-lg-6 col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Hover Rows\" ba-panel-class=\"with-scroll table-panel\"><div include-with-scope=\"app/pages/tables/widgets/hoverRows.html\"></div></div></div><div class=\"col-lg-6 col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Bordered Table\" ba-panel-class=\"with-scroll table-panel\"><div include-with-scope=\"app/pages/tables/widgets/borderedTable.html\"></div></div></div></div><div class=\"row\"><div class=\"col-lg-6 col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Condensed Table\" ba-panel-class=\"with-scroll table-panel\"><div include-with-scope=\"app/pages/tables/widgets/condensedTable.html\"></div></div></div><div class=\"col-lg-6 col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Striped Rows\" ba-panel-class=\"with-scroll table-panel\"><div include-with-scope=\"app/pages/tables/widgets/stripedRows.html\"></div></div></div></div><div class=\"row\"><div class=\"col-lg-6 col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Contextual Table\" ba-panel-class=\"with-scroll table-panel\"><div include-with-scope=\"app/pages/tables/widgets/contextualTable.html\"></div></div></div><div class=\"col-lg-6 col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Responsive Table\" ba-panel-class=\"with-scroll table-panel\"><div include-with-scope=\"app/pages/tables/widgets/responsiveTable.html\"></div></div></div></div></div>");
 $templateCache.put("app/pages/tables/smart/tables.html","<div class=\"widgets\"><div class=\"row\"><div class=\"col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Editable Rows\" ba-panel-class=\"with-scroll\"><div include-with-scope=\"app/pages/tables/widgets/editableRowTable.html\"></div></div></div></div><div class=\"row\"><div class=\"col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Editable Cells\" ba-panel-class=\"with-scroll\"><div include-with-scope=\"app/pages/tables/widgets/editableTable.html\"></div></div></div></div><div class=\"row\"><div class=\"col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Smart Table With Filtering, Sorting And Pagination\" ba-panel-class=\"with-scroll\"><div include-with-scope=\"app/pages/tables/widgets/smartTable.html\"></div></div></div></div></div>");
 $templateCache.put("app/pages/tables/widgets/basicTable.html","<div class=\"horizontal-scroll\"><table class=\"table\"><thead><tr><th class=\"browser-icons\"></th><th>Browser</th><th class=\"align-right\">Visits</th><th class=\"table-arr\"></th><th class=\"align-right\">Downloads</th><th class=\"table-arr\"></th><th class=\"align-right\">Purchases</th><th class=\"table-arr\"></th><th class=\"align-right\">DAU</th><th class=\"table-arr\"></th><th class=\"align-right\">MAU</th><th class=\"table-arr\"></th><th class=\"align-right\">LTV</th><th class=\"table-arr\"></th><th class=\"align-right\">Users %</th><th class=\"table-arr\"></th></tr></thead><tbody><tr><td><img src=\"img/chrome.svg\" width=\"20\" height=\"20\"></td><td class=\"nowrap\">Google Chrome</td><td class=\"align-right\">10,392</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">3,822</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">4,214</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">899</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">7,098</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">178</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">45%</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td></tr><tr><td><img src=\"img/firefox.svg\" width=\"20\" height=\"20\"></td><td class=\"nowrap\">Mozilla Firefox</td><td class=\"align-right\">7,873</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">6,003</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">3,031</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">897</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">8,997</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">102</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">28%</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td></tr><tr><td><img src=\"img/ie.svg\" width=\"20\" height=\"20\"></td><td class=\"nowrap\">Internet Explorer</td><td class=\"align-right\">5,890</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">3,492</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">2,102</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">27</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">4,039</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">99</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">17%</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td></tr><tr><td><img src=\"img/safari.svg\" width=\"20\" height=\"20\"></td><td class=\"nowrap\">Safari</td><td class=\"align-right\">4,001</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">2,039</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">1,001</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">104</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">3,983</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">209</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">14%</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td></tr><tr><td><img src=\"img/opera.svg\" width=\"20\" height=\"20\"></td><td class=\"nowrap\">Opera</td><td class=\"align-right\">1,833</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">983</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">83</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">19</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">1,099</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">103</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">5%</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td></tr></tbody></table></div>");
@@ -9691,8 +9691,8 @@ $templateCache.put("app/pages/ui/alerts/alerts.html","<div class=\"widgets\"><di
 $templateCache.put("app/pages/ui/buttons/buttons.html","<div class=\"widgets\"><div class=\"row\"><div class=\"col-md-3\" ba-panel=\"\" ba-panel-title=\"Flat Buttons\" ba-panel-class=\"with-scroll button-panel\"><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-default\">Default</button></div><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-primary\">Primary</button></div><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-success\">Success</button></div><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-info\">Info</button></div><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-warning\">Warning</button></div><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-danger\">Danger</button></div></div><div class=\"col-md-3\" ba-panel=\"\" ba-panel-title=\"Raised Buttons\" ba-panel-class=\"with-scroll button-panel\"><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-default btn-raised\">Default</button></div><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-primary btn-raised\">Primary</button></div><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-success btn-raised\">Success</button></div><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-info btn-raised\">Info</button></div><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-warning btn-raised\">Warning</button></div><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-danger btn-raised\">Danger</button></div></div><div class=\"col-md-3\" ba-panel=\"\" ba-panel-title=\"Different sizes\" ba-panel-class=\"with-scroll button-panel df-size-button-panel\"><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-default btn-xs\">Default</button></div><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-primary btn-sm\">Primary</button></div><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-success btn-mm\">Success</button></div><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-info btn-md\">Info</button></div><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-warning btn-xm\">Warning</button></div><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-danger btn-lg\">Danger</button></div></div><div class=\"col-md-3\" ba-panel=\"\" ba-panel-title=\"Disabled\" ba-panel-class=\"with-scroll button-panel\"><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\">Default</button></div><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-primary\" disabled=\"disabled\">Primary</button></div><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-success\" disabled=\"disabled\">Success</button></div><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-info\" disabled=\"disabled\">Info</button></div><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-warning\" disabled=\"disabled\">Warning</button></div><div class=\"button-wrapper\"><button type=\"button\" class=\"btn btn-danger\" disabled=\"disabled\">Danger</button></div></div></div><div class=\"row\"><div class=\"col-md-6\"><div ba-panel=\"\" ba-panel-title=\"Icon Buttons\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/ui/buttons/widgets/iconButtons.html\'\"></div></div><div ba-panel=\"\" ba-panel-title=\"Large Buttons\" ba-panel-class=\"with-scroll large-buttons-panel\"><div ng-include=\"\'app/pages/ui/buttons/widgets/largeButtons.html\'\"></div></div></div><div class=\"col-md-6\"><div ba-panel=\"\" ba-panel-title=\"Button Dropdowns\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/ui/buttons/widgets/dropdowns.html\'\"></div></div><div ba-panel=\"\" ba-panel-title=\"Button Groups\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/ui/buttons/widgets/buttonGroups.html\'\"></div></div></div></div><div class=\"row\"><div class=\"col-md-12\" ba-panel=\"\" ba-panel-title=\"Progress Buttons\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/ui/buttons/widgets/progressButtons.html\'\"></div></div></div></div>");
 $templateCache.put("app/pages/ui/grid/baseGrid.html","<h4 class=\"grid-h\">Stacked to horizontal</h4><div class=\"row show-grid\"><div class=\"col-md-1\"><div>.col-md-1</div></div><div class=\"col-md-1\"><div>.col-md-1</div></div><div class=\"col-md-1\"><div>.col-md-1</div></div><div class=\"col-md-1\"><div>.col-md-1</div></div><div class=\"col-md-1\"><div>.col-md-1</div></div><div class=\"col-md-1\"><div>.col-md-1</div></div><div class=\"col-md-1\"><div>.col-md-1</div></div><div class=\"col-md-1\"><div>.col-md-1</div></div><div class=\"col-md-1\"><div>.col-md-1</div></div><div class=\"col-md-1\"><div>.col-md-1</div></div><div class=\"col-md-1\"><div>.col-md-1</div></div><div class=\"col-md-1\"><div>.col-md-1</div></div></div><div class=\"row show-grid\"><div class=\"col-md-8\"><div>.col-md-8</div></div><div class=\"col-md-4\"><div>.col-md-4</div></div></div><div class=\"row show-grid\"><div class=\"col-md-4\"><div>.col-md-4</div></div><div class=\"col-md-4\"><div>.col-md-4</div></div><div class=\"col-md-4\"><div>.col-md-4</div></div></div><div class=\"row show-grid\"><div class=\"col-md-6\"><div>.col-md-6</div></div><div class=\"col-md-6\"><div>.col-md-6</div></div></div><h4 class=\"grid-h\">Mobile and desktop</h4><div class=\"row show-grid\"><div class=\"col-xs-12 col-md-8\"><div>xs-12 .col-md-8</div></div><div class=\"col-xs-6 col-md-4\"><div>xs-6 .col-md-4</div></div></div><div class=\"row show-grid\"><div class=\"col-xs-6 col-md-4\"><div>xs-6 .col-md-4</div></div><div class=\"col-xs-6 col-md-4\"><div>xs-6 .col-md-4</div></div><div class=\"col-xs-6 col-md-4\"><div>xs-6 .col-md-4</div></div></div><div class=\"row show-grid\"><div class=\"col-xs-6\"><div>.col-xs-6</div></div><div class=\"col-xs-6\"><div>.col-xs-6</div></div></div><h4 class=\"grid-h\">Mobile, tablet, desktop</h4><div class=\"row show-grid\"><div class=\"col-xs-12 col-sm-6 col-md-8\"><div>.col-xs-12 .col-sm-6 .col-md-8</div></div><div class=\"col-xs-6 col-md-4\"><div>.col-xs-6 .col-md-4</div></div></div><div class=\"row show-grid\"><div class=\"col-xs-6 col-sm-4\"><div>.col-xs-6 .col-sm-4</div></div><div class=\"col-xs-6 col-sm-4\"><div>.col-xs-6 .col-sm-4</div></div><div class=\"clearfix visible-xs-block\"></div><div class=\"col-xs-6 col-sm-4\"><div>.col-xs-6 .col-sm-4</div></div></div><h4 class=\"grid-h\">Column wrapping</h4><div class=\"row show-grid\"><div class=\"col-xs-9\"><div>.col-xs-9</div></div><div class=\"col-xs-4\"><div>.col-xs-4<br>Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit.</div></div><div class=\"col-xs-6\"><div>.col-xs-6<br>Subsequent columns continue along the new line.</div></div></div><h4 class=\"grid-h\">Responsive column resets</h4><div class=\"row show-grid\"><div class=\"col-xs-6 col-sm-3\"><div>.col-xs-6 .col-sm-3<p>Resize your viewport or check it out on your phone for an example.</p></div></div><div class=\"col-xs-6 col-sm-3\"><div>.col-xs-6 .col-sm-3</div></div><div class=\"clearfix visible-xs-block\"></div><div class=\"col-xs-6 col-sm-3\"><div>.col-xs-6 .col-sm-3</div></div><div class=\"col-xs-6 col-sm-3\"><div>.col-xs-6 .col-sm-3</div></div></div><h4 class=\"grid-h\">Offsetting columns</h4><div class=\"row show-grid\"><div class=\"col-md-4\"><div>.col-md-4</div></div><div class=\"col-md-4 col-md-offset-4\"><div>.col-md-4 .col-md-offset-4</div></div></div><div class=\"row show-grid\"><div class=\"col-md-3 col-md-offset-3\"><div>.col-md-3 .col-md-offset-3</div></div><div class=\"col-md-3 col-md-offset-3\"><div>.col-md-3 .col-md-offset-3</div></div></div><div class=\"row show-grid\"><div class=\"col-md-6 col-md-offset-3\"><div>.col-md-6 .col-md-offset-3</div></div></div><h4 class=\"grid-h\">Grid options</h4><div class=\"table-responsive\"><table class=\"table table-bordered table-striped\"><thead><tr><th></th><th>Extra small devices <small>Phones (&lt;768px)</small></th><th>Small devices <small>Tablets (≥768px)</small></th><th>Medium devices <small>Desktops (≥992px)</small></th><th>Large devices <small>Desktops (≥1200px)</small></th></tr></thead><tbody><tr><th class=\"text-nowrap\" scope=\"row\">Grid behavior</th><td>Horizontal at all times</td><td colspan=\"3\">Collapsed to start, horizontal above breakpoints</td></tr><tr><th class=\"text-nowrap\" scope=\"row\">Container width</th><td>None (auto)</td><td>750px</td><td>970px</td><td>1170px</td></tr><tr><th class=\"text-nowrap\" scope=\"row\">Class prefix</th><td><code>.col-xs-</code></td><td><code>.col-sm-</code></td><td><code>.col-md-</code></td><td><code>.col-lg-</code></td></tr><tr><th class=\"text-nowrap\" scope=\"row\"># of columns</th><td colspan=\"4\">12</td></tr><tr><th class=\"text-nowrap\" scope=\"row\">Column width</th><td class=\"text-muted\">Auto</td><td>~62px</td><td>~81px</td><td>~97px</td></tr><tr><th class=\"text-nowrap\" scope=\"row\">Gutter width</th><td colspan=\"4\">30px (15px on each side of a column)</td></tr><tr><th class=\"text-nowrap\" scope=\"row\">Nestable</th><td colspan=\"4\">Yes</td></tr><tr><th class=\"text-nowrap\" scope=\"row\">Offsets</th><td colspan=\"4\">Yes</td></tr><tr><th class=\"text-nowrap\" scope=\"row\">Column ordering</th><td colspan=\"4\">Yes</td></tr></tbody></table></div>");
 $templateCache.put("app/pages/ui/grid/grid.html","<div class=\"widgets\"><div class=\"row\"><div class=\"col-md-12\" ba-panel=\"\" ba-panel-title=\"Inline Form\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/ui/grid/baseGrid.html\'\"></div></div></div></div>");
-$templateCache.put("app/pages/ui/modals/modals.html","<div class=\"widgets\"><div class=\"row\"><div class=\"col-md-12\" ba-panel=\"\" ba-panel-title=\"Modals\" ba-panel-class=\"with-scroll\"><div class=\"modal-buttons clearfix\"><button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" ng-click=\"open(\'app/pages/ui/modals/modalTemplates/basicModal.html\', \'md\')\">Default modal</button> <button type=\"button\" class=\"btn btn-success\" data-toggle=\"modal\" ng-click=\"open(\'app/pages/ui/modals/modalTemplates/largeModal.html\', \'lg\')\">Large modal</button> <button type=\"button\" class=\"btn btn-warning\" data-toggle=\"modal\" ng-click=\"open(\'app/pages/ui/modals/modalTemplates/smallModal.html\', \'sm\')\">Small modal</button></div></div></div><div class=\"row\"><div class=\"col-md-6\" ba-panel=\"\" ba-panel-title=\"Message Modals\" ba-panel-class=\"with-scroll\"><div class=\"modal-buttons same-width clearfix\"><button type=\"button\" class=\"btn btn-success\" data-toggle=\"modal\" ng-click=\"open(\'app/pages/ui/modals/modalTemplates/successModal.html\')\">Success Message</button> <button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" ng-click=\"open(\'app/pages/ui/modals/modalTemplates/infoModal.html\')\">Info Message</button> <button type=\"button\" class=\"btn btn-warning\" data-toggle=\"modal\" ng-click=\"open(\'app/pages/ui/modals/modalTemplates/warningModal.html\')\">Warning Message</button> <button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" ng-click=\"open(\'app/pages/ui/modals/modalTemplates/dangerModal.html\')\">Danger Message</button></div></div><div class=\"col-md-6\" ba-panel=\"\" ba-panel-title=\"Notifications\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/ui/modals/notifications/notifications.html\'\"></div></div></div></div>");
 $templateCache.put("app/pages/ui/icons/icons.html","<div class=\"widgets\"><div class=\"row\"><div class=\"col-md-6\"><div ba-panel=\"\" ba-panel-title=\"Kameleon SVG Icons\" ba-panel-class=\"with-scroll\"><div include-with-scope=\"app/pages/ui/icons/widgets/kameleon.html\"></div></div><div ba-panel=\"\" ba-panel-title=\"Socicon\" ba-panel-class=\"with-scroll\"><div include-with-scope=\"app/pages/ui/icons/widgets/socicon.html\"></div></div></div><div class=\"col-md-6\"><div ba-panel=\"\" ba-panel-title=\"Icons With Rounded Background\" ba-panel-class=\"with-scroll\"><div include-with-scope=\"app/pages/ui/icons/widgets/kameleonRounded.html\"></div></div><div ba-panel=\"\" ba-panel-title=\"ionicons\" ba-panel-class=\"with-scroll\"><div include-with-scope=\"app/pages/ui/icons/widgets/ionicons.html\"></div></div><div ba-panel=\"\" ba-panel-title=\"Font Awesome Icons\" ba-panel-class=\"with-scroll\"><div include-with-scope=\"app/pages/ui/icons/widgets/fontAwesomeIcons.html\"></div></div></div></div></div>");
+$templateCache.put("app/pages/ui/modals/modals.html","<div class=\"widgets\"><div class=\"row\"><div class=\"col-md-12\" ba-panel=\"\" ba-panel-title=\"Modals\" ba-panel-class=\"with-scroll\"><div class=\"modal-buttons clearfix\"><button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" ng-click=\"open(\'app/pages/ui/modals/modalTemplates/basicModal.html\', \'md\')\">Default modal</button> <button type=\"button\" class=\"btn btn-success\" data-toggle=\"modal\" ng-click=\"open(\'app/pages/ui/modals/modalTemplates/largeModal.html\', \'lg\')\">Large modal</button> <button type=\"button\" class=\"btn btn-warning\" data-toggle=\"modal\" ng-click=\"open(\'app/pages/ui/modals/modalTemplates/smallModal.html\', \'sm\')\">Small modal</button></div></div></div><div class=\"row\"><div class=\"col-md-6\" ba-panel=\"\" ba-panel-title=\"Message Modals\" ba-panel-class=\"with-scroll\"><div class=\"modal-buttons same-width clearfix\"><button type=\"button\" class=\"btn btn-success\" data-toggle=\"modal\" ng-click=\"open(\'app/pages/ui/modals/modalTemplates/successModal.html\')\">Success Message</button> <button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" ng-click=\"open(\'app/pages/ui/modals/modalTemplates/infoModal.html\')\">Info Message</button> <button type=\"button\" class=\"btn btn-warning\" data-toggle=\"modal\" ng-click=\"open(\'app/pages/ui/modals/modalTemplates/warningModal.html\')\">Warning Message</button> <button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" ng-click=\"open(\'app/pages/ui/modals/modalTemplates/dangerModal.html\')\">Danger Message</button></div></div><div class=\"col-md-6\" ba-panel=\"\" ba-panel-title=\"Notifications\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/ui/modals/notifications/notifications.html\'\"></div></div></div></div>");
 $templateCache.put("app/pages/ui/notifications/notifications.html","<div ba-panel=\"\" ba-panel-class=\"with-scroll notification-panel\"><div class=\"row\"><div class=\"col-md-3 col-sm-4\"><div class=\"control\"><label for=\"title\">Title</label> <input ng-model=\"options.title\" type=\"text\" class=\"form-control\" id=\"title\" placeholder=\"Enter a title ...\"></div><div class=\"control\"><label for=\"message\">Message</label> <textarea ng-model=\"options.msg\" class=\"form-control\" id=\"message\" rows=\"3\" placeholder=\"Enter a message ...\"></textarea></div><div class=\"control-group\"><div class=\"control\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input ng-model=\"options.closeButton\" type=\"checkbox\" id=\"closeButton\"> <span>Close Button</span></label></div><div class=\"control\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input ng-model=\"options.allowHtml\" type=\"checkbox\" id=\"html\"> <span>Allow html</span></label></div><div class=\"control\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input ng-model=\"options.progressBar\" type=\"checkbox\" id=\"progressBar\"> <span>Progress bar</span></label></div><div class=\"control\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input ng-model=\"options.preventDuplicates\" type=\"checkbox\" id=\"preventDuplicates\"> <span>Prevent duplicates</span></label></div><div class=\"control\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input ng-model=\"options.preventOpenDuplicates\" type=\"checkbox\" id=\"preventOpenDuplicates\"> <span>Prevent open duplicates</span></label></div><div class=\"control\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input ng-model=\"options.tapToDismiss\" type=\"checkbox\" id=\"tapToDismiss\"> <span>Tap to dismiss</span></label></div><div class=\"control\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input ng-model=\"options.newestOnTop\" type=\"checkbox\" id=\"newestOnTop\"> <span>Newest on top</span></label></div></div></div><div class=\"col-md-2 col-sm-3 toastr-radio-setup\"><div id=\"toastTypeGroup\"><div class=\"controls radio-controls\"><label class=\"radio-header\">Toast Type</label> <label class=\"radio custom-radio\"><input type=\"radio\" ng-model=\"options.type\" name=\"toasts\" value=\"success\"><span>Success</span></label> <label class=\"radio custom-radio\"><input type=\"radio\" ng-model=\"options.type\" name=\"toasts\" value=\"info\"><span>Info</span></label> <label class=\"radio custom-radio\"><input type=\"radio\" ng-model=\"options.type\" name=\"toasts\" value=\"warning\"><span>Warning</span></label> <label class=\"radio custom-radio\"><input type=\"radio\" ng-model=\"options.type\" name=\"toasts\" value=\"error\"><span>Error</span></label></div></div><div id=\"positionGroup\"><div class=\"controls radio-controls\"><label class=\"radio-header position-header\">Position</label> <label class=\"radio custom-radio\"><input type=\"radio\" ng-model=\"options.positionClass\" name=\"positions\" value=\"toast-top-right\"> <span>Top Right</span></label> <label class=\"radio custom-radio\"><input type=\"radio\" ng-model=\"options.positionClass\" name=\"positions\" value=\"toast-bottom-right\"> <span>Bottom Right</span></label> <label class=\"radio custom-radio\"><input type=\"radio\" ng-model=\"options.positionClass\" name=\"positions\" value=\"toast-bottom-left\"> <span>Bottom Left</span></label> <label class=\"radio custom-radio\"><input type=\"radio\" ng-model=\"options.positionClass\" name=\"positions\" value=\"toast-top-left\"> <span>Top Left</span></label> <label class=\"radio custom-radio\"><input type=\"radio\" ng-model=\"options.positionClass\" name=\"positions\" value=\"toast-top-full-width\"> <span>Top Full Width</span></label> <label class=\"radio custom-radio\"><input type=\"radio\" ng-model=\"options.positionClass\" name=\"positions\" value=\"toast-bottom-full-width\"> <span>Bottom Full Width</span></label> <label class=\"radio custom-radio\"><input type=\"radio\" ng-model=\"options.positionClass\" name=\"positions\" value=\"toast-top-center\"> <span>Top Center</span></label> <label class=\"radio custom-radio\"><input type=\"radio\" ng-model=\"options.positionClass\" name=\"positions\" value=\"toast-bottom-center\"> <span>Bottom Center</span></label></div></div></div><div class=\"col-md-2 col-sm-3\"><div class=\"control\"><label for=\"timeOut\">Time out</label> <input type=\"text\" class=\"form-control\" id=\"timeOut\" ng-model=\"options.timeOut\" placeholder=\"ms\"> <label class=\"sub-label\" for=\"timeOut\">If you set it to 0, it will stick</label></div><div class=\"control\"><label for=\"extendedTimeOut\">Extended time out</label> <input type=\"text\" class=\"form-control\" id=\"extendedTimeOut\" ng-model=\"options.extendedTimeOut\" placeholder=\"ms\"></div><div class=\"control\"><label for=\"maxOpened\">Maximum number of toasts</label> <input type=\"text\" class=\"form-control\" id=\"maxOpened\" ng-model=\"options.maxOpened\" value=\"0\"> <label for=\"maxOpened\" class=\"sub-label\">0 means no limit</label></div><div class=\"control\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input ng-model=\"options.autoDismiss\" type=\"checkbox\" id=\"autoDismiss\"> <span>Auto dismiss</span></label></div></div><div class=\"col-md-5 col-sm-12\"><label>Result:</label><pre class=\"result-toastr\" id=\"toastrOptions\">{{optionsStr}}</pre></div></div><div class=\"row\"><div class=\"col-md-12 button-row\"><button ng-click=\"openToast()\" class=\"btn btn-primary\">Open Toast</button> <button ng-click=\"openRandomToast()\" class=\"btn btn-primary\">Random Toast</button> <button ng-click=\"clearToasts()\" class=\"btn btn-danger\">Clear Toasts</button> <button ng-click=\"clearLastToast()\" class=\"btn btn-danger\">Clear Last Toast</button></div></div></div>");
 $templateCache.put("app/pages/ui/panels/panels.html","<h2>Default panels</h2><div class=\"row\"><div class=\"col-md-12 col-lg-4\"><div ba-panel=\"\" ba-panel-class=\"xsmall-panel light-text\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac mi erat. Phasellus placerat, elit a laoreet semper, enim ipsum ultricies orci, ac tincidunt tellus massa eu est. Nam non porta purus, sed facilisis justo. Nam pulvinar sagittis quam.</div></div><div class=\"col-md-12 col-lg-4\"><div ba-panel=\"\" ba-panel-title=\"Panel with header\" ba-panel-class=\"xsmall-panel light-text\">Phasellus maximus venenatis augue, et vestibulum neque aliquam ut. Morbi mattis libero vitae vulputate dignissim. Praesent placerat, sem non dapibus cursus, lacus nisi blandit quam, vitae porttitor lectus lacus non turpis. Donec suscipit consequat tellus.</div></div><div class=\"col-md-12 col-lg-4\"><div ba-panel=\"\" ba-panel-title=\"Panel with header & scroll\" ba-panel-class=\"xsmall-panel with-scroll light-text\"><p>Suspendisse nec tellus urna. Sed id est metus. Nullam sit amet dolor nec ipsum dictum suscipit. Mauris sed nisi mauris. Nulla iaculis nisl ut velit ornare imperdiet. Suspendisse potenti. In tempor leo sed sem malesuada pellentesque. Maecenas faucibus metus lacus, ac egestas diam vulputate vitae.</p><p>Sed dapibus, purus vel hendrerit consectetur, lectus orci gravida massa, sed bibendum dui mauris et eros. Nulla dolor massa, posuere et dictum sit amet, dignissim quis odio. Fusce mollis finibus dignissim. Integer sodales augue erat. Pellentesque laoreet vestibulum urna at iaculis. Nulla libero augue, euismod at diam eget, aliquam condimentum ligula. Donec a leo eu est molestie lacinia hendrerit sed lorem. Duis id diam eu metus sodales consequat vel eu elit. Praesent dolor nibh, convallis eleifend feugiat a, finibus porttitor nibh. Ut non libero vel velit pulvinar scelerisque non vel lorem. Integer porta tempor nulla. Sed nibh erat, ultrices vel lorem eu, rutrum vehicula sem.</p><p>Donec nec tellus urna. Sed id est metus. Nullam sit amet dolor nec ipsum dictum suscipit. Mauris sed nisi mauris. Nulla iaculis nisl ut velit ornare imperdiet. Suspendisse potenti. In tempor leo sed sem malesuada pellentesque. Maecenas faucibus metus lacus, ac egestas diam vulputate vitae.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque fermentum nec ligula egestas rhoncus. Sed dignissim, augue vel scelerisque vulputate, nisi ante posuere lorem, quis iaculis eros dolor eu nisl. Etiam sagittis, ipsum ac tempor iaculis, justo neque mattis ante, ac maximus sapien risus eu sapien. Morbi erat urna, varius et lectus vel, porta dictum orci. Duis bibendum euismod elit, et lobortis purus venenatis in. Mauris eget lacus enim. Cras quis sem et magna fringilla convallis. Proin hendrerit nulla vel gravida mollis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum consectetur quis purus vel aliquam.</p></div></div></div><h2>Bootstrap panels</h2><div class=\"row\"><div class=\"col-md-12 col-lg-4\"><div class=\"panel panel-default bootstrap-panel xsmall-panel\"><div class=\"panel-body\"><p>A panel in bootstrap is a bordered box with some padding around its content.</p><p class=\"p-with-code\">Panels are created with the <code>.panel</code> class, and content inside the panel has a <code>.panel-body</code> class. The <code>.panel-default .panel-primary .panel-danger</code> and other classes are used to style the color of the panel. See the next example on this page for more contextual classes.</p></div></div></div><div class=\"col-md-12 col-lg-4\"><div class=\"panel panel-default bootstrap-panel xsmall-panel\"><div class=\"panel-heading\">Panel Heading</div><div class=\"panel-body\"><p class=\"p-with-code\">The <code>.panel-heading</code> class adds a heading to the panel.Easily add a heading container to your panel with .panel-heading. You may also include any <code>h1-h6</code> with a <code>.panel-title</code> class to add a pre-styled heading.</p></div></div></div><div class=\"col-md-12 col-lg-4\"><div class=\"panel panel-default bootstrap-panel\"><div class=\"panel-body footer-panel\"><p class=\"p-with-code\">Wrap buttons or secondary text in <code>.panel-footer</code>. Note that panel footers do not inherit colors and borders when using contextual variations as they are not meant to be in the foreground.</p></div><div class=\"panel-footer\">Panel Footer</div></div></div></div><h2>Panels with Contextual Classes</h2><div class=\"row\"><div class=\"col-md-6 col-lg-4\"><div class=\"panel panel-default contextual-example-panel bootstrap-panel\"><div class=\"panel-heading\">Panel with panel-default class</div><div class=\"panel-body\">To color the panel, use contextual classes. This is sample <code>.panel-default</code> panel</div></div></div><div class=\"col-md-6 col-lg-4\"><div class=\"panel panel-primary contextual-example-panel bootstrap-panel\"><div class=\"panel-heading\">Panel with panel-primary class</div><div class=\"panel-body\">Sample <code>.panel-primary</code> panel</div></div></div><div class=\"col-md-6 col-lg-4\"><div class=\"panel panel-success contextual-example-panel bootstrap-panel\"><div class=\"panel-heading\">Panel with panel-success class</div><div class=\"panel-body\">Sample <code>.panel-success</code> panel</div></div></div><div class=\"col-md-6 col-lg-4\"><div class=\"panel panel-info contextual-example-panel bootstrap-panel\"><div class=\"panel-heading\">Panel with panel-info class</div><div class=\"panel-body\">Sample <code>.panel-info</code> panel</div></div></div><div class=\"col-md-6 col-lg-4\"><div class=\"panel panel-warning contextual-example-panel bootstrap-panel\"><div class=\"panel-heading\">Panel with panel-warning class</div><div class=\"panel-body\">Sample <code>.panel-warning</code> panel</div></div></div><div class=\"col-md-6 col-lg-4\"><div class=\"panel panel-danger contextual-example-panel bootstrap-panel\"><div class=\"panel-heading\">Panel with panel-danger class</div><div class=\"panel-body\">Sample <code>.panel-danger</code> panel</div></div></div></div><div class=\"row\"><div class=\"col-md-12\"><h2>Panel Group</h2><div class=\"panel-group\"><div class=\"panel panel-default bootstrap-panel\"><div class=\"panel-heading\">Panel group 1</div><div class=\"panel-body\"><p>To group many panels together, wrap a <code>&lt;div&gt;</code> with class <code>\n            .panel-group</code> around them.</p></div></div><div class=\"panel panel-default bootstrap-panel\"><div class=\"panel-heading\">Panel group 2</div><div class=\"panel-body\"><p>The <code>.panel-group</code> class clears the bottom-margin of each panel.</p></div></div></div></div></div>");
 $templateCache.put("app/pages/ui/progressBars/progressBars.html","<div class=\"widgets\"><div class=\"row\"><div class=\"col-md-6\"><div ba-panel=\"\" ba-panel-title=\"Basic\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/ui/progressBars/widgets/basic.html\'\"></div></div><div ba-panel=\"\" ba-panel-title=\"Striped\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/ui/progressBars/widgets/striped.html\'\"></div></div></div><div class=\"col-md-6\"><div ba-panel=\"\" ba-panel-title=\"With label\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/ui/progressBars/widgets/label.html\'\"></div></div><div ba-panel=\"\" ba-panel-title=\"Animated\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/ui/progressBars/widgets/animated.html\'\"></div></div></div></div><div class=\"row\"><div class=\"col-md-12\" ba-panel=\"\" ba-panel-title=\"Stacked\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/ui/progressBars/widgets/stacked.html\'\"></div></div></div></div>");
@@ -9711,37 +9711,42 @@ $templateCache.put("app/theme/components/contentTop/contentTop.html","<div class
 $templateCache.put("app/theme/components/msgCenter/msgCenter.html","<ul class=\"al-msg-center clearfix\"><li uib-dropdown=\"\"><a href=\"\" uib-dropdown-toggle=\"\"><i class=\"fa fa-bell-o\"></i><span>5</span><div class=\"notification-ring\"></div></a><div uib-dropdown-menu=\"\" class=\"top-dropdown-menu\"><i class=\"dropdown-arr\"></i><div class=\"header clearfix\"><strong>Notifications</strong> <a href=\"\">Mark All as Read</a> <a href=\"\">Settings</a></div><div class=\"msg-list\"><a href=\"\" class=\"clearfix\" ng-repeat=\"msg in notifications\"><div class=\"img-area\"><img ng-class=\"{\'photo-msg-item\' : !msg.image}\" ng-src=\"{{::( msg.image || (users[msg.userId].name | profilePicture) )}}\"></div><div class=\"msg-area\"><div ng-bind-html=\"getMessage(msg)\"></div><span>{{ msg.time }}</span></div></a></div><a href=\"\">See all notifications</a></div></li><li uib-dropdown=\"\"><a href=\"\" class=\"msg\" uib-dropdown-toggle=\"\"><i class=\"fa fa-envelope-o\"></i><span>5</span><div class=\"notification-ring\"></div></a><div uib-dropdown-menu=\"\" class=\"top-dropdown-menu\"><i class=\"dropdown-arr\"></i><div class=\"header clearfix\"><strong>Messages</strong> <a href=\"\">Mark All as Read</a> <a href=\"\">Settings</a></div><div class=\"msg-list\"><a href=\"\" class=\"clearfix\" ng-repeat=\"msg in messages\"><div class=\"img-area\"><img class=\"photo-msg-item\" ng-src=\"{{::( users[msg.userId].name | profilePicture )}}\"></div><div class=\"msg-area\"><div>{{ msg.text }}</div><span>{{ msg.time }}</span></div></a></div><a href=\"\">See all messages</a></div></li></ul>");
 $templateCache.put("app/theme/components/pageTop/pageTop.html","<div class=\"page-top clearfix\" scroll-position=\"scrolled\" max-height=\"50\" ng-class=\"{\'scrolled\': scrolled}\"><a href=\"#/dashboard\" class=\"al-logo clearfix\"><span>Blur</span>Admin</a> <a href=\"\" class=\"collapse-menu-link ion-navicon\" ba-sidebar-toggle-menu=\"\"></a><div class=\"search\"><i class=\"ion-ios-search-strong\" ng-click=\"startSearch()\"></i> <input id=\"searchInput\" type=\"text\" placeholder=\"Search for...\"></div><div class=\"user-profile clearfix\"><div class=\"al-user-profile\" uib-dropdown=\"\"><a uib-dropdown-toggle=\"\" class=\"profile-toggle-link\"><img ng-src=\"{{::( \'Nasta\' | profilePicture )}}\"></a><ul class=\"top-dropdown-menu profile-dropdown\" uib-dropdown-menu=\"\"><li><i class=\"dropdown-arr\"></i></li><li><a href=\"#/profile\"><i class=\"fa fa-user\"></i>Profile</a></li><li><a href=\"\"><i class=\"fa fa-cog\"></i>Settings</a></li><li><a href=\"\" class=\"signout\"><i class=\"fa fa-power-off\"></i>Sign out</a></li></ul></div><msg-center></msg-center></div></div>");
 $templateCache.put("app/theme/components/widgets/widgets.html","<div class=\"widgets\"><div ng-repeat=\"widgetBlock in ngModel\" ng-class=\"{\'row\': widgetBlock.widgets.length > 1}\"><div ng-repeat=\"widgetCol in widgetBlock.widgets\" ng-class=\"{\'col-md-6\': widgetBlock.widgets.length === 2}\" ng-model=\"widgetCol\" class=\"widgets-block\"><div ba-panel=\"\" ba-panel-title=\"{{::widget.title}}\" ng-repeat=\"widget in widgetCol\" ba-panel-class=\"with-scroll {{widget.panelClass}}\"><div ng-include=\"widget.url\"></div></div></div></div></div>");
+$templateCache.put("app/pages/charts/amCharts/areaChart/areaChart.html","<div id=\"areaChart\" class=\"admin-chart\" ng-controller=\"AreaChartCtrl\"></div>");
+$templateCache.put("app/pages/charts/amCharts/barChart/barChart.html","<div id=\"barChart\" class=\"admin-chart\" ng-controller=\"BarChartCtrl\"></div>");
+$templateCache.put("app/pages/charts/amCharts/ganttChart/ganttChart.html","<div id=\"gnattChart\" class=\"admin-chart\" ng-controller=\"ganttChartCtrl\"></div>");
+$templateCache.put("app/pages/charts/amCharts/lineChart/lineChart.html","<div id=\"lineChart\" class=\"admin-chart\" ng-controller=\"LineChartCtrl\"></div>");
+$templateCache.put("app/pages/charts/amCharts/combinedChart/combinedChart.html","<div id=\"zoomAxisChart\" class=\"admin-chart\" ng-controller=\"combinedChartCtrl\"></div>");
+$templateCache.put("app/pages/charts/amCharts/funnelChart/funnelChart.html","<div id=\"funnelChart\" class=\"admin-chart\" ng-controller=\"FunnelChartCtrl\"></div>");
+$templateCache.put("app/pages/charts/amCharts/pieChart/pieChart.html","<div id=\"pieChart\" class=\"admin-chart\" ng-controller=\"PieChartCtrl\"></div>");
 $templateCache.put("app/pages/admin/tabs/areas/areas.tab.html","<h1>Areas</h1>");
 $templateCache.put("app/pages/admin/tabs/entradas/entradas.tab.html","<h1>Entradas</h1>");
-$templateCache.put("app/pages/admin/tabs/proveedores/proveedores.tab.html","<h1>Proovedores</h1>");
 $templateCache.put("app/pages/admin/tabs/usuarios/addUserModal.html","<div class=\"modal-content\"><div class=\"modal-header\"><button type=\"button\" class=\"close\" ng-click=\"$dismiss()\" aria-label=\"Close\"><em class=\"ion-ios-close-empty sn-link-close\"></em></button><h4 class=\"modal-title\" id=\"myModalLabel\">Agregar usuario</h4></div><div class=\"modal-body\"><form name=\"form\" ng-submit=\"register(form)\" novalidate=\"\"><div class=\"form-group\" ng-class=\"{ \'has-success\': form.name.$valid && submitted,\'has-error\': form.name.$invalid && submitted }\"><label for=\"name\">Nombre</label> <input type=\"text\" class=\"form-control\" name=\"name\" ng-model=\"user.name\" placeholder=\"Nombre\" required=\"\"><p class=\"has-error\" ng-show=\"form.name.$error.required && submitted\">Un nombre es requerido</p></div><div class=\"form-group\" ng-class=\"{ \'has-success\': form.email.$valid && submitted,\'has-error\': form.email.$invalid && submitted }\"><label for=\"email\">Correo electrónico</label> <input type=\"email\" class=\"form-control\" name=\"email\" ng-model=\"user.email\" placeholder=\"Correo\" required=\"\"><p class=\"has-error\" ng-show=\"form.email.$error.required && submitted\">Un correo es requerido</p><p class=\"has-error\" ng-show=\"form.email.$error.email && submitted\">Debe de ser un correo</p></div><div class=\"form-group\"><label for=\"email\">Rol</label><select name=\"role\" class=\"form-control selectpicker\" title=\"Rol\" selectpicker=\"\" ng-model=\"user.role\" ng-options=\"item.value as item.label for item in roles\" required=\"\"></select><p class=\"has-error\" ng-show=\"form.role.$error.required && submitted\">Debe de tener un rol</p></div><div class=\"form-group\" ng-class=\"{ \'has-success\': form.password.$valid && submitted,\'has-error\': form.password.$invalid && submitted }\"><label for=\"password\">Contraseña</label> <input type=\"password\" class=\"form-control\" name=\"password\" ng-model=\"user.password\" placeholder=\"Contraseña\" required=\"\"><p class=\"has-error\" ng-show=\"form.password.$error.required && submitted\">Una contraseña es requerida</p></div></form></div><div class=\"modal-footer\"><p class=\"has-error\" ng-show=\"error && submitted\">{{error}}</p><button type=\"button\" class=\"btn btn-danger\" ng-click=\"$dismiss()\">Cancelar</button> <button type=\"button\" class=\"btn btn-primary\" ng-click=\"register(form)\">Guardar</button></div></div>");
 $templateCache.put("app/pages/admin/tabs/usuarios/editableRowTable.html","<div class=\"add-row-editable-table\"><button class=\"btn btn-primary btn-with-icon\" ng-click=\"vm.addUser()\"><i class=\"ion ion-android-add\"></i> Agregar usuario</button></div><table class=\"table table-bordered table-hover table-condensed\"><tr><td></td><td>Nombre</td><td>Email</td><td>Rol</td><td>Actions</td></tr><tr ng-repeat=\"user in vm.users\" class=\"editable-row\"><td>{{$index}}</td><td><span editable-text=\"user.name\" e-name=\"name\" e-form=\"rowform\" e-required=\"\">{{ user.name || \'Vacio\' }}</span></td><td class=\"select-td\"><span editable-select=\"user.status\" e-name=\"status\" e-form=\"rowform\" e-selectpicker=\"\" e-ng-options=\"s.value as s.text for s in statuses\">{{ user.email }}</span></td><td class=\"select-td\"><span editable-select=\"user.group\" e-name=\"group\" onshow=\"loadGroups()\" e-form=\"rowform\" e-selectpicker=\"\" e-ng-options=\"g.id as g.text for g in groups\">{{ user.role }}</span></td><td><form editable-form=\"\" name=\"rowform\" ng-show=\"rowform.$visible\" class=\"form-buttons form-inline\" shown=\"inserted == user\"><button type=\"submit\" ng-disabled=\"rowform.$waiting\" class=\"btn btn-primary editable-table-button btn-xs\">Save</button> <button type=\"button\" ng-disabled=\"rowform.$waiting\" ng-click=\"rowform.$cancel()\" class=\"btn btn-default editable-table-button btn-xs\">Cancel</button></form><div class=\"buttons\" ng-show=\"!rowform.$visible\"><button class=\"btn btn-danger btn-with-icon btn-xs\" ng-click=\"vm.removeUser($index)\"><i class=\"ion ion-android-delete\"></i>Eliminar</button></div></td></tr></table>");
 $templateCache.put("app/pages/admin/tabs/usuarios/usuarios.tab.html","<div class=\"container widgets\" ng-controller=\"UsuariosController as vm\"><div class=\"row\"><div class=\"col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Editable Rows\" ba-panel-class=\"with-scroll\"><div include-with-scope=\"app/pages/admin/tabs/usuarios/editableRowTable.html\"></div></div></div></div></div>");
-$templateCache.put("app/pages/charts/amCharts/areaChart/areaChart.html","<div id=\"areaChart\" class=\"admin-chart\" ng-controller=\"AreaChartCtrl\"></div>");
-$templateCache.put("app/pages/charts/amCharts/barChart/barChart.html","<div id=\"barChart\" class=\"admin-chart\" ng-controller=\"BarChartCtrl\"></div>");
-$templateCache.put("app/pages/charts/amCharts/combinedChart/combinedChart.html","<div id=\"zoomAxisChart\" class=\"admin-chart\" ng-controller=\"combinedChartCtrl\"></div>");
-$templateCache.put("app/pages/charts/amCharts/funnelChart/funnelChart.html","<div id=\"funnelChart\" class=\"admin-chart\" ng-controller=\"FunnelChartCtrl\"></div>");
-$templateCache.put("app/pages/charts/amCharts/ganttChart/ganttChart.html","<div id=\"gnattChart\" class=\"admin-chart\" ng-controller=\"ganttChartCtrl\"></div>");
-$templateCache.put("app/pages/charts/amCharts/lineChart/lineChart.html","<div id=\"lineChart\" class=\"admin-chart\" ng-controller=\"LineChartCtrl\"></div>");
-$templateCache.put("app/pages/charts/amCharts/pieChart/pieChart.html","<div id=\"pieChart\" class=\"admin-chart\" ng-controller=\"PieChartCtrl\"></div>");
+$templateCache.put("app/pages/admin/tabs/proveedores/proveedores.tab.html","<h1>Proovedores</h1>");
 $templateCache.put("app/pages/components/mail/composeBox/compose.html","<div class=\"compose-header\"><span>New message</span> <span class=\"header-controls\"><i class=\"ion-minus-round\"></i> <i class=\"ion-arrow-resize\"></i> <i ng-click=\"$dismiss()\" class=\"ion-close-round\"></i></span></div><div><input type=\"text\" class=\"form-control compose-input default-color\" placeholder=\"To\" ng-model=\"boxCtrl.to\"> <input type=\"text\" class=\"form-control compose-input default-color\" placeholder=\"Subject\" ng-model=\"boxCtrl.subject\"><div class=\"compose-container\"><text-angular-toolbar ta-toolbar-class=\"toolbarMain\" name=\"toolbarMain\" ta-toolbar=\"[[\'h1\',\'h2\',\'h3\',\'bold\',\'italics\', \'underline\', \'justifyLeft\', \'justifyCenter\', \'justifyRight\', \'justifyFull\']]\"></text-angular-toolbar><text-angular name=\"htmlcontent\" ta-target-toolbars=\"toolbarMain,toolbarFooter\" ng-model=\"boxCtrl.text\"></text-angular></div></div><div class=\"compose-footer clearfix\"><button type=\"button\" ng-click=\"$dismiss()\" class=\"btn btn-send\">Send</button><text-angular-toolbar ta-toolbar-class=\"toolbarFooter\" name=\"toolbarFooter\" ta-toolbar=\"[[\'insertLink\', \'insertImage\', \'html\', \'quote\',\'insertVideo\']]\"></text-angular-toolbar><div class=\"footer-controls\"><i class=\"footer-control-first compose-footer-icon ion-arrow-down-b\"></i> <i ng-click=\"$dismiss()\" class=\"compose-footer-icon ion-android-delete\"></i></div></div>");
 $templateCache.put("app/pages/components/mail/detail/mailDetail.html","<div class=\"message-container\" ng-class=\"{\'expanded\': tabCtrl.navigationCollapsed}\"><div class=\"message\"><div class=\"row\"><div class=\"toggle-navigation-container detail-page\"><a href=\"\" class=\"collapse-navigation-link ion-navicon\" ng-click=\"tabCtrl.navigationCollapsed=!tabCtrl.navigationCollapsed\"></a></div><button ui-sref=\"components.mail.label({label : detailCtrl.label})\" type=\"button\" class=\"back-button btn btn-default btn-with-icon\"><i class=\"ion-chevron-left\"></i>Back</button></div><div class=\"person-info row\"><div class=\"col-lg-4 col-md-12 no-padding\"><img ng-src=\"{{detailCtrl.mail.name.split(\' \')[0] | profilePicture}}\" class=\"human-picture\"><div class=\"name\"><h2 class=\"name-h\">{{detailCtrl.mail.name.split(\' \')[0]}}</h2><h2 class=\"name-h second-name\">{{detailCtrl.mail.name.split(\' \')[1]}}</h2><div><span class=\"mail-tag tag label {{detailCtrl.mail.tag}}\">{{detailCtrl.mail.tag}}</span></div></div></div><div class=\"col-lg-4 col-md-6 col-xs-12 no-padding\"><div class=\"contact-info phone-email\"><div><i class=\"ion-iphone\"></i> <span class=\"phone\">777-777-7777</span></div><div><i class=\"ion-email\"></i> <span class=\"email\">{{detailCtrl.mail.email}}</span></div></div></div><div class=\"col-lg-4 col-md-6 col-xs-12 no-padding\"><div class=\"contact-info position-address\"><div><span class=\"position\">{{detailCtrl.mail.position}}</span></div><div><span class=\"address\">12 Nezavisimosti st. Vilnius, Lithuania</span></div></div></div></div><div class=\"row\"></div><div class=\"line\"></div><div class=\"message-details\"><span class=\"subject\">{{detailCtrl.mail.subject}}</span> <span class=\"date\">• {{detailCtrl.mail.date | date : \'h:mm a MMMM d \'}}</span></div><div class=\"line\"></div><div ng-bind-html=\"detailCtrl.mail.body\" class=\"message-body\"></div><div class=\"line\"></div><div class=\"attachment\" ng-show=\"detailCtrl.mail.attachment\"><span class=\"file-links\">1 Attachment - <a href=\"\">View</a> | <a href=\"\">Download</a></span><div><i class=\"file-icon ion-document\"></i> <span class=\"file-name\">{{detailCtrl.mail.attachment}}</span></div></div><div class=\"line\" ng-show=\"detailCtrl.mail.attachment\"></div><div class=\"answer-container\"><button type=\"button\" class=\"btn btn-with-icon\" ng-click=\"tabCtrl.showCompose(detailCtrl.mail.subject,detailCtrl.mail.email,\'\')\"><i class=\"ion-reply\"></i>Reply</button> <button type=\"button\" class=\"btn btn-with-icon\" ng-click=\"tabCtrl.showCompose(detailCtrl.mail.subject,\'\',detailCtrl.mail.body)\"><i class=\"ion-forward\"></i>Forward</button> <button type=\"button\" class=\"btn btn-with-icon\"><i class=\"ion-printer\"></i>Print</button> <button type=\"button\" class=\"btn btn-with-icon\"><i class=\"ion-android-remove-circle\"></i>Spam</button> <button type=\"button\" class=\"btn btn-with-icon\"><i class=\"ion-android-delete\"></i>Delete</button></div></div><div ng-show=\"!detailCtrl.mail\"><h5 ng-class=\"text-center\">Nothing to show</h5></div></div>");
 $templateCache.put("app/pages/components/mail/list/mailList.html","<div class=\"side-message-navigation\" ng-class=\"{\'expanded\': tabCtrl.navigationCollapsed}\"><div class=\"mail-messages-control side-message-navigation-item\"><div class=\"toggle-navigation-container\"><a href=\"\" class=\"collapse-navigation-link ion-navicon\" ng-click=\"tabCtrl.navigationCollapsed=!tabCtrl.navigationCollapsed\"></a></div><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\" id=\"inlineCheckbox01\" value=\"option1\"> <span class=\"select-all-label\">Select All</span></label> <button type=\"button\" class=\"btn btn-icon refresh-button\"><i class=\"ion-refresh\"></i></button><div class=\"btn-group\" uib-dropdown=\"\"><button type=\"button\" class=\"btn more-button\" uib-dropdown-toggle=\"\">More <span class=\"caret\"></span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"messages\"><table><tr ng-repeat=\"m in listCtrl.messages track by m.id | orderBy:\'-date\'\" class=\"side-message-navigation-item little-human shineHover {{m.tag}}\"><td class=\"check-td\"><div class=\"mail-checkbox\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\"> <span></span></label></div></td><td class=\"photo-td\" ui-sref=\"components.mail.detail({id: m.id, label: listCtrl.label})\"><img ng-src=\"{{m.name.split(\' \')[0] | profilePicture}}\" class=\"little-human-picture\"></td><td ui-sref=\"components.mail.detail({id: m.id, label: listCtrl.label})\"><div class=\"name-container\"><div><span class=\"name\">{{m.name}}</span></div><div><span class=\"tag label label-primary {{m.tag}}\">{{m.tag}}</span></div></div></td><td ui-sref=\"components.mail.detail({id: m.id, label: listCtrl.label})\"><div class=\"additional-info\"><span class=\"subject\">{{m.subject}}</span></div></td><td ui-sref=\"components.mail.detail({id: m.id, label: listCtrl.label})\"><div class=\"mail-body-part\">{{m.body | plainText}}</div></td><td class=\"date\"><span>{{m.date | date : \'MMM d HH:mm\'}}</span></td></tr></table></div></div>");
-$templateCache.put("app/pages/form/inputs/widgets/checkboxesRadios.html","<div class=\"checkbox-demo-row\"><div class=\"input-demo checkbox-demo row\"><div class=\"col-md-4\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\" id=\"inlineCheckbox01\" value=\"option1\"> <span>Check 1</span></label></div><div class=\"col-md-4\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\" id=\"inlineCheckbox02\" value=\"option2\"> <span>Check 2</span></label></div><div class=\"col-md-4\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\" id=\"inlineCheckbox03\" value=\"option3\"> <span>Check 3</span></label></div></div><div class=\"input-demo radio-demo row\"><div class=\"col-md-4\"><label class=\"radio-inline custom-radio nowrap\"><input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio1\" value=\"option1\"> <span>Option 1</span></label></div><div class=\"col-md-4\"><label class=\"radio-inline custom-radio nowrap\"><input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio2\" value=\"option2\"> <span>Option 2</span></label></div><div class=\"col-md-4\"><label class=\"radio-inline custom-radio nowrap\"><input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio3\" value=\"option3\"> <span>Option3</span></label></div></div></div><div><div class=\"checkbox disabled\"><label class=\"custom-checkbox nowrap\"><input type=\"checkbox\" value=\"\" disabled=\"\"> <span>Checkbox is disabled</span></label></div><div class=\"radio disabled\"><label class=\"custom-radio nowrap\"><input type=\"radio\" name=\"optionsRadios\" id=\"optionsRadios3\" value=\"option3\" disabled=\"\"> <span>Disabled option</span></label></div></div>");
-$templateCache.put("app/pages/form/inputs/widgets/inputGroups.html","<div class=\"input-group\"><span class=\"input-group-addon input-group-addon-primary addon-left\" id=\"basic-addon1\">@</span> <input type=\"text\" class=\"form-control with-primary-addon\" placeholder=\"Username\" aria-describedby=\"basic-addon1\"></div><div class=\"input-group\"><input type=\"text\" class=\"form-control with-warning-addon\" placeholder=\"Recipient\'s username\" aria-describedby=\"basic-addon2\"> <span class=\"input-group-addon input-group-addon-warning addon-right\" id=\"basic-addon2\">@example.com</span></div><div class=\"input-group\"><span class=\"input-group-addon addon-left input-group-addon-success\">$</span> <input type=\"text\" class=\"form-control with-success-addon\" aria-label=\"Amount (to the nearest dollar)\"> <span class=\"input-group-addon addon-right input-group-addon-success\">.00</span></div><div class=\"input-group\"><input type=\"text\" class=\"form-control with-danger-addon\" placeholder=\"Search for...\"> <span class=\"input-group-btn\"><button class=\"btn btn-danger\" type=\"button\">Go!</button></span></div>");
-$templateCache.put("app/pages/form/inputs/widgets/standardFields.html","<form><div class=\"form-group\"><label for=\"input01\">Text</label> <input type=\"text\" class=\"form-control\" id=\"input01\" placeholder=\"Text\"></div><div class=\"form-group\"><label for=\"input02\">Password</label> <input type=\"password\" class=\"form-control\" id=\"input02\" placeholder=\"Password\"></div><div class=\"form-group\"><label for=\"input03\">Rounded Corners</label> <input type=\"text\" class=\"form-control form-control-rounded\" id=\"input03\" placeholder=\"Rounded Corners\"></div><div class=\"form-group\"><label for=\"input04\">With help</label> <input type=\"text\" class=\"form-control\" id=\"input04\" placeholder=\"With help\"> <span class=\"help-block sub-little-text\">A block of help text that breaks onto a new line and may extend beyond one line.</span></div><div class=\"form-group\"><label for=\"input05\">Disabled Input</label> <input type=\"text\" class=\"form-control\" id=\"input05\" placeholder=\"Disabled Input\" disabled=\"\"></div><div class=\"form-group\"><label for=\"textarea01\">Textarea</label> <textarea placeholder=\"Default Input\" class=\"form-control\" id=\"textarea01\"></textarea></div><div class=\"form-group\"><input type=\"text\" class=\"form-control input-sm\" id=\"input2\" placeholder=\"Small Input\"></div><div class=\"form-group\"><input type=\"text\" class=\"form-control input-lg\" id=\"input4\" placeholder=\"Large Input\"></div></form>");
-$templateCache.put("app/pages/form/inputs/widgets/validationStates.html","<div class=\"form-group has-success\"><label class=\"control-label\" for=\"inputSuccess1\">Input with success</label> <input type=\"text\" class=\"form-control\" id=\"inputSuccess1\"></div><div class=\"form-group has-warning\"><label class=\"control-label\" for=\"inputWarning1\">Input with warning</label> <input type=\"text\" class=\"form-control\" id=\"inputWarning1\"></div><div class=\"form-group has-error\"><label class=\"control-label\" for=\"inputError1\">Input with error</label> <input type=\"text\" class=\"form-control\" id=\"inputError1\"></div><div class=\"has-success\"><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\" id=\"checkboxSuccess\" value=\"option1\"> <span>Checkbox with success</span></label></div></div><div class=\"has-warning\"><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\" id=\"checkboxWarning\" value=\"option1\"> <span>Checkbox with warning</span></label></div></div><div class=\"has-error\"><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\" id=\"checkboxError\" value=\"option1\"> <span>Checkbox with error</span></label></div></div><div class=\"form-group has-success has-feedback\"><label class=\"control-label\" for=\"inputSuccess2\">Input with success</label> <input type=\"text\" class=\"form-control\" id=\"inputSuccess2\" aria-describedby=\"inputSuccess2Status\"> <i class=\"ion-checkmark-circled form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputSuccess2Status\" class=\"sr-only\">(success)</span></div><div class=\"form-group has-warning has-feedback\"><label class=\"control-label\" for=\"inputWarning2\">Input with warning</label> <input type=\"text\" class=\"form-control\" id=\"inputWarning2\" aria-describedby=\"inputWarning2Status\"> <i class=\"ion-alert-circled form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputWarning2Status\" class=\"sr-only\">(warning)</span></div><div class=\"form-group has-error has-feedback\"><label class=\"control-label\" for=\"inputError2\">Input with error</label> <input type=\"text\" class=\"form-control\" id=\"inputError2\" aria-describedby=\"inputError2Status\"> <i class=\"ion-android-cancel form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputError2Status\" class=\"sr-only\">(error)</span></div><div class=\"form-group has-success has-feedback\"><label class=\"control-label\" for=\"inputGroupSuccess1\">Input group with success</label><div class=\"input-group\"><span class=\"input-group-addon addon-left\">@</span> <input type=\"text\" class=\"form-control\" id=\"inputGroupSuccess1\" aria-describedby=\"inputGroupSuccess1Status\"></div><i class=\"ion-checkmark-circled form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputGroupSuccess1Status\" class=\"sr-only\">(success)</span></div>");
 $templateCache.put("app/pages/form/layouts/widgets/basicForm.html","<form><div class=\"form-group\"><label for=\"exampleInputEmail1\">Email address</label> <input type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"Email\"></div><div class=\"form-group\"><label for=\"exampleInputPassword1\">Password</label> <input type=\"password\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"Password\"></div><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\"> <span>Check me out</span></label></div><button type=\"submit\" class=\"btn btn-danger\">Submit</button></form>");
 $templateCache.put("app/pages/form/layouts/widgets/blockForm.html","<div class=\"row\"><div class=\"col-sm-6\"><div class=\"form-group\"><label for=\"inputFirstName\">First Name</label> <input type=\"text\" class=\"form-control\" id=\"inputFirstName\" placeholder=\"First Name\"></div></div><div class=\"col-sm-6\"><div class=\"form-group\"><label for=\"inputLastName\">Last Name</label> <input type=\"text\" class=\"form-control\" id=\"inputLastName\" placeholder=\"Last Name\"></div></div></div><div class=\"row\"><div class=\"col-sm-6\"><div class=\"form-group\"><label for=\"inputFirstName\">Email</label> <input type=\"email\" class=\"form-control\" id=\"inputEmail\" placeholder=\"Email\"></div></div><div class=\"col-sm-6\"><div class=\"form-group\"><label for=\"inputWebsite\">Website</label> <input type=\"text\" class=\"form-control\" id=\"inputWebsite\" placeholder=\"Website\"></div></div></div><button type=\"submit\" class=\"btn btn-primary\">Submit</button>");
 $templateCache.put("app/pages/form/layouts/widgets/formWithoutLabels.html","<form><div class=\"form-group\"><input type=\"text\" class=\"form-control\" placeholder=\"Recipients\"></div><div class=\"form-group\"><input type=\"text\" class=\"form-control\" placeholder=\"Subject\"></div><div class=\"form-group\"><textarea class=\"form-control\" placeholder=\"Message\"></textarea></div><button type=\"submit\" class=\"btn btn-success\">Send</button></form>");
 $templateCache.put("app/pages/form/layouts/widgets/horizontalForm.html","<form class=\"form-horizontal\"><div class=\"form-group\"><label for=\"inputEmail3\" class=\"col-sm-2 control-label\">Email</label><div class=\"col-sm-10\"><input type=\"email\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"Email\"></div></div><div class=\"form-group\"><label for=\"inputPassword3\" class=\"col-sm-2 control-label\">Password</label><div class=\"col-sm-10\"><input type=\"password\" class=\"form-control\" id=\"inputPassword3\" placeholder=\"Password\"></div></div><div class=\"form-group\"><div class=\"col-sm-offset-2 col-sm-10\"><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\"> <span>Remember me</span></label></div></div></div><div class=\"form-group\"><div class=\"col-sm-offset-2 col-sm-10\"><button type=\"submit\" class=\"btn btn-warning\">Sign in</button></div></div></form>");
 $templateCache.put("app/pages/form/layouts/widgets/inlineForm.html","<form class=\"row form-inline\"><div class=\"form-group col-sm-3 col-xs-6\"><input type=\"text\" class=\"form-control\" id=\"exampleInputName2\" placeholder=\"Name\"></div><div class=\"form-group col-sm-3 col-xs-6\"><input type=\"email\" class=\"form-control\" id=\"exampleInputEmail2\" placeholder=\"Email\"></div><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\"> <span>Remember me</span></label></div><button type=\"submit\" class=\"btn btn-primary\">Send invitation</button></form>");
+$templateCache.put("app/pages/form/inputs/widgets/checkboxesRadios.html","<div class=\"checkbox-demo-row\"><div class=\"input-demo checkbox-demo row\"><div class=\"col-md-4\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\" id=\"inlineCheckbox01\" value=\"option1\"> <span>Check 1</span></label></div><div class=\"col-md-4\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\" id=\"inlineCheckbox02\" value=\"option2\"> <span>Check 2</span></label></div><div class=\"col-md-4\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\" id=\"inlineCheckbox03\" value=\"option3\"> <span>Check 3</span></label></div></div><div class=\"input-demo radio-demo row\"><div class=\"col-md-4\"><label class=\"radio-inline custom-radio nowrap\"><input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio1\" value=\"option1\"> <span>Option 1</span></label></div><div class=\"col-md-4\"><label class=\"radio-inline custom-radio nowrap\"><input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio2\" value=\"option2\"> <span>Option 2</span></label></div><div class=\"col-md-4\"><label class=\"radio-inline custom-radio nowrap\"><input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio3\" value=\"option3\"> <span>Option3</span></label></div></div></div><div><div class=\"checkbox disabled\"><label class=\"custom-checkbox nowrap\"><input type=\"checkbox\" value=\"\" disabled=\"\"> <span>Checkbox is disabled</span></label></div><div class=\"radio disabled\"><label class=\"custom-radio nowrap\"><input type=\"radio\" name=\"optionsRadios\" id=\"optionsRadios3\" value=\"option3\" disabled=\"\"> <span>Disabled option</span></label></div></div>");
+$templateCache.put("app/pages/form/inputs/widgets/inputGroups.html","<div class=\"input-group\"><span class=\"input-group-addon input-group-addon-primary addon-left\" id=\"basic-addon1\">@</span> <input type=\"text\" class=\"form-control with-primary-addon\" placeholder=\"Username\" aria-describedby=\"basic-addon1\"></div><div class=\"input-group\"><input type=\"text\" class=\"form-control with-warning-addon\" placeholder=\"Recipient\'s username\" aria-describedby=\"basic-addon2\"> <span class=\"input-group-addon input-group-addon-warning addon-right\" id=\"basic-addon2\">@example.com</span></div><div class=\"input-group\"><span class=\"input-group-addon addon-left input-group-addon-success\">$</span> <input type=\"text\" class=\"form-control with-success-addon\" aria-label=\"Amount (to the nearest dollar)\"> <span class=\"input-group-addon addon-right input-group-addon-success\">.00</span></div><div class=\"input-group\"><input type=\"text\" class=\"form-control with-danger-addon\" placeholder=\"Search for...\"> <span class=\"input-group-btn\"><button class=\"btn btn-danger\" type=\"button\">Go!</button></span></div>");
+$templateCache.put("app/pages/form/inputs/widgets/standardFields.html","<form><div class=\"form-group\"><label for=\"input01\">Text</label> <input type=\"text\" class=\"form-control\" id=\"input01\" placeholder=\"Text\"></div><div class=\"form-group\"><label for=\"input02\">Password</label> <input type=\"password\" class=\"form-control\" id=\"input02\" placeholder=\"Password\"></div><div class=\"form-group\"><label for=\"input03\">Rounded Corners</label> <input type=\"text\" class=\"form-control form-control-rounded\" id=\"input03\" placeholder=\"Rounded Corners\"></div><div class=\"form-group\"><label for=\"input04\">With help</label> <input type=\"text\" class=\"form-control\" id=\"input04\" placeholder=\"With help\"> <span class=\"help-block sub-little-text\">A block of help text that breaks onto a new line and may extend beyond one line.</span></div><div class=\"form-group\"><label for=\"input05\">Disabled Input</label> <input type=\"text\" class=\"form-control\" id=\"input05\" placeholder=\"Disabled Input\" disabled=\"\"></div><div class=\"form-group\"><label for=\"textarea01\">Textarea</label> <textarea placeholder=\"Default Input\" class=\"form-control\" id=\"textarea01\"></textarea></div><div class=\"form-group\"><input type=\"text\" class=\"form-control input-sm\" id=\"input2\" placeholder=\"Small Input\"></div><div class=\"form-group\"><input type=\"text\" class=\"form-control input-lg\" id=\"input4\" placeholder=\"Large Input\"></div></form>");
+$templateCache.put("app/pages/form/inputs/widgets/validationStates.html","<div class=\"form-group has-success\"><label class=\"control-label\" for=\"inputSuccess1\">Input with success</label> <input type=\"text\" class=\"form-control\" id=\"inputSuccess1\"></div><div class=\"form-group has-warning\"><label class=\"control-label\" for=\"inputWarning1\">Input with warning</label> <input type=\"text\" class=\"form-control\" id=\"inputWarning1\"></div><div class=\"form-group has-error\"><label class=\"control-label\" for=\"inputError1\">Input with error</label> <input type=\"text\" class=\"form-control\" id=\"inputError1\"></div><div class=\"has-success\"><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\" id=\"checkboxSuccess\" value=\"option1\"> <span>Checkbox with success</span></label></div></div><div class=\"has-warning\"><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\" id=\"checkboxWarning\" value=\"option1\"> <span>Checkbox with warning</span></label></div></div><div class=\"has-error\"><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\" id=\"checkboxError\" value=\"option1\"> <span>Checkbox with error</span></label></div></div><div class=\"form-group has-success has-feedback\"><label class=\"control-label\" for=\"inputSuccess2\">Input with success</label> <input type=\"text\" class=\"form-control\" id=\"inputSuccess2\" aria-describedby=\"inputSuccess2Status\"> <i class=\"ion-checkmark-circled form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputSuccess2Status\" class=\"sr-only\">(success)</span></div><div class=\"form-group has-warning has-feedback\"><label class=\"control-label\" for=\"inputWarning2\">Input with warning</label> <input type=\"text\" class=\"form-control\" id=\"inputWarning2\" aria-describedby=\"inputWarning2Status\"> <i class=\"ion-alert-circled form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputWarning2Status\" class=\"sr-only\">(warning)</span></div><div class=\"form-group has-error has-feedback\"><label class=\"control-label\" for=\"inputError2\">Input with error</label> <input type=\"text\" class=\"form-control\" id=\"inputError2\" aria-describedby=\"inputError2Status\"> <i class=\"ion-android-cancel form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputError2Status\" class=\"sr-only\">(error)</span></div><div class=\"form-group has-success has-feedback\"><label class=\"control-label\" for=\"inputGroupSuccess1\">Input group with success</label><div class=\"input-group\"><span class=\"input-group-addon addon-left\">@</span> <input type=\"text\" class=\"form-control\" id=\"inputGroupSuccess1\" aria-describedby=\"inputGroupSuccess1Status\"></div><i class=\"ion-checkmark-circled form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputGroupSuccess1Status\" class=\"sr-only\">(success)</span></div>");
 $templateCache.put("app/pages/ui/buttons/widgets/buttonGroups.html","<div class=\"btn-group-example\"><div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\"><button type=\"button\" class=\"btn btn-danger\">Left</button> <button type=\"button\" class=\"btn btn-danger\">Middle</button> <button type=\"button\" class=\"btn btn-danger\">Right</button></div></div><div class=\"btn-toolbar-example\"><div class=\"btn-toolbar\" role=\"toolbar\" aria-label=\"Toolbar with button groups\"><div class=\"btn-group\" role=\"group\" aria-label=\"First group\"><button type=\"button\" class=\"btn btn-primary\">1</button> <button type=\"button\" class=\"btn btn-primary\">2</button> <button type=\"button\" class=\"btn btn-primary\">3</button> <button type=\"button\" class=\"btn btn-primary\">4</button></div><div class=\"btn-group\" role=\"group\" aria-label=\"Second group\"><button type=\"button\" class=\"btn btn-primary\">5</button> <button type=\"button\" class=\"btn btn-primary\">6</button> <button type=\"button\" class=\"btn btn-primary\">7</button></div><div class=\"btn-group\" role=\"group\" aria-label=\"Third group\"><button type=\"button\" class=\"btn btn-primary\">8</button></div></div></div>");
 $templateCache.put("app/pages/ui/buttons/widgets/buttons.html","<div class=\"basic-btns\"><div class=\"row\"><div class=\"col-md-2\"><h5>Default button</h5></div><div class=\"col-md-10\"><div class=\"row btns-row btns-same-width-md\"><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-primary\">Primary</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-default\">Default</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-success\">Success</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-info\">Info</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-warning\">Warning</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-danger\">Danger</button></div></div></div></div><div class=\"row\"><div class=\"col-md-2\"><h5 class=\"row-sm\">Small button</h5></div><div class=\"col-md-10\"><div class=\"row btns-row btns-same-width-md\"><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-primary btn-sm\">Primary</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-default btn-sm\">Default</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-success btn-sm\">Success</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-info btn-sm\">Info</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-warning btn-sm\">Warning</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-danger btn-sm\">Danger</button></div></div></div></div><div class=\"row\"><div class=\"col-md-2\"><h5 class=\"row-xs\">Extra small button</h5></div><div class=\"col-md-10\"><div class=\"row btns-row btns-same-width-md\"><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-primary btn-xs\">Primary</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-default btn-xs\">Default</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-success btn-xs\">Success</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-info btn-xs\">Info</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-warning btn-xs\">Warning</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-danger btn-xs\">Danger</button></div></div></div></div><div class=\"row\"><div class=\"col-md-2\"><h5>Disabled button</h5></div><div class=\"col-md-10\"><div class=\"row btns-row btns-same-width-md\"><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-primary\" disabled=\"disabled\">Primary</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\">Default</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-success\" disabled=\"disabled\">Success</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-info\" disabled=\"disabled\">Info</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-warning\" disabled=\"disabled\">Warning</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-danger\" disabled=\"disabled\">Danger</button></div></div></div></div></div>");
 $templateCache.put("app/pages/ui/buttons/widgets/dropdowns.html","<div class=\"row btns-row\"><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-primary\" uib-dropdown-toggle=\"\">Primary <span class=\"caret\"></span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-success\" uib-dropdown-toggle=\"\">Success <span class=\"caret\"></span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-info\" uib-dropdown-toggle=\"\">Info <span class=\"caret\"></span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-default\" uib-dropdown-toggle=\"\">Default <span class=\"caret\"></span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-warning\" uib-dropdown-toggle=\"\">Warning <span class=\"caret\"></span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-danger\" uib-dropdown-toggle=\"\">Danger <span class=\"caret\"></span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div></div><h5 class=\"panel-subtitle\">Split button dropdowns</h5><div class=\"row btns-row\"><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-primary\">Primary</button> <button type=\"button\" class=\"btn btn-primary\" uib-dropdown-toggle=\"\"><span class=\"caret\"></span> <span class=\"sr-only\">Toggle Dropdown</span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-success\">Success</button> <button type=\"button\" class=\"btn btn-success\" uib-dropdown-toggle=\"\"><span class=\"caret\"></span> <span class=\"sr-only\">Toggle Dropdown</span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-info\">Info</button> <button type=\"button\" class=\"btn btn-info\" uib-dropdown-toggle=\"\"><span class=\"caret\"></span> <span class=\"sr-only\">Toggle Dropdown</span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-default\">Default</button> <button type=\"button\" class=\"btn btn-default\" uib-dropdown-toggle=\"\"><span class=\"caret\"></span> <span class=\"sr-only\">Toggle Dropdown</span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-warning\">Warning</button> <button type=\"button\" class=\"btn btn-warning\" uib-dropdown-toggle=\"\"><span class=\"caret\"></span> <span class=\"sr-only\">Toggle Dropdown</span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-danger\">Danger</button> <button type=\"button\" class=\"btn btn-danger\" uib-dropdown-toggle=\"\"><span class=\"caret\"></span> <span class=\"sr-only\">Toggle Dropdown</span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div></div>");
 $templateCache.put("app/pages/ui/buttons/widgets/iconButtons.html","<ul class=\"btn-list clearfix\"><li><button type=\"button\" class=\"btn btn-primary btn-icon\"><i class=\"ion-android-download\"></i></button></li><li><button type=\"button\" class=\"btn btn-default btn-icon\"><i class=\"ion-stats-bars\"></i></button></li><li><button type=\"button\" class=\"btn btn-success btn-icon\"><i class=\"ion-android-checkmark-circle\"></i></button></li><li><button type=\"button\" class=\"btn btn-info btn-icon\"><i class=\"ion-information\"></i></button></li><li><button type=\"button\" class=\"btn btn-warning btn-icon\"><i class=\"ion-android-warning\"></i></button></li><li><button type=\"button\" class=\"btn btn-danger btn-icon\"><i class=\"ion-nuclear\"></i></button></li></ul><h5 class=\"panel-subtitle\">Buttons with icons</h5><ul class=\"btn-list clearfix\"><li><button type=\"button\" class=\"btn btn-primary btn-with-icon\"><i class=\"ion-android-download\"></i>Primary</button></li><li><button type=\"button\" class=\"btn btn-default btn-with-icon\"><i class=\"ion-stats-bars\"></i>Default</button></li><li><button type=\"button\" class=\"btn btn-success btn-with-icon\"><i class=\"ion-android-checkmark-circle\"></i>Success</button></li><li><button type=\"button\" class=\"btn btn-info btn-with-icon\"><i class=\"ion-information\"></i>Info</button></li><li><button type=\"button\" class=\"btn btn-warning btn-with-icon\"><i class=\"ion-android-warning\"></i>Warning</button></li><li><button type=\"button\" class=\"btn btn-danger btn-with-icon\"><i class=\"ion-nuclear\"></i>Danger</button></li></ul>");
 $templateCache.put("app/pages/ui/buttons/widgets/largeButtons.html","<div class=\"row btns-row btns-same-width-lg\"><div class=\"col-sm-4 col-xs-6\"><button type=\"button\" class=\"btn btn-primary btn-lg\">Primary</button></div><div class=\"col-sm-4 col-xs-6\"><button type=\"button\" class=\"btn btn-success btn-lg\">Success</button></div><div class=\"col-sm-4 col-xs-6\"><button type=\"button\" class=\"btn btn-info btn-lg\">Info</button></div><div class=\"col-sm-4 col-xs-6\"><button type=\"button\" class=\"btn btn-default btn-lg\">Default</button></div><div class=\"col-sm-4 col-xs-6\"><button type=\"button\" class=\"btn btn-warning btn-lg\">Warning</button></div><div class=\"col-sm-4 col-xs-6\"><button type=\"button\" class=\"btn btn-danger btn-lg\">Danger</button></div></div>");
 $templateCache.put("app/pages/ui/buttons/widgets/progressButtons.html","<div class=\"progress-buttons-container text-center default-text\"><div class=\"row\"><section class=\"col-md-6 col-lg-3\"><span class=\"button-title\">fill horizontal</span> <button progress-button=\"progressFunction()\" class=\"btn btn-success\">Submit</button></section><section class=\"col-md-6 col-lg-3\"><span class=\"button-title\">fill vertical</span> <button progress-button=\"progressFunction()\" pb-direction=\"vertical\" class=\"btn btn-danger\">Submit</button></section><section class=\"col-md-6 col-lg-3\"><span class=\"button-title\">shrink horizontal</span> <button progress-button=\"progressFunction()\" pb-style=\"shrink\" class=\"btn btn-warning\">Submit</button></section><section class=\"col-md-6 col-lg-3\"><span class=\"button-title\">shrink vertical</span> <button progress-button=\"progressFunction()\" pb-style=\"shrink\" pb-direction=\"vertical\" class=\"btn btn-info\">Submit</button></section></div><div class=\"row\"><section class=\"col-md-6 col-lg-3\"><span class=\"button-title\">rotate-angle-bottom<br>perspective</span> <button progress-button=\"progressFunction()\" pb-style=\"rotate-angle-bottom\" class=\"btn btn-success\">Submit</button></section><section class=\"col-md-6 col-lg-3\"><span class=\"button-title\">rotate-angle-top<br>perspective</span> <button progress-button=\"progressFunction()\" pb-style=\"rotate-angle-top\" class=\"btn btn-danger\">Submit</button></section><section class=\"col-md-6 col-lg-3\"><span class=\"button-title\">rotate-angle-left<br>perspective</span> <button progress-button=\"progressFunction()\" pb-style=\"rotate-angle-left\" class=\"btn btn-warning\">Submit</button></section><section class=\"col-md-6 col-lg-3\"><span class=\"button-title\">rotate-angle-right<br>perspective</span> <button progress-button=\"progressFunction()\" pb-style=\"rotate-angle-right\" class=\"btn btn-info\">Submit</button></section></div><div class=\"row\"><section class=\"col-md-6 col-lg-3\"><span class=\"button-title\">rotate-side-down<br>perspective</span> <button progress-button=\"progressFunction()\" pb-style=\"rotate-side-down\" class=\"btn btn-success\">Submit</button></section><section class=\"col-md-6 col-lg-3\"><span class=\"button-title\">rotate-side-up<br>perspective</span> <button progress-button=\"progressFunction()\" pb-style=\"rotate-side-up\" class=\"btn btn-danger\">Submit</button></section><section class=\"col-md-6 col-lg-3\"><span class=\"button-title\">rotate-side-left<br>perspective</span> <button progress-button=\"progressFunction()\" pb-style=\"rotate-side-left\" class=\"btn btn-warning\">Submit</button></section><section class=\"col-md-6 col-lg-3\"><span class=\"button-title\">rotate-side-right<br>perspective</span> <button progress-button=\"progressFunction()\" pb-style=\"rotate-side-right\" class=\"btn btn-info\">Submit</button></section></div><div class=\"row\"><section class=\"col-md-6 col-lg-3\"><span class=\"button-title\">rotate-back<br>perspective</span> <button progress-button=\"progressFunction()\" pb-style=\"rotate-back\" class=\"btn btn-success\">Submit</button></section><section class=\"col-md-6 col-lg-3\"><span class=\"button-title\">flip-open<br>perspective</span> <button progress-button=\"progressFunction()\" pb-style=\"flip-open\" class=\"btn btn-danger\">Submit</button></section><section class=\"col-md-6 col-lg-3\"><span class=\"button-title\">slide-down<br>horizontal</span> <button progress-button=\"progressFunction()\" pb-style=\"slide-down\" class=\"btn btn-warning\">Submit</button></section><section class=\"col-md-6 col-lg-3\"><span class=\"button-title\">move-up<br>horizontal</span> <button progress-button=\"progressFunction()\" pb-style=\"move-up\" class=\"btn btn-info\">Submit</button></section></div><div class=\"row\"><section class=\"col-md-6\"><span class=\"button-title\">top-line<br>horizontal</span> <button progress-button=\"progressFunction()\" pb-style=\"top-line\" class=\"btn btn-success\">Submit</button></section><section class=\"col-md-6\"><span class=\"button-title\">lateral-lines<br>vertical</span> <button progress-button=\"progressFunction()\" pb-style=\"lateral-lines\" class=\"btn btn-info\">Submit</button></section></div></div>");
+$templateCache.put("app/pages/ui/icons/widgets/fontAwesomeIcons.html","<div class=\"row icons-list success awesomeIcons\"><div class=\"col-xs-2\" ng-repeat=\"icon in icons.fontAwesomeIcons\"><i class=\"fa {{icon}}\"></i></div></div><a href=\"http://fortawesome.github.io/Font-Awesome/icons/\" target=\"_blank\" class=\"see-all-icons\">See all Font Awesome icons</a>");
+$templateCache.put("app/pages/ui/icons/widgets/ionicons.html","<div class=\"row icons-list primary\"><div class=\"col-xs-2\" ng-repeat=\"icon in icons.ionicons\"><i class=\"{{icon}}\"></i></div></div><a href=\"http://ionicons.com/\" target=\"_blank\" class=\"see-all-icons\">See all ionicons icons</a>");
+$templateCache.put("app/pages/ui/icons/widgets/kameleon.html","<div class=\"row clearfix\"><div class=\"kameleon-row\" ng-repeat=\"icon in icons.kameleonIcons\"><div class=\"kameleon-icon\"><img ng-src=\"{{:: (icon.img | kameleonImg )}}\"><span>{{icon.name}}</span></div></div></div><a href=\"http://www.kameleon.pics/\" target=\"_blank\" class=\"see-all-icons\">See all Kamaleon icons</a>");
+$templateCache.put("app/pages/ui/icons/widgets/kameleonRounded.html","<div class=\"row clearfix\"><div class=\"kameleon-row\" ng-repeat=\"icon in icons.kameleonRoundedIcons\"><div class=\"kameleon-icon with-round-bg {{icon.color}}\"><img ng-src=\"{{::( icon.img | kameleonImg )}}\"><span>{{ icon.name }}</span></div></div></div><a href=\"http://www.kameleon.pics/\" target=\"_blank\" class=\"see-all-icons\">See all Kamaleon icons</a>");
+$templateCache.put("app/pages/ui/icons/widgets/socicon.html","<div class=\"row icons-list danger\"><div class=\"col-xs-2\" ng-repeat=\"icon in icons.socicon\"><i class=\"socicon\">{{ icon }}</i></div></div><a href=\"http://www.socicon.com/chart.php\" target=\"_blank\" class=\"see-all-icons\">See all Socicon icons</a>");
 $templateCache.put("app/pages/ui/modals/modalTemplates/basicModal.html","<div class=\"modal-content\"><div class=\"modal-header\"><button type=\"button\" class=\"close\" ng-click=\"$dismiss()\" aria-label=\"Close\"><em class=\"ion-ios-close-empty sn-link-close\"></em></button><h4 class=\"modal-title\" id=\"myModalLabel\">Modal title</h4></div><div class=\"modal-body\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</div><div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-primary\" ng-click=\"$dismiss()\">Save changes</button></div></div>");
 $templateCache.put("app/pages/ui/modals/modalTemplates/dangerModal.html","<div class=\"modal-content\"><div class=\"modal-header bg-danger\"><i class=\"ion-flame modal-icon\"></i><span>Error</span></div><div class=\"modal-body text-center\">Your information hasn\'t been saved!</div><div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-danger\" ng-click=\"$dismiss()\">OK</button></div></div>");
 $templateCache.put("app/pages/ui/modals/modalTemplates/infoModal.html","<div class=\"modal-content\"><div class=\"modal-header bg-info\"><i class=\"ion-information-circled modal-icon\"></i><span>Information</span></div><div class=\"modal-body text-center\">You\'ve got a new email!</div><div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-info\" ng-click=\"$dismiss()\">OK</button></div></div>");
@@ -9750,11 +9755,6 @@ $templateCache.put("app/pages/ui/modals/modalTemplates/smallModal.html","<div cl
 $templateCache.put("app/pages/ui/modals/modalTemplates/successModal.html","<div class=\"modal-content\"><div class=\"modal-header bg-success\"><i class=\"ion-checkmark modal-icon\"></i><span>Success</span></div><div class=\"modal-body text-center\">Your information has been saved successfully</div><div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-success\" ng-click=\"$dismiss()\">OK</button></div></div>");
 $templateCache.put("app/pages/ui/modals/modalTemplates/warningModal.html","<div class=\"modal-content\"><div class=\"modal-header bg-warning\"><i class=\"ion-android-warning modal-icon\"></i><span>Warning</span></div><div class=\"modal-body text-center\">Your computer is about to explode!</div><div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-warning\" ng-click=\"$dismiss()\">OK</button></div></div>");
 $templateCache.put("app/pages/ui/modals/notifications/notifications.html","<div class=\"modal-buttons same-width clearfix\" ng-controller=\"NotificationsCtrl\"><button type=\"button\" class=\"btn btn-success\" ng-click=\"showSuccessMsg()\">Success Notification</button> <button type=\"button\" class=\"btn btn-info\" ng-click=\"showInfoMsg()\">Info Notification</button> <button type=\"button\" class=\"btn btn-warning\" ng-click=\"showWarningMsg()\">Warning Notification</button> <button type=\"button\" class=\"btn btn-danger\" ng-click=\"showErrorMsg()\">Danger Notification</button></div>");
-$templateCache.put("app/pages/ui/icons/widgets/fontAwesomeIcons.html","<div class=\"row icons-list success awesomeIcons\"><div class=\"col-xs-2\" ng-repeat=\"icon in icons.fontAwesomeIcons\"><i class=\"fa {{icon}}\"></i></div></div><a href=\"http://fortawesome.github.io/Font-Awesome/icons/\" target=\"_blank\" class=\"see-all-icons\">See all Font Awesome icons</a>");
-$templateCache.put("app/pages/ui/icons/widgets/ionicons.html","<div class=\"row icons-list primary\"><div class=\"col-xs-2\" ng-repeat=\"icon in icons.ionicons\"><i class=\"{{icon}}\"></i></div></div><a href=\"http://ionicons.com/\" target=\"_blank\" class=\"see-all-icons\">See all ionicons icons</a>");
-$templateCache.put("app/pages/ui/icons/widgets/kameleon.html","<div class=\"row clearfix\"><div class=\"kameleon-row\" ng-repeat=\"icon in icons.kameleonIcons\"><div class=\"kameleon-icon\"><img ng-src=\"{{:: (icon.img | kameleonImg )}}\"><span>{{icon.name}}</span></div></div></div><a href=\"http://www.kameleon.pics/\" target=\"_blank\" class=\"see-all-icons\">See all Kamaleon icons</a>");
-$templateCache.put("app/pages/ui/icons/widgets/kameleonRounded.html","<div class=\"row clearfix\"><div class=\"kameleon-row\" ng-repeat=\"icon in icons.kameleonRoundedIcons\"><div class=\"kameleon-icon with-round-bg {{icon.color}}\"><img ng-src=\"{{::( icon.img | kameleonImg )}}\"><span>{{ icon.name }}</span></div></div></div><a href=\"http://www.kameleon.pics/\" target=\"_blank\" class=\"see-all-icons\">See all Kamaleon icons</a>");
-$templateCache.put("app/pages/ui/icons/widgets/socicon.html","<div class=\"row icons-list danger\"><div class=\"col-xs-2\" ng-repeat=\"icon in icons.socicon\"><i class=\"socicon\">{{ icon }}</i></div></div><a href=\"http://www.socicon.com/chart.php\" target=\"_blank\" class=\"see-all-icons\">See all Socicon icons</a>");
 $templateCache.put("app/pages/ui/progressBars/widgets/animated.html","<div class=\"progress\"><div class=\"progress-bar progress-bar-success progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 40%\"><span class=\"sr-only\">40% Complete (success)</span></div></div><div class=\"progress\"><div class=\"progress-bar progress-bar-info progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 20%\"><span class=\"sr-only\">20% Complete</span></div></div><div class=\"progress\"><div class=\"progress-bar progress-bar-warning progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%\"><span class=\"sr-only\">60% Complete (warning)</span></div></div><div class=\"progress\"><div class=\"progress-bar progress-bar-danger progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"80\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 80%\"><span class=\"sr-only\">80% Complete (danger)</span></div></div>");
 $templateCache.put("app/pages/ui/progressBars/widgets/basic.html","<div class=\"progress\"><div class=\"progress-bar progress-bar-success\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 40%\"><span class=\"sr-only\">40% Complete (success)</span></div></div><div class=\"progress\"><div class=\"progress-bar progress-bar-info\" role=\"progressbar\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 20%\"><span class=\"sr-only\">20% Complete</span></div></div><div class=\"progress\"><div class=\"progress-bar progress-bar-warning\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%\"><span class=\"sr-only\">60% Complete (warning)</span></div></div><div class=\"progress\"><div class=\"progress-bar progress-bar-danger\" role=\"progressbar\" aria-valuenow=\"80\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 80%\"><span class=\"sr-only\">80% Complete (danger)</span></div></div>");
 $templateCache.put("app/pages/ui/progressBars/widgets/label.html","<div class=\"progress\"><div class=\"progress-bar progress-bar-success\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 40%\">40% Complete (success)</div></div><div class=\"progress\"><div class=\"progress-bar progress-bar-info\" role=\"progressbar\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 20%\">20% Complete</div></div><div class=\"progress\"><div class=\"progress-bar progress-bar-warning\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%\">60% Complete (warning)</div></div><div class=\"progress\"><div class=\"progress-bar progress-bar-danger\" role=\"progressbar\" aria-valuenow=\"80\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 80%\">80% Complete (danger)</div></div>");
@@ -9763,4 +9763,4 @@ $templateCache.put("app/pages/ui/progressBars/widgets/striped.html","<div class=
 $templateCache.put("app/pages/form/inputs/widgets/select/select.html","<div ng-controller=\"SelectpickerPanelCtrl as selectpickerVm\"><div class=\"form-group\"><select class=\"form-control selectpicker\" selectpicker=\"\" title=\"Standard Select\" ng-model=\"selectpickerVm.standardSelected\" ng-options=\"item as item.label for item in selectpickerVm.standardSelectItems\"></select></div><div class=\"form-group\"><select class=\"form-control selectpicker with-search\" data-live-search=\"true\" title=\"Select With Search\" selectpicker=\"\" ng-model=\"selectpickerVm.searchSelectedItem\" ng-options=\"item as item.label for item in selectpickerVm.selectWithSearchItems\"></select></div><div class=\"form-group\"><select class=\"form-control selectpicker\" title=\"Option Types\" selectpicker=\"\"><option>Standard option</option><option data-subtext=\"option subtext\">Option with subtext</option><option disabled=\"\">Disabled Option</option><option data-icon=\"glyphicon-heart\">Option with cion</option></select></div><div class=\"form-group\"><select class=\"form-control selectpicker\" disabled=\"\" title=\"Disabled Select\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option></select></div><div class=\"row\"><div class=\"col-sm-6\"><div class=\"form-group\"><select class=\"form-control\" title=\"Select with Option Groups\" selectpicker=\"\" ng-model=\"selectpickerVm.groupedSelectedItem\" ng-options=\"item as item.label group by item.group for item in selectpickerVm.groupedSelectItems\"></select></div></div><div class=\"col-sm-6\"><div class=\"form-group\"><select class=\"form-control\" title=\"Select with Divider\" selectpicker=\"\"><option>Group 1 - Option 1</option><option>Group 1 - Option 2</option><option data-divider=\"true\"></option><option>Group 2 - Option 1</option><option>Group 2 - Option 2</option></select></div></div></div><div class=\"form-group\"><select class=\"form-control\" title=\"Multiple Select\" multiple=\"\" selectpicker=\"\" ng-model=\"selectpickerVm.multipleSelectedItems\" ng-options=\"item as item.label for item in selectpickerVm.standardSelectItems\"><option>Option 1</option><option>Option 2</option><option>Option 3</option></select></div><div class=\"form-group\"><select class=\"form-control\" title=\"Multiple Select with Limit\" multiple=\"\" data-max-options=\"2\" selectpicker=\"\" ng-model=\"selectpickerVm.multipleSelectedItems2\" ng-options=\"item as item.label for item in selectpickerVm.standardSelectItems\"><option>Option 1</option><option>Option 2</option><option>Option 3</option></select></div><div class=\"row\"><div class=\"col-sm-6\"><div class=\"form-group\"><select class=\"form-control\" title=\"Primary Select\" data-style=\"btn-primary\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div><div class=\"form-group\"><select class=\"form-control\" title=\"Success Select\" data-style=\"btn-success\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div><div class=\"form-group\"><select class=\"form-control\" title=\"Warning Select\" data-style=\"btn-warning\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div></div><div class=\"col-sm-6\"><div class=\"form-group\"><select class=\"form-control\" title=\"Info Select\" data-style=\"btn-info\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div><div class=\"form-group\"><select class=\"form-control\" title=\"Danger Select\" data-style=\"btn-danger\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div><div class=\"form-group\"><select class=\"form-control\" title=\"Inverse Select\" data-style=\"btn-inverse\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div></div></div></div>");
 $templateCache.put("app/pages/form/inputs/widgets/switch/switch.html","<div ng-controller=\"SwitchPanelCtrl as switchPanelVm\" class=\"switches clearfix\"><switch color=\"primary\" ng-model=\"switchPanelVm.switcherValues.primary\"></switch><switch color=\"warning\" ng-model=\"switchPanelVm.switcherValues.warning\"></switch><switch color=\"danger\" ng-model=\"switchPanelVm.switcherValues.danger\"></switch><switch color=\"info\" ng-model=\"switchPanelVm.switcherValues.info\"></switch><switch color=\"success\" ng-model=\"switchPanelVm.switcherValues.success\"></switch></div>");
 $templateCache.put("app/pages/form/inputs/widgets/tagsInput/tagsInput.html","<div class=\"form-group\"><div class=\"form-group\"><input type=\"text\" tag-input=\"primary\" value=\"Amsterdam,Washington,Sydney,Beijing,Cairo\" data-role=\"tagsinput\" placeholder=\"Add Tag\"></div><div class=\"form-group\"><input type=\"text\" tag-input=\"warning\" value=\"Minsk,Prague,Vilnius,Warsaw\" data-role=\"tagsinput\" placeholder=\"Add Tag\"></div><div class=\"form-group\"><input type=\"text\" tag-input=\"danger\" value=\"London,Berlin,Paris,Rome,Munich\" data-role=\"tagsinput\" placeholder=\"Add Tag\"></div></div>");}]);
-//# sourceMappingURL=../maps/scripts/app-9008836cbc.js.map
+//# sourceMappingURL=../maps/scripts/app-f972335ba0.js.map

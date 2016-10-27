@@ -1,43 +1,3 @@
-// (function(){
-//   'use strict';
-
-//   angular.module('Dalet', [ 'ngCookies', 'ngResource','LocalStorageModule'])
-//   .constant('ServerUrl', 'http://localhost:5000')
-//   //.constant('ServerUrl', '')
-//   .config(function($httpProvider, $locationProvider){
-//     $httpProvider.interceptors.push('authInterceptor')
-//   })
-//   .factory('authInterceptor', authInterceptor);
-
-//   /** @ngInject */ 
-//   function authInterceptor($q, $cookies, $injector, Util){
-//       var state;
-//       return {
-//         // Add authorization token to headers
-//         request: function(config) {
-//           config.headers = config.headers || {};
-//           //console.log(config);
-//           if($cookies.get('token') ) {
-//             //console.log('setting the header');
-//             config.headers.Authorization = 'Bearer' +  $cookies.get('token');
-//           }
-//           return config;
-//         },
-
-//         // Intercept 401s and redirect you to login
-//         responseError: function(response) {
-//           if(response.status === 401) {
-//             (state || (state = $injector.get('$state')))
-//             .go('login');
-//             // remove any stale tokens
-//             $cookies.remove('token');
-//           }
-//           return $q.reject(response);
-//         }
-//       };
-//   }
-
-// })();
 /**
  * @author v.lugovsky
  * created on 16.12.2015
@@ -103,6 +63,46 @@
 
 })();
 
+// (function(){
+//   'use strict';
+
+//   angular.module('Dalet', [ 'ngCookies', 'ngResource','LocalStorageModule'])
+//   .constant('ServerUrl', 'http://localhost:5000')
+//   //.constant('ServerUrl', '')
+//   .config(function($httpProvider, $locationProvider){
+//     $httpProvider.interceptors.push('authInterceptor')
+//   })
+//   .factory('authInterceptor', authInterceptor);
+
+//   /** @ngInject */ 
+//   function authInterceptor($q, $cookies, $injector, Util){
+//       var state;
+//       return {
+//         // Add authorization token to headers
+//         request: function(config) {
+//           config.headers = config.headers || {};
+//           //console.log(config);
+//           if($cookies.get('token') ) {
+//             //console.log('setting the header');
+//             config.headers.Authorization = 'Bearer' +  $cookies.get('token');
+//           }
+//           return config;
+//         },
+
+//         // Intercept 401s and redirect you to login
+//         responseError: function(response) {
+//           if(response.status === 401) {
+//             (state || (state = $injector.get('$state')))
+//             .go('login');
+//             // remove any stale tokens
+//             $cookies.remove('token');
+//           }
+//           return $q.reject(response);
+//         }
+//       };
+//   }
+
+// })();
 /**
  * @author v.lugovsky
  * created on 15.12.2015
@@ -5040,6 +5040,90 @@
 (function () {
   'use strict';
 
+  DashboardCalendarCtrl.$inject = ["baConfig"];
+  angular.module('BlurAdmin.pages.dashboard')
+      .controller('DashboardCalendarCtrl', DashboardCalendarCtrl);
+
+  /** @ngInject */
+  function DashboardCalendarCtrl(baConfig) {
+    var dashboardColors = baConfig.colors.dashboard;
+    var $element = $('#calendar').fullCalendar({
+      //height: 335,
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+      },
+      defaultDate: '2016-03-08',
+      selectable: true,
+      selectHelper: true,
+      select: function (start, end) {
+        var title = prompt('Event Title:');
+        var eventData;
+        if (title) {
+          eventData = {
+            title: title,
+            start: start,
+            end: end
+          };
+          $element.fullCalendar('renderEvent', eventData, true); // stick? = true
+        }
+        $element.fullCalendar('unselect');
+      },
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      events: [
+        {
+          title: 'All Day Event',
+          start: '2016-03-01',
+          color: dashboardColors.silverTree
+        },
+        {
+          title: 'Long Event',
+          start: '2016-03-07',
+          end: '2016-03-10',
+          color: dashboardColors.blueStone
+        },
+        {
+          title: 'Dinner',
+          start: '2016-03-14T20:00:00',
+          color: dashboardColors.surfieGreen
+        },
+        {
+          title: 'Birthday Party',
+          start: '2016-04-01T07:00:00',
+          color: dashboardColors.gossipDark
+        }
+      ]
+    });
+  }
+})();
+/**
+ * @author v.lugovksy
+ * created on 16.12.2015
+ */
+(function () {
+  'use strict';
+
+  angular.module('BlurAdmin.pages.dashboard')
+      .directive('dashboardCalendar', dashboardCalendar);
+
+  /** @ngInject */
+  function dashboardCalendar() {
+    return {
+      restrict: 'E',
+      controller: 'DashboardCalendarCtrl',
+      templateUrl: 'app/pages/dashboard/dashboardCalendar/dashboardCalendar.html'
+    };
+  }
+})();
+/**
+ * @author v.lugovksy
+ * created on 16.12.2015
+ */
+(function () {
+  'use strict';
+
   DashboardLineChartCtrl.$inject = ["baConfig", "layoutPaths", "baUtil"];
   angular.module('BlurAdmin.pages.dashboard')
       .controller('DashboardLineChartCtrl', DashboardLineChartCtrl);
@@ -5176,90 +5260,6 @@
       restrict: 'E',
       controller: 'DashboardLineChartCtrl',
       templateUrl: 'app/pages/dashboard/dashboardLineChart/dashboardLineChart.html'
-    };
-  }
-})();
-/**
- * @author v.lugovksy
- * created on 16.12.2015
- */
-(function () {
-  'use strict';
-
-  DashboardCalendarCtrl.$inject = ["baConfig"];
-  angular.module('BlurAdmin.pages.dashboard')
-      .controller('DashboardCalendarCtrl', DashboardCalendarCtrl);
-
-  /** @ngInject */
-  function DashboardCalendarCtrl(baConfig) {
-    var dashboardColors = baConfig.colors.dashboard;
-    var $element = $('#calendar').fullCalendar({
-      //height: 335,
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay'
-      },
-      defaultDate: '2016-03-08',
-      selectable: true,
-      selectHelper: true,
-      select: function (start, end) {
-        var title = prompt('Event Title:');
-        var eventData;
-        if (title) {
-          eventData = {
-            title: title,
-            start: start,
-            end: end
-          };
-          $element.fullCalendar('renderEvent', eventData, true); // stick? = true
-        }
-        $element.fullCalendar('unselect');
-      },
-      editable: true,
-      eventLimit: true, // allow "more" link when too many events
-      events: [
-        {
-          title: 'All Day Event',
-          start: '2016-03-01',
-          color: dashboardColors.silverTree
-        },
-        {
-          title: 'Long Event',
-          start: '2016-03-07',
-          end: '2016-03-10',
-          color: dashboardColors.blueStone
-        },
-        {
-          title: 'Dinner',
-          start: '2016-03-14T20:00:00',
-          color: dashboardColors.surfieGreen
-        },
-        {
-          title: 'Birthday Party',
-          start: '2016-04-01T07:00:00',
-          color: dashboardColors.gossipDark
-        }
-      ]
-    });
-  }
-})();
-/**
- * @author v.lugovksy
- * created on 16.12.2015
- */
-(function () {
-  'use strict';
-
-  angular.module('BlurAdmin.pages.dashboard')
-      .directive('dashboardCalendar', dashboardCalendar);
-
-  /** @ngInject */
-  function dashboardCalendar() {
-    return {
-      restrict: 'E',
-      controller: 'DashboardCalendarCtrl',
-      templateUrl: 'app/pages/dashboard/dashboardCalendar/dashboardCalendar.html'
     };
   }
 })();
@@ -7783,31 +7783,6 @@
 (function () {
   'use strict';
 
-  contentTop.$inject = ["$location", "$state"];
-  angular.module('BlurAdmin.theme.components')
-      .directive('contentTop', contentTop);
-
-  /** @ngInject */
-  function contentTop($location, $state) {
-    return {
-      restrict: 'E',
-      templateUrl: 'app/theme/components/contentTop/contentTop.html',
-      link: function($scope) {
-        $scope.$watch(function () {
-          $scope.activePageTitle = $state.current.title;
-        });
-      }
-    };
-  }
-
-})();
-/**
- * @author v.lugovksy
- * created on 16.12.2015
- */
-(function () {
-  'use strict';
-
   MsgCenterCtrl.$inject = ["$scope", "$sce"];
   angular.module('BlurAdmin.theme.components')
       .controller('MsgCenterCtrl', MsgCenterCtrl);
@@ -7941,6 +7916,31 @@
 (function () {
   'use strict';
 
+  contentTop.$inject = ["$location", "$state"];
+  angular.module('BlurAdmin.theme.components')
+      .directive('contentTop', contentTop);
+
+  /** @ngInject */
+  function contentTop($location, $state) {
+    return {
+      restrict: 'E',
+      templateUrl: 'app/theme/components/contentTop/contentTop.html',
+      link: function($scope) {
+        $scope.$watch(function () {
+          $scope.activePageTitle = $state.current.title;
+        });
+      }
+    };
+  }
+
+})();
+/**
+ * @author v.lugovksy
+ * created on 16.12.2015
+ */
+(function () {
+  'use strict';
+
   angular.module('BlurAdmin.theme.components')
       .directive('pageTop', pageTop);
 
@@ -7976,6 +7976,25 @@
   }
 
 })();
+/**
+ * @author a.demeshko
+ * created on 23.12.2015
+ */
+(function () {
+  'use strict';
+
+  angular.module('BlurAdmin.theme')
+    .filter('plainText', plainText);
+
+  /** @ngInject */
+  function plainText() {
+    return function(text) {
+      return  text ? String(text).replace(/<[^>]+>/gm, '') : '';
+    };
+  }
+
+})();
+
 /**
  * @author v.lugovsky
  * created on 17.12.2015
@@ -8037,146 +8056,6 @@
 
 })();
 
-/**
- * @author a.demeshko
- * created on 23.12.2015
- */
-(function () {
-  'use strict';
-
-  angular.module('BlurAdmin.theme')
-    .filter('plainText', plainText);
-
-  /** @ngInject */
-  function plainText() {
-    return function(text) {
-      return  text ? String(text).replace(/<[^>]+>/gm, '') : '';
-    };
-  }
-
-})();
-
-(function(){
-    'use strict';
-      AreasController.$inject = ["Tabs"];
-    angular.module('BlurAdmin.pages.admin')
-      .controller('AreasController', AreasController);
-
-      /** @ngInject */ 
-      function AreasController(Tabs){
-        var vm = this;
-        Tabs
-          .loadAllItems()
-          .then(function(tabs){
-            vm.tabs = [].concat(tabs)
-          })
-      }
-})()
-(function(){
-    'use strict';
-      EntradasController.$inject = ["Tabs"];
-    angular.module('BlurAdmin.pages.admin')
-      .controller('EntradasController', EntradasController);
-
-      /** @ngInject */ 
-      function EntradasController(Tabs){
-        var vm = this;
-        Tabs
-          .loadAllItems()
-          .then(function(tabs){
-            vm.tabs = [].concat(tabs)
-          })
-      }
-})()
-(function(){
-    'use strict';
-      ProveedoresController.$inject = ["Tabs"];
-    angular.module('BlurAdmin.pages.admin')
-      .controller('ProveedoresController', ProveedoresController);
-
-      /** @ngInject */ 
-      function ProveedoresController(Tabs){
-        var vm = this;
-        Tabs
-          .loadAllItems()
-          .then(function(tabs){
-            vm.tabs = [].concat(tabs)
-          })
-      }
-})()
-(function(){
-    'use strict';
-      UsuariosController.$inject = ["$scope", "User", "$uibModal"];
-    angular.module('BlurAdmin.pages.admin')
-      .controller('UsuariosController', UsuariosController);
-
-      /** @ngInject */ 
-      function UsuariosController($scope, User, $uibModal){
-        ModalController.$inject = ["User", "Auth", "$scope", "$uibModalInstance", "$rootScope"];
-        var vm = this;
-        getUsers()
-        $scope.$on('User Added', function(pevent, padata){
-          getUsers()
-        })
-        //Binding functions to scope
-        vm.addUser = addUser
-        vm.removeUser = removeUser
-        function getUsers(){
-          User.query().$promise.then(function(users){
-            //console.log(users);
-            vm.users = users
-          })  
-        }
-        function addUser(){
-          console.log('Adding a new user');
-          $uibModal.open({
-            animation: true,
-            templateUrl: 'app/pages/admin/tabs/usuarios/addUserModal.html',
-            size: 'md',
-            controller: ModalController,
-            resolve:{
-               items: function () {
-                return vm.users;
-              }
-            }
-          })
-        }
-        /** @ngInject */ 
-        function ModalController(User, Auth, $scope, $uibModalInstance, $rootScope){
-          //console.log($scope.$parent);
-          $scope.user ={}
-          $scope.submitted = false
-          $scope.roles = [
-            {label:'Usuario normal', value:'user'},
-            {label:'Administrador', value:'admin'},
-            {label:'Super Administrador', value:'superadmin', icon:'fa fa-key'}
-          ]
-          $scope.register = function(form){
-            //console.log(form);
-            $scope.submitted = true
-            if(form.$valid){
-              Auth.createUser($scope.user)
-                .then(function(response){
-                  $rootScope.$broadcast('User Added')
-                  //console.log(response);
-                  $uibModalInstance.dismiss()
-                  })
-                .catch(function(error){
-                  $scope.error = 'Error, posiblemente el correo ya existe.'
-                  //console.log(error);
-                })
-              //console.log($scope.user);
-            }
-          }
-        }
-        function removeUser(index){
-          console.log('Deleting the user: ' + vm.users[index].name);
-          vm.users[index].$remove()
-          vm.users.splice(index,1)
-        }
-
-      }
-})()
 /**
  * @author v.lugovsky
  * created on 16.12.2015
@@ -9350,6 +9229,127 @@
 
 })();
 
+(function(){
+    'use strict';
+      AreasController.$inject = ["Tabs"];
+    angular.module('BlurAdmin.pages.admin')
+      .controller('AreasController', AreasController);
+
+      /** @ngInject */ 
+      function AreasController(Tabs){
+        var vm = this;
+        Tabs
+          .loadAllItems()
+          .then(function(tabs){
+            vm.tabs = [].concat(tabs)
+          })
+      }
+})()
+(function(){
+    'use strict';
+      EntradasController.$inject = ["Tabs"];
+    angular.module('BlurAdmin.pages.admin')
+      .controller('EntradasController', EntradasController);
+
+      /** @ngInject */ 
+      function EntradasController(Tabs){
+        var vm = this;
+        Tabs
+          .loadAllItems()
+          .then(function(tabs){
+            vm.tabs = [].concat(tabs)
+          })
+      }
+})()
+(function(){
+    'use strict';
+      ProveedoresController.$inject = ["Tabs"];
+    angular.module('BlurAdmin.pages.admin')
+      .controller('ProveedoresController', ProveedoresController);
+
+      /** @ngInject */ 
+      function ProveedoresController(Tabs){
+        var vm = this;
+        Tabs
+          .loadAllItems()
+          .then(function(tabs){
+            vm.tabs = [].concat(tabs)
+          })
+      }
+})()
+(function(){
+    'use strict';
+      UsuariosController.$inject = ["$scope", "User", "$uibModal"];
+    angular.module('BlurAdmin.pages.admin')
+      .controller('UsuariosController', UsuariosController);
+
+      /** @ngInject */ 
+      function UsuariosController($scope, User, $uibModal){
+        ModalController.$inject = ["User", "Auth", "$scope", "$uibModalInstance", "$rootScope"];
+        var vm = this;
+        getUsers()
+        $scope.$on('User Added', function(pevent, padata){
+          getUsers()
+        })
+        //Binding functions to scope
+        vm.addUser = addUser
+        vm.removeUser = removeUser
+        function getUsers(){
+          User.query().$promise.then(function(users){
+            //console.log(users);
+            vm.users = users
+          })  
+        }
+        function addUser(){
+          console.log('Adding a new user');
+          $uibModal.open({
+            animation: true,
+            templateUrl: 'app/pages/admin/tabs/usuarios/addUserModal.html',
+            size: 'md',
+            controller: ModalController,
+            resolve:{
+               items: function () {
+                return vm.users;
+              }
+            }
+          })
+        }
+        /** @ngInject */ 
+        function ModalController(User, Auth, $scope, $uibModalInstance, $rootScope){
+          //console.log($scope.$parent);
+          $scope.user ={}
+          $scope.submitted = false
+          $scope.roles = [
+            {label:'Usuario normal', value:'user'},
+            {label:'Administrador', value:'admin'},
+            {label:'Super Administrador', value:'superadmin', icon:'fa fa-key'}
+          ]
+          $scope.register = function(form){
+            //console.log(form);
+            $scope.submitted = true
+            if(form.$valid){
+              Auth.createUser($scope.user)
+                .then(function(response){
+                  $rootScope.$broadcast('User Added')
+                  //console.log(response);
+                  $uibModalInstance.dismiss()
+                  })
+                .catch(function(error){
+                  $scope.error = 'Error, posiblemente el correo ya existe.'
+                  //console.log(error);
+                })
+              //console.log($scope.user);
+            }
+          }
+        }
+        function removeUser(index){
+          console.log('Deleting the user: ' + vm.users[index].name);
+          vm.users[index].$remove()
+          vm.users.splice(index,1)
+        }
+
+      }
+})()
 /**
  * @author a.demeshko
  * created on 24/12/15
@@ -9482,6 +9482,71 @@
 !function(o){o.fn.backTop=function(e){var n=this,i=o.extend({position:400,speed:500,color:"white"},e),t=i.position,c=i.speed,d=i.color;n.addClass("white"==d?"white":"red"==d?"red":"green"==d?"green":"black"),n.css({right:40,bottom:40,position:"fixed"}),o(document).scroll(function(){var e=o(window).scrollTop();e>=t?n.fadeIn(c):n.fadeOut(c)}),n.click(function(){o("html, body").animate({scrollTop:0},{duration:1200})})}}(jQuery);
 /**
  * @author v.lugovsky
+ * created on 07.06.2016
+ */
+(function () {
+  'use strict';
+
+  angular.module('BlurAdmin.pages.form')
+      .controller('SwitchPanelCtrl', SwitchPanelCtrl);
+
+  /** @ngInject */
+  function SwitchPanelCtrl() {
+    var vm = this;
+
+    vm.switcherValues = {
+      primary: true,
+      warning: true,
+      danger: true,
+      info: true,
+      success: true
+    };
+  }
+
+})();
+
+/**
+ * @author v.lugovksy
+ * created on 16.12.2015
+ */
+(function () {
+  'use strict';
+
+  switchDirective.$inject = ["$timeout"];
+  angular.module('BlurAdmin.pages.form')
+      .directive('switch', switchDirective);
+
+  /** @ngInject */
+  function switchDirective($timeout) {
+    return {
+      restrict: 'EA',
+      replace: true,
+      scope: {
+        ngModel: '='
+      },
+      template: function(el, attrs) {
+        return '<div class="switch-container ' + (attrs.color || '') + '"><input type="checkbox" ng-model="ngModel"></div>';
+      },
+      link: function (scope, elem, attr) {
+        $timeout(function(){
+          var input = $(elem).find('input');
+          input.bootstrapSwitch({
+            size: 'small',
+            onColor: attr.color
+          });
+          input.on('switchChange.bootstrapSwitch', function(event, state) {
+            scope.ngModel = state;
+            scope.$apply();
+          });
+
+        });
+      }
+    };
+  }
+})();
+
+/**
+ * @author v.lugovsky
  * created on 22.04.2016
  */
 (function () {
@@ -9561,71 +9626,6 @@
 
 })();
 /**
- * @author v.lugovsky
- * created on 07.06.2016
- */
-(function () {
-  'use strict';
-
-  angular.module('BlurAdmin.pages.form')
-      .controller('SwitchPanelCtrl', SwitchPanelCtrl);
-
-  /** @ngInject */
-  function SwitchPanelCtrl() {
-    var vm = this;
-
-    vm.switcherValues = {
-      primary: true,
-      warning: true,
-      danger: true,
-      info: true,
-      success: true
-    };
-  }
-
-})();
-
-/**
- * @author v.lugovksy
- * created on 16.12.2015
- */
-(function () {
-  'use strict';
-
-  switchDirective.$inject = ["$timeout"];
-  angular.module('BlurAdmin.pages.form')
-      .directive('switch', switchDirective);
-
-  /** @ngInject */
-  function switchDirective($timeout) {
-    return {
-      restrict: 'EA',
-      replace: true,
-      scope: {
-        ngModel: '='
-      },
-      template: function(el, attrs) {
-        return '<div class="switch-container ' + (attrs.color || '') + '"><input type="checkbox" ng-model="ngModel"></div>';
-      },
-      link: function (scope, elem, attr) {
-        $timeout(function(){
-          var input = $(elem).find('input');
-          input.bootstrapSwitch({
-            size: 'small',
-            onColor: attr.color
-          });
-          input.on('switchChange.bootstrapSwitch', function(event, state) {
-            scope.ngModel = state;
-            scope.$apply();
-          });
-
-        });
-      }
-    };
-  }
-})();
-
-/**
  * @author v.lugovksy
  * created on 16.12.2015
  */
@@ -9652,8 +9652,8 @@ $templateCache.put("app/pages/dashboard/dashboard.html","<dashboard-pie-chart></
 $templateCache.put("app/pages/maps/maps.html","<div class=\"widgets\"><div class=\"row\"><div class=\"col-md-12\" ui-view=\"\"></div></div></div>");
 $templateCache.put("app/pages/profile/profile.html","<div ba-panel=\"\" ba-panel-class=\"profile-page\"><div class=\"panel-content\"><div class=\"progress-info\">Your profile is 70% Complete</div><div class=\"progress\"><div class=\"progress-bar progress-bar-primary progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"70\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 70%\"></div></div><h3 class=\"with-line\">General Information</h3><div class=\"row\"><div class=\"col-md-6\"><div class=\"form-group row clearfix\"><label for=\"inputFirstName\" class=\"col-sm-3 control-label\">Picture</label><div class=\"col-sm-9\"><div class=\"userpic\"><div class=\"userpic-wrapper\"><img ng-src=\"{{ picture }}\" ng-click=\"uploadPicture()\"></div><i class=\"ion-ios-close-outline\" ng-click=\"removePicture()\" ng-if=\"!noPicture\"></i> <a href=\"\" class=\"change-userpic\" ng-click=\"uploadPicture()\">Change Profile Picture</a> <input type=\"file\" ng-show=\"false\" id=\"uploadFile\" ng-file-select=\"onFileSelect($files)\"></div></div></div></div><div class=\"col-md-6\"></div></div><div class=\"row\"><div class=\"col-md-6\"><div class=\"form-group row clearfix\"><label for=\"inputFirstName\" class=\"col-sm-3 control-label\">First Name</label><div class=\"col-sm-9\"><input type=\"text\" class=\"form-control\" id=\"inputFirstName\" placeholder=\"\" value=\"Anastasiya\"></div></div><div class=\"form-group row clearfix\"><label for=\"inputLastName\" class=\"col-sm-3 control-label\">Last Name</label><div class=\"col-sm-9\"><input type=\"text\" class=\"form-control\" id=\"inputLastName\" placeholder=\"\" value=\"\"></div></div></div><div class=\"col-md-6\"><div class=\"form-group row clearfix\"><label class=\"col-sm-3 control-label\">Department</label><div class=\"col-sm-9\"><select class=\"form-control\" selectpicker=\"\"><option>Web Development</option><option>System Development</option><option>Sales</option><option>Human Resources</option></select></div></div><div class=\"form-group row clearfix\"><label for=\"inputOccupation\" class=\"col-sm-3 control-label\">Occupation</label><div class=\"col-sm-9\"><input type=\"text\" class=\"form-control\" id=\"inputOccupation\" placeholder=\"\" value=\"Front End Web Developer\"></div></div></div></div><h3 class=\"with-line\">Change Password</h3><div class=\"row\"><div class=\"col-md-6\"><div class=\"form-group row clearfix\"><label for=\"inputPassword\" class=\"col-sm-3 control-label\">Password</label><div class=\"col-sm-9\"><input type=\"password\" class=\"form-control\" id=\"inputPassword\" placeholder=\"\" value=\"12345678\"></div></div></div><div class=\"col-md-6\"><div class=\"form-group row clearfix\"><label for=\"inputConfirmPassword\" class=\"col-sm-3 control-label\">Confirm Password</label><div class=\"col-sm-9\"><input type=\"password\" class=\"form-control\" id=\"inputConfirmPassword\" placeholder=\"\"></div></div></div></div><h3 class=\"with-line\">Contact Information</h3><div class=\"row\"><div class=\"col-md-6\"><div class=\"form-group row clearfix\"><label for=\"inputEmail3\" class=\"col-sm-3 control-label\">Email</label><div class=\"col-sm-9\"><input type=\"email\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"\" value=\"contact@akveo.com\"></div></div><div class=\"form-group row clearfix\"><label for=\"inputPhone\" class=\"col-sm-3 control-label\">Phone</label><div class=\"col-sm-9\"><input type=\"text\" class=\"form-control\" id=\"inputPhone\" placeholder=\"\" value=\"+1 (23) 456 7890\"></div></div></div><div class=\"col-md-6\"><div class=\"form-group row clearfix\"><label class=\"col-sm-3 control-label\">Office Location</label><div class=\"col-sm-9\"><select class=\"form-control\" title=\"Standard Select\" selectpicker=\"\"><option>San Francisco</option><option>London</option><option>Minsk</option><option>Tokio</option></select></div></div><div class=\"form-group row clearfix\"><label for=\"inputRoom\" class=\"col-sm-3 control-label\">Room</label><div class=\"col-sm-9\"><input type=\"text\" class=\"form-control\" id=\"inputRoom\" placeholder=\"\" value=\"303\"></div></div></div></div><h3 class=\"with-line\">Social Profiles</h3><div class=\"social-profiles row clearfix\"><div class=\"col-md-3 col-sm-4\" ng-repeat=\"item in socialProfiles\"><a class=\"sn-link\" href=\"\" ng-click=\"showModal(item)\" ng-if=\"!item.href\"><i class=\"socicon {{ item.icon }}\"></i> <span>{{ item.name }}</span></a> <a class=\"sn-link connected\" href=\"{{ item.href }}\" target=\"_blank\" ng-if=\"item.href\"><i class=\"socicon {{ item.icon }}\"></i> <span>{{ item.name }}</span> <em class=\"ion-ios-close-empty sn-link-close\" ng-mousedown=\"unconnect(item)\"></em></a></div></div><h3 class=\"with-line\">Send Email Notifications</h3><div class=\"notification row clearfix\"><div class=\"col-sm-6\"><div class=\"form-group row clearfix\"><label class=\"col-xs-8\">When I receive a message</label><div class=\"col-xs-4\"><switch color=\"primary\" ng-model=\"switches[0]\"></switch></div></div><div class=\"form-group row clearfix\"><label class=\"col-xs-8\">When Someone sends me an invitation</label><div class=\"col-xs-4\"><switch color=\"primary\" ng-model=\"switches[1]\"></switch></div></div><div class=\"form-group row clearfix\"><label class=\"col-xs-8\">When profile information changes</label><div class=\"col-xs-4\"><switch color=\"primary\" ng-model=\"switches[2]\"></switch></div></div></div><div class=\"col-sm-6\"><div class=\"form-group row clearfix\"><label class=\"col-xs-8\">When anyone logs into your account from a new device or browser</label><div class=\"col-xs-4\"><switch color=\"primary\" ng-model=\"switches[3]\"></switch></div></div><div class=\"form-group row clearfix\"><label class=\"col-xs-8\">Weekly Reports</label><div class=\"col-xs-4\"><switch color=\"primary\" ng-model=\"switches[4]\"></switch></div></div><div class=\"form-group row clearfix\"><label class=\"col-xs-8\">Daily Reports</label><div class=\"col-xs-4\"><switch color=\"primary\" ng-model=\"switches[5]\"></switch></div></div></div></div><button type=\"button\" class=\"btn btn-primary btn-with-icon save-profile\"><i class=\"ion-android-checkmark-circle\"></i>Update Profile</button></div></div>");
 $templateCache.put("app/pages/profile/profileModal.html","<div class=\"modal-content\"><div class=\"modal-header\"><button type=\"button\" class=\"close\" ng-click=\"$dismiss()\" aria-label=\"Close\"><em class=\"ion-ios-close-empty sn-link-close\"></em></button><h4 class=\"modal-title\" id=\"myModalLabel\">Add Account</h4></div><form name=\"linkForm\"><div class=\"modal-body\"><p>Paste a link to your profile into the box below</p><div class=\"form-group\"><input type=\"text\" class=\"form-control\" placeholder=\"Link to Profile\" ng-model=\"link\"></div></div><div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-primary\" ng-click=\"ok(link)\">Save changes</button></div></form></div>");
-$templateCache.put("app/pages/charts/chartJs/chartJs.html","<div class=\"row\"><div class=\"col-md-4\" ng-controller=\"chartJs1DCtrl\"><div ba-panel=\"\" ba-panel-title=\"Pie\" ba-panel-class=\"with-scroll\"><canvas id=\"pie\" class=\"chart chart-pie\" chart-legend=\"true\" chart-options=\"options\" chart-data=\"data\" chart-labels=\"labels\" chart-click=\"changeData\"></canvas></div></div><div class=\"col-md-4\" ng-controller=\"chartJs1DCtrl\"><div ba-panel=\"\" ba-panel-title=\"Doughnut\" ba-panel-class=\"with-scroll\"><canvas id=\"doughnut\" chart-options=\"options\" class=\"chart chart-doughnut\" chart-legend=\"true\" chart-data=\"data\" chart-labels=\"labels\" chart-click=\"changeData\"></canvas></div></div><div class=\"col-md-4\" ng-controller=\"chartJs1DCtrl\"><div ba-panel=\"\" ba-panel-title=\"Polar\" ba-panel-class=\"with-scroll\"><canvas id=\"polar-area\" class=\"chart chart-polar-area\" chart-data=\"data\" chart-options=\"polarOptions\" chart-labels=\"labels\" chart-legend=\"true\" chart-click=\"changeData\"></canvas></div></div></div><div class=\"row\"><div class=\"col-md-6\" ng-controller=\"chartJsWaveCtrl\"><div ba-panel=\"\" ba-panel-title=\"Animated Radar\" ba-panel-class=\"with-scroll col-eq-height\"><canvas id=\"waveLine\" class=\"chart chart-radar\" chart-data=\"data\" chart-labels=\"labels\" chart-legend=\"false\"></canvas></div></div><div class=\"col-md-6\" ng-controller=\"chartJsWaveCtrl\"><div ba-panel=\"\" ba-panel-title=\"Animated Bars\" ba-panel-class=\"with-scroll col-eq-height\"><canvas id=\"waveBars\" class=\"chart chart-bar\" chart-data=\"data\" chart-labels=\"labels\" chart-legend=\"false\"></canvas></div></div></div><div class=\"row\"><div class=\"col-lg-4 col-md-6\" ng-controller=\"chartJs2DCtrl\"><div ba-panel=\"\" ba-panel-title=\"Radar\" ba-panel-class=\"with-scroll\"><canvas id=\"radar\" class=\"chart chart-radar\" chart-legend=\"false\" chart-series=\"series\" chart-data=\"data\" chart-labels=\"labels\" chart-click=\"changeData\"></canvas></div></div><div class=\"col-lg-4 col-md-6\" ng-controller=\"chartJs2DCtrl\"><div ba-panel=\"\" ba-panel-title=\"Line\" ba-panel-class=\"with-scroll\"><canvas id=\"line\" class=\"chart chart-line\" chart-data=\"data\" chart-labels=\"labels\" chart-legend=\"false\" chart-series=\"series\" chart-click=\"changeData\"></canvas></div></div><div class=\"col-lg-4 col-md-12\" ng-controller=\"chartJs2DCtrl\"><div ba-panel=\"\" ba-panel-title=\"Bars\" ba-panel-class=\"with-scroll\"><canvas id=\"bar\" class=\"chart chart-bar\" chart-data=\"data\" chart-labels=\"labels\" chart-series=\"series\" chart-click=\"changeData\"></canvas></div></div></div>");
 $templateCache.put("app/pages/charts/amCharts/charts.html","<div class=\"widgets\"><div class=\"row\"><div class=\"col-lg-4 col-md-6\" ba-panel=\"\" ba-panel-title=\"Bar Chart\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/charts/amCharts/barChart/barChart.html\'\"></div></div><div class=\"col-lg-4 col-md-6\" ba-panel=\"\" ba-panel-title=\"Area Chart\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/charts/amCharts/areaChart/areaChart.html\'\"></div></div><div class=\"col-lg-4 col-md-12\" ba-panel=\"\" ba-panel-title=\"Line Chart\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/charts/amCharts/lineChart/lineChart.html\'\"></div></div></div><div class=\"row\"><div class=\"col-md-6\" ba-panel=\"\" ba-panel-title=\"Pie Chart\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/charts/amCharts/pieChart/pieChart.html\'\"></div></div><div class=\"col-md-6\" ba-panel=\"\" ba-panel-title=\"Funnel Chart\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/charts/amCharts/funnelChart/funnelChart.html\'\"></div></div></div><div class=\"row\"><div class=\"col-md-12\" ba-panel=\"\" ba-panel-title=\"Combined bullet/column and line graphs with multiple value axes\" ba-panel-class=\"with-scroll\"><div ng-include=\"\'app/pages/charts/amCharts/combinedChart/combinedChart.html\'\"></div></div></div></div>");
+$templateCache.put("app/pages/charts/chartJs/chartJs.html","<div class=\"row\"><div class=\"col-md-4\" ng-controller=\"chartJs1DCtrl\"><div ba-panel=\"\" ba-panel-title=\"Pie\" ba-panel-class=\"with-scroll\"><canvas id=\"pie\" class=\"chart chart-pie\" chart-legend=\"true\" chart-options=\"options\" chart-data=\"data\" chart-labels=\"labels\" chart-click=\"changeData\"></canvas></div></div><div class=\"col-md-4\" ng-controller=\"chartJs1DCtrl\"><div ba-panel=\"\" ba-panel-title=\"Doughnut\" ba-panel-class=\"with-scroll\"><canvas id=\"doughnut\" chart-options=\"options\" class=\"chart chart-doughnut\" chart-legend=\"true\" chart-data=\"data\" chart-labels=\"labels\" chart-click=\"changeData\"></canvas></div></div><div class=\"col-md-4\" ng-controller=\"chartJs1DCtrl\"><div ba-panel=\"\" ba-panel-title=\"Polar\" ba-panel-class=\"with-scroll\"><canvas id=\"polar-area\" class=\"chart chart-polar-area\" chart-data=\"data\" chart-options=\"polarOptions\" chart-labels=\"labels\" chart-legend=\"true\" chart-click=\"changeData\"></canvas></div></div></div><div class=\"row\"><div class=\"col-md-6\" ng-controller=\"chartJsWaveCtrl\"><div ba-panel=\"\" ba-panel-title=\"Animated Radar\" ba-panel-class=\"with-scroll col-eq-height\"><canvas id=\"waveLine\" class=\"chart chart-radar\" chart-data=\"data\" chart-labels=\"labels\" chart-legend=\"false\"></canvas></div></div><div class=\"col-md-6\" ng-controller=\"chartJsWaveCtrl\"><div ba-panel=\"\" ba-panel-title=\"Animated Bars\" ba-panel-class=\"with-scroll col-eq-height\"><canvas id=\"waveBars\" class=\"chart chart-bar\" chart-data=\"data\" chart-labels=\"labels\" chart-legend=\"false\"></canvas></div></div></div><div class=\"row\"><div class=\"col-lg-4 col-md-6\" ng-controller=\"chartJs2DCtrl\"><div ba-panel=\"\" ba-panel-title=\"Radar\" ba-panel-class=\"with-scroll\"><canvas id=\"radar\" class=\"chart chart-radar\" chart-legend=\"false\" chart-series=\"series\" chart-data=\"data\" chart-labels=\"labels\" chart-click=\"changeData\"></canvas></div></div><div class=\"col-lg-4 col-md-6\" ng-controller=\"chartJs2DCtrl\"><div ba-panel=\"\" ba-panel-title=\"Line\" ba-panel-class=\"with-scroll\"><canvas id=\"line\" class=\"chart chart-line\" chart-data=\"data\" chart-labels=\"labels\" chart-legend=\"false\" chart-series=\"series\" chart-click=\"changeData\"></canvas></div></div><div class=\"col-lg-4 col-md-12\" ng-controller=\"chartJs2DCtrl\"><div ba-panel=\"\" ba-panel-title=\"Bars\" ba-panel-class=\"with-scroll\"><canvas id=\"bar\" class=\"chart chart-bar\" chart-data=\"data\" chart-labels=\"labels\" chart-series=\"series\" chart-click=\"changeData\"></canvas></div></div></div>");
 $templateCache.put("app/pages/charts/chartist/chartist.html","<section ng-controller=\"chartistCtrl\" class=\"chartist\"><div class=\"row\"><div class=\"col-md-6\"><div ba-panel=\"\" ba-panel-title=\"Lines\" ba-panel-class=\"with-scroll\"><h5>Simple line chart</h5><div id=\"line-chart\" class=\"ct-chart\"></div><h5>Line chart with area</h5><div id=\"area-chart\" class=\"ct-chart\"></div><h5>Bi-polar line chart with area only</h5><div id=\"bi-chart\" class=\"ct-chart\"></div></div></div><div class=\"col-md-6\"><div ba-panel=\"\" ba-panel-title=\"Bars\" ba-panel-class=\"with-scroll\"><h5>Simple bar chart</h5><div id=\"simple-bar\" class=\"ct-chart\"></div><h5>Multi-line labels bar chart</h5><div id=\"multi-bar\" class=\"ct-chart\"></div><h5>Stacked bar chart</h5><div id=\"stacked-bar\" class=\"ct-chart stacked-bar\"></div></div></div></div><div class=\"row\"><div class=\"col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Pies & Donuts\" ba-panel-class=\"with-scroll\"><div class=\"row\"><div class=\"col-md-12 col-lg-4\"><h5>Simple Pie</h5><div id=\"simple-pie\" class=\"ct-chart\"></div></div><div class=\"col-md-12 col-lg-4\"><h5>Pie with labels</h5><div id=\"label-pie\" class=\"ct-chart\"></div></div><div class=\"col-md-12 col-lg-4\"><h5>Donut</h5><div id=\"donut\" class=\"ct-chart\"></div></div></div></div></div></div></section>");
 $templateCache.put("app/pages/charts/morris/morris.html","<section ng-controller=\"morrisCtrl\"><div class=\"row\"><div class=\"col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Line Chart\" ba-panel-class=\"with-scroll\"><div line-chart=\"\" line-data=\"lineData\" line-xkey=\"y\" line-ykeys=\'[\"a\", \"b\"]\' line-labels=\'[\"Serie A\", \"Serie B\"]\' line-colors=\"colors\"></div></div></div></div><div class=\"row\"><div class=\"col-md-4\"><div ba-panel=\"\" ba-panel-title=\"Donut\" ba-panel-class=\"with-scroll\"><div donut-chart=\"\" donut-data=\"donutData\" donut-colors=\"colors\" donut-formatter=\'\"currency\"\'></div></div></div><div class=\"col-md-8\"><div ba-panel=\"\" ba-panel-title=\"Bar Chart\" ba-panel-class=\"with-scroll\"><div bar-chart=\"\" bar-data=\"barData\" bar-x=\"y\" bar-y=\'[\"a\", \"b\"]\' bar-labels=\'[\"Series A\", \"Series B\"]\' bar-colors=\"colors\"></div></div></div></div><div class=\"row\"><div class=\"col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Area Chart\" ba-panel-class=\"with-scroll\"><div area-chart=\"\" area-data=\"areaData\" area-xkey=\"y\" area-ykeys=\'[\"a\", \"b\"]\' %=\"\" area-labels=\'[\"Serie A\", \"Serie B\"]\' line-colors=\"colors\"></div></div></div></div></section>");
 $templateCache.put("app/pages/components/mail/mail.html","<div class=\"row mail-client-container transparent\"><div class=\"col-md-12\"><div ba-panel=\"\" ba-panel-class=\"xmedium-panel mail-panel\"><div class=\"letter-layout\"><div class=\"mail-navigation-container\" ng-class=\"{\'expanded\' : !tabCtrl.navigationCollapsed}\"><div class=\"text-center\"><button type=\"button\" class=\"btn btn-default compose-button\" ng-click=\"tabCtrl.showCompose(\'\',\'\',\'\')\">Compose</button></div><div ng-repeat=\"t in tabCtrl.tabs\" ui-sref-active=\"active\" class=\"mail-navigation\" ui-sref=\"components.mail.label({label: t.label})\" ng-click=\"selectTab(t.label)\">{{t.name}}<span class=\"new-mails\" ng-show=\"t.newMails\">{{t.newMails}}</span></div><div class=\"labels\"><div class=\"labels-title\"></div><div class=\"labels-container\"><div class=\"label-item\"><span class=\"tag label work\">Work</span></div><div class=\"label-item\"><span class=\"tag label family\">Family</span></div><div class=\"label-item\"><span class=\"tag label friend\">Friend</span></div><div class=\"label-item\"><span class=\"tag label study\">Study</span></div></div></div><div class=\"add-label-container\"><i class=\"ion-plus-round\"></i><span class=\"label-input-stub\">Add new label</span></div></div><ui-view></ui-view></div></div></div></div>");
@@ -9675,8 +9675,8 @@ $templateCache.put("app/pages/maps/google-maps/google-maps.html","<div ba-panel=
 $templateCache.put("app/pages/maps/leaflet/leaflet.html","<div ba-panel=\"\" ba-panel-title=\"Leaflet\" class=\"viewport100\"><div id=\"leaflet-map\"></div></div>");
 $templateCache.put("app/pages/maps/map-bubbles/map-bubbles.html","<div ba-panel=\"\" ba-panel-title=\"Map with Bubbles\" class=\"viewport100\"><div id=\"map-bubbles\"></div></div>");
 $templateCache.put("app/pages/maps/map-lines/map-lines.html","<div ba-panel=\"\" ba-panel-title=\"Line Map\" class=\"viewport100\"><div id=\"map-lines\"></div></div>");
-$templateCache.put("app/pages/tables/smart/tables.html","<div class=\"widgets\"><div class=\"row\"><div class=\"col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Editable Rows\" ba-panel-class=\"with-scroll\"><div include-with-scope=\"app/pages/tables/widgets/editableRowTable.html\"></div></div></div></div><div class=\"row\"><div class=\"col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Editable Cells\" ba-panel-class=\"with-scroll\"><div include-with-scope=\"app/pages/tables/widgets/editableTable.html\"></div></div></div></div><div class=\"row\"><div class=\"col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Smart Table With Filtering, Sorting And Pagination\" ba-panel-class=\"with-scroll\"><div include-with-scope=\"app/pages/tables/widgets/smartTable.html\"></div></div></div></div></div>");
 $templateCache.put("app/pages/tables/basic/tables.html","<div class=\"widgets\"><div class=\"row\"><div class=\"col-lg-6 col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Hover Rows\" ba-panel-class=\"with-scroll table-panel\"><div include-with-scope=\"app/pages/tables/widgets/hoverRows.html\"></div></div></div><div class=\"col-lg-6 col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Bordered Table\" ba-panel-class=\"with-scroll table-panel\"><div include-with-scope=\"app/pages/tables/widgets/borderedTable.html\"></div></div></div></div><div class=\"row\"><div class=\"col-lg-6 col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Condensed Table\" ba-panel-class=\"with-scroll table-panel\"><div include-with-scope=\"app/pages/tables/widgets/condensedTable.html\"></div></div></div><div class=\"col-lg-6 col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Striped Rows\" ba-panel-class=\"with-scroll table-panel\"><div include-with-scope=\"app/pages/tables/widgets/stripedRows.html\"></div></div></div></div><div class=\"row\"><div class=\"col-lg-6 col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Contextual Table\" ba-panel-class=\"with-scroll table-panel\"><div include-with-scope=\"app/pages/tables/widgets/contextualTable.html\"></div></div></div><div class=\"col-lg-6 col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Responsive Table\" ba-panel-class=\"with-scroll table-panel\"><div include-with-scope=\"app/pages/tables/widgets/responsiveTable.html\"></div></div></div></div></div>");
+$templateCache.put("app/pages/tables/smart/tables.html","<div class=\"widgets\"><div class=\"row\"><div class=\"col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Editable Rows\" ba-panel-class=\"with-scroll\"><div include-with-scope=\"app/pages/tables/widgets/editableRowTable.html\"></div></div></div></div><div class=\"row\"><div class=\"col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Editable Cells\" ba-panel-class=\"with-scroll\"><div include-with-scope=\"app/pages/tables/widgets/editableTable.html\"></div></div></div></div><div class=\"row\"><div class=\"col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Smart Table With Filtering, Sorting And Pagination\" ba-panel-class=\"with-scroll\"><div include-with-scope=\"app/pages/tables/widgets/smartTable.html\"></div></div></div></div></div>");
 $templateCache.put("app/pages/tables/widgets/basicTable.html","<div class=\"horizontal-scroll\"><table class=\"table\"><thead><tr><th class=\"browser-icons\"></th><th>Browser</th><th class=\"align-right\">Visits</th><th class=\"table-arr\"></th><th class=\"align-right\">Downloads</th><th class=\"table-arr\"></th><th class=\"align-right\">Purchases</th><th class=\"table-arr\"></th><th class=\"align-right\">DAU</th><th class=\"table-arr\"></th><th class=\"align-right\">MAU</th><th class=\"table-arr\"></th><th class=\"align-right\">LTV</th><th class=\"table-arr\"></th><th class=\"align-right\">Users %</th><th class=\"table-arr\"></th></tr></thead><tbody><tr><td><img src=\"img/chrome.svg\" width=\"20\" height=\"20\"></td><td class=\"nowrap\">Google Chrome</td><td class=\"align-right\">10,392</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">3,822</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">4,214</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">899</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">7,098</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">178</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">45%</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td></tr><tr><td><img src=\"img/firefox.svg\" width=\"20\" height=\"20\"></td><td class=\"nowrap\">Mozilla Firefox</td><td class=\"align-right\">7,873</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">6,003</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">3,031</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">897</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">8,997</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">102</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">28%</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td></tr><tr><td><img src=\"img/ie.svg\" width=\"20\" height=\"20\"></td><td class=\"nowrap\">Internet Explorer</td><td class=\"align-right\">5,890</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">3,492</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">2,102</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">27</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">4,039</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">99</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">17%</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td></tr><tr><td><img src=\"img/safari.svg\" width=\"20\" height=\"20\"></td><td class=\"nowrap\">Safari</td><td class=\"align-right\">4,001</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">2,039</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">1,001</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">104</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">3,983</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">209</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">14%</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td></tr><tr><td><img src=\"img/opera.svg\" width=\"20\" height=\"20\"></td><td class=\"nowrap\">Opera</td><td class=\"align-right\">1,833</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">983</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">83</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">19</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">1,099</td><td class=\"table-arr\"><i class=\"icon-down\"></i></td><td class=\"align-right\">103</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td><td class=\"align-right\">5%</td><td class=\"table-arr\"><i class=\"icon-up\"></i></td></tr></tbody></table></div>");
 $templateCache.put("app/pages/tables/widgets/borderedTable.html","<div class=\"horizontal-scroll\"><table class=\"table table-bordered\"><thead><tr><th class=\"browser-icons\"></th><th>Browser</th><th class=\"align-right\">Visits</th><th class=\"align-right\">Purchases</th><th class=\"align-right\">%</th></tr></thead><tbody><tr ng-repeat=\"item in metricsTableData\"><td><img ng-src=\"{{::( item.image | appImage )}}\" width=\"20\" height=\"20\"></td><td ng-class=\"nowrap\">{{item.browser}}</td><td class=\"align-right\">{{item.visits}}</td><td class=\"align-right\">{{item.purchases}}</td><td class=\"align-right\">{{item.percent}}</td></tr></tbody></table></div>");
 $templateCache.put("app/pages/tables/widgets/condensedTable.html","<div class=\"horizontal-scroll\"><table class=\"table table-condensed\"><thead><tr><th class=\"table-id\">#</th><th>First Name</th><th>Last Name</th><th>Username</th><th>Email</th><th>Status</th></tr></thead><tbody><tr ng-repeat=\"item in peopleTableData\"><td class=\"table-id\">{{item.id}}</td><td>{{item.firstName}}</td><td>{{item.lastName}}</td><td>{{item.username}}</td><td><a class=\"email-link\" ng-href=\"mailto:{{item.email}}\">{{item.email}}</a></td><td><button class=\"status-button btn btn-xs btn-{{item.status}}\">{{item.status}}</button></td></tr></tbody></table></div>");
@@ -9712,30 +9712,30 @@ $templateCache.put("app/theme/components/msgCenter/msgCenter.html","<ul class=\"
 $templateCache.put("app/theme/components/pageTop/pageTop.html","<div class=\"page-top clearfix\" scroll-position=\"scrolled\" max-height=\"50\" ng-class=\"{\'scrolled\': scrolled}\"><a href=\"#/dashboard\" class=\"al-logo clearfix\"><span>Blur</span>Admin</a> <a href=\"\" class=\"collapse-menu-link ion-navicon\" ba-sidebar-toggle-menu=\"\"></a><div class=\"search\"><i class=\"ion-ios-search-strong\" ng-click=\"startSearch()\"></i> <input id=\"searchInput\" type=\"text\" placeholder=\"Search for...\"></div><div class=\"user-profile clearfix\"><div class=\"al-user-profile\" uib-dropdown=\"\"><a uib-dropdown-toggle=\"\" class=\"profile-toggle-link\"><img ng-src=\"{{::( \'Nasta\' | profilePicture )}}\"></a><ul class=\"top-dropdown-menu profile-dropdown\" uib-dropdown-menu=\"\"><li><i class=\"dropdown-arr\"></i></li><li><a href=\"#/profile\"><i class=\"fa fa-user\"></i>Profile</a></li><li><a href=\"\"><i class=\"fa fa-cog\"></i>Settings</a></li><li><a href=\"\" class=\"signout\"><i class=\"fa fa-power-off\"></i>Sign out</a></li></ul></div><msg-center></msg-center></div></div>");
 $templateCache.put("app/theme/components/widgets/widgets.html","<div class=\"widgets\"><div ng-repeat=\"widgetBlock in ngModel\" ng-class=\"{\'row\': widgetBlock.widgets.length > 1}\"><div ng-repeat=\"widgetCol in widgetBlock.widgets\" ng-class=\"{\'col-md-6\': widgetBlock.widgets.length === 2}\" ng-model=\"widgetCol\" class=\"widgets-block\"><div ba-panel=\"\" ba-panel-title=\"{{::widget.title}}\" ng-repeat=\"widget in widgetCol\" ba-panel-class=\"with-scroll {{widget.panelClass}}\"><div ng-include=\"widget.url\"></div></div></div></div></div>");
 $templateCache.put("app/pages/admin/tabs/areas/areas.tab.html","<h1>Areas</h1>");
+$templateCache.put("app/pages/admin/tabs/proveedores/proveedores.tab.html","<h1>Proovedores</h1>");
+$templateCache.put("app/pages/admin/tabs/entradas/entradas.tab.html","<h1>Entradas</h1>");
 $templateCache.put("app/pages/admin/tabs/usuarios/addUserModal.html","<div class=\"modal-content\"><div class=\"modal-header\"><button type=\"button\" class=\"close\" ng-click=\"$dismiss()\" aria-label=\"Close\"><em class=\"ion-ios-close-empty sn-link-close\"></em></button><h4 class=\"modal-title\" id=\"myModalLabel\">Agregar usuario</h4></div><div class=\"modal-body\"><form name=\"form\" ng-submit=\"register(form)\" novalidate=\"\"><div class=\"form-group\" ng-class=\"{ \'has-success\': form.name.$valid && submitted,\'has-error\': form.name.$invalid && submitted }\"><label for=\"name\">Nombre</label> <input type=\"text\" class=\"form-control\" name=\"name\" ng-model=\"user.name\" placeholder=\"Nombre\" required=\"\"><p class=\"has-error\" ng-show=\"form.name.$error.required && submitted\">Un nombre es requerido</p></div><div class=\"form-group\" ng-class=\"{ \'has-success\': form.email.$valid && submitted,\'has-error\': form.email.$invalid && submitted }\"><label for=\"email\">Correo electrónico</label> <input type=\"email\" class=\"form-control\" name=\"email\" ng-model=\"user.email\" placeholder=\"Correo\" required=\"\"><p class=\"has-error\" ng-show=\"form.email.$error.required && submitted\">Un correo es requerido</p><p class=\"has-error\" ng-show=\"form.email.$error.email && submitted\">Debe de ser un correo</p></div><div class=\"form-group\"><label for=\"email\">Rol</label><select name=\"role\" class=\"form-control selectpicker\" title=\"Rol\" selectpicker=\"\" ng-model=\"user.role\" ng-options=\"item.value as item.label for item in roles\" required=\"\"></select><p class=\"has-error\" ng-show=\"form.role.$error.required && submitted\">Debe de tener un rol</p></div><div class=\"form-group\" ng-class=\"{ \'has-success\': form.password.$valid && submitted,\'has-error\': form.password.$invalid && submitted }\"><label for=\"password\">Contraseña</label> <input type=\"password\" class=\"form-control\" name=\"password\" ng-model=\"user.password\" placeholder=\"Contraseña\" required=\"\"><p class=\"has-error\" ng-show=\"form.password.$error.required && submitted\">Una contraseña es requerida</p></div></form></div><div class=\"modal-footer\"><p class=\"has-error\" ng-show=\"error && submitted\">{{error}}</p><button type=\"button\" class=\"btn btn-danger\" ng-click=\"$dismiss()\">Cancelar</button> <button type=\"button\" class=\"btn btn-primary\" ng-click=\"register(form)\">Guardar</button></div></div>");
 $templateCache.put("app/pages/admin/tabs/usuarios/editableRowTable.html","<div class=\"add-row-editable-table\"><button class=\"btn btn-primary btn-with-icon\" ng-click=\"vm.addUser()\"><i class=\"ion ion-android-add\"></i> Agregar usuario</button></div><table class=\"table table-bordered table-hover table-condensed\"><tr><td></td><td>Nombre</td><td>Email</td><td>Rol</td><td>Actions</td></tr><tr ng-repeat=\"user in vm.users\" class=\"editable-row\"><td>{{$index}}</td><td><span editable-text=\"user.name\" e-name=\"name\" e-form=\"rowform\" e-required=\"\">{{ user.name || \'Vacio\' }}</span></td><td class=\"select-td\"><span editable-select=\"user.status\" e-name=\"status\" e-form=\"rowform\" e-selectpicker=\"\" e-ng-options=\"s.value as s.text for s in statuses\">{{ user.email }}</span></td><td class=\"select-td\"><span editable-select=\"user.group\" e-name=\"group\" onshow=\"loadGroups()\" e-form=\"rowform\" e-selectpicker=\"\" e-ng-options=\"g.id as g.text for g in groups\">{{ user.role }}</span></td><td><form editable-form=\"\" name=\"rowform\" ng-show=\"rowform.$visible\" class=\"form-buttons form-inline\" shown=\"inserted == user\"><button type=\"submit\" ng-disabled=\"rowform.$waiting\" class=\"btn btn-primary editable-table-button btn-xs\">Save</button> <button type=\"button\" ng-disabled=\"rowform.$waiting\" ng-click=\"rowform.$cancel()\" class=\"btn btn-default editable-table-button btn-xs\">Cancel</button></form><div class=\"buttons\" ng-show=\"!rowform.$visible\"><button class=\"btn btn-danger btn-with-icon btn-xs\" ng-click=\"vm.removeUser($index)\"><i class=\"ion ion-android-delete\"></i>Eliminar</button></div></td></tr></table>");
 $templateCache.put("app/pages/admin/tabs/usuarios/usuarios.tab.html","<div class=\"container widgets\" ng-controller=\"UsuariosController as vm\"><div class=\"row\"><div class=\"col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Editable Rows\" ba-panel-class=\"with-scroll\"><div include-with-scope=\"app/pages/admin/tabs/usuarios/editableRowTable.html\"></div></div></div></div></div>");
-$templateCache.put("app/pages/admin/tabs/entradas/entradas.tab.html","<h1>Entradas</h1>");
-$templateCache.put("app/pages/admin/tabs/proveedores/proveedores.tab.html","<h1>Proovedores</h1>");
 $templateCache.put("app/pages/charts/amCharts/areaChart/areaChart.html","<div id=\"areaChart\" class=\"admin-chart\" ng-controller=\"AreaChartCtrl\"></div>");
 $templateCache.put("app/pages/charts/amCharts/barChart/barChart.html","<div id=\"barChart\" class=\"admin-chart\" ng-controller=\"BarChartCtrl\"></div>");
-$templateCache.put("app/pages/charts/amCharts/funnelChart/funnelChart.html","<div id=\"funnelChart\" class=\"admin-chart\" ng-controller=\"FunnelChartCtrl\"></div>");
 $templateCache.put("app/pages/charts/amCharts/combinedChart/combinedChart.html","<div id=\"zoomAxisChart\" class=\"admin-chart\" ng-controller=\"combinedChartCtrl\"></div>");
+$templateCache.put("app/pages/charts/amCharts/funnelChart/funnelChart.html","<div id=\"funnelChart\" class=\"admin-chart\" ng-controller=\"FunnelChartCtrl\"></div>");
 $templateCache.put("app/pages/charts/amCharts/ganttChart/ganttChart.html","<div id=\"gnattChart\" class=\"admin-chart\" ng-controller=\"ganttChartCtrl\"></div>");
 $templateCache.put("app/pages/charts/amCharts/lineChart/lineChart.html","<div id=\"lineChart\" class=\"admin-chart\" ng-controller=\"LineChartCtrl\"></div>");
 $templateCache.put("app/pages/charts/amCharts/pieChart/pieChart.html","<div id=\"pieChart\" class=\"admin-chart\" ng-controller=\"PieChartCtrl\"></div>");
 $templateCache.put("app/pages/components/mail/composeBox/compose.html","<div class=\"compose-header\"><span>New message</span> <span class=\"header-controls\"><i class=\"ion-minus-round\"></i> <i class=\"ion-arrow-resize\"></i> <i ng-click=\"$dismiss()\" class=\"ion-close-round\"></i></span></div><div><input type=\"text\" class=\"form-control compose-input default-color\" placeholder=\"To\" ng-model=\"boxCtrl.to\"> <input type=\"text\" class=\"form-control compose-input default-color\" placeholder=\"Subject\" ng-model=\"boxCtrl.subject\"><div class=\"compose-container\"><text-angular-toolbar ta-toolbar-class=\"toolbarMain\" name=\"toolbarMain\" ta-toolbar=\"[[\'h1\',\'h2\',\'h3\',\'bold\',\'italics\', \'underline\', \'justifyLeft\', \'justifyCenter\', \'justifyRight\', \'justifyFull\']]\"></text-angular-toolbar><text-angular name=\"htmlcontent\" ta-target-toolbars=\"toolbarMain,toolbarFooter\" ng-model=\"boxCtrl.text\"></text-angular></div></div><div class=\"compose-footer clearfix\"><button type=\"button\" ng-click=\"$dismiss()\" class=\"btn btn-send\">Send</button><text-angular-toolbar ta-toolbar-class=\"toolbarFooter\" name=\"toolbarFooter\" ta-toolbar=\"[[\'insertLink\', \'insertImage\', \'html\', \'quote\',\'insertVideo\']]\"></text-angular-toolbar><div class=\"footer-controls\"><i class=\"footer-control-first compose-footer-icon ion-arrow-down-b\"></i> <i ng-click=\"$dismiss()\" class=\"compose-footer-icon ion-android-delete\"></i></div></div>");
 $templateCache.put("app/pages/components/mail/detail/mailDetail.html","<div class=\"message-container\" ng-class=\"{\'expanded\': tabCtrl.navigationCollapsed}\"><div class=\"message\"><div class=\"row\"><div class=\"toggle-navigation-container detail-page\"><a href=\"\" class=\"collapse-navigation-link ion-navicon\" ng-click=\"tabCtrl.navigationCollapsed=!tabCtrl.navigationCollapsed\"></a></div><button ui-sref=\"components.mail.label({label : detailCtrl.label})\" type=\"button\" class=\"back-button btn btn-default btn-with-icon\"><i class=\"ion-chevron-left\"></i>Back</button></div><div class=\"person-info row\"><div class=\"col-lg-4 col-md-12 no-padding\"><img ng-src=\"{{detailCtrl.mail.name.split(\' \')[0] | profilePicture}}\" class=\"human-picture\"><div class=\"name\"><h2 class=\"name-h\">{{detailCtrl.mail.name.split(\' \')[0]}}</h2><h2 class=\"name-h second-name\">{{detailCtrl.mail.name.split(\' \')[1]}}</h2><div><span class=\"mail-tag tag label {{detailCtrl.mail.tag}}\">{{detailCtrl.mail.tag}}</span></div></div></div><div class=\"col-lg-4 col-md-6 col-xs-12 no-padding\"><div class=\"contact-info phone-email\"><div><i class=\"ion-iphone\"></i> <span class=\"phone\">777-777-7777</span></div><div><i class=\"ion-email\"></i> <span class=\"email\">{{detailCtrl.mail.email}}</span></div></div></div><div class=\"col-lg-4 col-md-6 col-xs-12 no-padding\"><div class=\"contact-info position-address\"><div><span class=\"position\">{{detailCtrl.mail.position}}</span></div><div><span class=\"address\">12 Nezavisimosti st. Vilnius, Lithuania</span></div></div></div></div><div class=\"row\"></div><div class=\"line\"></div><div class=\"message-details\"><span class=\"subject\">{{detailCtrl.mail.subject}}</span> <span class=\"date\">• {{detailCtrl.mail.date | date : \'h:mm a MMMM d \'}}</span></div><div class=\"line\"></div><div ng-bind-html=\"detailCtrl.mail.body\" class=\"message-body\"></div><div class=\"line\"></div><div class=\"attachment\" ng-show=\"detailCtrl.mail.attachment\"><span class=\"file-links\">1 Attachment - <a href=\"\">View</a> | <a href=\"\">Download</a></span><div><i class=\"file-icon ion-document\"></i> <span class=\"file-name\">{{detailCtrl.mail.attachment}}</span></div></div><div class=\"line\" ng-show=\"detailCtrl.mail.attachment\"></div><div class=\"answer-container\"><button type=\"button\" class=\"btn btn-with-icon\" ng-click=\"tabCtrl.showCompose(detailCtrl.mail.subject,detailCtrl.mail.email,\'\')\"><i class=\"ion-reply\"></i>Reply</button> <button type=\"button\" class=\"btn btn-with-icon\" ng-click=\"tabCtrl.showCompose(detailCtrl.mail.subject,\'\',detailCtrl.mail.body)\"><i class=\"ion-forward\"></i>Forward</button> <button type=\"button\" class=\"btn btn-with-icon\"><i class=\"ion-printer\"></i>Print</button> <button type=\"button\" class=\"btn btn-with-icon\"><i class=\"ion-android-remove-circle\"></i>Spam</button> <button type=\"button\" class=\"btn btn-with-icon\"><i class=\"ion-android-delete\"></i>Delete</button></div></div><div ng-show=\"!detailCtrl.mail\"><h5 ng-class=\"text-center\">Nothing to show</h5></div></div>");
 $templateCache.put("app/pages/components/mail/list/mailList.html","<div class=\"side-message-navigation\" ng-class=\"{\'expanded\': tabCtrl.navigationCollapsed}\"><div class=\"mail-messages-control side-message-navigation-item\"><div class=\"toggle-navigation-container\"><a href=\"\" class=\"collapse-navigation-link ion-navicon\" ng-click=\"tabCtrl.navigationCollapsed=!tabCtrl.navigationCollapsed\"></a></div><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\" id=\"inlineCheckbox01\" value=\"option1\"> <span class=\"select-all-label\">Select All</span></label> <button type=\"button\" class=\"btn btn-icon refresh-button\"><i class=\"ion-refresh\"></i></button><div class=\"btn-group\" uib-dropdown=\"\"><button type=\"button\" class=\"btn more-button\" uib-dropdown-toggle=\"\">More <span class=\"caret\"></span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"messages\"><table><tr ng-repeat=\"m in listCtrl.messages track by m.id | orderBy:\'-date\'\" class=\"side-message-navigation-item little-human shineHover {{m.tag}}\"><td class=\"check-td\"><div class=\"mail-checkbox\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\"> <span></span></label></div></td><td class=\"photo-td\" ui-sref=\"components.mail.detail({id: m.id, label: listCtrl.label})\"><img ng-src=\"{{m.name.split(\' \')[0] | profilePicture}}\" class=\"little-human-picture\"></td><td ui-sref=\"components.mail.detail({id: m.id, label: listCtrl.label})\"><div class=\"name-container\"><div><span class=\"name\">{{m.name}}</span></div><div><span class=\"tag label label-primary {{m.tag}}\">{{m.tag}}</span></div></div></td><td ui-sref=\"components.mail.detail({id: m.id, label: listCtrl.label})\"><div class=\"additional-info\"><span class=\"subject\">{{m.subject}}</span></div></td><td ui-sref=\"components.mail.detail({id: m.id, label: listCtrl.label})\"><div class=\"mail-body-part\">{{m.body | plainText}}</div></td><td class=\"date\"><span>{{m.date | date : \'MMM d HH:mm\'}}</span></td></tr></table></div></div>");
-$templateCache.put("app/pages/form/inputs/widgets/checkboxesRadios.html","<div class=\"checkbox-demo-row\"><div class=\"input-demo checkbox-demo row\"><div class=\"col-md-4\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\" id=\"inlineCheckbox01\" value=\"option1\"> <span>Check 1</span></label></div><div class=\"col-md-4\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\" id=\"inlineCheckbox02\" value=\"option2\"> <span>Check 2</span></label></div><div class=\"col-md-4\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\" id=\"inlineCheckbox03\" value=\"option3\"> <span>Check 3</span></label></div></div><div class=\"input-demo radio-demo row\"><div class=\"col-md-4\"><label class=\"radio-inline custom-radio nowrap\"><input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio1\" value=\"option1\"> <span>Option 1</span></label></div><div class=\"col-md-4\"><label class=\"radio-inline custom-radio nowrap\"><input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio2\" value=\"option2\"> <span>Option 2</span></label></div><div class=\"col-md-4\"><label class=\"radio-inline custom-radio nowrap\"><input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio3\" value=\"option3\"> <span>Option3</span></label></div></div></div><div><div class=\"checkbox disabled\"><label class=\"custom-checkbox nowrap\"><input type=\"checkbox\" value=\"\" disabled=\"\"> <span>Checkbox is disabled</span></label></div><div class=\"radio disabled\"><label class=\"custom-radio nowrap\"><input type=\"radio\" name=\"optionsRadios\" id=\"optionsRadios3\" value=\"option3\" disabled=\"\"> <span>Disabled option</span></label></div></div>");
-$templateCache.put("app/pages/form/inputs/widgets/inputGroups.html","<div class=\"input-group\"><span class=\"input-group-addon input-group-addon-primary addon-left\" id=\"basic-addon1\">@</span> <input type=\"text\" class=\"form-control with-primary-addon\" placeholder=\"Username\" aria-describedby=\"basic-addon1\"></div><div class=\"input-group\"><input type=\"text\" class=\"form-control with-warning-addon\" placeholder=\"Recipient\'s username\" aria-describedby=\"basic-addon2\"> <span class=\"input-group-addon input-group-addon-warning addon-right\" id=\"basic-addon2\">@example.com</span></div><div class=\"input-group\"><span class=\"input-group-addon addon-left input-group-addon-success\">$</span> <input type=\"text\" class=\"form-control with-success-addon\" aria-label=\"Amount (to the nearest dollar)\"> <span class=\"input-group-addon addon-right input-group-addon-success\">.00</span></div><div class=\"input-group\"><input type=\"text\" class=\"form-control with-danger-addon\" placeholder=\"Search for...\"> <span class=\"input-group-btn\"><button class=\"btn btn-danger\" type=\"button\">Go!</button></span></div>");
-$templateCache.put("app/pages/form/inputs/widgets/standardFields.html","<form><div class=\"form-group\"><label for=\"input01\">Text</label> <input type=\"text\" class=\"form-control\" id=\"input01\" placeholder=\"Text\"></div><div class=\"form-group\"><label for=\"input02\">Password</label> <input type=\"password\" class=\"form-control\" id=\"input02\" placeholder=\"Password\"></div><div class=\"form-group\"><label for=\"input03\">Rounded Corners</label> <input type=\"text\" class=\"form-control form-control-rounded\" id=\"input03\" placeholder=\"Rounded Corners\"></div><div class=\"form-group\"><label for=\"input04\">With help</label> <input type=\"text\" class=\"form-control\" id=\"input04\" placeholder=\"With help\"> <span class=\"help-block sub-little-text\">A block of help text that breaks onto a new line and may extend beyond one line.</span></div><div class=\"form-group\"><label for=\"input05\">Disabled Input</label> <input type=\"text\" class=\"form-control\" id=\"input05\" placeholder=\"Disabled Input\" disabled=\"\"></div><div class=\"form-group\"><label for=\"textarea01\">Textarea</label> <textarea placeholder=\"Default Input\" class=\"form-control\" id=\"textarea01\"></textarea></div><div class=\"form-group\"><input type=\"text\" class=\"form-control input-sm\" id=\"input2\" placeholder=\"Small Input\"></div><div class=\"form-group\"><input type=\"text\" class=\"form-control input-lg\" id=\"input4\" placeholder=\"Large Input\"></div></form>");
-$templateCache.put("app/pages/form/inputs/widgets/validationStates.html","<div class=\"form-group has-success\"><label class=\"control-label\" for=\"inputSuccess1\">Input with success</label> <input type=\"text\" class=\"form-control\" id=\"inputSuccess1\"></div><div class=\"form-group has-warning\"><label class=\"control-label\" for=\"inputWarning1\">Input with warning</label> <input type=\"text\" class=\"form-control\" id=\"inputWarning1\"></div><div class=\"form-group has-error\"><label class=\"control-label\" for=\"inputError1\">Input with error</label> <input type=\"text\" class=\"form-control\" id=\"inputError1\"></div><div class=\"has-success\"><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\" id=\"checkboxSuccess\" value=\"option1\"> <span>Checkbox with success</span></label></div></div><div class=\"has-warning\"><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\" id=\"checkboxWarning\" value=\"option1\"> <span>Checkbox with warning</span></label></div></div><div class=\"has-error\"><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\" id=\"checkboxError\" value=\"option1\"> <span>Checkbox with error</span></label></div></div><div class=\"form-group has-success has-feedback\"><label class=\"control-label\" for=\"inputSuccess2\">Input with success</label> <input type=\"text\" class=\"form-control\" id=\"inputSuccess2\" aria-describedby=\"inputSuccess2Status\"> <i class=\"ion-checkmark-circled form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputSuccess2Status\" class=\"sr-only\">(success)</span></div><div class=\"form-group has-warning has-feedback\"><label class=\"control-label\" for=\"inputWarning2\">Input with warning</label> <input type=\"text\" class=\"form-control\" id=\"inputWarning2\" aria-describedby=\"inputWarning2Status\"> <i class=\"ion-alert-circled form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputWarning2Status\" class=\"sr-only\">(warning)</span></div><div class=\"form-group has-error has-feedback\"><label class=\"control-label\" for=\"inputError2\">Input with error</label> <input type=\"text\" class=\"form-control\" id=\"inputError2\" aria-describedby=\"inputError2Status\"> <i class=\"ion-android-cancel form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputError2Status\" class=\"sr-only\">(error)</span></div><div class=\"form-group has-success has-feedback\"><label class=\"control-label\" for=\"inputGroupSuccess1\">Input group with success</label><div class=\"input-group\"><span class=\"input-group-addon addon-left\">@</span> <input type=\"text\" class=\"form-control\" id=\"inputGroupSuccess1\" aria-describedby=\"inputGroupSuccess1Status\"></div><i class=\"ion-checkmark-circled form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputGroupSuccess1Status\" class=\"sr-only\">(success)</span></div>");
 $templateCache.put("app/pages/form/layouts/widgets/basicForm.html","<form><div class=\"form-group\"><label for=\"exampleInputEmail1\">Email address</label> <input type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"Email\"></div><div class=\"form-group\"><label for=\"exampleInputPassword1\">Password</label> <input type=\"password\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"Password\"></div><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\"> <span>Check me out</span></label></div><button type=\"submit\" class=\"btn btn-danger\">Submit</button></form>");
 $templateCache.put("app/pages/form/layouts/widgets/blockForm.html","<div class=\"row\"><div class=\"col-sm-6\"><div class=\"form-group\"><label for=\"inputFirstName\">First Name</label> <input type=\"text\" class=\"form-control\" id=\"inputFirstName\" placeholder=\"First Name\"></div></div><div class=\"col-sm-6\"><div class=\"form-group\"><label for=\"inputLastName\">Last Name</label> <input type=\"text\" class=\"form-control\" id=\"inputLastName\" placeholder=\"Last Name\"></div></div></div><div class=\"row\"><div class=\"col-sm-6\"><div class=\"form-group\"><label for=\"inputFirstName\">Email</label> <input type=\"email\" class=\"form-control\" id=\"inputEmail\" placeholder=\"Email\"></div></div><div class=\"col-sm-6\"><div class=\"form-group\"><label for=\"inputWebsite\">Website</label> <input type=\"text\" class=\"form-control\" id=\"inputWebsite\" placeholder=\"Website\"></div></div></div><button type=\"submit\" class=\"btn btn-primary\">Submit</button>");
 $templateCache.put("app/pages/form/layouts/widgets/formWithoutLabels.html","<form><div class=\"form-group\"><input type=\"text\" class=\"form-control\" placeholder=\"Recipients\"></div><div class=\"form-group\"><input type=\"text\" class=\"form-control\" placeholder=\"Subject\"></div><div class=\"form-group\"><textarea class=\"form-control\" placeholder=\"Message\"></textarea></div><button type=\"submit\" class=\"btn btn-success\">Send</button></form>");
 $templateCache.put("app/pages/form/layouts/widgets/horizontalForm.html","<form class=\"form-horizontal\"><div class=\"form-group\"><label for=\"inputEmail3\" class=\"col-sm-2 control-label\">Email</label><div class=\"col-sm-10\"><input type=\"email\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"Email\"></div></div><div class=\"form-group\"><label for=\"inputPassword3\" class=\"col-sm-2 control-label\">Password</label><div class=\"col-sm-10\"><input type=\"password\" class=\"form-control\" id=\"inputPassword3\" placeholder=\"Password\"></div></div><div class=\"form-group\"><div class=\"col-sm-offset-2 col-sm-10\"><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\"> <span>Remember me</span></label></div></div></div><div class=\"form-group\"><div class=\"col-sm-offset-2 col-sm-10\"><button type=\"submit\" class=\"btn btn-warning\">Sign in</button></div></div></form>");
 $templateCache.put("app/pages/form/layouts/widgets/inlineForm.html","<form class=\"row form-inline\"><div class=\"form-group col-sm-3 col-xs-6\"><input type=\"text\" class=\"form-control\" id=\"exampleInputName2\" placeholder=\"Name\"></div><div class=\"form-group col-sm-3 col-xs-6\"><input type=\"email\" class=\"form-control\" id=\"exampleInputEmail2\" placeholder=\"Email\"></div><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\"> <span>Remember me</span></label></div><button type=\"submit\" class=\"btn btn-primary\">Send invitation</button></form>");
+$templateCache.put("app/pages/form/inputs/widgets/checkboxesRadios.html","<div class=\"checkbox-demo-row\"><div class=\"input-demo checkbox-demo row\"><div class=\"col-md-4\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\" id=\"inlineCheckbox01\" value=\"option1\"> <span>Check 1</span></label></div><div class=\"col-md-4\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\" id=\"inlineCheckbox02\" value=\"option2\"> <span>Check 2</span></label></div><div class=\"col-md-4\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\" id=\"inlineCheckbox03\" value=\"option3\"> <span>Check 3</span></label></div></div><div class=\"input-demo radio-demo row\"><div class=\"col-md-4\"><label class=\"radio-inline custom-radio nowrap\"><input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio1\" value=\"option1\"> <span>Option 1</span></label></div><div class=\"col-md-4\"><label class=\"radio-inline custom-radio nowrap\"><input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio2\" value=\"option2\"> <span>Option 2</span></label></div><div class=\"col-md-4\"><label class=\"radio-inline custom-radio nowrap\"><input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio3\" value=\"option3\"> <span>Option3</span></label></div></div></div><div><div class=\"checkbox disabled\"><label class=\"custom-checkbox nowrap\"><input type=\"checkbox\" value=\"\" disabled=\"\"> <span>Checkbox is disabled</span></label></div><div class=\"radio disabled\"><label class=\"custom-radio nowrap\"><input type=\"radio\" name=\"optionsRadios\" id=\"optionsRadios3\" value=\"option3\" disabled=\"\"> <span>Disabled option</span></label></div></div>");
+$templateCache.put("app/pages/form/inputs/widgets/inputGroups.html","<div class=\"input-group\"><span class=\"input-group-addon input-group-addon-primary addon-left\" id=\"basic-addon1\">@</span> <input type=\"text\" class=\"form-control with-primary-addon\" placeholder=\"Username\" aria-describedby=\"basic-addon1\"></div><div class=\"input-group\"><input type=\"text\" class=\"form-control with-warning-addon\" placeholder=\"Recipient\'s username\" aria-describedby=\"basic-addon2\"> <span class=\"input-group-addon input-group-addon-warning addon-right\" id=\"basic-addon2\">@example.com</span></div><div class=\"input-group\"><span class=\"input-group-addon addon-left input-group-addon-success\">$</span> <input type=\"text\" class=\"form-control with-success-addon\" aria-label=\"Amount (to the nearest dollar)\"> <span class=\"input-group-addon addon-right input-group-addon-success\">.00</span></div><div class=\"input-group\"><input type=\"text\" class=\"form-control with-danger-addon\" placeholder=\"Search for...\"> <span class=\"input-group-btn\"><button class=\"btn btn-danger\" type=\"button\">Go!</button></span></div>");
+$templateCache.put("app/pages/form/inputs/widgets/standardFields.html","<form><div class=\"form-group\"><label for=\"input01\">Text</label> <input type=\"text\" class=\"form-control\" id=\"input01\" placeholder=\"Text\"></div><div class=\"form-group\"><label for=\"input02\">Password</label> <input type=\"password\" class=\"form-control\" id=\"input02\" placeholder=\"Password\"></div><div class=\"form-group\"><label for=\"input03\">Rounded Corners</label> <input type=\"text\" class=\"form-control form-control-rounded\" id=\"input03\" placeholder=\"Rounded Corners\"></div><div class=\"form-group\"><label for=\"input04\">With help</label> <input type=\"text\" class=\"form-control\" id=\"input04\" placeholder=\"With help\"> <span class=\"help-block sub-little-text\">A block of help text that breaks onto a new line and may extend beyond one line.</span></div><div class=\"form-group\"><label for=\"input05\">Disabled Input</label> <input type=\"text\" class=\"form-control\" id=\"input05\" placeholder=\"Disabled Input\" disabled=\"\"></div><div class=\"form-group\"><label for=\"textarea01\">Textarea</label> <textarea placeholder=\"Default Input\" class=\"form-control\" id=\"textarea01\"></textarea></div><div class=\"form-group\"><input type=\"text\" class=\"form-control input-sm\" id=\"input2\" placeholder=\"Small Input\"></div><div class=\"form-group\"><input type=\"text\" class=\"form-control input-lg\" id=\"input4\" placeholder=\"Large Input\"></div></form>");
+$templateCache.put("app/pages/form/inputs/widgets/validationStates.html","<div class=\"form-group has-success\"><label class=\"control-label\" for=\"inputSuccess1\">Input with success</label> <input type=\"text\" class=\"form-control\" id=\"inputSuccess1\"></div><div class=\"form-group has-warning\"><label class=\"control-label\" for=\"inputWarning1\">Input with warning</label> <input type=\"text\" class=\"form-control\" id=\"inputWarning1\"></div><div class=\"form-group has-error\"><label class=\"control-label\" for=\"inputError1\">Input with error</label> <input type=\"text\" class=\"form-control\" id=\"inputError1\"></div><div class=\"has-success\"><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\" id=\"checkboxSuccess\" value=\"option1\"> <span>Checkbox with success</span></label></div></div><div class=\"has-warning\"><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\" id=\"checkboxWarning\" value=\"option1\"> <span>Checkbox with warning</span></label></div></div><div class=\"has-error\"><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\" id=\"checkboxError\" value=\"option1\"> <span>Checkbox with error</span></label></div></div><div class=\"form-group has-success has-feedback\"><label class=\"control-label\" for=\"inputSuccess2\">Input with success</label> <input type=\"text\" class=\"form-control\" id=\"inputSuccess2\" aria-describedby=\"inputSuccess2Status\"> <i class=\"ion-checkmark-circled form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputSuccess2Status\" class=\"sr-only\">(success)</span></div><div class=\"form-group has-warning has-feedback\"><label class=\"control-label\" for=\"inputWarning2\">Input with warning</label> <input type=\"text\" class=\"form-control\" id=\"inputWarning2\" aria-describedby=\"inputWarning2Status\"> <i class=\"ion-alert-circled form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputWarning2Status\" class=\"sr-only\">(warning)</span></div><div class=\"form-group has-error has-feedback\"><label class=\"control-label\" for=\"inputError2\">Input with error</label> <input type=\"text\" class=\"form-control\" id=\"inputError2\" aria-describedby=\"inputError2Status\"> <i class=\"ion-android-cancel form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputError2Status\" class=\"sr-only\">(error)</span></div><div class=\"form-group has-success has-feedback\"><label class=\"control-label\" for=\"inputGroupSuccess1\">Input group with success</label><div class=\"input-group\"><span class=\"input-group-addon addon-left\">@</span> <input type=\"text\" class=\"form-control\" id=\"inputGroupSuccess1\" aria-describedby=\"inputGroupSuccess1Status\"></div><i class=\"ion-checkmark-circled form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputGroupSuccess1Status\" class=\"sr-only\">(success)</span></div>");
 $templateCache.put("app/pages/ui/buttons/widgets/buttonGroups.html","<div class=\"btn-group-example\"><div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\"><button type=\"button\" class=\"btn btn-danger\">Left</button> <button type=\"button\" class=\"btn btn-danger\">Middle</button> <button type=\"button\" class=\"btn btn-danger\">Right</button></div></div><div class=\"btn-toolbar-example\"><div class=\"btn-toolbar\" role=\"toolbar\" aria-label=\"Toolbar with button groups\"><div class=\"btn-group\" role=\"group\" aria-label=\"First group\"><button type=\"button\" class=\"btn btn-primary\">1</button> <button type=\"button\" class=\"btn btn-primary\">2</button> <button type=\"button\" class=\"btn btn-primary\">3</button> <button type=\"button\" class=\"btn btn-primary\">4</button></div><div class=\"btn-group\" role=\"group\" aria-label=\"Second group\"><button type=\"button\" class=\"btn btn-primary\">5</button> <button type=\"button\" class=\"btn btn-primary\">6</button> <button type=\"button\" class=\"btn btn-primary\">7</button></div><div class=\"btn-group\" role=\"group\" aria-label=\"Third group\"><button type=\"button\" class=\"btn btn-primary\">8</button></div></div></div>");
 $templateCache.put("app/pages/ui/buttons/widgets/buttons.html","<div class=\"basic-btns\"><div class=\"row\"><div class=\"col-md-2\"><h5>Default button</h5></div><div class=\"col-md-10\"><div class=\"row btns-row btns-same-width-md\"><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-primary\">Primary</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-default\">Default</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-success\">Success</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-info\">Info</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-warning\">Warning</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-danger\">Danger</button></div></div></div></div><div class=\"row\"><div class=\"col-md-2\"><h5 class=\"row-sm\">Small button</h5></div><div class=\"col-md-10\"><div class=\"row btns-row btns-same-width-md\"><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-primary btn-sm\">Primary</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-default btn-sm\">Default</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-success btn-sm\">Success</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-info btn-sm\">Info</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-warning btn-sm\">Warning</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-danger btn-sm\">Danger</button></div></div></div></div><div class=\"row\"><div class=\"col-md-2\"><h5 class=\"row-xs\">Extra small button</h5></div><div class=\"col-md-10\"><div class=\"row btns-row btns-same-width-md\"><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-primary btn-xs\">Primary</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-default btn-xs\">Default</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-success btn-xs\">Success</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-info btn-xs\">Info</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-warning btn-xs\">Warning</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-danger btn-xs\">Danger</button></div></div></div></div><div class=\"row\"><div class=\"col-md-2\"><h5>Disabled button</h5></div><div class=\"col-md-10\"><div class=\"row btns-row btns-same-width-md\"><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-primary\" disabled=\"disabled\">Primary</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\">Default</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-success\" disabled=\"disabled\">Success</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-info\" disabled=\"disabled\">Info</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-warning\" disabled=\"disabled\">Warning</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-danger\" disabled=\"disabled\">Danger</button></div></div></div></div></div>");
 $templateCache.put("app/pages/ui/buttons/widgets/dropdowns.html","<div class=\"row btns-row\"><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-primary\" uib-dropdown-toggle=\"\">Primary <span class=\"caret\"></span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-success\" uib-dropdown-toggle=\"\">Success <span class=\"caret\"></span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-info\" uib-dropdown-toggle=\"\">Info <span class=\"caret\"></span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-default\" uib-dropdown-toggle=\"\">Default <span class=\"caret\"></span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-warning\" uib-dropdown-toggle=\"\">Warning <span class=\"caret\"></span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-danger\" uib-dropdown-toggle=\"\">Danger <span class=\"caret\"></span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div></div><h5 class=\"panel-subtitle\">Split button dropdowns</h5><div class=\"row btns-row\"><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-primary\">Primary</button> <button type=\"button\" class=\"btn btn-primary\" uib-dropdown-toggle=\"\"><span class=\"caret\"></span> <span class=\"sr-only\">Toggle Dropdown</span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-success\">Success</button> <button type=\"button\" class=\"btn btn-success\" uib-dropdown-toggle=\"\"><span class=\"caret\"></span> <span class=\"sr-only\">Toggle Dropdown</span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-info\">Info</button> <button type=\"button\" class=\"btn btn-info\" uib-dropdown-toggle=\"\"><span class=\"caret\"></span> <span class=\"sr-only\">Toggle Dropdown</span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-default\">Default</button> <button type=\"button\" class=\"btn btn-default\" uib-dropdown-toggle=\"\"><span class=\"caret\"></span> <span class=\"sr-only\">Toggle Dropdown</span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-warning\">Warning</button> <button type=\"button\" class=\"btn btn-warning\" uib-dropdown-toggle=\"\"><span class=\"caret\"></span> <span class=\"sr-only\">Toggle Dropdown</span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-danger\">Danger</button> <button type=\"button\" class=\"btn btn-danger\" uib-dropdown-toggle=\"\"><span class=\"caret\"></span> <span class=\"sr-only\">Toggle Dropdown</span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div></div>");
@@ -9760,7 +9760,7 @@ $templateCache.put("app/pages/ui/progressBars/widgets/basic.html","<div class=\"
 $templateCache.put("app/pages/ui/progressBars/widgets/label.html","<div class=\"progress\"><div class=\"progress-bar progress-bar-success\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 40%\">40% Complete (success)</div></div><div class=\"progress\"><div class=\"progress-bar progress-bar-info\" role=\"progressbar\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 20%\">20% Complete</div></div><div class=\"progress\"><div class=\"progress-bar progress-bar-warning\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%\">60% Complete (warning)</div></div><div class=\"progress\"><div class=\"progress-bar progress-bar-danger\" role=\"progressbar\" aria-valuenow=\"80\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 80%\">80% Complete (danger)</div></div>");
 $templateCache.put("app/pages/ui/progressBars/widgets/stacked.html","<div class=\"progress\"><div class=\"progress-bar progress-bar-success\" style=\"width: 35%\"><span class=\"sr-only\">35% Complete (success)</span></div><div class=\"progress-bar progress-bar-warning progress-bar-striped\" style=\"width: 20%\"><span class=\"sr-only\">20% Complete (warning)</span></div><div class=\"progress-bar progress-bar-danger\" style=\"width: 10%\"><span class=\"sr-only\">10% Complete (danger)</span></div><div class=\"progress-bar progress-bar-info progress-bar-striped active\" style=\"width: 20%\"><span class=\"sr-only\">20% Complete (warning)</span></div></div>");
 $templateCache.put("app/pages/ui/progressBars/widgets/striped.html","<div class=\"progress\"><div class=\"progress-bar progress-bar-success progress-bar-striped\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 40%\"><span class=\"sr-only\">40% Complete (success)</span></div></div><div class=\"progress\"><div class=\"progress-bar progress-bar-info progress-bar-striped\" role=\"progressbar\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 20%\"><span class=\"sr-only\">20% Complete</span></div></div><div class=\"progress\"><div class=\"progress-bar progress-bar-warning progress-bar-striped\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%\"><span class=\"sr-only\">60% Complete (warning)</span></div></div><div class=\"progress\"><div class=\"progress-bar progress-bar-danger progress-bar-striped\" role=\"progressbar\" aria-valuenow=\"80\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 80%\"><span class=\"sr-only\">80% Complete (danger)</span></div></div>");
-$templateCache.put("app/pages/form/inputs/widgets/select/select.html","<div ng-controller=\"SelectpickerPanelCtrl as selectpickerVm\"><div class=\"form-group\"><select class=\"form-control selectpicker\" selectpicker=\"\" title=\"Standard Select\" ng-model=\"selectpickerVm.standardSelected\" ng-options=\"item as item.label for item in selectpickerVm.standardSelectItems\"></select></div><div class=\"form-group\"><select class=\"form-control selectpicker with-search\" data-live-search=\"true\" title=\"Select With Search\" selectpicker=\"\" ng-model=\"selectpickerVm.searchSelectedItem\" ng-options=\"item as item.label for item in selectpickerVm.selectWithSearchItems\"></select></div><div class=\"form-group\"><select class=\"form-control selectpicker\" title=\"Option Types\" selectpicker=\"\"><option>Standard option</option><option data-subtext=\"option subtext\">Option with subtext</option><option disabled=\"\">Disabled Option</option><option data-icon=\"glyphicon-heart\">Option with cion</option></select></div><div class=\"form-group\"><select class=\"form-control selectpicker\" disabled=\"\" title=\"Disabled Select\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option></select></div><div class=\"row\"><div class=\"col-sm-6\"><div class=\"form-group\"><select class=\"form-control\" title=\"Select with Option Groups\" selectpicker=\"\" ng-model=\"selectpickerVm.groupedSelectedItem\" ng-options=\"item as item.label group by item.group for item in selectpickerVm.groupedSelectItems\"></select></div></div><div class=\"col-sm-6\"><div class=\"form-group\"><select class=\"form-control\" title=\"Select with Divider\" selectpicker=\"\"><option>Group 1 - Option 1</option><option>Group 1 - Option 2</option><option data-divider=\"true\"></option><option>Group 2 - Option 1</option><option>Group 2 - Option 2</option></select></div></div></div><div class=\"form-group\"><select class=\"form-control\" title=\"Multiple Select\" multiple=\"\" selectpicker=\"\" ng-model=\"selectpickerVm.multipleSelectedItems\" ng-options=\"item as item.label for item in selectpickerVm.standardSelectItems\"><option>Option 1</option><option>Option 2</option><option>Option 3</option></select></div><div class=\"form-group\"><select class=\"form-control\" title=\"Multiple Select with Limit\" multiple=\"\" data-max-options=\"2\" selectpicker=\"\" ng-model=\"selectpickerVm.multipleSelectedItems2\" ng-options=\"item as item.label for item in selectpickerVm.standardSelectItems\"><option>Option 1</option><option>Option 2</option><option>Option 3</option></select></div><div class=\"row\"><div class=\"col-sm-6\"><div class=\"form-group\"><select class=\"form-control\" title=\"Primary Select\" data-style=\"btn-primary\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div><div class=\"form-group\"><select class=\"form-control\" title=\"Success Select\" data-style=\"btn-success\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div><div class=\"form-group\"><select class=\"form-control\" title=\"Warning Select\" data-style=\"btn-warning\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div></div><div class=\"col-sm-6\"><div class=\"form-group\"><select class=\"form-control\" title=\"Info Select\" data-style=\"btn-info\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div><div class=\"form-group\"><select class=\"form-control\" title=\"Danger Select\" data-style=\"btn-danger\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div><div class=\"form-group\"><select class=\"form-control\" title=\"Inverse Select\" data-style=\"btn-inverse\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div></div></div></div>");
 $templateCache.put("app/pages/form/inputs/widgets/switch/switch.html","<div ng-controller=\"SwitchPanelCtrl as switchPanelVm\" class=\"switches clearfix\"><switch color=\"primary\" ng-model=\"switchPanelVm.switcherValues.primary\"></switch><switch color=\"warning\" ng-model=\"switchPanelVm.switcherValues.warning\"></switch><switch color=\"danger\" ng-model=\"switchPanelVm.switcherValues.danger\"></switch><switch color=\"info\" ng-model=\"switchPanelVm.switcherValues.info\"></switch><switch color=\"success\" ng-model=\"switchPanelVm.switcherValues.success\"></switch></div>");
+$templateCache.put("app/pages/form/inputs/widgets/select/select.html","<div ng-controller=\"SelectpickerPanelCtrl as selectpickerVm\"><div class=\"form-group\"><select class=\"form-control selectpicker\" selectpicker=\"\" title=\"Standard Select\" ng-model=\"selectpickerVm.standardSelected\" ng-options=\"item as item.label for item in selectpickerVm.standardSelectItems\"></select></div><div class=\"form-group\"><select class=\"form-control selectpicker with-search\" data-live-search=\"true\" title=\"Select With Search\" selectpicker=\"\" ng-model=\"selectpickerVm.searchSelectedItem\" ng-options=\"item as item.label for item in selectpickerVm.selectWithSearchItems\"></select></div><div class=\"form-group\"><select class=\"form-control selectpicker\" title=\"Option Types\" selectpicker=\"\"><option>Standard option</option><option data-subtext=\"option subtext\">Option with subtext</option><option disabled=\"\">Disabled Option</option><option data-icon=\"glyphicon-heart\">Option with cion</option></select></div><div class=\"form-group\"><select class=\"form-control selectpicker\" disabled=\"\" title=\"Disabled Select\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option></select></div><div class=\"row\"><div class=\"col-sm-6\"><div class=\"form-group\"><select class=\"form-control\" title=\"Select with Option Groups\" selectpicker=\"\" ng-model=\"selectpickerVm.groupedSelectedItem\" ng-options=\"item as item.label group by item.group for item in selectpickerVm.groupedSelectItems\"></select></div></div><div class=\"col-sm-6\"><div class=\"form-group\"><select class=\"form-control\" title=\"Select with Divider\" selectpicker=\"\"><option>Group 1 - Option 1</option><option>Group 1 - Option 2</option><option data-divider=\"true\"></option><option>Group 2 - Option 1</option><option>Group 2 - Option 2</option></select></div></div></div><div class=\"form-group\"><select class=\"form-control\" title=\"Multiple Select\" multiple=\"\" selectpicker=\"\" ng-model=\"selectpickerVm.multipleSelectedItems\" ng-options=\"item as item.label for item in selectpickerVm.standardSelectItems\"><option>Option 1</option><option>Option 2</option><option>Option 3</option></select></div><div class=\"form-group\"><select class=\"form-control\" title=\"Multiple Select with Limit\" multiple=\"\" data-max-options=\"2\" selectpicker=\"\" ng-model=\"selectpickerVm.multipleSelectedItems2\" ng-options=\"item as item.label for item in selectpickerVm.standardSelectItems\"><option>Option 1</option><option>Option 2</option><option>Option 3</option></select></div><div class=\"row\"><div class=\"col-sm-6\"><div class=\"form-group\"><select class=\"form-control\" title=\"Primary Select\" data-style=\"btn-primary\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div><div class=\"form-group\"><select class=\"form-control\" title=\"Success Select\" data-style=\"btn-success\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div><div class=\"form-group\"><select class=\"form-control\" title=\"Warning Select\" data-style=\"btn-warning\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div></div><div class=\"col-sm-6\"><div class=\"form-group\"><select class=\"form-control\" title=\"Info Select\" data-style=\"btn-info\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div><div class=\"form-group\"><select class=\"form-control\" title=\"Danger Select\" data-style=\"btn-danger\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div><div class=\"form-group\"><select class=\"form-control\" title=\"Inverse Select\" data-style=\"btn-inverse\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div></div></div></div>");
 $templateCache.put("app/pages/form/inputs/widgets/tagsInput/tagsInput.html","<div class=\"form-group\"><div class=\"form-group\"><input type=\"text\" tag-input=\"primary\" value=\"Amsterdam,Washington,Sydney,Beijing,Cairo\" data-role=\"tagsinput\" placeholder=\"Add Tag\"></div><div class=\"form-group\"><input type=\"text\" tag-input=\"warning\" value=\"Minsk,Prague,Vilnius,Warsaw\" data-role=\"tagsinput\" placeholder=\"Add Tag\"></div><div class=\"form-group\"><input type=\"text\" tag-input=\"danger\" value=\"London,Berlin,Paris,Rome,Munich\" data-role=\"tagsinput\" placeholder=\"Add Tag\"></div></div>");}]);
-//# sourceMappingURL=../maps/scripts/app-5a5e2d3cf3.js.map
+//# sourceMappingURL=../maps/scripts/app-1ca104d50d.js.map
