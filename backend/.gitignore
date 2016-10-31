@@ -10,3 +10,5 @@ dist
 /server/public
 npm-debug.log
 coverage
+
+.DS_Store

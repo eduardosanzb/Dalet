@@ -4,7 +4,12 @@ import mongoose from 'mongoose';
 
 var ProvidersSchema = new mongoose.Schema({
   name: String,
-  info: String,
+  requestor_id: String,
+  customer_id: String,
+  custumer_name: String,
+  requestor_email: String,
+  report_release: Number,
+  url: String,
   active: Boolean
 });
 
