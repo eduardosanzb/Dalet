@@ -21,11 +21,11 @@ $auth-panel-background: #ffffff;
 $progress-background: rgba(#000000, 0.07);
 $progress-default: rgba(#000000, 0.15);
 
-$primary: #209e91 !default;
-$info: #2dacd1 !default;
-$success: #90b900 !default;
-$warning: #dfb81c !default;
-$danger: #e85656 !default;
+$primary: #E91E63 !default;
+$info: #009688 !default;
+$success: #8BC34A !default;
+$warning: #FFC107 !default;
+$danger: #FF5252 !default;
 
 $primary-light: tint($primary, 30%);
 $info-light: tint($info, 30%);

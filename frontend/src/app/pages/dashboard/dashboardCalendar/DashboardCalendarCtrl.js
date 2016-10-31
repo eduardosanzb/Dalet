@@ -13,14 +13,15 @@
     var dashboardColors = baConfig.colors.dashboard;
     var $element = $('#calendar').fullCalendar({
       //height: 335,
+      lang: 'es',
       header: {
         left: 'prev,next today',
         center: 'title',
         right: 'month,agendaWeek,agendaDay'
       },
-      defaultDate: '2016-03-08',
-      selectable: true,
-      selectHelper: true,
+      defaultDate: new Date(),
+      selectable: false,
+      selectHelper: false,
       select: function (start, end) {
         var title = prompt('Event Title:');
         var eventData;
@@ -34,29 +35,19 @@
         }
         $element.fullCalendar('unselect');
       },
-      editable: true,
+      editable: false,
       eventLimit: true, // allow "more" link when too many events
       events: [
+        //TODO: put the number of daily users
         {
-          title: 'All Day Event',
-          start: '2016-03-01',
-          color: dashboardColors.silverTree
-        },
-        {
-          title: 'Long Event',
-          start: '2016-03-07',
-          end: '2016-03-10',
+          title: '# usuarios: 123',
+          start: '2016-09-30',
           color: dashboardColors.blueStone
         },
         {
-          title: 'Dinner',
-          start: '2016-03-14T20:00:00',
-          color: dashboardColors.surfieGreen
-        },
-        {
-          title: 'Birthday Party',
-          start: '2016-04-01T07:00:00',
-          color: dashboardColors.gossipDark
+          title: '# usuarios: 123',
+          start: '2016-10-01',
+          color: dashboardColors.blueStone
         }
       ]
     });

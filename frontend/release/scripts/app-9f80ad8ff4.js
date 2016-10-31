@@ -1,47 +1,48 @@
-// (function(){
-//   'use strict';
-
-//   angular.module('Dalet', [ 'ngCookies', 'ngResource','LocalStorageModule'])
-//   .constant('ServerUrl', 'http://localhost:5000')
-//   //.constant('ServerUrl', '')
-//   .config(function($httpProvider, $locationProvider){
-//     $httpProvider.interceptors.push('authInterceptor')
-//   })
-//   .factory('authInterceptor', authInterceptor);
-
-//   /** @ngInject */ 
-//   function authInterceptor($q, $cookies, $injector, Util){
-//       var state;
-//       return {
-//         // Add authorization token to headers
-//         request: function(config) {
-//           config.headers = config.headers || {};
-//           //console.log(config);
-//           if($cookies.get('token') ) {
-//             //console.log('setting the header');
-//             config.headers.Authorization = 'Bearer' +  $cookies.get('token');
-//           }
-//           return config;
-//         },
-
-//         // Intercept 401s and redirect you to login
-//         responseError: function(response) {
-//           if(response.status === 401) {
-//             (state || (state = $injector.get('$state')))
-//             .go('login');
-//             // remove any stale tokens
-//             $cookies.remove('token');
-//           }
-//           return $q.reject(response);
-//         }
-//       };
-//   }
-
-// })();
 (function(){
   'use strict';
 
-    runConfig.$inject = ["$window", "$rootScope", "$location", "Auth", "localStorageService"];
+  authInterceptor.$inject = ["$q", "$cookies", "$injector", "Util"];
+  angular.module('Dalet', [ 'ngCookies', 'ngResource','LocalStorageModule'])
+  .constant('ServerUrl', 'http://localhost:5000')
+  //.constant('ServerUrl', '')
+  .config(["$httpProvider", "$locationProvider", function($httpProvider, $locationProvider){
+    $httpProvider.interceptors.push('authInterceptor')
+  }])
+  .factory('authInterceptor', authInterceptor);
+
+  /** @ngInject */ 
+  function authInterceptor($q, $cookies, $injector, Util){
+      var state;
+      return {
+        // Add authorization token to headers
+        request: function(config) {
+          config.headers = config.headers || {};
+          //console.log(config);
+          if($cookies.get('token') ) {
+            //console.log('setting the header');
+            config.headers.Authorization = 'Bearer' +  $cookies.get('token');
+          }
+          return config;
+        },
+
+        // Intercept 401s and redirect you to login
+        responseError: function(response) {
+          if(response.status === 401) {
+            (state || (state = $injector.get('$state')))
+            .go('login');
+            // remove any stale tokens
+            $cookies.remove('token');
+          }
+          return $q.reject(response);
+        }
+      };
+  }
+
+})();
+(function(){
+  'use strict';
+
+    runConfig.$inject = ["$window", "$rootScope", "$location", "Auth", "localStorageService", "$cookies"];
     routeConfig.$inject = ["$urlRouterProvider", "$stateProvider", "$httpProvider"];
     LoginController.$inject = ["Auth", "$location", "$http", "ServerUrl", "$cookies", "User", "localStorageService", "$window"];
     authInterceptor.$inject = ["$q", "$cookies", "$injector", "Util"];
@@ -57,10 +58,13 @@
   .factory('authInterceptor', authInterceptor);
 
      /** @ngInject */
-    function runConfig($window, $rootScope, $location, Auth, localStorageService){
-      console.log("The app is running")
+    function runConfig($window, $rootScope, $location, Auth, localStorageService, $cookies){
+      //console.log("The app is running")
+      
+      localStorageService.set('currentUser', undefined)
       if (localStorageService.get('currentUser')) {
-        console.log("YEs");
+        //console.log("YEs");
+        //Auth.logout()
       }
     }
 
@@ -71,7 +75,7 @@
 
     /** @ngInject */ 
     function LoginController(Auth, $location, $http, ServerUrl, $cookies, User, localStorageService, $window) {
-      console.log("Hello from the login ctrl");
+      //console.log("Hello from the login ctrl");
       var vm = this
       vm.submitted = false
       vm.errors = {
@@ -90,14 +94,14 @@
           }
           Auth.login(objectToAut)
             .then(function(response){
-              console.log(response)
+              //console.log(response)
               localStorageService.set('currentUser', response)
               localStorageService.set('roles', response.role)
               //$rootScope.myRoles = response.roles
               $window.location.assign('index.html')
             })
             .catch(function(error){
-              console.log(error)
+              //console.log(error)
               vm.errors.login = error.message
             })
         }
@@ -231,392 +235,397 @@
 
 })();
 
-// (function(){
-//   'use strict';
-//   angular.module('Dalet')
-//     .factory('Auth', AuthService);
+(function(){
+  'use strict';
+    AuthService.$inject = ["$location", "$http", "$cookies", "$q", "Util", "User", "ServerUrl"];
+  angular.module('Dalet')
+    .factory('Auth', AuthService);
 
-//     /** @ngInject */ 
-//     function AuthService($location, $http, $cookies, $q, Util, User, ServerUrl){
-//       var safeCb = Util.safeCb;
-//       var currentUser = {
-//           _id: '',
-//           name:  '',
-//           email:'',
-//           role:  '',
-//           $promise : undefined
-//       }
-//       var userRoles =  ['guest', 'user', 'admin', 'superadmin'];
+    /** @ngInject */ 
+    function AuthService($location, $http, $cookies, $q, Util, User, ServerUrl){
+      var safeCb = Util.safeCb;
+      var currentUser = {
+          _id: '',
+          name:  '',
+          email:'',
+          role:  '',
+          $promise : undefined
+      }
+      var userRoles =  ['guest', 'user', 'admin', 'superadmin'];
 
-//       // var hasRole = function(userRole, role) {
-//       //   return userRoles.indexOf(userRole) >= userRoles.indexOf(role);
-//       // };
+      // var hasRole = function(userRole, role) {
+      //   return userRoles.indexOf(userRole) >= userRoles.indexOf(role);
+      // };
 
-//       // if($cookies.get('token') && $location.path() !== '/logout') {
-//       //   currentUser = User.get();
-//       // }
+      // if($cookies.get('token') && $location.path() !== '/logout') {
+      //   currentUser = User.get();
+      // }
 
-//       var Auth = {
-//         /**
-//          * Authenticate user and save token
-//          *
-//          * @param  {Object}   user     - login info
-//          * @param  {Function} callback - function(error, user)
-//          * @return {Promise}
-//          */
-//         login : function(credentials, callback) {
-//           return $http.post(ServerUrl + '/auth/local', credentials)
-//             .then(function(res){
-//               $cookies.put('token', res.data.token);
-//               currentUser = User.get();
-//               return currentUser.$promise;
-//             })
-//             .then(function(user) {
-//               safeCb(callback)(null, user);
-//               return user;
-//             })
-//             .catch(function(err) {
-//               console.log(err);
-//               Auth.logout();
-//               safeCb(callback)(err.data);
-//               return $q.reject(err.data);
-//             });
-//         },
+      var Auth = {
+        /**
+         * Authenticate user and save token
+         *
+         * @param  {Object}   user     - login info
+         * @param  {Function} callback - function(error, user)
+         * @return {Promise}
+         */
+        login : function(credentials, callback) {
+          return $http.post(ServerUrl + '/auth/local', credentials)
+            .then(function(res){
+              $cookies.put('token', res.data.token);
+              currentUser = User.get();
+              return currentUser.$promise;
+            })
+            .then(function(user) {
+              safeCb(callback)(null, user);
+              return user;
+            })
+            .catch(function(err) {
+              console.log(err);
+              Auth.logout();
+              safeCb(callback)(err.data);
+              return $q.reject(err.data);
+            });
+        },
 
-//         /**
-//          * Delete access token and user info
-//          */
-//         logout :function() {
-//           $cookies.remove('token');
-//           currentUser = {
-//                   _id: '',
-//                   name:  '',
-//                   email:'',
-//                   role:  '',
-//                   $promise : undefined
-//               }
-//         },
+        /**
+         * Delete access token and user info
+         */
+        logout :function() {
+          $cookies.remove('token');
+          currentUser = {
+                  _id: '',
+                  name:  '',
+                  email:'',
+                  role:  '',
+                  $promise : undefined
+              }
+        },
 
-//         /**
-//          * Create a new user
-//          *
-//          * @param  {Object}   user     - user info
-//          * @param  {Function} callback - function(error, user)
-//          * @return {Promise}
-//          */
-//         createUser :function (user,  callback) {
-//           return User.save(user, function(data) {
-//             //$cookies.put('token', data.token);
-//             currentUser = User.get();
-//             return safeCb(callback)(null, user);
-//           }, function(err) {
-//             //Auth.logout();
-//             return safeCb(callback)(err);
-//           })
-//             .$promise;
-//         },
+        /**
+         * Create a new user
+         *
+         * @param  {Object}   user     - user info
+         * @param  {Function} callback - function(error, user)
+         * @return {Promise}
+         */
+        createUser :function (user,  callback) {
+          return User.save(user, function(data) {
+            //$cookies.put('token', data.token);
+            currentUser = User.get();
+            return safeCb(callback)(null, user);
+          }, function(err) {
+            //Auth.logout();
+            return safeCb(callback)(err);
+          })
+            .$promise;
+        },
 
-//         /**
-//          * Change password
-//          *
-//          * @param  {String}   oldPassword
-//          * @param  {String}   newPassword
-//          * @param  {Function} callback    - function(error, user)
-//          * @return {Promise}
-//          */
-//         // changePassword : function(oldPassword, newPassword, Function) {
-//         //   return User.changePassword({
-//         //     id: currentUser._id
-//         //   }, {
-//         //     oldPassword,
-//         //     newPassword
-//         //   }, function() {
-//         //     return safeCb(callback)(null);
-//         //   }, function(err) {
-//         //     return safeCb(callback)(err);
-//         //   })
-//         //     .$promise;
-//         // },
+        /**
+         * Change password
+         *
+         * @param  {String}   oldPassword
+         * @param  {String}   newPassword
+         * @param  {Function} callback    - function(error, user)
+         * @return {Promise}
+         */
+        // changePassword : function(oldPassword, newPassword, Function) {
+        //   return User.changePassword({
+        //     id: currentUser._id
+        //   }, {
+        //     oldPassword,
+        //     newPassword
+        //   }, function() {
+        //     return safeCb(callback)(null);
+        //   }, function(err) {
+        //     return safeCb(callback)(err);
+        //   })
+        //     .$promise;
+        // },
 
-//         /**
-//          * Gets all available info on a user
-//          *
-//          * @param  {Function} [callback] - function(user)
-//          * @return {Promise}
-//          */
-//         getCurrentUser : function (callback) {
-//           var value = User.get(currentUser, '$promise') ? currentUser.$promise : currentUser;
+        /**
+         * Gets all available info on a user
+         *
+         * @param  {Function} [callback] - function(user)
+         * @return {Promise}
+         */
+        getCurrentUser : function (callback) {
+          var value = User.get(currentUser, '$promise') ? currentUser.$promise : currentUser;
 
-//           return $q.when(value)
-//             .then(function(user){
-//               console.log(user)
-//               safeCb(callback)(user);
-//               return user;
-//             }, function(){
-//               safeCb(callback)({});
-//               return {};
-//             });
-//         },
+          return $q.when(value)
+            .then(function(user){
+              console.log(user)
+              safeCb(callback)(user);
+              return user;
+            }, function(){
+              safeCb(callback)({});
+              return {};
+            });
+        },
 
-//         /**
-//          * Gets all available info on a user
-//          *
-//          * @return {Object}
-//          */
-//         getCurrentUserSync : function() {
-//           return currentUser;
-//         },
+        /**
+         * Gets all available info on a user
+         *
+         * @return {Object}
+         */
+        getCurrentUserSync : function() {
+          return currentUser;
+        },
 
-//         /**
-//          * Check if a user is logged in
-//          *
-//          * @param  {Function} [callback] - function(is)
-//          * @return {Promise}
-//          */
-//         isLoggedIn : function(callback) {
-//           return Auth.getCurrentUser(undefined)
-//             .then(function(user) {
-//               console.log(user);
-//               var is = User.get(user, 'role');
+        /**
+         * Check if a user is logged in
+         *
+         * @param  {Function} [callback] - function(is)
+         * @return {Promise}
+         */
+        isLoggedIn : function(callback) {
+          return Auth.getCurrentUser(undefined)
+            .then(function(user) {
+              console.log(user);
+              var is = User.get(user, 'role');
 
-//               safeCb(callback)(is);
-//               return is;
-//             }).catch(function(error){
-//               console.log(error);
-//             });
-//         },
+              safeCb(callback)(is);
+              return is;
+            }).catch(function(error){
+              console.log(error);
+            });
+        },
 
-//         /**
-//          * Check if a user is logged in
-//          *
-//          * @return {Bool}
-//          */
-//         isLoggedInSync : function() {
-//           return !!User.get(currentUser, 'role');
-//         },
+        /**
+         * Check if a user is logged in
+         *
+         * @return {Bool}
+         */
+        isLoggedInSync : function() {
+          return !!User.get(currentUser, 'role');
+        },
 
-//         /**
-//          * Check if a user has a specified role or higher
-//          *
-//          * @param  {String}     role     - the role to check against
-//          * @param  {Function} [callback] - function(has)
-//          * @return {Promise}
-//          */
-//         hasRole : function(role,  Function) {
-//           return Auth.getCurrentUser(undefined)
-//             .then(function(user) {
-//               var has = hasRole(_.get(user, 'role'), role);
+        /**
+         * Check if a user has a specified role or higher
+         *
+         * @param  {String}     role     - the role to check against
+         * @param  {Function} [callback] - function(has)
+         * @return {Promise}
+         */
+        hasRole : function(role,  Function) {
+          return Auth.getCurrentUser(undefined)
+            .then(function(user) {
+              var has = hasRole(_.get(user, 'role'), role);
 
-//               safeCb(callback)(has);
-//               return has;
-//             });
-//         },
+              safeCb(callback)(has);
+              return has;
+            });
+        },
 
-//         /**
-//          * Check if a user has a specified role or higher
-//          *
-//          * @param  {String} role - the role to check against
-//          * @return {Bool}
-//          */
-//         hasRoleSync : function(role) {
-//           return hasRole(User.get(currentUser, 'role'), role);
-//         },
+        /**
+         * Check if a user has a specified role or higher
+         *
+         * @param  {String} role - the role to check against
+         * @return {Bool}
+         */
+        hasRoleSync : function(role) {
+          return hasRole(User.get(currentUser, 'role'), role);
+        },
 
-//         /**
-//          * Check if a user is an admin
-//          *   (synchronous|asynchronous)
-//          *
-//          * @param  {Function|*} callback - optional, function(is)
-//          * @return {Bool|Promise}
-//          */
-//         // isAdmin : function() {
-//         //   return Auth.hasRole(...[].concat.apply(['admin'], arguments));
-//         // },
+        /**
+         * Check if a user is an admin
+         *   (synchronous|asynchronous)
+         *
+         * @param  {Function|*} callback - optional, function(is)
+         * @return {Bool|Promise}
+         */
+        // isAdmin : function() {
+        //   return Auth.hasRole(...[].concat.apply(['admin'], arguments));
+        // },
 
-//         /**
-//          * Check if a user is an admin
-//          *
-//          * @return {Bool}
-//          */
-//         isAdminSync : function() {
-//           return Auth.hasRoleSync('admin');
-//         },
+        /**
+         * Check if a user is an admin
+         *
+         * @return {Bool}
+         */
+        isAdminSync : function() {
+          return Auth.hasRoleSync('admin');
+        },
 
-//         /**
-//          * Get auth token
-//          *
-//          * @return {String} - a token string used for authenticating
-//          */
-//         getToken : function() {
-//           return $cookies.get('token');
-//         }
-//       };
+        /**
+         * Get auth token
+         *
+         * @return {String} - a token string used for authenticating
+         */
+        getToken : function() {
+          return $cookies.get('token');
+        }
+      };
 
-//       return Auth;
-//     }
-//   })();
-// (function(){
-//   'use strict';
-//   angular.module('BlurAdmin')
-//     .factory('authInterceptor', authInterceptor)
+      return Auth;
+    }
+  })();
+(function(){
+  'use strict';
+  authInterceptor.$inject = ["$q", "$cookies", "$injector", "Util"];
+  angular.module('BlurAdmin')
+    .factory('authInterceptor', authInterceptor)
 
-//   /** @ngInject */ 
-//   function authInterceptor( $q, $cookies, $injector, Util){
-//     var state;
-//     return {
-//       // Add authorization token to headers
-//       request : function(config) {
-//         //console.log($cookies.get('token'))
-//         config.headers = config.headers || {};
-//         //console.log(config);
-//         if($cookies.get('token') ) {
-//           //console.log("Setting the auth ");
-//           config.headers.Authorization = 'Bearer ' +  $cookies.get('token');
-//         }
-//         return config;
-//       },
+  /** @ngInject */ 
+  function authInterceptor( $q, $cookies, $injector, Util){
+    var state;
+    return {
+      // Add authorization token to headers
+      request : function(config) {
+        //console.log($cookies.get('token'))
+        config.headers = config.headers || {};
+        //console.log(config);
+        if($cookies.get('token') ) {
+          //console.log("Setting the auth ");
+          config.headers.Authorization = 'Bearer ' +  $cookies.get('token');
+        }
+        return config;
+      },
 
-//       // Intercept 401s and redirect you to login
-//       responseError : function(response) {
-//         if(response.status === 401) {
-//           // (state || (state = $injector.get('$state')))
-//           // .go('login');
-//           // remove any stale tokens
-//           $cookies.remove('token');
-//         }
-//         return $q.reject(response);
-//       }
-//     };
-//   }
+      // Intercept 401s and redirect you to login
+      responseError : function(response) {
+        if(response.status === 401) {
+          // (state || (state = $injector.get('$state')))
+          // .go('login');
+          // remove any stale tokens
+          $cookies.remove('token');
+        }
+        return $q.reject(response);
+      }
+    };
+  }
 
-// })()
-// (function(){
-//   'use strict';
-//   angular.module('Dalet')
-//     .factory('authInterceptor', authInterceptor)
+})()
+(function(){
+  'use strict';
+  authInterceptor.$inject = ["$q", "$cookies", "$injector", "Util"];
+  angular.module('Dalet')
+    .factory('authInterceptor', authInterceptor)
 
-//   /** @ngInject */ 
-//   function authInterceptor($q, $cookies, $injector, Util){
-//     var state;
-//     return {
-//       // Add authorization token to headers
-//       request: function(config) {
-//         config.headers = config.headers || {};
-//         //console.log(config);
-//         if($cookies.get('token') ) {
-//           //console.log('setting the header');
-//           config.headers.Authorization = 'Bearer' +  $cookies.get('token');
-//         }
-//         return config;
-//       },
+  /** @ngInject */ 
+  function authInterceptor($q, $cookies, $injector, Util){
+    var state;
+    return {
+      // Add authorization token to headers
+      request: function(config) {
+        config.headers = config.headers || {};
+        //console.log(config);
+        if($cookies.get('token') ) {
+          //console.log('setting the header');
+          config.headers.Authorization = 'Bearer' +  $cookies.get('token');
+        }
+        return config;
+      },
 
-//       // Intercept 401s and redirect you to login
-//       responseError: function(response) {
-//         if(response.status === 401) {
-//           (state || (state = $injector.get('$state')))
-//           .go('login');
-//           // remove any stale tokens
-//           $cookies.remove('token');
-//         }
-//         return $q.reject(response);
-//       }
-//     };
-//   }
+      // Intercept 401s and redirect you to login
+      responseError: function(response) {
+        if(response.status === 401) {
+          (state || (state = $injector.get('$state')))
+          .go('login');
+          // remove any stale tokens
+          $cookies.remove('token');
+        }
+        return $q.reject(response);
+      }
+    };
+  }
 
-// })()
-// (function(){
-//   'use strict';
-//    angular.module('Dalet')
-//     .factory('User', UserService)
+})()
+(function(){
+  'use strict';
+    UserService.$inject = ["$resource", "ServerUrl"];
+   angular.module('Dalet')
+    .factory('User', UserService)
 
 
-//    /** @ngInject */ 
-//    function UserService($resource, ServerUrl){
+   /** @ngInject */ 
+   function UserService($resource, ServerUrl){
 
-//       return $resource(ServerUrl + '/api/users/:id/:controller', {
-//           id: '@_id'
-//         }, {
-//           changePassword: {
-//             method: 'PUT',
-//             params: {
-//               controller: 'password'
-//             }
-//           },
-//           get: {
-//             method: 'GET',
-//             params: {
-//               id: 'me'
-//             }
-//           }
-//         }); 
-//     }
-// })()
-// (function(){
-//   'use strict';
-//     angular.module('Dalet')
-//       .factory('Util',UtilService)
+      return $resource(ServerUrl + '/api/users/:id/:controller', {
+          id: '@_id'
+        }, {
+          changePassword: {
+            method: 'PUT',
+            params: {
+              controller: 'password'
+            }
+          },
+          get: {
+            method: 'GET',
+            params: {
+              id: 'me'
+            }
+          }
+        }); 
+    }
+})()
+(function(){
+  'use strict';
+  UtilService.$inject = ["$window"];
+    angular.module('Dalet')
+      .factory('Util',UtilService)
 
-//   /** @ngInject */ 
-//   function UtilService($window){
-//      var Util = {
-//         /**
-//          * Return a callback or noop function
-//          *
-//          * @param  {Function|*} cb - a 'potential' function
-//          * @return {Function}
-//          */
-//         safeCb : function(cb) {
-//           return angular.isFunction(cb) ? cb : angular.noop;
-//         },
+  /** @ngInject */ 
+  function UtilService($window){
+     var Util = {
+        /**
+         * Return a callback or noop function
+         *
+         * @param  {Function|*} cb - a 'potential' function
+         * @return {Function}
+         */
+        safeCb : function(cb) {
+          return angular.isFunction(cb) ? cb : angular.noop;
+        },
 
-//         /**
-//          * Parse a given url with the use of an anchor element
-//          *
-//          * @param  {String} url - the url to parse
-//          * @return {Object}     - the parsed url, anchor element
-//          */
-//         urlParse : function(url) {
-//           var a = document.createElement('a');
-//           a.href = url;
+        /**
+         * Parse a given url with the use of an anchor element
+         *
+         * @param  {String} url - the url to parse
+         * @return {Object}     - the parsed url, anchor element
+         */
+        urlParse : function(url) {
+          var a = document.createElement('a');
+          a.href = url;
 
-//           // Special treatment for IE, see http://stackoverflow.com/a/13405933 for details
-//           if(a.host === '') {
-//             a.href = a.href;
-//           }
+          // Special treatment for IE, see http://stackoverflow.com/a/13405933 for details
+          if(a.host === '') {
+            a.href = a.href;
+          }
 
-//           return a;
-//         },
+          return a;
+        },
 
-//         *
-//          * Test whether or not a given url is same origin
-//          *
-//          * @param  {String}           url       - url to test
-//          * @param  {String|String[]}  [origins] - additional origins to test against
-//          * @return {Boolean}                    - true if url is same origin
+        // *
+        //  * Test whether or not a given url is same origin
+        //  *
+        //  * @param  {String}           url       - url to test
+        //  * @param  {String|String[]}  [origins] - additional origins to test against
+        //  * @return {Boolean}                    - true if url is same origin
          
-//         isSameOrigin : function(url, origins) {
-//           url = Util.urlParse(url);
-//           origins = origins && [].concat(origins) || [];
-//           origins = origins.map(Util.urlParse);
-//           origins.push($window.location);
-//           origins = origins.filter(function(o) {
-//             var hostnameCheck = url.hostname === o.hostname;
-//             var protocolCheck = url.protocol === o.protocol;
-//             // 2nd part of the special treatment for IE fix (see above):
-//             // This part is when using well-known ports 80 or 443 with IE,
-//             // when $window.location.port==='' instead of the real port number.
-//             // Probably the same cause as this IE bug: https://goo.gl/J9hRta
-//             var portCheck = url.port === o.port || o.port === '' && (url.port === '80' || url.port ===
-//               '443');
-//             return hostnameCheck && protocolCheck && portCheck;
-//           });
-//           return origins.length >= 1;
-//         }
-//       };
+        isSameOrigin : function(url, origins) {
+          url = Util.urlParse(url);
+          origins = origins && [].concat(origins) || [];
+          origins = origins.map(Util.urlParse);
+          origins.push($window.location);
+          origins = origins.filter(function(o) {
+            var hostnameCheck = url.hostname === o.hostname;
+            var protocolCheck = url.protocol === o.protocol;
+            // 2nd part of the special treatment for IE fix (see above):
+            // This part is when using well-known ports 80 or 443 with IE,
+            // when $window.location.port==='' instead of the real port number.
+            // Probably the same cause as this IE bug: https://goo.gl/J9hRta
+            var portCheck = url.port === o.port || o.port === '' && (url.port === '80' || url.port ===
+              '443');
+            return hostnameCheck && protocolCheck && portCheck;
+          });
+          return origins.length >= 1;
+        }
+      };
 
-//     return Util;
-//   }
-// })()
+    return Util;
+  }
+})()
 angular.module("BlurAdmin").run(["$templateCache", function($templateCache) {$templateCache.put("app/pages/admin/admin.html","<uib-tabset active=\"$tabSetStatus.activeTab\"><uib-tab ng-repeat=\"tab in vm.tabs\" heading=\"{{tab.heading}}\"><div ng-include=\"tab.template\"></div></uib-tab></uib-tabset>");
 $templateCache.put("app/pages/dashboard/dashboard.html","<dashboard-pie-chart></dashboard-pie-chart><div class=\"row\"><div class=\"col-lg-6 col-md-12 col-sm-12\" ba-panel=\"\" ba-panel-title=\"Acquisition Channels\" ba-panel-class=\"medium-panel traffic-panel\"><traffic-chart></traffic-chart></div><div class=\"col-lg-6 col-md-12 col-sm-12\" ba-panel=\"\" ba-panel-title=\"Users by Country\" ba-panel-class=\"medium-panel\"><dashboard-map></dashboard-map></div></div><div class=\"row\"><div class=\"col-xlg-9 col-lg-6 col-md-6 col-sm-12 col-xs-12\"><div class=\"row\"><div class=\"col-xlg-8 col-lg-12 col-md-12 col-sm-7 col-xs-12\" ba-panel=\"\" ba-panel-title=\"Revenue\" ba-panel-class=\"medium-panel\"><dashboard-line-chart></dashboard-line-chart></div><div class=\"col-xlg-4 col-lg-12 col-md-12 col-sm-5 col-xs-12\" ba-panel=\"\" ba-panel-class=\"popular-app medium-panel\"><popular-app></popular-app></div></div></div><div class=\"col-xlg-3 col-lg-6 col-md-6 col-sm-12 col-xs-12\" ba-panel=\"\" ba-panel-title=\"Feed\" ba-panel-class=\"large-panel with-scroll feed-panel\"><blur-feed></blur-feed></div></div><div class=\"row shift-up\"><div class=\"col-xlg-3 col-lg-6 col-md-6 col-xs-12\" ba-panel=\"\" ba-panel-title=\"To Do List\" ba-panel-class=\"xmedium-panel feed-comply-panel with-scroll todo-panel\"><dashboard-todo></dashboard-todo></div><div class=\"col-xlg-6 col-lg-6 col-md-6 col-xs-12\" ba-panel=\"\" ba-panel-title=\"Calendar\" ba-panel-class=\"xmedium-panel feed-comply-panel with-scroll calendar-panel\"><dashboard-calendar></dashboard-calendar></div></div>");
 $templateCache.put("app/pages/maps/maps.html","<div class=\"widgets\"><div class=\"row\"><div class=\"col-md-12\" ui-view=\"\"></div></div></div>");
@@ -677,13 +686,13 @@ $templateCache.put("app/theme/components/baSidebar/ba-sidebar.html","<aside clas
 $templateCache.put("app/theme/components/baWizard/baWizard.html","<div class=\"ba-wizard\"><div class=\"ba-wizard-navigation-container\"><div ng-repeat=\"t in $baWizardController.tabs\" class=\"ba-wizard-navigation {{$baWizardController.tabNum == $index ? \'active\' : \'\'}}\" ng-click=\"$baWizardController.selectTab($index)\">{{t.title}}</div></div><div class=\"progress ba-wizard-progress\"><div class=\"progress-bar progress-bar-danger active\" role=\"progressbar\" aria-valuemin=\"0\" aria-valuemax=\"100\" ng-style=\"{width: $baWizardController.progress + \'%\'}\"></div></div><div class=\"steps\" ng-transclude=\"\"></div><nav><ul class=\"pager ba-wizard-pager\"><li class=\"previous\"><button ng-disabled=\"$baWizardController.isFirstTab()\" ng-click=\"$baWizardController.previousTab()\" type=\"button\" class=\"btn btn-primary\"><span aria-hidden=\"true\">&larr;</span> previous</button></li><li class=\"next\"><button ng-disabled=\"$baWizardController.isLastTab()\" ng-click=\"$baWizardController.nextTab()\" type=\"button\" class=\"btn btn-primary\">next <span aria-hidden=\"true\">&rarr;</span></button></li></ul></nav></div>");
 $templateCache.put("app/theme/components/baWizard/baWizardStep.html","<section ng-show=\"selected\" class=\"step\" ng-transclude=\"\"></section>");
 $templateCache.put("app/theme/components/backTop/backTop.html","<i class=\"fa fa-angle-up back-top\" id=\"backTop\" title=\"Back to Top\"></i>");
-$templateCache.put("app/theme/components/contentTop/contentTop.html","<div class=\"content-top clearfix\"><h1 class=\"al-title\">{{ activePageTitle }}</h1><ul class=\"breadcrumb al-breadcrumb\"><li><a href=\"#/dashboard\">Home</a></li><li>{{ activePageTitle }}</li></ul></div>");
+$templateCache.put("app/theme/components/contentTop/contentTop.html","<div class=\"content-top clearfix\"><h1 class=\"al-title\">{{ activePageTitle }}</h1><ul class=\"breadcrumb al-breadcrumb\"><li><a href=\"#/dashboard\">Inicio</a></li><li>{{ activePageTitle }}</li></ul></div>");
 $templateCache.put("app/theme/components/msgCenter/msgCenter.html","<ul class=\"al-msg-center clearfix\"><li uib-dropdown=\"\"><a href=\"\" uib-dropdown-toggle=\"\"><i class=\"fa fa-bell-o\"></i><span>5</span><div class=\"notification-ring\"></div></a><div uib-dropdown-menu=\"\" class=\"top-dropdown-menu\"><i class=\"dropdown-arr\"></i><div class=\"header clearfix\"><strong>Notifications</strong> <a href=\"\">Mark All as Read</a> <a href=\"\">Settings</a></div><div class=\"msg-list\"><a href=\"\" class=\"clearfix\" ng-repeat=\"msg in notifications\"><div class=\"img-area\"><img ng-class=\"{\'photo-msg-item\' : !msg.image}\" ng-src=\"{{::( msg.image || (users[msg.userId].name | profilePicture) )}}\"></div><div class=\"msg-area\"><div ng-bind-html=\"getMessage(msg)\"></div><span>{{ msg.time }}</span></div></a></div><a href=\"\">See all notifications</a></div></li><li uib-dropdown=\"\"><a href=\"\" class=\"msg\" uib-dropdown-toggle=\"\"><i class=\"fa fa-envelope-o\"></i><span>5</span><div class=\"notification-ring\"></div></a><div uib-dropdown-menu=\"\" class=\"top-dropdown-menu\"><i class=\"dropdown-arr\"></i><div class=\"header clearfix\"><strong>Messages</strong> <a href=\"\">Mark All as Read</a> <a href=\"\">Settings</a></div><div class=\"msg-list\"><a href=\"\" class=\"clearfix\" ng-repeat=\"msg in messages\"><div class=\"img-area\"><img class=\"photo-msg-item\" ng-src=\"{{::( users[msg.userId].name | profilePicture )}}\"></div><div class=\"msg-area\"><div>{{ msg.text }}</div><span>{{ msg.time }}</span></div></a></div><a href=\"\">See all messages</a></div></li></ul>");
-$templateCache.put("app/theme/components/pageTop/pageTop.html","<div class=\"page-top clearfix\" scroll-position=\"scrolled\" max-height=\"50\" ng-class=\"{\'scrolled\': scrolled}\"><a href=\"#/dashboard\" class=\"al-logo clearfix\"><span>Blur</span>Admin</a> <a href=\"\" class=\"collapse-menu-link ion-navicon\" ba-sidebar-toggle-menu=\"\"></a><div class=\"search\"><i class=\"ion-ios-search-strong\" ng-click=\"startSearch()\"></i> <input id=\"searchInput\" type=\"text\" placeholder=\"Search for...\"></div><div class=\"user-profile clearfix\"><div class=\"al-user-profile\" uib-dropdown=\"\"><a uib-dropdown-toggle=\"\" class=\"profile-toggle-link\"><img ng-src=\"{{::( \'Nasta\' | profilePicture )}}\"></a><ul class=\"top-dropdown-menu profile-dropdown\" uib-dropdown-menu=\"\"><li><i class=\"dropdown-arr\"></i></li><li><a href=\"#/profile\"><i class=\"fa fa-user\"></i>Profile</a></li><li><a href=\"\"><i class=\"fa fa-cog\"></i>Settings</a></li><li><a href=\"\" class=\"signout\"><i class=\"fa fa-power-off\"></i>Sign out</a></li></ul></div><msg-center></msg-center></div></div>");
+$templateCache.put("app/theme/components/pageTop/pageTop.html","<div class=\"page-top clearfix\" scroll-position=\"scrolled\" max-height=\"50\" ng-class=\"{\'scrolled\': scrolled}\"><a href=\"#/dashboard\" class=\"al-logo clearfix\"><span>Dalet</span></a> <a href=\"\" class=\"collapse-menu-link ion-navicon\" ba-sidebar-toggle-menu=\"\"></a><div class=\"user-profile clearfix\"><div class=\"al-user-profile\" uib-dropdown=\"\"><a uib-dropdown-toggle=\"\" class=\"profile-toggle-link\"><img ng-src=\"{{::( \'Logo\' | profilePicture )}}\"></a><ul class=\"top-dropdown-menu profile-dropdown\" uib-dropdown-menu=\"\"><li><i class=\"dropdown-arr\"></i></li><li><a href=\"auth.html\" class=\"signout\"><i class=\"fa fa-power-off\"></i>Cerrar sesión</a></li></ul></div></div></div>");
 $templateCache.put("app/theme/components/widgets/widgets.html","<div class=\"widgets\"><div ng-repeat=\"widgetBlock in ngModel\" ng-class=\"{\'row\': widgetBlock.widgets.length > 1}\"><div ng-repeat=\"widgetCol in widgetBlock.widgets\" ng-class=\"{\'col-md-6\': widgetBlock.widgets.length === 2}\" ng-model=\"widgetCol\" class=\"widgets-block\"><div ba-panel=\"\" ba-panel-title=\"{{::widget.title}}\" ng-repeat=\"widget in widgetCol\" ba-panel-class=\"with-scroll {{widget.panelClass}}\"><div ng-include=\"widget.url\"></div></div></div></div></div>");
 $templateCache.put("app/pages/admin/tabs/areas/areas.tab.html","<h1>Areas</h1>");
-$templateCache.put("app/pages/admin/tabs/proveedores/proveedores.tab.html","<h1>Proovedores</h1>");
 $templateCache.put("app/pages/admin/tabs/entradas/entradas.tab.html","<h1>Entradas</h1>");
+$templateCache.put("app/pages/admin/tabs/proveedores/proveedores.tab.html","<h1>Proovedores</h1>");
 $templateCache.put("app/pages/admin/tabs/usuarios/addUserModal.html","<div class=\"modal-content\"><div class=\"modal-header\"><button type=\"button\" class=\"close\" ng-click=\"$dismiss()\" aria-label=\"Close\"><em class=\"ion-ios-close-empty sn-link-close\"></em></button><h4 class=\"modal-title\" id=\"myModalLabel\">Agregar usuario</h4></div><div class=\"modal-body\"><form name=\"form\" ng-submit=\"register(form)\" novalidate=\"\"><div class=\"form-group\" ng-class=\"{ \'has-success\': form.name.$valid && submitted,\'has-error\': form.name.$invalid && submitted }\"><label for=\"name\">Nombre</label> <input type=\"text\" class=\"form-control\" name=\"name\" ng-model=\"user.name\" placeholder=\"Nombre\" required=\"\"><p class=\"has-error\" ng-show=\"form.name.$error.required && submitted\">Un nombre es requerido</p></div><div class=\"form-group\" ng-class=\"{ \'has-success\': form.email.$valid && submitted,\'has-error\': form.email.$invalid && submitted }\"><label for=\"email\">Correo electrónico</label> <input type=\"email\" class=\"form-control\" name=\"email\" ng-model=\"user.email\" placeholder=\"Correo\" required=\"\"><p class=\"has-error\" ng-show=\"form.email.$error.required && submitted\">Un correo es requerido</p><p class=\"has-error\" ng-show=\"form.email.$error.email && submitted\">Debe de ser un correo</p></div><div class=\"form-group\"><label for=\"email\">Rol</label><select name=\"role\" class=\"form-control selectpicker\" title=\"Rol\" selectpicker=\"\" ng-model=\"user.role\" ng-options=\"item.value as item.label for item in roles\" required=\"\"></select><p class=\"has-error\" ng-show=\"form.role.$error.required && submitted\">Debe de tener un rol</p></div><div class=\"form-group\" ng-class=\"{ \'has-success\': form.password.$valid && submitted,\'has-error\': form.password.$invalid && submitted }\"><label for=\"password\">Contraseña</label> <input type=\"password\" class=\"form-control\" name=\"password\" ng-model=\"user.password\" placeholder=\"Contraseña\" required=\"\"><p class=\"has-error\" ng-show=\"form.password.$error.required && submitted\">Una contraseña es requerida</p></div></form></div><div class=\"modal-footer\"><p class=\"has-error\" ng-show=\"error && submitted\">{{error}}</p><button type=\"button\" class=\"btn btn-danger\" ng-click=\"$dismiss()\">Cancelar</button> <button type=\"button\" class=\"btn btn-primary\" ng-click=\"register(form)\">Guardar</button></div></div>");
 $templateCache.put("app/pages/admin/tabs/usuarios/editableRowTable.html","<div class=\"add-row-editable-table\"><button class=\"btn btn-primary btn-with-icon\" ng-click=\"vm.addUser()\"><i class=\"ion ion-android-add\"></i> Agregar usuario</button></div><table class=\"table table-bordered table-hover table-condensed\"><tr><td></td><td>Nombre</td><td>Email</td><td>Rol</td><td>Actions</td></tr><tr ng-repeat=\"user in vm.users\" class=\"editable-row\"><td>{{$index}}</td><td><span editable-text=\"user.name\" e-name=\"name\" e-form=\"rowform\" e-required=\"\">{{ user.name || \'Vacio\' }}</span></td><td class=\"select-td\"><span editable-select=\"user.status\" e-name=\"status\" e-form=\"rowform\" e-selectpicker=\"\" e-ng-options=\"s.value as s.text for s in statuses\">{{ user.email }}</span></td><td class=\"select-td\"><span editable-select=\"user.group\" e-name=\"group\" onshow=\"loadGroups()\" e-form=\"rowform\" e-selectpicker=\"\" e-ng-options=\"g.id as g.text for g in groups\">{{ user.role }}</span></td><td><form editable-form=\"\" name=\"rowform\" ng-show=\"rowform.$visible\" class=\"form-buttons form-inline\" shown=\"inserted == user\"><button type=\"submit\" ng-disabled=\"rowform.$waiting\" class=\"btn btn-primary editable-table-button btn-xs\">Save</button> <button type=\"button\" ng-disabled=\"rowform.$waiting\" ng-click=\"rowform.$cancel()\" class=\"btn btn-default editable-table-button btn-xs\">Cancel</button></form><div class=\"buttons\" ng-show=\"!rowform.$visible\"><button class=\"btn btn-danger btn-with-icon btn-xs\" ng-click=\"vm.removeUser($index)\"><i class=\"ion ion-android-delete\"></i>Eliminar</button></div></td></tr></table>");
 $templateCache.put("app/pages/admin/tabs/usuarios/usuarios.tab.html","<div class=\"container widgets\" ng-controller=\"UsuariosController as vm\"><div class=\"row\"><div class=\"col-md-12\"><div ba-panel=\"\" ba-panel-title=\"Editable Rows\" ba-panel-class=\"with-scroll\"><div include-with-scope=\"app/pages/admin/tabs/usuarios/editableRowTable.html\"></div></div></div></div></div>");
@@ -697,15 +706,15 @@ $templateCache.put("app/pages/charts/amCharts/pieChart/pieChart.html","<div id=\
 $templateCache.put("app/pages/components/mail/composeBox/compose.html","<div class=\"compose-header\"><span>New message</span> <span class=\"header-controls\"><i class=\"ion-minus-round\"></i> <i class=\"ion-arrow-resize\"></i> <i ng-click=\"$dismiss()\" class=\"ion-close-round\"></i></span></div><div><input type=\"text\" class=\"form-control compose-input default-color\" placeholder=\"To\" ng-model=\"boxCtrl.to\"> <input type=\"text\" class=\"form-control compose-input default-color\" placeholder=\"Subject\" ng-model=\"boxCtrl.subject\"><div class=\"compose-container\"><text-angular-toolbar ta-toolbar-class=\"toolbarMain\" name=\"toolbarMain\" ta-toolbar=\"[[\'h1\',\'h2\',\'h3\',\'bold\',\'italics\', \'underline\', \'justifyLeft\', \'justifyCenter\', \'justifyRight\', \'justifyFull\']]\"></text-angular-toolbar><text-angular name=\"htmlcontent\" ta-target-toolbars=\"toolbarMain,toolbarFooter\" ng-model=\"boxCtrl.text\"></text-angular></div></div><div class=\"compose-footer clearfix\"><button type=\"button\" ng-click=\"$dismiss()\" class=\"btn btn-send\">Send</button><text-angular-toolbar ta-toolbar-class=\"toolbarFooter\" name=\"toolbarFooter\" ta-toolbar=\"[[\'insertLink\', \'insertImage\', \'html\', \'quote\',\'insertVideo\']]\"></text-angular-toolbar><div class=\"footer-controls\"><i class=\"footer-control-first compose-footer-icon ion-arrow-down-b\"></i> <i ng-click=\"$dismiss()\" class=\"compose-footer-icon ion-android-delete\"></i></div></div>");
 $templateCache.put("app/pages/components/mail/detail/mailDetail.html","<div class=\"message-container\" ng-class=\"{\'expanded\': tabCtrl.navigationCollapsed}\"><div class=\"message\"><div class=\"row\"><div class=\"toggle-navigation-container detail-page\"><a href=\"\" class=\"collapse-navigation-link ion-navicon\" ng-click=\"tabCtrl.navigationCollapsed=!tabCtrl.navigationCollapsed\"></a></div><button ui-sref=\"components.mail.label({label : detailCtrl.label})\" type=\"button\" class=\"back-button btn btn-default btn-with-icon\"><i class=\"ion-chevron-left\"></i>Back</button></div><div class=\"person-info row\"><div class=\"col-lg-4 col-md-12 no-padding\"><img ng-src=\"{{detailCtrl.mail.name.split(\' \')[0] | profilePicture}}\" class=\"human-picture\"><div class=\"name\"><h2 class=\"name-h\">{{detailCtrl.mail.name.split(\' \')[0]}}</h2><h2 class=\"name-h second-name\">{{detailCtrl.mail.name.split(\' \')[1]}}</h2><div><span class=\"mail-tag tag label {{detailCtrl.mail.tag}}\">{{detailCtrl.mail.tag}}</span></div></div></div><div class=\"col-lg-4 col-md-6 col-xs-12 no-padding\"><div class=\"contact-info phone-email\"><div><i class=\"ion-iphone\"></i> <span class=\"phone\">777-777-7777</span></div><div><i class=\"ion-email\"></i> <span class=\"email\">{{detailCtrl.mail.email}}</span></div></div></div><div class=\"col-lg-4 col-md-6 col-xs-12 no-padding\"><div class=\"contact-info position-address\"><div><span class=\"position\">{{detailCtrl.mail.position}}</span></div><div><span class=\"address\">12 Nezavisimosti st. Vilnius, Lithuania</span></div></div></div></div><div class=\"row\"></div><div class=\"line\"></div><div class=\"message-details\"><span class=\"subject\">{{detailCtrl.mail.subject}}</span> <span class=\"date\">• {{detailCtrl.mail.date | date : \'h:mm a MMMM d \'}}</span></div><div class=\"line\"></div><div ng-bind-html=\"detailCtrl.mail.body\" class=\"message-body\"></div><div class=\"line\"></div><div class=\"attachment\" ng-show=\"detailCtrl.mail.attachment\"><span class=\"file-links\">1 Attachment - <a href=\"\">View</a> | <a href=\"\">Download</a></span><div><i class=\"file-icon ion-document\"></i> <span class=\"file-name\">{{detailCtrl.mail.attachment}}</span></div></div><div class=\"line\" ng-show=\"detailCtrl.mail.attachment\"></div><div class=\"answer-container\"><button type=\"button\" class=\"btn btn-with-icon\" ng-click=\"tabCtrl.showCompose(detailCtrl.mail.subject,detailCtrl.mail.email,\'\')\"><i class=\"ion-reply\"></i>Reply</button> <button type=\"button\" class=\"btn btn-with-icon\" ng-click=\"tabCtrl.showCompose(detailCtrl.mail.subject,\'\',detailCtrl.mail.body)\"><i class=\"ion-forward\"></i>Forward</button> <button type=\"button\" class=\"btn btn-with-icon\"><i class=\"ion-printer\"></i>Print</button> <button type=\"button\" class=\"btn btn-with-icon\"><i class=\"ion-android-remove-circle\"></i>Spam</button> <button type=\"button\" class=\"btn btn-with-icon\"><i class=\"ion-android-delete\"></i>Delete</button></div></div><div ng-show=\"!detailCtrl.mail\"><h5 ng-class=\"text-center\">Nothing to show</h5></div></div>");
 $templateCache.put("app/pages/components/mail/list/mailList.html","<div class=\"side-message-navigation\" ng-class=\"{\'expanded\': tabCtrl.navigationCollapsed}\"><div class=\"mail-messages-control side-message-navigation-item\"><div class=\"toggle-navigation-container\"><a href=\"\" class=\"collapse-navigation-link ion-navicon\" ng-click=\"tabCtrl.navigationCollapsed=!tabCtrl.navigationCollapsed\"></a></div><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\" id=\"inlineCheckbox01\" value=\"option1\"> <span class=\"select-all-label\">Select All</span></label> <button type=\"button\" class=\"btn btn-icon refresh-button\"><i class=\"ion-refresh\"></i></button><div class=\"btn-group\" uib-dropdown=\"\"><button type=\"button\" class=\"btn more-button\" uib-dropdown-toggle=\"\">More <span class=\"caret\"></span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"messages\"><table><tr ng-repeat=\"m in listCtrl.messages track by m.id | orderBy:\'-date\'\" class=\"side-message-navigation-item little-human shineHover {{m.tag}}\"><td class=\"check-td\"><div class=\"mail-checkbox\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\"> <span></span></label></div></td><td class=\"photo-td\" ui-sref=\"components.mail.detail({id: m.id, label: listCtrl.label})\"><img ng-src=\"{{m.name.split(\' \')[0] | profilePicture}}\" class=\"little-human-picture\"></td><td ui-sref=\"components.mail.detail({id: m.id, label: listCtrl.label})\"><div class=\"name-container\"><div><span class=\"name\">{{m.name}}</span></div><div><span class=\"tag label label-primary {{m.tag}}\">{{m.tag}}</span></div></div></td><td ui-sref=\"components.mail.detail({id: m.id, label: listCtrl.label})\"><div class=\"additional-info\"><span class=\"subject\">{{m.subject}}</span></div></td><td ui-sref=\"components.mail.detail({id: m.id, label: listCtrl.label})\"><div class=\"mail-body-part\">{{m.body | plainText}}</div></td><td class=\"date\"><span>{{m.date | date : \'MMM d HH:mm\'}}</span></td></tr></table></div></div>");
+$templateCache.put("app/pages/form/inputs/widgets/checkboxesRadios.html","<div class=\"checkbox-demo-row\"><div class=\"input-demo checkbox-demo row\"><div class=\"col-md-4\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\" id=\"inlineCheckbox01\" value=\"option1\"> <span>Check 1</span></label></div><div class=\"col-md-4\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\" id=\"inlineCheckbox02\" value=\"option2\"> <span>Check 2</span></label></div><div class=\"col-md-4\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\" id=\"inlineCheckbox03\" value=\"option3\"> <span>Check 3</span></label></div></div><div class=\"input-demo radio-demo row\"><div class=\"col-md-4\"><label class=\"radio-inline custom-radio nowrap\"><input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio1\" value=\"option1\"> <span>Option 1</span></label></div><div class=\"col-md-4\"><label class=\"radio-inline custom-radio nowrap\"><input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio2\" value=\"option2\"> <span>Option 2</span></label></div><div class=\"col-md-4\"><label class=\"radio-inline custom-radio nowrap\"><input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio3\" value=\"option3\"> <span>Option3</span></label></div></div></div><div><div class=\"checkbox disabled\"><label class=\"custom-checkbox nowrap\"><input type=\"checkbox\" value=\"\" disabled=\"\"> <span>Checkbox is disabled</span></label></div><div class=\"radio disabled\"><label class=\"custom-radio nowrap\"><input type=\"radio\" name=\"optionsRadios\" id=\"optionsRadios3\" value=\"option3\" disabled=\"\"> <span>Disabled option</span></label></div></div>");
+$templateCache.put("app/pages/form/inputs/widgets/inputGroups.html","<div class=\"input-group\"><span class=\"input-group-addon input-group-addon-primary addon-left\" id=\"basic-addon1\">@</span> <input type=\"text\" class=\"form-control with-primary-addon\" placeholder=\"Username\" aria-describedby=\"basic-addon1\"></div><div class=\"input-group\"><input type=\"text\" class=\"form-control with-warning-addon\" placeholder=\"Recipient\'s username\" aria-describedby=\"basic-addon2\"> <span class=\"input-group-addon input-group-addon-warning addon-right\" id=\"basic-addon2\">@example.com</span></div><div class=\"input-group\"><span class=\"input-group-addon addon-left input-group-addon-success\">$</span> <input type=\"text\" class=\"form-control with-success-addon\" aria-label=\"Amount (to the nearest dollar)\"> <span class=\"input-group-addon addon-right input-group-addon-success\">.00</span></div><div class=\"input-group\"><input type=\"text\" class=\"form-control with-danger-addon\" placeholder=\"Search for...\"> <span class=\"input-group-btn\"><button class=\"btn btn-danger\" type=\"button\">Go!</button></span></div>");
+$templateCache.put("app/pages/form/inputs/widgets/standardFields.html","<form><div class=\"form-group\"><label for=\"input01\">Text</label> <input type=\"text\" class=\"form-control\" id=\"input01\" placeholder=\"Text\"></div><div class=\"form-group\"><label for=\"input02\">Password</label> <input type=\"password\" class=\"form-control\" id=\"input02\" placeholder=\"Password\"></div><div class=\"form-group\"><label for=\"input03\">Rounded Corners</label> <input type=\"text\" class=\"form-control form-control-rounded\" id=\"input03\" placeholder=\"Rounded Corners\"></div><div class=\"form-group\"><label for=\"input04\">With help</label> <input type=\"text\" class=\"form-control\" id=\"input04\" placeholder=\"With help\"> <span class=\"help-block sub-little-text\">A block of help text that breaks onto a new line and may extend beyond one line.</span></div><div class=\"form-group\"><label for=\"input05\">Disabled Input</label> <input type=\"text\" class=\"form-control\" id=\"input05\" placeholder=\"Disabled Input\" disabled=\"\"></div><div class=\"form-group\"><label for=\"textarea01\">Textarea</label> <textarea placeholder=\"Default Input\" class=\"form-control\" id=\"textarea01\"></textarea></div><div class=\"form-group\"><input type=\"text\" class=\"form-control input-sm\" id=\"input2\" placeholder=\"Small Input\"></div><div class=\"form-group\"><input type=\"text\" class=\"form-control input-lg\" id=\"input4\" placeholder=\"Large Input\"></div></form>");
+$templateCache.put("app/pages/form/inputs/widgets/validationStates.html","<div class=\"form-group has-success\"><label class=\"control-label\" for=\"inputSuccess1\">Input with success</label> <input type=\"text\" class=\"form-control\" id=\"inputSuccess1\"></div><div class=\"form-group has-warning\"><label class=\"control-label\" for=\"inputWarning1\">Input with warning</label> <input type=\"text\" class=\"form-control\" id=\"inputWarning1\"></div><div class=\"form-group has-error\"><label class=\"control-label\" for=\"inputError1\">Input with error</label> <input type=\"text\" class=\"form-control\" id=\"inputError1\"></div><div class=\"has-success\"><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\" id=\"checkboxSuccess\" value=\"option1\"> <span>Checkbox with success</span></label></div></div><div class=\"has-warning\"><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\" id=\"checkboxWarning\" value=\"option1\"> <span>Checkbox with warning</span></label></div></div><div class=\"has-error\"><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\" id=\"checkboxError\" value=\"option1\"> <span>Checkbox with error</span></label></div></div><div class=\"form-group has-success has-feedback\"><label class=\"control-label\" for=\"inputSuccess2\">Input with success</label> <input type=\"text\" class=\"form-control\" id=\"inputSuccess2\" aria-describedby=\"inputSuccess2Status\"> <i class=\"ion-checkmark-circled form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputSuccess2Status\" class=\"sr-only\">(success)</span></div><div class=\"form-group has-warning has-feedback\"><label class=\"control-label\" for=\"inputWarning2\">Input with warning</label> <input type=\"text\" class=\"form-control\" id=\"inputWarning2\" aria-describedby=\"inputWarning2Status\"> <i class=\"ion-alert-circled form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputWarning2Status\" class=\"sr-only\">(warning)</span></div><div class=\"form-group has-error has-feedback\"><label class=\"control-label\" for=\"inputError2\">Input with error</label> <input type=\"text\" class=\"form-control\" id=\"inputError2\" aria-describedby=\"inputError2Status\"> <i class=\"ion-android-cancel form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputError2Status\" class=\"sr-only\">(error)</span></div><div class=\"form-group has-success has-feedback\"><label class=\"control-label\" for=\"inputGroupSuccess1\">Input group with success</label><div class=\"input-group\"><span class=\"input-group-addon addon-left\">@</span> <input type=\"text\" class=\"form-control\" id=\"inputGroupSuccess1\" aria-describedby=\"inputGroupSuccess1Status\"></div><i class=\"ion-checkmark-circled form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputGroupSuccess1Status\" class=\"sr-only\">(success)</span></div>");
 $templateCache.put("app/pages/form/layouts/widgets/basicForm.html","<form><div class=\"form-group\"><label for=\"exampleInputEmail1\">Email address</label> <input type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"Email\"></div><div class=\"form-group\"><label for=\"exampleInputPassword1\">Password</label> <input type=\"password\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"Password\"></div><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\"> <span>Check me out</span></label></div><button type=\"submit\" class=\"btn btn-danger\">Submit</button></form>");
 $templateCache.put("app/pages/form/layouts/widgets/blockForm.html","<div class=\"row\"><div class=\"col-sm-6\"><div class=\"form-group\"><label for=\"inputFirstName\">First Name</label> <input type=\"text\" class=\"form-control\" id=\"inputFirstName\" placeholder=\"First Name\"></div></div><div class=\"col-sm-6\"><div class=\"form-group\"><label for=\"inputLastName\">Last Name</label> <input type=\"text\" class=\"form-control\" id=\"inputLastName\" placeholder=\"Last Name\"></div></div></div><div class=\"row\"><div class=\"col-sm-6\"><div class=\"form-group\"><label for=\"inputFirstName\">Email</label> <input type=\"email\" class=\"form-control\" id=\"inputEmail\" placeholder=\"Email\"></div></div><div class=\"col-sm-6\"><div class=\"form-group\"><label for=\"inputWebsite\">Website</label> <input type=\"text\" class=\"form-control\" id=\"inputWebsite\" placeholder=\"Website\"></div></div></div><button type=\"submit\" class=\"btn btn-primary\">Submit</button>");
 $templateCache.put("app/pages/form/layouts/widgets/formWithoutLabels.html","<form><div class=\"form-group\"><input type=\"text\" class=\"form-control\" placeholder=\"Recipients\"></div><div class=\"form-group\"><input type=\"text\" class=\"form-control\" placeholder=\"Subject\"></div><div class=\"form-group\"><textarea class=\"form-control\" placeholder=\"Message\"></textarea></div><button type=\"submit\" class=\"btn btn-success\">Send</button></form>");
 $templateCache.put("app/pages/form/layouts/widgets/horizontalForm.html","<form class=\"form-horizontal\"><div class=\"form-group\"><label for=\"inputEmail3\" class=\"col-sm-2 control-label\">Email</label><div class=\"col-sm-10\"><input type=\"email\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"Email\"></div></div><div class=\"form-group\"><label for=\"inputPassword3\" class=\"col-sm-2 control-label\">Password</label><div class=\"col-sm-10\"><input type=\"password\" class=\"form-control\" id=\"inputPassword3\" placeholder=\"Password\"></div></div><div class=\"form-group\"><div class=\"col-sm-offset-2 col-sm-10\"><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\"> <span>Remember me</span></label></div></div></div><div class=\"form-group\"><div class=\"col-sm-offset-2 col-sm-10\"><button type=\"submit\" class=\"btn btn-warning\">Sign in</button></div></div></form>");
 $templateCache.put("app/pages/form/layouts/widgets/inlineForm.html","<form class=\"row form-inline\"><div class=\"form-group col-sm-3 col-xs-6\"><input type=\"text\" class=\"form-control\" id=\"exampleInputName2\" placeholder=\"Name\"></div><div class=\"form-group col-sm-3 col-xs-6\"><input type=\"email\" class=\"form-control\" id=\"exampleInputEmail2\" placeholder=\"Email\"></div><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\"> <span>Remember me</span></label></div><button type=\"submit\" class=\"btn btn-primary\">Send invitation</button></form>");
-$templateCache.put("app/pages/form/inputs/widgets/checkboxesRadios.html","<div class=\"checkbox-demo-row\"><div class=\"input-demo checkbox-demo row\"><div class=\"col-md-4\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\" id=\"inlineCheckbox01\" value=\"option1\"> <span>Check 1</span></label></div><div class=\"col-md-4\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\" id=\"inlineCheckbox02\" value=\"option2\"> <span>Check 2</span></label></div><div class=\"col-md-4\"><label class=\"checkbox-inline custom-checkbox nowrap\"><input type=\"checkbox\" id=\"inlineCheckbox03\" value=\"option3\"> <span>Check 3</span></label></div></div><div class=\"input-demo radio-demo row\"><div class=\"col-md-4\"><label class=\"radio-inline custom-radio nowrap\"><input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio1\" value=\"option1\"> <span>Option 1</span></label></div><div class=\"col-md-4\"><label class=\"radio-inline custom-radio nowrap\"><input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio2\" value=\"option2\"> <span>Option 2</span></label></div><div class=\"col-md-4\"><label class=\"radio-inline custom-radio nowrap\"><input type=\"radio\" name=\"inlineRadioOptions\" id=\"inlineRadio3\" value=\"option3\"> <span>Option3</span></label></div></div></div><div><div class=\"checkbox disabled\"><label class=\"custom-checkbox nowrap\"><input type=\"checkbox\" value=\"\" disabled=\"\"> <span>Checkbox is disabled</span></label></div><div class=\"radio disabled\"><label class=\"custom-radio nowrap\"><input type=\"radio\" name=\"optionsRadios\" id=\"optionsRadios3\" value=\"option3\" disabled=\"\"> <span>Disabled option</span></label></div></div>");
-$templateCache.put("app/pages/form/inputs/widgets/inputGroups.html","<div class=\"input-group\"><span class=\"input-group-addon input-group-addon-primary addon-left\" id=\"basic-addon1\">@</span> <input type=\"text\" class=\"form-control with-primary-addon\" placeholder=\"Username\" aria-describedby=\"basic-addon1\"></div><div class=\"input-group\"><input type=\"text\" class=\"form-control with-warning-addon\" placeholder=\"Recipient\'s username\" aria-describedby=\"basic-addon2\"> <span class=\"input-group-addon input-group-addon-warning addon-right\" id=\"basic-addon2\">@example.com</span></div><div class=\"input-group\"><span class=\"input-group-addon addon-left input-group-addon-success\">$</span> <input type=\"text\" class=\"form-control with-success-addon\" aria-label=\"Amount (to the nearest dollar)\"> <span class=\"input-group-addon addon-right input-group-addon-success\">.00</span></div><div class=\"input-group\"><input type=\"text\" class=\"form-control with-danger-addon\" placeholder=\"Search for...\"> <span class=\"input-group-btn\"><button class=\"btn btn-danger\" type=\"button\">Go!</button></span></div>");
-$templateCache.put("app/pages/form/inputs/widgets/standardFields.html","<form><div class=\"form-group\"><label for=\"input01\">Text</label> <input type=\"text\" class=\"form-control\" id=\"input01\" placeholder=\"Text\"></div><div class=\"form-group\"><label for=\"input02\">Password</label> <input type=\"password\" class=\"form-control\" id=\"input02\" placeholder=\"Password\"></div><div class=\"form-group\"><label for=\"input03\">Rounded Corners</label> <input type=\"text\" class=\"form-control form-control-rounded\" id=\"input03\" placeholder=\"Rounded Corners\"></div><div class=\"form-group\"><label for=\"input04\">With help</label> <input type=\"text\" class=\"form-control\" id=\"input04\" placeholder=\"With help\"> <span class=\"help-block sub-little-text\">A block of help text that breaks onto a new line and may extend beyond one line.</span></div><div class=\"form-group\"><label for=\"input05\">Disabled Input</label> <input type=\"text\" class=\"form-control\" id=\"input05\" placeholder=\"Disabled Input\" disabled=\"\"></div><div class=\"form-group\"><label for=\"textarea01\">Textarea</label> <textarea placeholder=\"Default Input\" class=\"form-control\" id=\"textarea01\"></textarea></div><div class=\"form-group\"><input type=\"text\" class=\"form-control input-sm\" id=\"input2\" placeholder=\"Small Input\"></div><div class=\"form-group\"><input type=\"text\" class=\"form-control input-lg\" id=\"input4\" placeholder=\"Large Input\"></div></form>");
-$templateCache.put("app/pages/form/inputs/widgets/validationStates.html","<div class=\"form-group has-success\"><label class=\"control-label\" for=\"inputSuccess1\">Input with success</label> <input type=\"text\" class=\"form-control\" id=\"inputSuccess1\"></div><div class=\"form-group has-warning\"><label class=\"control-label\" for=\"inputWarning1\">Input with warning</label> <input type=\"text\" class=\"form-control\" id=\"inputWarning1\"></div><div class=\"form-group has-error\"><label class=\"control-label\" for=\"inputError1\">Input with error</label> <input type=\"text\" class=\"form-control\" id=\"inputError1\"></div><div class=\"has-success\"><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\" id=\"checkboxSuccess\" value=\"option1\"> <span>Checkbox with success</span></label></div></div><div class=\"has-warning\"><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\" id=\"checkboxWarning\" value=\"option1\"> <span>Checkbox with warning</span></label></div></div><div class=\"has-error\"><div class=\"checkbox\"><label class=\"custom-checkbox\"><input type=\"checkbox\" id=\"checkboxError\" value=\"option1\"> <span>Checkbox with error</span></label></div></div><div class=\"form-group has-success has-feedback\"><label class=\"control-label\" for=\"inputSuccess2\">Input with success</label> <input type=\"text\" class=\"form-control\" id=\"inputSuccess2\" aria-describedby=\"inputSuccess2Status\"> <i class=\"ion-checkmark-circled form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputSuccess2Status\" class=\"sr-only\">(success)</span></div><div class=\"form-group has-warning has-feedback\"><label class=\"control-label\" for=\"inputWarning2\">Input with warning</label> <input type=\"text\" class=\"form-control\" id=\"inputWarning2\" aria-describedby=\"inputWarning2Status\"> <i class=\"ion-alert-circled form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputWarning2Status\" class=\"sr-only\">(warning)</span></div><div class=\"form-group has-error has-feedback\"><label class=\"control-label\" for=\"inputError2\">Input with error</label> <input type=\"text\" class=\"form-control\" id=\"inputError2\" aria-describedby=\"inputError2Status\"> <i class=\"ion-android-cancel form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputError2Status\" class=\"sr-only\">(error)</span></div><div class=\"form-group has-success has-feedback\"><label class=\"control-label\" for=\"inputGroupSuccess1\">Input group with success</label><div class=\"input-group\"><span class=\"input-group-addon addon-left\">@</span> <input type=\"text\" class=\"form-control\" id=\"inputGroupSuccess1\" aria-describedby=\"inputGroupSuccess1Status\"></div><i class=\"ion-checkmark-circled form-control-feedback\" aria-hidden=\"true\"></i> <span id=\"inputGroupSuccess1Status\" class=\"sr-only\">(success)</span></div>");
 $templateCache.put("app/pages/ui/buttons/widgets/buttonGroups.html","<div class=\"btn-group-example\"><div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\"><button type=\"button\" class=\"btn btn-danger\">Left</button> <button type=\"button\" class=\"btn btn-danger\">Middle</button> <button type=\"button\" class=\"btn btn-danger\">Right</button></div></div><div class=\"btn-toolbar-example\"><div class=\"btn-toolbar\" role=\"toolbar\" aria-label=\"Toolbar with button groups\"><div class=\"btn-group\" role=\"group\" aria-label=\"First group\"><button type=\"button\" class=\"btn btn-primary\">1</button> <button type=\"button\" class=\"btn btn-primary\">2</button> <button type=\"button\" class=\"btn btn-primary\">3</button> <button type=\"button\" class=\"btn btn-primary\">4</button></div><div class=\"btn-group\" role=\"group\" aria-label=\"Second group\"><button type=\"button\" class=\"btn btn-primary\">5</button> <button type=\"button\" class=\"btn btn-primary\">6</button> <button type=\"button\" class=\"btn btn-primary\">7</button></div><div class=\"btn-group\" role=\"group\" aria-label=\"Third group\"><button type=\"button\" class=\"btn btn-primary\">8</button></div></div></div>");
 $templateCache.put("app/pages/ui/buttons/widgets/buttons.html","<div class=\"basic-btns\"><div class=\"row\"><div class=\"col-md-2\"><h5>Default button</h5></div><div class=\"col-md-10\"><div class=\"row btns-row btns-same-width-md\"><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-primary\">Primary</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-default\">Default</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-success\">Success</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-info\">Info</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-warning\">Warning</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-danger\">Danger</button></div></div></div></div><div class=\"row\"><div class=\"col-md-2\"><h5 class=\"row-sm\">Small button</h5></div><div class=\"col-md-10\"><div class=\"row btns-row btns-same-width-md\"><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-primary btn-sm\">Primary</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-default btn-sm\">Default</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-success btn-sm\">Success</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-info btn-sm\">Info</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-warning btn-sm\">Warning</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-danger btn-sm\">Danger</button></div></div></div></div><div class=\"row\"><div class=\"col-md-2\"><h5 class=\"row-xs\">Extra small button</h5></div><div class=\"col-md-10\"><div class=\"row btns-row btns-same-width-md\"><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-primary btn-xs\">Primary</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-default btn-xs\">Default</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-success btn-xs\">Success</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-info btn-xs\">Info</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-warning btn-xs\">Warning</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-danger btn-xs\">Danger</button></div></div></div></div><div class=\"row\"><div class=\"col-md-2\"><h5>Disabled button</h5></div><div class=\"col-md-10\"><div class=\"row btns-row btns-same-width-md\"><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-primary\" disabled=\"disabled\">Primary</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\">Default</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-success\" disabled=\"disabled\">Success</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-info\" disabled=\"disabled\">Info</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-warning\" disabled=\"disabled\">Warning</button></div><div class=\"col-sm-2 col-xs-4\"><button type=\"button\" class=\"btn btn-danger\" disabled=\"disabled\">Danger</button></div></div></div></div></div>");
 $templateCache.put("app/pages/ui/buttons/widgets/dropdowns.html","<div class=\"row btns-row\"><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-primary\" uib-dropdown-toggle=\"\">Primary <span class=\"caret\"></span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-success\" uib-dropdown-toggle=\"\">Success <span class=\"caret\"></span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-info\" uib-dropdown-toggle=\"\">Info <span class=\"caret\"></span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-default\" uib-dropdown-toggle=\"\">Default <span class=\"caret\"></span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-warning\" uib-dropdown-toggle=\"\">Warning <span class=\"caret\"></span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-danger\" uib-dropdown-toggle=\"\">Danger <span class=\"caret\"></span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div></div><h5 class=\"panel-subtitle\">Split button dropdowns</h5><div class=\"row btns-row\"><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-primary\">Primary</button> <button type=\"button\" class=\"btn btn-primary\" uib-dropdown-toggle=\"\"><span class=\"caret\"></span> <span class=\"sr-only\">Toggle Dropdown</span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-success\">Success</button> <button type=\"button\" class=\"btn btn-success\" uib-dropdown-toggle=\"\"><span class=\"caret\"></span> <span class=\"sr-only\">Toggle Dropdown</span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-info\">Info</button> <button type=\"button\" class=\"btn btn-info\" uib-dropdown-toggle=\"\"><span class=\"caret\"></span> <span class=\"sr-only\">Toggle Dropdown</span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-default\">Default</button> <button type=\"button\" class=\"btn btn-default\" uib-dropdown-toggle=\"\"><span class=\"caret\"></span> <span class=\"sr-only\">Toggle Dropdown</span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-warning\">Warning</button> <button type=\"button\" class=\"btn btn-warning\" uib-dropdown-toggle=\"\"><span class=\"caret\"></span> <span class=\"sr-only\">Toggle Dropdown</span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div><div class=\"col-sm-4 col-xs-6\"><div class=\"btn-group\" uib-dropdown=\"\" dropdown-append-to-body=\"\"><button type=\"button\" class=\"btn btn-danger\">Danger</button> <button type=\"button\" class=\"btn btn-danger\" uib-dropdown-toggle=\"\"><span class=\"caret\"></span> <span class=\"sr-only\">Toggle Dropdown</span></button><ul uib-dropdown-menu=\"\"><li><a href=\"\">Action</a></li><li><a href=\"\">Another action</a></li><li><a href=\"\">Something else here</a></li><li role=\"separator\" class=\"divider\"></li><li><a href=\"\">Separated link</a></li></ul></div></div></div>");
@@ -730,7 +739,7 @@ $templateCache.put("app/pages/ui/progressBars/widgets/basic.html","<div class=\"
 $templateCache.put("app/pages/ui/progressBars/widgets/label.html","<div class=\"progress\"><div class=\"progress-bar progress-bar-success\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 40%\">40% Complete (success)</div></div><div class=\"progress\"><div class=\"progress-bar progress-bar-info\" role=\"progressbar\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 20%\">20% Complete</div></div><div class=\"progress\"><div class=\"progress-bar progress-bar-warning\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%\">60% Complete (warning)</div></div><div class=\"progress\"><div class=\"progress-bar progress-bar-danger\" role=\"progressbar\" aria-valuenow=\"80\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 80%\">80% Complete (danger)</div></div>");
 $templateCache.put("app/pages/ui/progressBars/widgets/stacked.html","<div class=\"progress\"><div class=\"progress-bar progress-bar-success\" style=\"width: 35%\"><span class=\"sr-only\">35% Complete (success)</span></div><div class=\"progress-bar progress-bar-warning progress-bar-striped\" style=\"width: 20%\"><span class=\"sr-only\">20% Complete (warning)</span></div><div class=\"progress-bar progress-bar-danger\" style=\"width: 10%\"><span class=\"sr-only\">10% Complete (danger)</span></div><div class=\"progress-bar progress-bar-info progress-bar-striped active\" style=\"width: 20%\"><span class=\"sr-only\">20% Complete (warning)</span></div></div>");
 $templateCache.put("app/pages/ui/progressBars/widgets/striped.html","<div class=\"progress\"><div class=\"progress-bar progress-bar-success progress-bar-striped\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 40%\"><span class=\"sr-only\">40% Complete (success)</span></div></div><div class=\"progress\"><div class=\"progress-bar progress-bar-info progress-bar-striped\" role=\"progressbar\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 20%\"><span class=\"sr-only\">20% Complete</span></div></div><div class=\"progress\"><div class=\"progress-bar progress-bar-warning progress-bar-striped\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%\"><span class=\"sr-only\">60% Complete (warning)</span></div></div><div class=\"progress\"><div class=\"progress-bar progress-bar-danger progress-bar-striped\" role=\"progressbar\" aria-valuenow=\"80\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 80%\"><span class=\"sr-only\">80% Complete (danger)</span></div></div>");
-$templateCache.put("app/pages/form/inputs/widgets/switch/switch.html","<div ng-controller=\"SwitchPanelCtrl as switchPanelVm\" class=\"switches clearfix\"><switch color=\"primary\" ng-model=\"switchPanelVm.switcherValues.primary\"></switch><switch color=\"warning\" ng-model=\"switchPanelVm.switcherValues.warning\"></switch><switch color=\"danger\" ng-model=\"switchPanelVm.switcherValues.danger\"></switch><switch color=\"info\" ng-model=\"switchPanelVm.switcherValues.info\"></switch><switch color=\"success\" ng-model=\"switchPanelVm.switcherValues.success\"></switch></div>");
 $templateCache.put("app/pages/form/inputs/widgets/select/select.html","<div ng-controller=\"SelectpickerPanelCtrl as selectpickerVm\"><div class=\"form-group\"><select class=\"form-control selectpicker\" selectpicker=\"\" title=\"Standard Select\" ng-model=\"selectpickerVm.standardSelected\" ng-options=\"item as item.label for item in selectpickerVm.standardSelectItems\"></select></div><div class=\"form-group\"><select class=\"form-control selectpicker with-search\" data-live-search=\"true\" title=\"Select With Search\" selectpicker=\"\" ng-model=\"selectpickerVm.searchSelectedItem\" ng-options=\"item as item.label for item in selectpickerVm.selectWithSearchItems\"></select></div><div class=\"form-group\"><select class=\"form-control selectpicker\" title=\"Option Types\" selectpicker=\"\"><option>Standard option</option><option data-subtext=\"option subtext\">Option with subtext</option><option disabled=\"\">Disabled Option</option><option data-icon=\"glyphicon-heart\">Option with cion</option></select></div><div class=\"form-group\"><select class=\"form-control selectpicker\" disabled=\"\" title=\"Disabled Select\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option></select></div><div class=\"row\"><div class=\"col-sm-6\"><div class=\"form-group\"><select class=\"form-control\" title=\"Select with Option Groups\" selectpicker=\"\" ng-model=\"selectpickerVm.groupedSelectedItem\" ng-options=\"item as item.label group by item.group for item in selectpickerVm.groupedSelectItems\"></select></div></div><div class=\"col-sm-6\"><div class=\"form-group\"><select class=\"form-control\" title=\"Select with Divider\" selectpicker=\"\"><option>Group 1 - Option 1</option><option>Group 1 - Option 2</option><option data-divider=\"true\"></option><option>Group 2 - Option 1</option><option>Group 2 - Option 2</option></select></div></div></div><div class=\"form-group\"><select class=\"form-control\" title=\"Multiple Select\" multiple=\"\" selectpicker=\"\" ng-model=\"selectpickerVm.multipleSelectedItems\" ng-options=\"item as item.label for item in selectpickerVm.standardSelectItems\"><option>Option 1</option><option>Option 2</option><option>Option 3</option></select></div><div class=\"form-group\"><select class=\"form-control\" title=\"Multiple Select with Limit\" multiple=\"\" data-max-options=\"2\" selectpicker=\"\" ng-model=\"selectpickerVm.multipleSelectedItems2\" ng-options=\"item as item.label for item in selectpickerVm.standardSelectItems\"><option>Option 1</option><option>Option 2</option><option>Option 3</option></select></div><div class=\"row\"><div class=\"col-sm-6\"><div class=\"form-group\"><select class=\"form-control\" title=\"Primary Select\" data-style=\"btn-primary\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div><div class=\"form-group\"><select class=\"form-control\" title=\"Success Select\" data-style=\"btn-success\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div><div class=\"form-group\"><select class=\"form-control\" title=\"Warning Select\" data-style=\"btn-warning\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div></div><div class=\"col-sm-6\"><div class=\"form-group\"><select class=\"form-control\" title=\"Info Select\" data-style=\"btn-info\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div><div class=\"form-group\"><select class=\"form-control\" title=\"Danger Select\" data-style=\"btn-danger\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div><div class=\"form-group\"><select class=\"form-control\" title=\"Inverse Select\" data-style=\"btn-inverse\" data-container=\"body\" selectpicker=\"\"><option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option></select></div></div></div></div>");
+$templateCache.put("app/pages/form/inputs/widgets/switch/switch.html","<div ng-controller=\"SwitchPanelCtrl as switchPanelVm\" class=\"switches clearfix\"><switch color=\"primary\" ng-model=\"switchPanelVm.switcherValues.primary\"></switch><switch color=\"warning\" ng-model=\"switchPanelVm.switcherValues.warning\"></switch><switch color=\"danger\" ng-model=\"switchPanelVm.switcherValues.danger\"></switch><switch color=\"info\" ng-model=\"switchPanelVm.switcherValues.info\"></switch><switch color=\"success\" ng-model=\"switchPanelVm.switcherValues.success\"></switch></div>");
 $templateCache.put("app/pages/form/inputs/widgets/tagsInput/tagsInput.html","<div class=\"form-group\"><div class=\"form-group\"><input type=\"text\" tag-input=\"primary\" value=\"Amsterdam,Washington,Sydney,Beijing,Cairo\" data-role=\"tagsinput\" placeholder=\"Add Tag\"></div><div class=\"form-group\"><input type=\"text\" tag-input=\"warning\" value=\"Minsk,Prague,Vilnius,Warsaw\" data-role=\"tagsinput\" placeholder=\"Add Tag\"></div><div class=\"form-group\"><input type=\"text\" tag-input=\"danger\" value=\"London,Berlin,Paris,Rome,Munich\" data-role=\"tagsinput\" placeholder=\"Add Tag\"></div></div>");}]);
-//# sourceMappingURL=../maps/scripts/app-f16228a181.js.map
+//# sourceMappingURL=../maps/scripts/app-9f80ad8ff4.js.map

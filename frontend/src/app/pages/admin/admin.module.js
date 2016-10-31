@@ -19,7 +19,7 @@
           controllerAs: 'vm',
           authentication: true,
           sidebarMeta: {
-            icon: 'ion-android-home',
+            icon: 'ion-gear-b',
             order: 0,
           },
         });

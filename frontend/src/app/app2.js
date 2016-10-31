@@ -13,10 +13,13 @@
   .factory('authInterceptor', authInterceptor);
 
      /** @ngInject */
-    function runConfig($window, $rootScope, $location, Auth, localStorageService){
-      console.log("The app is running")
+    function runConfig($window, $rootScope, $location, Auth, localStorageService, $cookies){
+      //console.log("The app is running")
+      
+      localStorageService.set('currentUser', undefined)
       if (localStorageService.get('currentUser')) {
-        console.log("YEs");
+        //console.log("YEs");
+        //Auth.logout()
       }
     }
 
@@ -27,7 +30,7 @@
 
     /** @ngInject */ 
     function LoginController(Auth, $location, $http, ServerUrl, $cookies, User, localStorageService, $window) {
-      console.log("Hello from the login ctrl");
+      //console.log("Hello from the login ctrl");
       var vm = this
       vm.submitted = false
       vm.errors = {
@@ -46,14 +49,14 @@
           }
           Auth.login(objectToAut)
             .then(function(response){
-              console.log(response)
+              //console.log(response)
               localStorageService.set('currentUser', response)
               localStorageService.set('roles', response.role)
               //$rootScope.myRoles = response.roles
               $window.location.assign('index.html')
             })
             .catch(function(error){
-              console.log(error)
+              //console.log(error)
               vm.errors.login = error.message
             })
         }
