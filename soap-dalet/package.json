@@ -1,0 +1,25 @@
+{
+  "name": "soap-dalet",
+  "version": "1.0.0",
+  "private": true,
+  "description": "soap client for the sushi xm stuff",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel index.js -d build -s",
+    "babel-version": "babel --version",
+    "start": "babel-node --presets es2015 index.js"
+  },
+  "author": "eduardosanzb",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^6.5.2",
+    "moongoose": "0.0.5",
+    "soap": "^0.17.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0"
+  }
+}

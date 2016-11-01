@@ -6,7 +6,7 @@ var ProvidersSchema = new mongoose.Schema({
   name: String,
   requestor_id: String,
   customer_id: String,
-  custumer_name: String,
+  customer_name: String,
   requestor_email: String,
   report_release: Number,
   url: String,

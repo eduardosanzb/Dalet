@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blur Admin</title>
+  <title>Dalet Auth</title>
 
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
 
@@ -27,7 +27,7 @@
 <body ng-controller="LoginController as vm">
 <main class="auth-main">
   <div class="auth-block">
-    <h1>Dalet login</h1>
+    <h1>Dalet</h1>
     <form class="form-horizontal" name="form" ng-submit="vm.login(form)" novalidate>
       <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
@@ -37,7 +37,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+        <label for="inputPassword3" class="col-sm-2 control-label">Contraseña</label>
 
         <div class="col-sm-10">
           <input type="password" name="password" class="form-control" ng-model="vm.user.password" required>
@@ -45,10 +45,10 @@
       </div>
       <div class="form-group has-error">
           <p class="help-block" ng-show="form.email.$error.required && form.password.$error.required && vm.submitted">
-             Please enter your email and password.
+             Inserta tu correo y contraseña.
           </p>
           <p class="help-block" ng-show="form.email.$error.email && vm.submitted">
-             Please enter a valid email.
+             Correo inválido.
           </p>
 
           <p class="help-block">{{ vm.errors.login }}</p>
