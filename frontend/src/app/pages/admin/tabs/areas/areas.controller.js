@@ -6,10 +6,6 @@
       /** @ngInject */ 
       function AreasController(Tabs){
         var vm = this;
-        Tabs
-          .loadAllItems()
-          .then(function(tabs){
-            vm.tabs = [].concat(tabs)
-          })
+        
       }
-})()
+})();

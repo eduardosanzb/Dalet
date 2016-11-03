@@ -4,8 +4,9 @@
       .controller('UsuariosController', UsuariosController);
 
       /** @ngInject */ 
-      function UsuariosController($scope, User, $uibModal){
+      function UsuariosController($scope, User, $uibModal, localStorageService){
         var vm = this;
+        vm.currentUser = localStorageService.get('currentUser')
         getUsers()
         $scope.$on('User Added', function(pevent, padata){
           getUsers()
@@ -29,20 +30,26 @@
             resolve:{
                items: function () {
                 return vm.users;
+              },
+              currentUser: function(){
+                return vm.currentUser
               }
             }
           })
         }
         /** @ngInject */ 
-        function ModalController(User, Auth, $scope, $uibModalInstance, $rootScope){
-          //console.log($scope.$parent);
+        function ModalController(User, Auth, $scope, $uibModalInstance, $rootScope, currentUser){
+          console.log(currentUser);
           $scope.user ={}
           $scope.submitted = false
+
           $scope.roles = [
             {label:'Usuario normal', value:'user'},
             {label:'Administrador', value:'admin'},
             {label:'Super Administrador', value:'superadmin', icon:'fa fa-key'}
           ]
+          if(currentUser.role === 'admin')
+            $scope.roles.splice(-1,1)
           $scope.register = function(form){
             //console.log(form);
             $scope.submitted = true
@@ -68,4 +75,4 @@
         }
 
       }
-})()
+})();

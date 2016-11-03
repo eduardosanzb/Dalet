@@ -172,7 +172,7 @@
         hasRole : function(role,  Function) {
           return Auth.getCurrentUser(undefined)
             .then(function(user) {
-              var has = hasRole(_.get(user, 'role'), role);
+              var has = hasRole(User.get(user, 'role'), role);
 
               safeCb(callback)(has);
               return has;

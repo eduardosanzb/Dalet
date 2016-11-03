@@ -1,10 +1,10 @@
 (function(){
   'use strict';
   angular.module('Dalet')
-    .factory('authInterceptor', authInterceptor)
+    .factory('authInterceptor', AuthInterceptor)
 
   /** @ngInject */ 
-  function authInterceptor($q, $cookies, $injector, Util){
+  function AuthInterceptor($q, $cookies, $injector, Util){
     var state;
     return {
       // Add authorization token to headers
@@ -31,4 +31,4 @@
     };
   }
 
-})()
+})();

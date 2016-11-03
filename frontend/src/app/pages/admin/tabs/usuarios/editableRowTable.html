@@ -46,7 +46,8 @@
       </form>
       <div class="buttons" ng-show="!rowform.$visible">
         <button class="btn btn-danger btn-with-icon btn-xs" 
-                ng-click="vm.removeUser($index)"><i class="ion ion-android-delete"></i>Eliminar</button>
+                ng-click="vm.removeUser($index)" 
+                ng-disabled="vm.currentUser.role === 'admin'"><i class="ion ion-android-delete"></i>Eliminar</button>
       </div>
     </td>
   </tr>
