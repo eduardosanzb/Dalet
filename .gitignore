@@ -2,7 +2,5 @@ backend/node_modules/
 frontend/node_modules/
 frontend/bower_modules/
 frontend/release/
-dalet-soap/node_modules
-
 .DS_Store
-
+dalet-soap/node_modules/

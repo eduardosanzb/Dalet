@@ -47,13 +47,18 @@
       }
       //$location.url('auth.html')
       //$window.location.href="/auth.html"
-      // $rootScope.$on('$stateChangeStart', function(event, next) {
-      //   Auth.isLoggedIn(function(loggedIn) {
-      //     if(next.authenticate && !loggedIn) {
-      //       $window.location.href="/auth.html"
-      //     }
-      //   });
-      // });
+      $rootScope.$on('$stateChangeStart', function(event, next) {
+        if(!$cookies.get('token')){
+          console.log('redirecting to auth');
+          $window.location.assign('auth.html')
+          //$location.url('auth.html');
+        }
+        Auth.isLoggedIn(function(loggedIn) {
+          if(next.authenticate && !loggedIn) {
+            $window.location.href="/auth.html"
+          }
+        });
+      });
     }
 
      /** @ngInject */
@@ -64,7 +69,7 @@
     }
 
     /** @ngInject */ 
-    function authInterceptor( $q, $cookies, $injector, Util){
+    function authInterceptor( $q, $cookies, $injector, Util, $window){
       var state;
       return {
         // Add authorization token to headers
@@ -78,13 +83,13 @@
           }
           return config;
         },
-
         // Intercept 401s and redirect you to login
         responseError : function(response) {
           if(response.status === 401) {
             // (state || (state = $injector.get('$state')))
             // .go('login');
             // remove any stale tokens
+            $window.location.href="/auth.html"
             $cookies.remove('token');
           }
           return $q.reject(response);

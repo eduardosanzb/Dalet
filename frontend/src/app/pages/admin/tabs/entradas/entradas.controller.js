@@ -6,10 +6,6 @@
       /** @ngInject */ 
       function EntradasController(Tabs){
         var vm = this;
-        Tabs
-          .loadAllItems()
-          .then(function(tabs){
-            vm.tabs = [].concat(tabs)
-          })
+        
       }
-})()
+})();

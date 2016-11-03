@@ -4,7 +4,7 @@
       .controller('MainController', MainController);
 
       /** @ngInject */ 
-      function MainController(Tabs){
+      function MainController(Tabs, localStorageService){
         var vm = this;
         Tabs
           .loadAllItems()
@@ -12,4 +12,4 @@
             vm.tabs = [].concat(tabs)
           })
       }
-})()
+})();
