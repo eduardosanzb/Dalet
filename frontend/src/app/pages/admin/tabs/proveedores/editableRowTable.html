@@ -1,0 +1,50 @@
+<div class="add-row-editable-table">
+  <button class="btn btn-primary btn-with-icon" ng-click="vm.addProvider()">
+    <i class="ion ion-android-add"></i> Agregar proveedor
+  </button>
+</div>
+<table class="table table-bordered table-hover table-condensed">
+  <tr>
+    <td></td>
+    <td>Nombre</td>
+    <td>Requestor id</td>
+    <td>Customer id</td>
+    <td>Customer name</td>
+    <td>Requestor e-mail</td>
+    <td>Report release</td>
+    <td>Url</td>
+    <td>Estatus</td>
+  </tr>
+  <tr ng-repeat="provider in vm.providers" class="editable-row">
+    <td>
+        {{$index}}
+    </td>
+    <td>
+          {{ provider.name || 'Vacío' }}
+    </td>
+    <td>
+          {{ provider.requestor_id }}
+    </td>
+    <td>
+          {{ provider.customer_id }}
+    </td>
+   <td>
+        {{ provider.customer_name }}
+   </td>
+   <td>
+        {{ provider.requestor_email }}
+   </td>
+   <td>
+        {{ provider.report_release }}
+   </td>
+   <td>
+        {{ provider.url }}
+   </td>
+   <td class="select-td">
+        <span editable-select="provider.active" e-name="group" onshow="loadGroups()" e-form="rowform" e-selectpicker
+              e-ng-options="g.id as g.text for g in groups">
+          {{ showGroup(provider) }}
+        </span>
+    </td>
+  </tr>
+</table>
