@@ -9,11 +9,16 @@
     .controller('BaSidebarCtrl', BaSidebarCtrl);
 
   /** @ngInject */
-  function BaSidebarCtrl($scope, baSidebarService) {
+  function BaSidebarCtrl($scope, baSidebarService, localStorageService) {
 
     $scope.menuItems = baSidebarService.getMenuItems();
     $scope.defaultSidebarState = $scope.menuItems[0].stateRef;
-
+    //The current user to get the role and filter the tabs
+    var currentUser = localStorageService.get('currentUser')
+    if(currentUser.role === 'user'){
+      //This line removes the admin tab for the normal users
+      $scope.menuItems = $scope.menuItems.filter(function(item){return item.stateRef !== 'admin'})
+    }
     $scope.hoverItem = function ($event) {
       $scope.showHoverElem = true;
       $scope.hoverElemHeight =  $event.currentTarget.clientHeight;

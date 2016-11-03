@@ -1,4 +1,4 @@
-<uib-tabset active="$tabSetStatus.activeTab">
+<uib-tabset active="$tabSetStatus.activeTab" ng-hide="vm.admin">
   <uib-tab ng-repeat="tab in vm.tabs" heading="{{tab.heading}}">
     <div  ng-include=tab.template></div>
   </uib-tab>
