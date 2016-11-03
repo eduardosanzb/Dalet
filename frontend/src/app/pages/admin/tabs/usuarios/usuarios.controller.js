@@ -20,6 +20,11 @@
             vm.users = users
           })  
         }
+        function removeUser(index){
+          console.log('Deleting the user: ' + vm.users[index].name);
+          vm.users[index].$remove()
+          vm.users.splice(index,1)
+        }
         function addUser(){
           console.log('Adding a new user');
           $uibModal.open({
@@ -37,6 +42,7 @@
             }
           })
         }
+
         /** @ngInject */ 
         function ModalController(User, Auth, $scope, $uibModalInstance, $rootScope, currentUser){
           console.log(currentUser);
@@ -61,18 +67,14 @@
                   $uibModalInstance.dismiss()
                   })
                 .catch(function(error){
-                  $scope.error = 'Error, posiblemente el correo ya existe.'
+                  $scope.error = error
                   //console.log(error);
                 })
               //console.log($scope.user);
             }
           }
         }
-        function removeUser(index){
-          console.log('Deleting the user: ' + vm.users[index].name);
-          vm.users[index].$remove()
-          vm.users.splice(index,1)
-        }
+        
 
       }
 })();
