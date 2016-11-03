@@ -10,7 +10,7 @@
 
   /** @ngInject */
   function routeConfig($stateProvider) {
-    $stateProvider
+    /*$stateProvider
         .state('form', {
           url: '/form',
           template : '<ui-view></ui-view>',
@@ -47,6 +47,6 @@
           sidebarMeta: {
             order: 200,
           },
-        });
+        });*/
   }
 })();

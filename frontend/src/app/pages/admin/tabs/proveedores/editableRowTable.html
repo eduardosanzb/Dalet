@@ -40,11 +40,9 @@
    <td>
         {{ provider.url }}
    </td>
-   <td class="select-td">
-        <span editable-select="provider.active" e-name="group" onshow="loadGroups()" e-form="rowform" e-selectpicker
-              e-ng-options="g.id as g.text for g in groups">
-          {{ showGroup(provider) }}
-        </span>
+   <td>
+       <switch color="primary" ng-model="provider.active" ng-disabled="true"></switch>
     </td>
   </tr>
 </table>
+
