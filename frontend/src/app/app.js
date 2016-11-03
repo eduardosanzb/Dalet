@@ -47,13 +47,18 @@
       }
       //$location.url('auth.html')
       //$window.location.href="/auth.html"
-      // $rootScope.$on('$stateChangeStart', function(event, next) {
-      //   Auth.isLoggedIn(function(loggedIn) {
-      //     if(next.authenticate && !loggedIn) {
-      //       $window.location.href="/auth.html"
-      //     }
-      //   });
-      // });
+      $rootScope.$on('$stateChangeStart', function(event, next) {
+        if(!$cookies.get('token')){
+          console.log('redirecting to auth');
+          $window.location.assign('auth.html')
+          //$location.url('auth.html');
+        }
+        Auth.isLoggedIn(function(loggedIn) {
+          if(next.authenticate && !loggedIn) {
+            $window.location.href="/auth.html"
+          }
+        });
+      });
     }
 
      /** @ngInject */
