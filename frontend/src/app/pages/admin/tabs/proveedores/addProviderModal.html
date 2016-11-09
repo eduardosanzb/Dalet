@@ -3,17 +3,17 @@
     <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
       <em class="ion-ios-close-empty sn-link-close"></em>
     </button>
-    <h4 class="modal-title" id="myModalLabel">Agregar usuario</h4>
+    <h4 class="modal-title" id="myModalLabel">{{ title }}</h4>
   </div>
   <div class="modal-body">
-    <form name="form" ng-submit="register(form)" novalidate>
+    <form name="form" novalidate>
       <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,'has-error': form.name.$invalid && submitted }">
         <label for="name">Nombre</label>
         <input type="text" class="form-control" name="name" ng-model="provider.name" 
                 placeholder="Nombre" required>
-        <p class="has-error" ng-show="form.name.$error.required && submitted">
+        <label class="has-error" ng-show="form.name.$error.required && submitted">
             Este campo es requerido
-          </p>
+          </label>
       </div>
        <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,'has-error': form.name.$invalid && submitted }">
         <label for="name">Requestor id</label>
@@ -41,29 +41,41 @@
       </div>
       <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,'has-error': form.name.$invalid && submitted }">
         <label for="name">Requestor e-mail</label>
-        <input type="text" class="form-control" name="requestor_email" ng-model="provider.requestor_email" 
-                placeholder="Requestor e-mail" required>
+        <input type="email" class="form-control" name="requestor_email" ng-model="provider.requestor_email" 
+                placeholder="requestor@domain.com" required>
         <p class="has-error" ng-show="form.requestor_email.$error.required && submitted">
             Este campo es requerido
+          </p>
+          <p class="has-error" ng-show="!form.requestor_email.$valid && !form.requestor_email.$error.required">
+            Correo inválido
           </p>
       </div>
       <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,'has-error': form.name.$invalid && submitted }">
         <label for="name">Report release</label>
         <input type="text" class="form-control" name="report_release" ng-model="provider.report_release" 
                 placeholder="Report release" required>
-        <p class="has-error" ng-show="form.nreport_release.$error.required && submitted">
+        <p class="has-error" ng-show="form.report_release.$error.required && submitted">
             Este campo es requerido
           </p>
       </div>
       <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,'has-error': form.name.$invalid && submitted }">
         <label for="name">Url</label>
-        <input type="text" class="form-control" name="url" ng-model="provider.url" 
-                placeholder="Url" required>
+        <input type="url" class="form-control" name="url"  ng-model="provider.url" 
+                placeholder="http://www.example.com" required>
         <p class="has-error" ng-show="form.url.$error.required && submitted">
             Este campo es requerido
           </p>
+          <p class="has-error" ng-show="!form.url.$valid && !form.url.$error.required">
+            Url inválida
+          </p>
       </div>
-    </form>
+    
+    <input
+        bs-switch
+        ng-model="provider.active"
+        type="checkbox"
+        switch-on-text="Activo"
+        switch-off-text="Inactivo">
   </div>
   <div class="modal-footer">
     <p class="has-error" ng-show="error && submitted">
@@ -72,4 +84,5 @@
     <button type="button" class="btn btn-danger" ng-click="$dismiss()">Cancelar</button>
     <button type="button" class="btn btn-primary" ng-click="register(form)">Guardar</button>
   </div>
+  </form>
 </div>
