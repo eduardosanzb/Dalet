@@ -39,7 +39,7 @@
         {{ provider.report_release }}
    </td>
    <td>
-        {{ provider.url }} 
+        {{ provider.url | cut:true:10:'...'}} 
    </td>
    <td style="text-align:center; vertical-align:middle;">
         <i class = "icon icon ion-checkmark" 
