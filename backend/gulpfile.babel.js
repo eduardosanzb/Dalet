@@ -465,15 +465,8 @@ gulp.task('build', cb => {
             'clean:dist',
             'clean:tmp'
         ],
-        //'inject',
         'transpile:server',
         [
-            //'build:images'
-        ],
-        [
-            //'copy:extras',
-            //'copy:assets',
-            //'copy:fonts:dist',
             'copy:server',
             'webpack:dist'
         ],

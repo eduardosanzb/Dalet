@@ -4,7 +4,7 @@
       .controller('ProveedoresController', ProveedoresController);
 
       /** @ngInject */ 
-      function ProveedoresController($scope,Providers,$uibModal){
+      function ProveedoresController($scope, Provider, $uibModal){
         var vm = this;
 
         getProviders();
