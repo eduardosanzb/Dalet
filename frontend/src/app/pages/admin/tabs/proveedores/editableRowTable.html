@@ -13,14 +13,15 @@
     <td>Requestor e-mail</td>
     <td>Report release</td>
     <td>Url</td>
-    <td>Estatus</td>
+    <td>Activo</td>
+    <td></td>
   </tr>
   <tr ng-repeat="provider in vm.providers" class="editable-row">
     <td>
         {{$index}}
     </td>
     <td>
-          {{ provider.name || 'Vacío' }}
+          {{ provider.name }}
     </td>
     <td>
           {{ provider.requestor_id }}
@@ -38,10 +39,16 @@
         {{ provider.report_release }}
    </td>
    <td>
-        {{ provider.url }}
+        {{ provider.url }} 
    </td>
-   <td>
-       <switch color="primary" ng-model="provider.active" ng-disabled="true"></switch>
+   <td style="text-align:center; vertical-align:middle;">
+        <i class = "icon icon ion-checkmark" 
+        style="font-size: 25px; color: #E91E63;" ng-show="provider.active"></i>
+        <i class = "icon icon ion-close" 
+        style="font-size: 25px; color: #E91E63;" ng-hide="provider.active"></i>
+    </td>
+    <td>
+      <button class="btn btn-primary editable-table-button btn-xs" ng-click="vm.editProvider(provider)">Editar</button>
     </td>
   </tr>
 </table>

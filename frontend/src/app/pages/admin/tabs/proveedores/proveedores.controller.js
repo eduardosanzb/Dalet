@@ -14,9 +14,8 @@
 
 
          //Binding functions to scope
-        vm.addProvider = addProvider
-        vm.removeProvider = removeProvider
-       
+        vm.addProvider = addProvider;
+        vm.editProvider = editProvider;
 
         function getProviders(){
           Providers.query().$promise.then(function(providers){
@@ -40,36 +39,54 @@
           })
         }
 
-        function removeProvider(){
-
+        function editProvider(provider){
+          console.log('Editing provider');
+          $uibModal.open({
+            animation: true,
+            templateUrl: 'app/pages/admin/tabs/proveedores/addProviderModal.html',
+            size: 'md',
+            controller: EditModalController,
+            resolve:{
+               editProvider: function () {
+                return provider;
+              }
+            }
+          })
         }
 
-        
 
-        $scope.$watch('vm.providers', function(value, oldValue) {
-          // insert awesome code here
-          /*value.$save().then(function(response){
-            console.log(response)
-          });*/
-          if(value)
-            value[0].$save();
-        
-        }, true); 
-
-      
         /** @ngInject */ 
         function ModalController(Providers, $scope, $uibModalInstance, $rootScope){
-          //console.log($scope.$parent);
-          $scope.user ={}
+          $scope.provider ={}
           $scope.submitted = false
+          $scope.provider.active = true;
+          $scope.title = "Agregar proveedor";
           $scope.register = function(form){
             $scope.submitted = true;
-            $scope.provider.active = true;
-            Providers.save($scope.provider, function(provider, putResponseHeaders) {
-              console.log("se guardo: " + provider);
-              $uibModalInstance.dismiss();
-              $rootScope.$broadcast('Provider Added');
-            });
+            if(form.$valid){
+              Providers.save($scope.provider, function(provider, putResponseHeaders) {
+                console.log("se guardo: " + provider);
+                $uibModalInstance.dismiss();
+                $rootScope.$broadcast('Provider Added');
+              });
+            }
+          }
+        }
+
+         /** @ngInject */ 
+        function EditModalController(Providers, $scope, $uibModalInstance, $rootScope, editProvider){
+          $scope.submitted = false
+          $scope.provider = editProvider;
+          $scope.title = "Editar proveedor";
+          $scope.register = function(form){
+            $scope.submitted = true;
+            if(form.$valid){
+              Providers.save($scope.provider, function(provider, putResponseHeaders) {
+                console.log("se guardo: " + provider);
+                $uibModalInstance.dismiss();
+                $rootScope.$broadcast('Provider Added');
+              });
+            }
           }
         }
 

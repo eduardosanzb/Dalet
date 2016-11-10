@@ -15,7 +15,7 @@
     'angular-progress-button-styles',
     'LocalStorageModule',
     'ngCookies',
-
+    'frapontillo.bootstrap-switch',
     'BlurAdmin.theme',
     'BlurAdmin.pages',
     
