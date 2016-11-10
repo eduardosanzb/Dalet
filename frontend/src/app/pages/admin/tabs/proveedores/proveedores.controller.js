@@ -18,7 +18,7 @@
         vm.editProvider = editProvider;
 
         function getProviders(){
-          Providers.query().$promise.then(function(providers){
+          Provider.query().$promise.then(function(providers){
             console.log(providers);
             vm.providers = providers;
           })  
@@ -47,7 +47,7 @@
             size: 'md',
             controller: EditModalController,
             resolve:{
-               editProvider: function () {
+               data: function () {
                 return provider;
               },
               items: function () {
@@ -59,7 +59,7 @@
 
 
         /** @ngInject */ 
-        function ModalController(Providers, $scope, $uibModalInstance, $rootScope, items){
+        function ModalController(Provider, $scope, $uibModalInstance, $rootScope, items){
           $scope.provider ={}
           $scope.submitted = false
           $scope.provider.active = true;
@@ -75,7 +75,7 @@
                   }
               }
                if(!exists){
-                   Providers.save($scope.provider, function(provider, putResponseHeaders) {
+                   Provider.save($scope.provider, function(provider, putResponseHeaders) {
                      console.log("se guardo: " + provider);
                     $uibModalInstance.dismiss();
                     $rootScope.$broadcast('Provider Added');
@@ -87,10 +87,10 @@
         }
 
          /** @ngInject */ 
-        function EditModalController(Providers, $scope, $uibModalInstance, $rootScope, editProvider, items){
-          var storedName = editProvider.name;
+        function EditModalController(Provider, $scope, $uibModalInstance, $rootScope, data, items){
+          var storedName = data.name;
           $scope.submitted = false
-          $scope.provider = angular.copy(editProvider);
+          $scope.provider = angular.copy(data);
           $scope.title = "Editar proveedor";
           $scope.register = function(form){
             $scope.submitted = true;
@@ -104,7 +104,7 @@
                   }
               }
                if(!exists){
-                   Providers.save($scope.provider, function(provider, putResponseHeaders) {
+                   Provider.save($scope.provider, function(provider, putResponseHeaders) {
                      console.log("se guardo: " + provider);
                     $uibModalInstance.dismiss();
                     $rootScope.$broadcast('Provider Added');
