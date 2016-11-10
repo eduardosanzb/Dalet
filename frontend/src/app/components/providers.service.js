@@ -1,7 +1,7 @@
 (function(){
   'use strict';
    angular.module('Dalet')
-    .factory('Providers', ProvidersService)
+    .factory('Provider', ProvidersService)
 
 
    /** @ngInject */ 
