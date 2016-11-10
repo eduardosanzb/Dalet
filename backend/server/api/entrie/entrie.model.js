@@ -3,9 +3,8 @@
 import mongoose from 'mongoose';
 
 var EntrieSchema = new mongoose.Schema({
-  name: String,
-  info: String,
-  active: Boolean
+  day: Date,
+  visits: Number
 });
 
 export default mongoose.model('Entrie', EntrieSchema);
