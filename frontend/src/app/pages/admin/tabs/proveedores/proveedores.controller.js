@@ -49,6 +49,9 @@
             resolve:{
                editProvider: function () {
                 return provider;
+              },
+              items: function () {
+                return vm.providers;
               }
             }
           })
@@ -56,7 +59,7 @@
 
 
         /** @ngInject */ 
-        function ModalController(Providers, $scope, $uibModalInstance, $rootScope){
+        function ModalController(Providers, $scope, $uibModalInstance, $rootScope, items){
           $scope.provider ={}
           $scope.submitted = false
           $scope.provider.active = true;
@@ -64,28 +67,49 @@
           $scope.register = function(form){
             $scope.submitted = true;
             if(form.$valid){
-              Providers.save($scope.provider, function(provider, putResponseHeaders) {
-                console.log("se guardo: " + provider);
-                $uibModalInstance.dismiss();
-                $rootScope.$broadcast('Provider Added');
-              });
+              var exists = false;
+              for(var i=0; i < items.length; i++ ){
+                  if(items[i].name === form.name.$modelValue){
+                    $scope.error = "El proveedor ya existe";
+                    exists = true;
+                  }
+              }
+               if(!exists){
+                   Providers.save($scope.provider, function(provider, putResponseHeaders) {
+                     console.log("se guardo: " + provider);
+                    $uibModalInstance.dismiss();
+                    $rootScope.$broadcast('Provider Added');
+                  });
+              }
             }
+            
           }
         }
 
          /** @ngInject */ 
-        function EditModalController(Providers, $scope, $uibModalInstance, $rootScope, editProvider){
+        function EditModalController(Providers, $scope, $uibModalInstance, $rootScope, editProvider, items){
+          var storedName = editProvider.name;
           $scope.submitted = false
-          $scope.provider = editProvider;
+          $scope.provider = angular.copy(editProvider);
           $scope.title = "Editar proveedor";
           $scope.register = function(form){
             $scope.submitted = true;
+            $scope.error = false;
             if(form.$valid){
-              Providers.save($scope.provider, function(provider, putResponseHeaders) {
-                console.log("se guardo: " + provider);
-                $uibModalInstance.dismiss();
-                $rootScope.$broadcast('Provider Added');
-              });
+              var exists = false;
+              for(var i=0; i < items.length; i++ ){
+                  if(items[i].name === $scope.provider.name && $scope.provider.name !== storedName){
+                    $scope.error = "El proveedor ya existe";
+                    exists = true;
+                  }
+              }
+               if(!exists){
+                   Providers.save($scope.provider, function(provider, putResponseHeaders) {
+                     console.log("se guardo: " + provider);
+                    $uibModalInstance.dismiss();
+                    $rootScope.$broadcast('Provider Added');
+                  });
+              }
             }
           }
         }
