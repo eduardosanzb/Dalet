@@ -116,7 +116,7 @@
 
           return $q.when(value)
             .then(function(user){
-              console.log(user)
+              //console.log(user)
               safeCb(callback)(user);
               return user;
             }, function(){
