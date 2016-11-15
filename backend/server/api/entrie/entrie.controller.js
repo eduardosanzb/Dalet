@@ -78,6 +78,18 @@ export function show(req, res) {
     .catch(handleError(res));
 }
 
+// gets a collection of entries in a ertain month
+
+export function getEntries(req, res){
+  return Entrie.find(req.query)
+    .where('start')
+    .gt(req.params.param1)
+    .lt(req.params.param2)
+    .exec()
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
 // Creates a new Entrie in the DB
 export function create(req, res) {
   return Entrie.create(req.body)

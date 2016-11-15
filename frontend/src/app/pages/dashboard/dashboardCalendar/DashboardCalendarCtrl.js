@@ -40,9 +40,11 @@
       events: [
         //TODO: put the number of daily users
         {
-          title: '# usuarios: 123',
-          start: '2016-09-30',
-          color: dashboardColors.blueStone
+          '_id': '12345',
+          'start': '2016-09-30',
+          'title': 'holaaaa',
+          'color': '#C2185B',
+          '__v': '0'
         },
         {
           title: '# usuarios: 123',
