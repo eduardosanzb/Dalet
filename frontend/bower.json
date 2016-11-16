@@ -59,7 +59,8 @@
     "angular-local-storage": "^0.5.2",
     "angular-bootstrap-switch": "^0.5.1",
     "fullcalendar": "^3.0.1",
-    "angular-i18n": "^1.5.8"
+    "angular-i18n": "^1.5.8",
+    "ng-facebook": "^0.1.6"
   },
   "resolutions": {
     "angular": "~1.4.8"
