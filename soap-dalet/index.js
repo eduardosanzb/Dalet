@@ -3,80 +3,71 @@ import mongoose from 'moongoose'
 import soap from 'soap'
 import http from 'http'
 import xml2js from 'xml2js'
+import fs from 'fs'
 
 var parseString = xml2js.parseString
  //parseString = parseString.parseString
 
-var url = 'http://sushi.ebscohost.com/R4/SushiService.svc'
+var url = 'http://sushi.ebscohost.com/R4/SushiService.svc?wsdl'
 var url2 = 'http://sushi.ebscohost.com/r4/SushiService.svc?singleWsdl'
-/*
-  Requestor ID
-9973682b-a09d-4cb0-b7ba-da770d3dde93
- 
-Customer ID
-s7391400
- 
-Customer Name
-Su nombre
- 
-Requestor Email
-Su correo electrónico
- 
-Report Name
-El reporte COUNTER solicitado(Más información aquí:   https://help.ebsco.com/interfaces/EBSCOadmin/Admin_User_Guide/EBSCOhost_SUSHI_Web_Service_FAQs )
- 
-Report Release
-La versión del reporte (por ejemplo, 4)
- 
-From Date
-La fecha del empiezo del informe en formato AAAA-MM-DD, el día debe ser el primer día del mes
- 
-To Date
-La fecha del fin del reporte en formato AAAA-MM-DD, el día debe ser el último día del mes
- 
-Los datos del EIT Webservice:
- 
-Profile ID:  eitws
- 
-CustID.GroupID.ProfileID:  s7391400.main.eitws
- 
-Profile Password:  ebs249
 
-*/
-var args = {
-  Requestor:{
-    id:'9973682b-a09d-4cb0-b7ba-da770d3dde93',
-    email:'eduardosanzb@gmail.com',
-    name:'Eduardo'
-  },
-  CustomerReference:{
-    id:'s7391400',
-    name:'UPAEP'
-  },
-  ReportDefinition:{
-    name:'COUNTER',
-    release:4,  
-  },
-  form_date:'2016-02-01',
-  to_date:'2016-03-31'
+var arrayToSend= 
+{   'attributes' : {'Created':"2016-06-10", "ID":"345"}, 
+            'ns1:Requestor':  [
+                    {
+                      'ns1:ID' : { $value: '9973682b-a09d-4cb0-b7ba-da770d3dde93' },
+                      'ns1:Name' : { $value: 'UPAEP - UNIVERSIDAD POPULAR AUTONOMA DEL ESTADO DE PUEBLA' },
+                      'ns1:Email' : { $value: 'eduardosanzb@gmail.com' }
+                    }
+                ],
+            'ns1:CustomerReference':  [
+                    {
+                      'ns1:ID' : { $value: 's7391400' },
+                      'ns1:Name' : { $value: 'eduarod' }
+                    }
+                ],
+            'ns1:ReportDefinition':  [
+                    { 'attributes' : {'Release':"4", "Name":"DB1"},
+                      'ns1:Filters': [
+                        { 'ns1:UsageDateRange':[{
+                            'ns1:Begin':{$value: '2016-01-01'},
+                            'ns1:End':{$value: '2016-03-31'}
+                          }]
+                        }
+                        ]
+                    }
+                ]
+        }
+
+
+    
+var options = {
+  disableCache: true
+  //forceSoap12Headers: true
 }
 
-let options = {
-  disableCache:true
-}
-soap.createClient(url2, options, (err, client) => {
+soap.createClient(url, options, (err, client) => {
   if(err){
     console.error(err);
     return;
   }
-  
-  client.GetReport(args,(err, result)=>{
-    if (err){ 
-      console.error(err)
-      return;
-    }
-    console.log(result);
+  //I just detected taht the problem is about the headers q1, q2 and stuff like that!!! =)
+  client.wsdl.definitions.xmlns.q1 = "http://www.niso.org/schemas/ns1hi/counter"
+  client.wsdl.definitions.xmlns.ns1 = "http://www.niso.org/schemas/sushi"
+  client.wsdl.xmlnsInEnvelope = client.wsdl._xmlnsMap()
+
+  //console.log( client.describe().SushiService.BasicHttpBinding_ISushiService.GetReport.input);
+  client.GetReport(arrayToSend, (err, result, raw, soapHeader) =>{
+    if(err) console.log(`The error: ${err}`);
+    console.log(result.Report);
+    fs.writeFile('report.json', JSON.stringify(result.Report, null, 2), function(err){
+      if(err) return console.log(err);
+      console.log("The report was saved");
+    })
+    //console.log(raw);
   })
+  console.log(client.lastRequest);
+
 })
 
 // http.get(url, (response) => {
