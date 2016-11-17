@@ -21,19 +21,19 @@
         {{$index}}
     </td>
     <td>
-          {{ provider.name }}
+          {{ provider.name | cut:true:15:'...'}}
     </td>
     <td>
-          {{ provider.requestor_id }}
+          {{ provider.requestor_id | cut:true:15:'...'}}
     </td>
     <td>
-          {{ provider.customer_id }}
+          {{ provider.customer_id | cut:true:15:'...'}}
     </td>
    <td>
-        {{ provider.customer_name }}
+        {{ provider.customer_name | cut:true:15:'...'}}
    </td>
    <td>
-        {{ provider.requestor_email }}
+        {{ provider.requestor_email | cut:true:15:'...'}}
    </td>
    <td>
         {{ provider.report_release }}
