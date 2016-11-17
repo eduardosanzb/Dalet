@@ -110,12 +110,13 @@ let args = {
   "url" : "http://sushi.ebscohost.com/R4/SushiService.svc?wsdl",
   "__v" : 0
 }
-var reports = ['JR1', 'JR5', 'DB1', 'DB2', 'PR1', 'BR1', 'BR2', 'BR3', 'CR1', 'CR2']
+var reports = ['JR1', 'JR5', 'DB1', 'DB2', 'PR1', 'BR1', 'BR2', 'BR3']
   .map(x => generateReport(args,x) )
+
 function generateReport(args, reportNumber){
-  //MOdifyig variables
+  //Modifyig variables
   args.reportType = reportNumber
-  let requestObject = createArrayToSend(args, '2016-01-01', '2016-03-31')
+  let requestObject = createArrayToSend(args, '2016-01-01', '2016-10-31')
   var options = { disableCache: true }
 
   //creating the soap client
@@ -127,9 +128,9 @@ function generateReport(args, reportNumber){
     client.wsdl.xmlnsInEnvelope = client.wsdl._xmlnsMap()
 
     client.GetReport(requestObject, (err, result, raw, soapHeader) =>{
-      if(err) console.log(`The error Getting report: ${err}`);
-      console.log(result);
-      fs.writeFile(`reports/${reportNumber}.json`,
+      if(err) return console.log(`The error Getting report: ${err}`);
+      //console.log(result);
+      fs.writeFile(`reports2/${reportNumber}.json`,
                    JSON.stringify(result, null, 2),
                    err => {
                   if(err) return console.log(err);
