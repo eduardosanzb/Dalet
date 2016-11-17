@@ -29,6 +29,12 @@
             active: true,
             template: 'app/pages/admin/tabs/proveedores/proveedores.tab.html',
             controller: 'ProveedoresController'
+          },
+          {
+            heading: 'Facebook',
+            active: true,
+            template: 'app/pages/admin/tabs/facebook/facebook.tab.html',
+            controller: 'FacebookController'
           }
         ]
         return {

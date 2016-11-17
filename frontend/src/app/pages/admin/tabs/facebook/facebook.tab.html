@@ -1,0 +1,16 @@
+<div ng-controller="FacebookController as vm">
+	<div class="container">
+            <h4>
+                Fecha de expiración: {{ vm.expires_in | date: 'medium' : 'UTC -6' }}
+            </h4>
+            <h4>
+            	Administrador de página: {{ vm.name }}
+            </h4>
+            <button type="button" ng-click="vm.login()" ng-hide="vm.isLoggedIn" class="btn btn-primary">
+                Login
+            </button>
+     </div>
+     <div id="fb-root">
+     </div>				
+</div>
+			

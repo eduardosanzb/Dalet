@@ -16,6 +16,7 @@
     'LocalStorageModule',
     'ngCookies',
     'frapontillo.bootstrap-switch',
+    'ngFacebook',
     'BlurAdmin.theme',
     'BlurAdmin.pages',
     
@@ -23,6 +24,7 @@
   ])
   .run(runConfig)
   .config(routeConfig)
+  .config(facebookConfig)
   .factory('authInterceptor', authInterceptor);
 
      /** @ngInject */
@@ -66,6 +68,11 @@
       //$urlRouterProvider.otherwise('/login');
       
       $httpProvider.interceptors.push('authInterceptor')
+    }
+
+    function facebookConfig($facebookProvider) {
+      $facebookProvider.setAppId('1854336038136692');
+      $facebookProvider.setPermissions("manage_pages");
     }
 
     /** @ngInject */ 
