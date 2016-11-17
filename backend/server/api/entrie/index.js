@@ -6,9 +6,9 @@ var controller = require('./entrie.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
-router.get('/:id', controller.show);
+router.get('/:param1/:param2', controller.getEntries);
 router.post('/', controller.create);
-router.put('/:id', controller.upsert);
+router.post('/:id', controller.upsert);
 router.patch('/:id', controller.patch);
 router.delete('/:id', controller.destroy);
 

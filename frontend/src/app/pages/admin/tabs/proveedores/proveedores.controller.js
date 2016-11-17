@@ -19,6 +19,7 @@
 
         function getProviders(){
           Provider.query().$promise.then(function(providers){
+            console.log("providers");
             console.log(providers);
             vm.providers = providers;
           })  
