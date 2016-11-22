@@ -1,0 +1,1166 @@
+{
+  "attributes": {
+    "Created": "2016-11-19T19:57:20.337577-05:00",
+    "ID": "345"
+  },
+  "Requestor": {
+    "ID": "9973682b-a09d-4cb0-b7ba-da770d3dde93",
+    "Name": "UPAEP - UNIVERSIDAD POPULAR AUTONOMA DEL ESTADO DE PUEBLA",
+    "Email": "eduardo.sanchez@upaep.edu.mx"
+  },
+  "CustomerReference": {
+    "ID": "s7391400",
+    "Name": "UPAEP - UNIVERSIDAD POPULAR AUTONOMA DEL ESTADO DE PUEBLA"
+  },
+  "ReportDefinition": {
+    "attributes": {
+      "Name": "BR2",
+      "Release": "4"
+    },
+    "Filters": {
+      "UsageDateRange": {
+        "Begin": "2016-10-01",
+        "End": "2016-10-31"
+      }
+    }
+  },
+  "Report": {
+    "Report": {
+      "attributes": {
+        "Created": "2016-11-20T00:57:34",
+        "ID": "BR2",
+        "Version": "4",
+        "Name": "BR2"
+      },
+      "Vendor": {
+        "Name": "EBSCO Information Services",
+        "ID": "EBSCO",
+        "Contact": {
+          "E-mail": "support@ebsco.com"
+        }
+      },
+      "Customer": {
+        "Name": "UPAEP - UNIVERSIDAD POPULAR AUTONOMA DEL ESTADO DE PUEBLA",
+        "ID": "UPAEP - UNIVERSIDAD POPULAR AUTONOMA DEL ESTADO DE PUEBLA",
+        "ReportItems": [
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "201701"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Marketline",
+            "ItemName": "ABC supply SWOT analysis",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "435954"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "A & C Black Publishers Ltd",
+            "ItemName": "Bloomsbury Business Library - Management Library",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_html",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "1252795"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Marketline",
+            "ItemName": "Boeing Case Study: The 787 Dreamliner",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "160224"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Marketline",
+            "ItemName": "Boeing Company SWOT Analysis",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "499348"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "OECD Publications Centre",
+            "ItemName": "CELE Exchange. Centre for Effective Learning Environments",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISSN",
+                "Value": "0277-1527"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "196345"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Central Intelligence Agency",
+            "ItemName": "CIA World Fact Book",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISSN",
+                "Value": "1515-1883"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "206597"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Red Universidad Nacional de La Pampa",
+            "ItemName": "Ciencia Veterinaria",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-7876-5015-5"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "576175"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Columbia University Press",
+            "ItemName": "Columbia Electronic Encyclopedia, 6th Edition",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "16"
+                },
+                {
+                  "MetricType": "ft_html",
+                  "Count": "16"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "4437264"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Marketline",
+            "ItemName": "Company Profiles: A-M Systems, Inc.",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-7890-2211-0"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "299000"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Haworth Press",
+            "ItemName": "Concise Encyclopedia of Advertising",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "160417"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Marketline",
+            "ItemName": "Deutsche Telekom AG SWOT Analysis",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISSN",
+                "Value": "1668-4575"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "340045"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Universidad del CEMA",
+            "ItemName": "Documentos de Trabajo",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemPlatform": "EBSCOhost",
+            "ItemName": "DynaMed",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "91"
+                },
+                {
+                  "MetricType": "ft_html",
+                  "Count": "91"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "195169"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Marketline",
+            "ItemName": "EBSCO Industries, Inc. SWOT Analysis",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "5"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "5"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "4513011"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "CQ-Roll Call, Inc.",
+            "ItemName": "eMedia",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_html",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISSN",
+                "Value": "1405-2210"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "152748"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Red Estudios sobre las Culturas Contemporáneas",
+            "ItemName": "Estudios Sobre las Culturas Contemporáneas",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "3075702"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Marketline",
+            "ItemName": "G-III Apparel Group, Ltd SWOT Analysis",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-85418-243-2"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "301860"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Thorogood Publishing Ltd.",
+            "ItemName": "Gurus on Marketing",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemPlatform": "EBSCOhost",
+            "ItemName": "Harvard Business Review Digital Articles",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "5"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "5"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "439517"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "INSEAD",
+            "ItemName": "INSEAD Working Papers Collection",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemPlatform": "EBSCOhost",
+            "ItemName": "International Business Times",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_html",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemPlatform": "EBSCOhost",
+            "ItemName": "Micromedex",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_html",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISSN",
+                "Value": "0149-2195"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "49408"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Massachusetts Medical Society",
+            "ItemName": "Morbidity and Mortality Weekly Report: MMWR",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "4"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "4"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "154540"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Oxford University Press",
+            "ItemName": "Oxford Textbook of Marketing",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_html",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-60197-064-0"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "440666"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "American Productivity & Quality Center (APQC)",
+            "ItemName": "Planning, Implementing, & Evaluating E-Learning: Booz Allen Hamilton Case Study",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemPlatform": "EBSCOhost",
+            "ItemName": "PR Newswire Europe",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_html",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemPlatform": "EBSCOhost",
+            "ItemName": "PR Newswire Europe (Spanish)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "6"
+                },
+                {
+                  "MetricType": "ft_html",
+                  "Count": "6"
+                }
+              ]
+            }
+          },
+          {
+            "ItemPlatform": "EBSCOhost",
+            "ItemName": "Research Starter Topics",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_html",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "1032826"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemName": "South Dakota Kids Count Factbook: State & County Profiles of Child Well-Being",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "10"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "10"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "147757"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Marketline",
+            "ItemName": "Spirits Industry Profile: France",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISSN",
+                "Value": "1460-8359"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "500953"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Richard K. Miller & Associates (RKMA)",
+            "ItemName": "Sports Marketing",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-87-7681-643-8"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "193017"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "BookBooN.com",
+            "ItemName": "Strategic Marketing",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "4"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "4"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISSN",
+                "Value": "0731-0994"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "126216"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "The Transcription Company",
+            "ItemName": "This Week (ABC)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_html",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "1352785"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "C. Barnes & Co.",
+            "ItemName": "United States Aircraft Manufacturing Industry Capital & Expenses Report",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "783323"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "C. Barnes & Co.",
+            "ItemName": "United States Aircraft Manufacturing Industry Report",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "981705"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "C. Barnes & Co.",
+            "ItemName": "United States Product & Retail Outlook",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "3"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "3"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "569921"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "University of St. Gallen",
+            "ItemName": "University of St. Gallen, Business Dissertations",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "184600"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Marketline",
+            "ItemName": "Vought Aircraft Industries SWOT Analysis",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "192335"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Faculdade de Economia da Universidade do Porto",
+            "ItemName": "Working Papers (FEP) -- Universidade do Porto",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "981706"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "C. Barnes & Co.",
+            "ItemName": "World Industry & Market Outlook Report",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "attributes": {
+    "Created": "2016-11-19T19:57:20.3156492-05:00",
+    "ID": "345"
+  },
+  "Exception": {
+    "attributes": {
+      "Created": "2016-11-20T00:57:25.050206Z"
+    },
+    "Number": "3030",
+    "Severity": "Error",
+    "Message": "No Usage Available for Requested Dates"
+  },
+  "Requestor": {
+    "ID": "9973682b-a09d-4cb0-b7ba-da770d3dde93",
+    "Name": "UPAEP - UNIVERSIDAD POPULAR AUTONOMA DEL ESTADO DE PUEBLA",
+    "Email": "eduardo.sanchez@upaep.edu.mx"
+  },
+  "CustomerReference": {
+    "ID": "s7391400",
+    "Name": "UPAEP - UNIVERSIDAD POPULAR AUTONOMA DEL ESTADO DE PUEBLA"
+  },
+  "ReportDefinition": {
+    "attributes": {
+      "Name": "DB2",
+      "Release": "4"
+    },
+    "Filters": {
+      "UsageDateRange": {
+        "Begin": "2016-10-01",
+        "End": "2016-10-31"
+      }
+    }
+  }
+}

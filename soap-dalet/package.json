@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "babel": "^6.5.2",
+    "mongoose": "^4.6.8",
     "moongoose": "0.0.5",
     "soap": "^0.17.0",
     "xml2js": "^0.4.17"
