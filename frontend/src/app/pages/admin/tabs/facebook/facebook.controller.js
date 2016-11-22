@@ -4,8 +4,9 @@
       .controller('FacebookController', FacebookController);
 
       /** @ngInject */ 
-      function FacebookController($scope,$window,$facebook){
-        var vm = this;      
+      function FacebookController($scope,$window,$facebook,$http){
+        var vm = this;  
+        
       //     $window.fbAsyncInit = function() {
 		    //       FB.init({ 
 		    //         appId: '1854336038136692',
@@ -47,9 +48,16 @@
 					  console.log(vm.auth_token);
 					  $facebook.api(vm.user_id).then(function(response){
 					  	vm.name = response.name;
-					  	 $facebook.api("oauth/access_token?grant_type=fb_exchange_token&client_id=1854336038136692&client_secret=d67875162e89b686fe6ecbac6ef08ff0&fb_exchange_token=" + vm.auth_token).then(function(response){
-						  	console.log(response);
-						  });
+					  	//  $facebook.api("oauth/access_token?grant_type=fb_exchange_token&client_id=1854336038136692&client_secret=d67875162e89b686fe6ecbac6ef08ff0&fb_exchange_token=" + vm.auth_token).then(function(response){
+						  // 	console.log(response);
+						  // });
+					  	 $http({
+					  	 	url: "https://graph.facebook.com/v2.8/oauth/access_token?grant_type=fb_exchange_token&client_id=1854336038136692&client_secret=d67875162e89b686fe6ecbac6ef08ff0&fb_exchange_token=" + vm.auth_token,
+					  	 	 method: "GET",
+					  	 	 headers: {}
+					  	}).then(function(response){
+					  	 	console.log(response);
+					  	 });
 						  
 						  	console.log("oauth/access_token?grant_type=fb_exchange_token&client_id=1854336038136692&client_secret=d67875162e89b686fe6ecbac6ef08ff0&fb_exchange_token=" + vm.auth_token);
 					  });
