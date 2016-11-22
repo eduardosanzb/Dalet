@@ -48,7 +48,7 @@ User.find({}).remove()
       password: 'test'
     }, {
       provider: 'local',
-      role: 'admin',
+      role: 'superadmin',
       name: 'Admin',
       email: 'admin@example.com',
       password: 'superadmin'

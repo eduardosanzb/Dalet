@@ -1,0 +1,12 @@
+<div class="col-md-12 col-lg-4">
+  <div ba-panel ba-panel-title="Proveedores" ba-panel-class="light-text">
+      <div class="form-group">
+        <select class="form-control selectpicker with-search" 
+                data-live-search="true" title="Proveedores" selectpicker
+                ng-model="vm.data.selectedOption"
+                ng-options="option.name for option in vm.data.availableOptions track by option._id"
+                ng-change="vm.getStats(vm.data.selectedOption)">
+        </select>
+      </div>
+  </div>  
+</div>

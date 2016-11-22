@@ -12,6 +12,9 @@
 
 import jsonpatch from 'fast-json-patch';
 import Providers from './providers.model';
+import Statistics from './statsProvider.model'
+import mongoose from 'mongoose';
+
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -69,6 +72,18 @@ export function index(req, res) {
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
+
+// Gets the stats of the provider
+  export function stats(req, res){
+    
+    var id = mongoose.Types.ObjectId(req.params.id)
+    console.log(id);
+    return Statistics
+        .find({_provider:req.params.id})
+        .exec()
+        .then(respondWithResult(res))
+        .catch(handleError(res))
+  }
 
 // Gets a single Providers from the DB
 export function show(req, res) {

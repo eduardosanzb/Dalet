@@ -1,0 +1,54 @@
+<div class="container widgets" ng-controller="AreasController as vm">
+  <div class="row">
+    <div class="col-md-12">
+      <div ba-panel ba-panel-class="with-scroll">
+       <form  name="myForm">
+       	 <div class="form-group">
+       	 <label for="file">Subir excel</label>
+		  <input type="file" ngf-select ng-model="file" name="file"    
+             accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"  required
+             ngf-model-invalid="errorFile">
+          </div>
+          <button ng-disabled="!myForm.$valid" 
+              ng-click="vm.uploadFile(file)">Subir</button>
+		</form>
+		<h1>Carreras</h1>
+		<table class="table table-bordered table-hover table-condensed">
+		  <tr>
+		    <td></td>
+		    <td>Título</td>
+		    <td>Autor</td>
+		    <td>Editorial</td>
+		    <td>Carrera</td>
+		    <td>Decanato</td>
+		    <td>Materia</td>
+		  </tr>
+		  <tr ng-repeat="book in vm.books" class="editable-row">
+		    <td>
+		        {{$index}}
+		    </td>
+		    <td>
+		          {{ book.TITULO}}
+		    </td>
+		    <td>
+		          {{ book.AUTOR }}
+		    </td>
+		    <td>
+		          {{ book.EDITORIAL}}
+		    </td>
+		    <td>
+		          {{ book["Nombre Carrera"]}}
+		    </td>
+		   <td>
+		        {{ book.DECANATO}}
+		   </td>
+		   <td>
+		        {{ book.NOMBRE_MATERIA}}
+		   </td>
+
+		  </tr>
+		</table>
+      </div>
+    </div>
+  </div>
+</div>
