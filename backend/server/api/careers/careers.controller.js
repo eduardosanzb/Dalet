@@ -13,6 +13,8 @@
 import jsonpatch from 'fast-json-patch';
 import Careers from './careers.model';
 
+var node_xj = require("xls-to-json");
+
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function(entity) {
@@ -83,6 +85,23 @@ export function create(req, res) {
   return Careers.create(req.body)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
+}
+
+export function uploadFile(req,res){
+  Careers.remove({}, function(){
+      node_xj({
+        input: req.files.file.path,  // input xls 
+        output: null // output json  
+      }, function(err, result) {
+        if(err) {
+          console.error(err);
+        } else {
+          Careers.create(result)
+          .then(respondWithResult(res, 201))
+          .catch(handleError(res));
+          }
+      });
+  });
 }
 
 // Upserts the given Careers in the DB at the specified ID

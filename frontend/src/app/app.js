@@ -15,6 +15,7 @@
     'angular-progress-button-styles',
     'LocalStorageModule',
     'ngCookies',
+    'ngFileUpload',
     'frapontillo.bootstrap-switch',
     'ngFacebook',
     'BlurAdmin.theme',
