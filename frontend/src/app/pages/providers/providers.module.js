@@ -15,11 +15,11 @@
           url: '/providers',
           templateUrl: 'app/pages/providers/providers.html',
           title: 'Proveedores',
-          controller: 'MainController',
+          controller: 'ProvidersTabController',
           controllerAs: 'vm',
           authentication: true,
           sidebarMeta: {
-            icon: 'ion-gear-b',
+            icon: 'ion-briefcase',
             order: 0,
           },
         });

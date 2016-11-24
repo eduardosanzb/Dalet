@@ -1,5 +1,6 @@
-<div class="col-md-12 col-lg-4">
-  <div ba-panel ba-panel-title="Proveedores" ba-panel-class="light-text">
+<div>
+  <div class="col-md-12 col-lg-4">
+  <div ba-panel ba-panel-title="Proveedores" ba-panel-class="with-scroll light-text">
       <div class="form-group">
         <select class="form-control selectpicker with-search" 
                 data-live-search="true" title="Proveedores" selectpicker
@@ -9,4 +10,85 @@
         </select>
       </div>
   </div>  
+</div>
+<div cg-busy="{ promise:vm.promise, templateUrl:vm.templateUrl, backdrop:backdrop,
+                message:'Buscando Información',backdrop:true, minDuration:1000 }">
+<provider-pie-chart charts="vm.charts"></provider-pie-chart>
+<!-- <div class="row">
+    <div class="col-md-12">
+      <div ba-panel ba-panel-title="Pedidos por Libro de Proveedor" ba-panel-class="with-scroll">
+            <div class="horizontal-scroll">
+                <div class="form-group select-page-size-wrap ">
+                  <label>Libros por página
+                    <select class="form-control selectpicker show-tick" title="Libros por pagina" selectpicker
+                            ng-model="vm.smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                    </select>
+                  </label>
+                </div>
+                <table class="table" st-table="smartTableData">
+                  <thead>
+                  <tr class="sortable ">
+                    <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+                    <th st-sort="">Nombre</th>
+                    <th st-sort="">ft_total</th>
+                    <th st-sort="">ft_pdf</th>
+                  </tr>
+                  <tr>
+                    <th></th>
+                    <th><input st-search="firstName" placeholder="Search First Name" class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="lastName" placeholder="Search Last Name" class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="username" placeholder="Search Username" class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="email" placeholder="Search Email" class="input-sm form-control search-input" type="search"/>
+                    </th>
+                    <th><input st-search="age" placeholder="Search Age" class="input-sm form-control search-input" type="search"/>
+                    </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr ng-repeat="item in smartTableData">
+                    <td class="table-id">{{item.id}}</td>
+                    <td>{{item.firstName}}</td>
+                    <td>{{item.lastName}}</td>
+                    <td>{{item.username}}</td>
+                    <td><a class="email-link" ng-href="mailto:{{item.email}}">{{item.email}}</a></td>
+                    <td>{{item.age}}</td>
+                  </tr>
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <td colspan="6" class="text-center">
+                      <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+                    </td>
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
+      </div>
+    </div>
+</div> -->
+
+  <div class="col-xs-12 col-md-8">
+    <div ba-panel ba-panel-title="Bases de Datos Ebsco" ba-panel-class="with-scroll table-panel light-text">
+          <div class="vertical-scroll">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th class="table-id">#</th>
+                <th>Nombre</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="item in vm.statsOfProviders.db.stats[0].content">
+                <td class="table-id">{{$index}}</td>
+                <td>{{item.ItemName}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+  </div>
 </div>

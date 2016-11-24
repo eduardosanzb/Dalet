@@ -1,0 +1,390 @@
+{
+  "attributes": {
+    "Created": "2016-11-23T18:37:49.4101326-05:00",
+    "ID": "345"
+  },
+  "Requestor": {
+    "ID": "9973682b-a09d-4cb0-b7ba-da770d3dde93",
+    "Name": "UPAEP - UNIVERSIDAD POPULAR AUTONOMA DEL ESTADO DE PUEBLA",
+    "Email": "eduardo.sanchez@upaep.edu.mx"
+  },
+  "CustomerReference": {
+    "ID": "s7391400",
+    "Name": "UPAEP - UNIVERSIDAD POPULAR AUTONOMA DEL ESTADO DE PUEBLA"
+  },
+  "ReportDefinition": {
+    "attributes": {
+      "Name": "PR1",
+      "Release": "4"
+    },
+    "Filters": {
+      "UsageDateRange": {
+        "Begin": "2016-01-01",
+        "End": "2016-10-31"
+      }
+    }
+  },
+  "Report": {
+    "Report": {
+      "attributes": {
+        "Created": "2016-11-23T23:37:55",
+        "ID": "PR1",
+        "Version": "4",
+        "Name": "PR1"
+      },
+      "Vendor": {
+        "Name": "EBSCO Information Services",
+        "ID": "EBSCO",
+        "Contact": {
+          "E-mail": "support@ebsco.com"
+        }
+      },
+      "Customer": {
+        "Name": "UPAEP - UNIVERSIDAD POPULAR AUTONOMA DEL ESTADO DE PUEBLA",
+        "ID": "UPAEP - UNIVERSIDAD POPULAR AUTONOMA DEL ESTADO DE PUEBLA",
+        "ReportItems": {
+          "ItemPlatform": "EBSCOhost",
+          "ItemPublisher": "EBSCO",
+          "ItemName": "EBSCOhost",
+          "ItemDataType": "Platform",
+          "ItemPerformance": [
+            {
+              "Period": {
+                "Begin": "2016-02-01",
+                "End": "2016-02-29"
+              },
+              "Category": "Searches",
+              "Instance": [
+                {
+                  "MetricType": "search_fed",
+                  "Count": "19340"
+                },
+                {
+                  "MetricType": "search_reg",
+                  "Count": "10513"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-03-01",
+                "End": "2016-03-31"
+              },
+              "Category": "Searches",
+              "Instance": [
+                {
+                  "MetricType": "search_fed",
+                  "Count": "85412"
+                },
+                {
+                  "MetricType": "search_reg",
+                  "Count": "5908"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-04-01",
+                "End": "2016-04-30"
+              },
+              "Category": "Searches",
+              "Instance": [
+                {
+                  "MetricType": "search_fed",
+                  "Count": "79125"
+                },
+                {
+                  "MetricType": "search_reg",
+                  "Count": "4914"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-05-01",
+                "End": "2016-05-31"
+              },
+              "Category": "Searches",
+              "Instance": [
+                {
+                  "MetricType": "search_fed",
+                  "Count": "65590"
+                },
+                {
+                  "MetricType": "search_reg",
+                  "Count": "3686"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-06-01",
+                "End": "2016-06-30"
+              },
+              "Category": "Searches",
+              "Instance": [
+                {
+                  "MetricType": "search_fed",
+                  "Count": "121365"
+                },
+                {
+                  "MetricType": "search_reg",
+                  "Count": "5809"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-07-01",
+                "End": "2016-07-31"
+              },
+              "Category": "Searches",
+              "Instance": [
+                {
+                  "MetricType": "search_fed",
+                  "Count": "103374"
+                },
+                {
+                  "MetricType": "search_reg",
+                  "Count": "3869"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-08-01",
+                "End": "2016-08-31"
+              },
+              "Category": "Searches",
+              "Instance": [
+                {
+                  "MetricType": "search_fed",
+                  "Count": "242693"
+                },
+                {
+                  "MetricType": "search_reg",
+                  "Count": "3608"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-09-01",
+                "End": "2016-09-30"
+              },
+              "Category": "Searches",
+              "Instance": [
+                {
+                  "MetricType": "search_fed",
+                  "Count": "228804"
+                },
+                {
+                  "MetricType": "search_reg",
+                  "Count": "10636"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Searches",
+              "Instance": [
+                {
+                  "MetricType": "search_fed",
+                  "Count": "183929"
+                },
+                {
+                  "MetricType": "search_reg",
+                  "Count": "7551"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-01-01",
+                "End": "2016-01-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "record_view",
+                  "Count": "647"
+                },
+                {
+                  "MetricType": "result_click",
+                  "Count": "2453"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-02-01",
+                "End": "2016-02-29"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "record_view",
+                  "Count": "2857"
+                },
+                {
+                  "MetricType": "result_click",
+                  "Count": "10455"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-03-01",
+                "End": "2016-03-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "record_view",
+                  "Count": "1805"
+                },
+                {
+                  "MetricType": "result_click",
+                  "Count": "6816"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-04-01",
+                "End": "2016-04-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "record_view",
+                  "Count": "1350"
+                },
+                {
+                  "MetricType": "result_click",
+                  "Count": "5504"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-05-01",
+                "End": "2016-05-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "record_view",
+                  "Count": "1014"
+                },
+                {
+                  "MetricType": "result_click",
+                  "Count": "4367"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-06-01",
+                "End": "2016-06-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "record_view",
+                  "Count": "1836"
+                },
+                {
+                  "MetricType": "result_click",
+                  "Count": "7664"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-07-01",
+                "End": "2016-07-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "record_view",
+                  "Count": "1328"
+                },
+                {
+                  "MetricType": "result_click",
+                  "Count": "5316"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-08-01",
+                "End": "2016-08-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "record_view",
+                  "Count": "1367"
+                },
+                {
+                  "MetricType": "result_click",
+                  "Count": "4164"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-09-01",
+                "End": "2016-09-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "record_view",
+                  "Count": "4120"
+                },
+                {
+                  "MetricType": "result_click",
+                  "Count": "13880"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-10-01",
+                "End": "2016-10-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "record_view",
+                  "Count": "3228"
+                },
+                {
+                  "MetricType": "result_click",
+                  "Count": "11316"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-01-01",
+                "End": "2016-01-31"
+              },
+              "Category": "Searches",
+              "Instance": {
+                "MetricType": "search_reg",
+                "Count": "2377"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

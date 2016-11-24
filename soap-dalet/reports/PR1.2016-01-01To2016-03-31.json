@@ -1,0 +1,152 @@
+{
+  "attributes": {
+    "Created": "2016-11-23T18:35:59.294071-05:00",
+    "ID": "345"
+  },
+  "Requestor": {
+    "ID": "9973682b-a09d-4cb0-b7ba-da770d3dde93",
+    "Name": "UPAEP - UNIVERSIDAD POPULAR AUTONOMA DEL ESTADO DE PUEBLA",
+    "Email": "eduardo.sanchez@upaep.edu.mx"
+  },
+  "CustomerReference": {
+    "ID": "s7391400",
+    "Name": "UPAEP - UNIVERSIDAD POPULAR AUTONOMA DEL ESTADO DE PUEBLA"
+  },
+  "ReportDefinition": {
+    "attributes": {
+      "Name": "PR1",
+      "Release": "4"
+    },
+    "Filters": {
+      "UsageDateRange": {
+        "Begin": "2016-01-01",
+        "End": "2016-03-31"
+      }
+    }
+  },
+  "Report": {
+    "Report": {
+      "attributes": {
+        "Created": "2016-11-23T23:36:03",
+        "ID": "PR1",
+        "Version": "4",
+        "Name": "PR1"
+      },
+      "Vendor": {
+        "Name": "EBSCO Information Services",
+        "ID": "EBSCO",
+        "Contact": {
+          "E-mail": "support@ebsco.com"
+        }
+      },
+      "Customer": {
+        "Name": "UPAEP - UNIVERSIDAD POPULAR AUTONOMA DEL ESTADO DE PUEBLA",
+        "ID": "UPAEP - UNIVERSIDAD POPULAR AUTONOMA DEL ESTADO DE PUEBLA",
+        "ReportItems": {
+          "ItemPlatform": "EBSCOhost",
+          "ItemPublisher": "EBSCO",
+          "ItemName": "EBSCOhost",
+          "ItemDataType": "Platform",
+          "ItemPerformance": [
+            {
+              "Period": {
+                "Begin": "2016-02-01",
+                "End": "2016-02-29"
+              },
+              "Category": "Searches",
+              "Instance": [
+                {
+                  "MetricType": "search_fed",
+                  "Count": "19340"
+                },
+                {
+                  "MetricType": "search_reg",
+                  "Count": "10513"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-03-01",
+                "End": "2016-03-31"
+              },
+              "Category": "Searches",
+              "Instance": [
+                {
+                  "MetricType": "search_fed",
+                  "Count": "85412"
+                },
+                {
+                  "MetricType": "search_reg",
+                  "Count": "5908"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-01-01",
+                "End": "2016-01-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "record_view",
+                  "Count": "647"
+                },
+                {
+                  "MetricType": "result_click",
+                  "Count": "2453"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-02-01",
+                "End": "2016-02-29"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "record_view",
+                  "Count": "2857"
+                },
+                {
+                  "MetricType": "result_click",
+                  "Count": "10455"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-03-01",
+                "End": "2016-03-31"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "record_view",
+                  "Count": "1805"
+                },
+                {
+                  "MetricType": "result_click",
+                  "Count": "6816"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-01-01",
+                "End": "2016-01-31"
+              },
+              "Category": "Searches",
+              "Instance": {
+                "MetricType": "search_reg",
+                "Count": "2377"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

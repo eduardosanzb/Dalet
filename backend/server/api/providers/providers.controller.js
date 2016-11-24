@@ -66,6 +66,18 @@ function handleError(res, statusCode) {
   };
 }
 
+function GetStatsOfProvider(res, id, arr){
+  Providers
+  .findById(id)
+  .populate({ 
+    path: 'stats',
+    match: { $or: arr }
+  })
+  .exec()
+  .then(respondWithResult(res))
+  .catch(handleError(res))
+}
+
 // Gets a list of Providerss
 export function index(req, res) {
   return Providers.find().exec()
@@ -74,16 +86,27 @@ export function index(req, res) {
 }
 
 // Gets the stats of the provider
-  export function stats(req, res){
-    
+  export function platform(req, res){
+    let platforms = [{type:"PR1"}]
     var id = mongoose.Types.ObjectId(req.params.id)
-    console.log(id);
-    return Statistics
-        .find({_provider:req.params.id})
-        .exec()
-        .then(respondWithResult(res))
-        .catch(handleError(res))
+    return GetStatsOfProvider(res, id, platforms)
   }
+ export function databases(req, res){
+    let db = [{type:"DB1"},{type:"DB2"}]
+    var id = mongoose.Types.ObjectId(req.params.id)
+    return GetStatsOfProvider(res, id, db)
+  }
+  export function books(req, res){
+    let books = [{type:"BR1"},{type:"BR2"},{type:"BR3"}]
+    var id = mongoose.Types.ObjectId(req.params.id)
+    return GetStatsOfProvider(res, id, books)
+  }
+  export function journals(req, res){
+    let jr = [{type:"JR1"},{type:"JR5"}]
+    var id = mongoose.Types.ObjectId(req.params.id)
+    return GetStatsOfProvider(res, id, jr)
+  } 
+
 
 // Gets a single Providers from the DB
 export function show(req, res) {

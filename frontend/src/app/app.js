@@ -17,6 +17,7 @@
     'ngCookies',
     'ngFileUpload',
     'frapontillo.bootstrap-switch',
+    'cgBusy',
     'ngFacebook',
     'BlurAdmin.theme',
     'BlurAdmin.pages',

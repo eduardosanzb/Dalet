@@ -11,14 +11,39 @@
           id: '@_id'
         },
         {
-          'stats':{
+          'platforms':{
             method: 'GET',
-            url: ServerUrl + '/api/providers/:id/stats',
+            url: ServerUrl + '/api/providers/:id/stats/platforms',
             params: {
                 id: '@id'
               },
-            isArray: true
+            isArray: false
+          },
+          'databases':{
+            method: 'GET',
+            url: ServerUrl + '/api/providers/:id/stats/databases',
+            params: {
+                id: '@id'
+              },
+            isArray: false
+          },
+          'books':{
+            method: 'GET',
+            url: ServerUrl + '/api/providers/:id/stats/books',
+            params: {
+                id: '@id'
+              },
+            isArray: false
+          },
+          'journals':{
+            method: 'GET',
+            url: ServerUrl + '/api/providers/:id/stats/journals',
+            params: {
+                id: '@id'
+              },
+            isArray: false
           }
+
         }); 
     }
 })();

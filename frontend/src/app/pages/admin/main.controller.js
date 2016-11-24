@@ -6,6 +6,7 @@
       /** @ngInject */ 
       function MainController(Tabs, localStorageService){
         var vm = this;
+        console.log('test');
         Tabs
           .loadAllItems()
           .then(function(tabs){

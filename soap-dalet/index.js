@@ -19,7 +19,7 @@ Provider.find({}, function(err, providers) {
         provider: x,
         reportNumber:y,
         startDate: '2016-01-01', 
-        endDate: '2016-03-31'
+        endDate: '2016-10-31'
       }
       generateReport(args, (err, result) => {
         if(err) {          
