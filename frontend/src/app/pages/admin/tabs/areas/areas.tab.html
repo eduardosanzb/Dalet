@@ -5,49 +5,98 @@
        <form  name="myForm">
        	 <div class="form-group">
        	 <label for="file">Subir excel</label>
-		  <input type="file" ngf-select ng-model="file" name="file"    
+		  <!-- <input type="file" ngf-select ng-model="file" name="file"    
              accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"  required
              ngf-model-invalid="errorFile">
-          </div>
-          <button ng-disabled="!myForm.$valid" 
-              ng-click="vm.uploadFile(file)">Subir</button>
+          </div> -->
+		  <div ngf-drop ngf-select class="upload-drop-zone"  ng-model="vm.file" 
+	        ngf-drag-over-class="'dragover'"  ngf-allow-dir="true"
+	        accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" 
+	        >Arrastra archivo Excel</div>
+	      <div class="alert bg-success" ng-show="vm.file">
+          <strong>Archivo:</strong> {{ vm.file.name }}
+        </div>
+          <button class="btn btn-primary" type="button" ng-disabled="!myForm.$valid" 
+              ng-click="vm.uploadFile(vm.file)">Subir</button>
 		</form>
-		<h1>Carreras</h1>
-		<table class="table table-bordered table-hover table-condensed">
-		  <tr>
-		    <td></td>
-		    <td>Título</td>
-		    <td>Autor</td>
-		    <td>Editorial</td>
-		    <td>Carrera</td>
-		    <td>Decanato</td>
-		    <td>Materia</td>
-		  </tr>
-		  <tr ng-repeat="book in vm.books" class="editable-row">
-		    <td>
-		        {{$index}}
-		    </td>
-		    <td>
-		          {{ book.TITULO}}
-		    </td>
-		    <td>
-		          {{ book.AUTOR }}
-		    </td>
-		    <td>
-		          {{ book.EDITORIAL}}
-		    </td>
-		    <td>
-		          {{ book["Nombre Carrera"]}}
-		    </td>
-		   <td>
-		        {{ book.DECANATO}}
-		   </td>
-		   <td>
-		        {{ book.NOMBRE_MATERIA}}
-		   </td>
 
-		  </tr>
-		</table>
+		<br>
+		<br>
+		<div cg-busy="vm.filePromise"></div>
+		<div cg-busy="vm.careerPromise"></div>
+		<h1>Carreras</h1>
+		<!-- <table class="table" st-table="displayedCollection" st-safe-src="vm.books">
+			<thead>
+			  <tr class="sortable">
+				  <th></th>
+			      <th st-sort="TITULO">Título</th>
+			      <th st-sort="NOMBRE_MATERIA">Materia</th>
+			      <th st-sort="NOMBRE_CARRERA">Carrera</th>
+			    </tr>
+			  <tr>
+		      <th></th>
+		      <th><input st-search="TITULO" placeholder="Buscar título" class="input-sm form-control search-input"
+		                 type="search"/></th>
+		      <th><input st-search="NOMBRE_MATERIA" placeholder="Buscar materia" class="input-sm form-control search-input"
+		                 type="search"/></th>
+		      <th><input st-search="NOMBRE_CARRERA" placeholder="Buscar carrera" class="input-sm form-control search-input"
+		                 type="search"/></th>
+		    </tr>
+		   </thead>
+		    <tbody>
+			  <tr ng-repeat="book in displayedCollection" class="editable-row">
+			    <td class="table-id">
+			        {{$index}}
+			    </td>
+			    <td>
+			          {{ book.TITULO}}
+			    </td>
+			    <td>
+			          {{ book.NOMBRE_MATERIA }}
+			    </td>
+			    <td>
+			          {{ book.NOMBRE_CARRERA}}
+			    </td>
+			  </tr>
+			  </tbody>
+			  <tfoot>
+			    <tr>
+			      <td colspan="6" class="text-center">
+			        <div st-pagination="" st-items-by-page="5" st-displayed-pages="5"></div>
+			      </td>
+			    </tr>
+		    </tfoot>
+		</table> -->
+		<table class="table" st-table="displayedCollection" st-safe-src="vm.careers">
+				<thead>
+				  <tr class="sortable">
+					  <th></th>
+				      <th st-sort="career">Carrera</th>
+				    </tr>
+				  <tr>
+			      <th></th>
+			      <th><input st-search="career" placeholder="Buscar carrera" class="input-sm form-control search-input"
+			                 type="search"/></th>
+			    </tr>
+			   </thead>
+			    <tbody>
+				  <tr ng-repeat="item in displayedCollection" class="editable-row">
+				    <td class="table-id">
+				        {{$index + 1}}
+				    </td>
+				    <td>
+				          {{ item.career }}
+				    </td>
+				  </tr>
+				  </tbody>
+				  <tfoot>
+				    <tr>
+				      <td colspan="6" class="text-center">
+				        <div st-pagination="" st-items-by-page="5" st-displayed-pages="5"></div>
+				      </td>
+				    </tr>
+			    </tfoot>
+			</table>
       </div>
     </div>
   </div>

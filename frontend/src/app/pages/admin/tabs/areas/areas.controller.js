@@ -8,23 +8,36 @@
         var vm = this;
 
         vm.uploadFile = uploadFile;
-    	 vm.books = {};
+    	 vm.careers = [];
+       vm.filePromise = {};
+       vm.careerPromise = {};
 
-       getBooks();
+       getCareers();
        
        function uploadFile(file) {
-  	        file.upload = Upload.upload({
+  	        vm.filePromise = Upload.upload({
   		      url: ServerUrl + '/api/careers/',
   		      data: {file: file}
   		    }).then(function(res){
-  		    	console.log(res.data);
-            vm.books = res.data;
+            vm.file = null;
+            vm.careers = [];
+            var careers = _.groupBy(res.data, function(d){return d.NOMBRE_CARRERA});
+            for (var key in careers) {
+              var temp = new Object();
+              temp["career"] = key;
+              vm.careers.push(temp);
+            }
   		    });
 			   }
 
-      function getBooks(){
-          Area.query().$promise.then(function(books){
-            vm.books = books;
+      function getCareers(){
+          vm.careerPromise = Area.query().$promise.then(function(books){
+            var careers = _.groupBy(books, function(d){return d.NOMBRE_CARRERA});
+            for (var key in careers) {
+              var temp = new Object();
+              temp["career"] = key;
+              vm.careers.push(temp);
+            }
           })  
         }
         
