@@ -19,7 +19,7 @@
             controller: 'UsuariosController'
           },
           {
-            heading: 'Areas',
+            heading: 'Carreras',
             active: true,
             template: 'app/pages/admin/tabs/areas/areas.tab.html',
             controller: 'AreasController'

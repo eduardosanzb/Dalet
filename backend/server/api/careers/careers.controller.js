@@ -88,7 +88,7 @@ export function create(req, res) {
 }
 
 export function uploadFile(req,res){
-  Careers.remove({}, function(){
+  Careers.db.db.dropCollection('careers', function(){
       node_xj({
         input: req.files.file.path,  // input xls 
         output: null // output json  
