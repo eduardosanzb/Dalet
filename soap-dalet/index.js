@@ -1,26 +1,39 @@
 'use strict';
 import generateReport from './soapClient.js'
 import booksFiller from './booksFiller'
+import journalsFiller from './journalsFiller'
 import Provider from './provider.model.js'
 import Statistics from './statsProvider.model.js'
 import mongoose from 'mongoose';
 mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://localhost/dalet-dev')
 
-//retrieveReports()
-
-Provider.find({'active':true})
-    .populate({ 
-      path: 'stats',
-      match: {$or:[{type:"BR1"},{type:"BR2"},{type:"BR3"}]}
-    }).exec()
-    .then(function(result){
-      result.map(provider => {
-        if (provider.stats.length > 0)
-            provider.stats.map(x => booksFiller(x))
-      })
+retrieveReports()
+/*This is just for testing purposes*/
+// Provider.find({'active':true})
+//     .populate({ 
+//       path: 'stats',
+//       match: {$or:[{type:"BR1"},{type:"BR2"},{type:"BR3"}]}
+//     }).exec()
+//     .then(function(result){
+//       result.map(provider => {
+//         if (provider.stats.length > 0)
+//             provider.stats.map(x => booksFiller(x))
+//       })
       
-    })
+//     })
+// Provider.find({'active':true})
+//     .populate({ 
+//       path: 'stats',
+//       match: {$or:[{type:"JR1"},{type:"JR5"}]}
+//     }).exec()
+//     .then(function(result){
+//       result.map(provider => {
+//         if (provider.stats.length > 0)
+//             provider.stats.map(x => journalsFiller(x))
+//       })
+      
+//     })
 
 function retrieveReports() {
     Provider.find({}, function(err, providers) {
@@ -51,13 +64,15 @@ function retrieveReports() {
                                     closingConnection()
                                 }
                             } else {
-                                var stat = createAStats(result)
+                                var stat = createAStats(result, x)
                                 x.stats.push(stat)
                                 x.save(saveCallback)
-                                if (state.stat === 'BR1' || state.stat === 'BR2' || state.stat === 'BR3') {
-
+                                if (stat.type === 'BR1' || stat.type === 'BR2' || stat.type === 'BR3') {
+                                  booksFiller(stat)
                                 }
-
+                                if (stat.type === 'JR1' || stat.type === 'JR5') {
+                                  journalsFiller(stat)
+                                }
                                 count--;
                                 if (count === 0) {
                                     closingConnection()
@@ -70,9 +85,9 @@ function retrieveReports() {
     });
 }
 
-function createAStats(result) {
+function createAStats(result, provider) {
     var stat = new Statistics({
-        _provider: x._id,
+        _provider: provider._id,
         type: result.Report.attributes.Name,
         dateOfCreation: result.Report.attributes.Created,
         content: result.Report.Customer.ReportItems

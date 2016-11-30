@@ -1,0 +1,31 @@
+<div cg-busy="{ promise:vm.promise, message:'Buscando Información',backdrop:true, minDuration:3000 }">
+  <div class="row">
+    <div class="col-xs-6">
+      <div ba-panel ba-panel-title="Libros" ba-panel-class=" light-text">
+          <div class="form-group" >
+            <select class="form-control selectpicker with-search"
+                    data-container="body" data-live-search="true"
+                    title="Libros" selectpicker
+                    ng-model="vm.books.selectedOption"
+                    ng-options="option.name for option in vm.books.availableOptions track by option._id"
+                    ng-change="vm.actualBook = vm.books.selectedOption">
+            </select>
+          </div>
+      </div>  
+    </div>
+     <div class="col-xs-6">
+      <div ba-panel ba-panel-title="Revistas" ba-panel-class=" light-text">
+          <div class="form-group" >
+            <select class="form-control selectpicker with-search"
+                    data-container="body" data-live-search="true"
+                    title="Revistas" selectpicker
+                    ng-model="vm.journals.selectedOption"
+                    ng-options="option.name for option in vm.journals.availableOptions track by option._id"
+                    ng-change="vm.actualJournal = vm.journals.selectedOption">
+            </select>
+          </div>
+      </div>  
+    </div>
+  </div>
+  
+</div>
