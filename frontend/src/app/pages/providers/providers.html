@@ -11,29 +11,34 @@
         </div>
     </div>  
   </div></div>
-  <div cg-busy="{ promise:vm.promise, templateUrl:vm.templateUrl, backdrop:backdrop,
-                message:'Buscando Información',backdrop:true, minDuration:1000 }">
-  <div class="row"><provider-pie-chart charts="vm.charts"></provider-pie-chart></div>
-
-  <div class="col-xs-12 col-md-8">
-    <div ba-panel ba-panel-title="Bases de Datos Ebsco" ba-panel-class="with-scroll table-panel light-text">
-          <div class="vertical-scroll">
-            <table class="table table-striped">
-              <thead>
-              <tr>
-                <th class="table-id">#</th>
-                <th>Nombre</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr ng-repeat="item in vm.statsOfProviders.db.stats[0].content">
-                <td class="table-id">{{$index}}</td>
-                <td>{{item.ItemName}}</td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
+  <div cg-busy="{ promise:vm.promise, templateUrl:vm.templateUrl, backdrop:backdrop, message:'Buscando Información',backdrop:true, minDuration:3000 }">
+    <div class="row"><provider-pie-chart charts="vm.charts"></provider-pie-chart></div>
+    <div class="col-xs-12 col-md-12" ng-if="vm.charts">
+      <div ba-panel ba-panel-title="Bases de Datos" ba-panel-class="with-scroll table-panel light-text">
+            <div class="vertical-scroll">
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th class="table-id">#</th>
+                  <th>Nombre</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in vm.statsOfProviders.db.stats[0].content">
+                  <td class="table-id">{{$index+1}}</td>
+                  <td>{{item.ItemName}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-12" ng-hide="vm.charts">
+      <div class="panel panel-danger contextual-example-panel bootstrap-panel">
+        <div class="panel-heading">No Existe información</div>
+        <div class="panel-body">Aun no tenemos datos de este proveedor</div>
       </div>
     </div>
   </div>
+
 </div>
