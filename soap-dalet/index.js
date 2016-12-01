@@ -9,31 +9,7 @@ mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://localhost/dalet-dev')
 
 retrieveReports()
-/*This is just for testing purposes*/
-// Provider.find({'active':true})
-//     .populate({ 
-//       path: 'stats',
-//       match: {$or:[{type:"BR1"},{type:"BR2"},{type:"BR3"}]}
-//     }).exec()
-//     .then(function(result){
-//       result.map(provider => {
-//         if (provider.stats.length > 0)
-//             provider.stats.map(x => booksFiller(x))
-//       })
-      
-//     })
-// Provider.find({'active':true})
-//     .populate({ 
-//       path: 'stats',
-//       match: {$or:[{type:"JR1"},{type:"JR5"}]}
-//     }).exec()
-//     .then(function(result){
-//       result.map(provider => {
-//         if (provider.stats.length > 0)
-//             provider.stats.map(x => journalsFiller(x))
-//       })
-      
-//     })
+
 
 function retrieveReports() {
     Provider.find({}, function(err, providers) {

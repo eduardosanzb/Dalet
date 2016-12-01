@@ -1,0 +1,90 @@
+{
+  "attributes": {
+    "Created": "2016-11-30T18:12:42.6223033-05:00",
+    "ID": "345"
+  },
+  "Requestor": {
+    "ID": "9973682b-a09d-4cb0-b7ba-da770d3dde93",
+    "Name": "UPAEP-Universidad  Popular Autónoma del Estado de Puebla",
+    "Email": "dalet@upaep.mx"
+  },
+  "CustomerReference": {
+    "ID": "s7391400",
+    "Name": "UPAEP-Universidad  Popular Autónoma del Estado de Puebla"
+  },
+  "ReportDefinition": {
+    "attributes": {
+      "Name": "PR1",
+      "Release": "4"
+    },
+    "Filters": {
+      "UsageDateRange": {
+        "Begin": "2016-09-01",
+        "End": "2016-09-30"
+      }
+    }
+  },
+  "Report": {
+    "Report": {
+      "attributes": {
+        "Created": "2016-11-30T23:12:47",
+        "ID": "PR1",
+        "Version": "4",
+        "Name": "PR1"
+      },
+      "Vendor": {
+        "Name": "EBSCO Information Services",
+        "ID": "EBSCO",
+        "Contact": {
+          "E-mail": "support@ebsco.com"
+        }
+      },
+      "Customer": {
+        "Name": "UPAEP - UNIVERSIDAD POPULAR AUTONOMA DEL ESTADO DE PUEBLA",
+        "ID": "UPAEP - UNIVERSIDAD POPULAR AUTONOMA DEL ESTADO DE PUEBLA",
+        "ReportItems": {
+          "ItemPlatform": "EBSCOhost",
+          "ItemPublisher": "EBSCO",
+          "ItemName": "EBSCOhost",
+          "ItemDataType": "Platform",
+          "ItemPerformance": [
+            {
+              "Period": {
+                "Begin": "2016-09-01",
+                "End": "2016-09-30"
+              },
+              "Category": "Searches",
+              "Instance": [
+                {
+                  "MetricType": "search_fed",
+                  "Count": "228804"
+                },
+                {
+                  "MetricType": "search_reg",
+                  "Count": "10636"
+                }
+              ]
+            },
+            {
+              "Period": {
+                "Begin": "2016-09-01",
+                "End": "2016-09-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "record_view",
+                  "Count": "4120"
+                },
+                {
+                  "MetricType": "result_click",
+                  "Count": "13880"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}

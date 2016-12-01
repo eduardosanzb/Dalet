@@ -7,28 +7,28 @@
 
   var basic = {
     default: '#ffffff',
-    defaultText: '#666666',
+    defaultText: '#818a8e',
     border: '#dddddd',
     borderDark: '#aaaaaa',
   };
 
   // main functional color scheme
   var colorScheme = {
-    primary: '#E91E63',
-    info: '#009688',
-    success: '#8BC34A',
-    warning: '#FFC107',
-    danger: '#FF5252',
+    primary: '#fb0007',
+    info: '#D32F2F',
+    success: '#4CAF50',
+    warning: '#FBC02D',
+    danger: '#D32F2F',
   };
 
 
   // dashboard colors for charts
   var dashboardColors = {
-    blueStone: '#C2185B',
-    surfieGreen: '#E91E63',
+    blueStone: '#fb0007',
+    surfieGreen: '#D32F2F',
     silverTree: '#F8BBD0',
-    gossip: '#F44336',
-    white: '#C2185B',
+    gossip: '#4CAF50',
+    white: '#818a8e',
   };
 
   angular.module('BlurAdmin.theme')

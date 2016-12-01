@@ -1,5 +1,8 @@
-<uib-tabset active="$tabSetStatus.activeTab">
-  <uib-tab ng-repeat="tab in vm.tabs" heading="{{tab.heading}}">
-    <div  ng-include=tab.template></div>
-  </uib-tab>
-</uib-tabset>
+
+<div>
+  <uib-tabset active="$tabSetStatus.activeTab">
+    <uib-tab ng-repeat="tab in vm.tabs" heading="{{tab.heading}}">
+      <div  ng-include=tab.template></div>
+    </uib-tab>
+  </uib-tabset>
+</div>

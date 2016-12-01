@@ -102,7 +102,7 @@
         }
         prepareEntries();
         loadEntriesChart();
-        console.log(JSON.stringify(vm.entriesArray));
+        //console.log(JSON.stringify(vm.entriesArray));
       });
   }
   function monthChange(){
@@ -122,7 +122,7 @@
 }
 
 function prepareEntries(){
-  console.log("se ejecuta");
+  //console.log("se ejecuta");
   for(var i = 0; i < vm.entriesArray.length; i++){
     vm.entriesArray[i].date = vm.entriesArray[i].start;
     vm.entriesArray[i].visits = vm.entriesArray[i].title;

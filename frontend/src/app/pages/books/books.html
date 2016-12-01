@@ -8,7 +8,7 @@
                     title="Libros" selectpicker
                     ng-model="vm.books.selectedOption"
                     ng-options="option.name for option in vm.books.availableOptions track by option._id"
-                    ng-change="vm.actualBook = vm.books.selectedOption">
+                    ng-change="vm.createFirstChartBook(); vm.createSecondChartBook()">
             </select>
           </div>
       </div>  
@@ -21,11 +21,63 @@
                     title="Revistas" selectpicker
                     ng-model="vm.journals.selectedOption"
                     ng-options="option.name for option in vm.journals.availableOptions track by option._id"
-                    ng-change="vm.actualJournal = vm.journals.selectedOption">
+                    ng-change="vm.createFirstChartJournal(); vm.createSecondChartJournal()">
             </select>
           </div>
       </div>  
     </div>
+  </div>
+</div>
+<div class="row">
+
+<div class="col-xs-6">
+  <div class="panel panel-default bootstrap-panel">
+    <div class="panel-heading">Datos Generales</div>
+    <div class="panel-body">
+      <ul class="blur">
+        <li> <b>Nombre:</b> {{vm.books.selectedOption.name | null}} </li>
+        <li> <b>Editorial:</b> {{vm.books.selectedOption.publisher | null}}</li>
+        <li> <b>Plataforma:</b> {{vm.books.selectedOption.platform | null}} </li>
+      </ul>
+    </div>
+  </div>
+  <div class="panel panel-default bootstrap-panel">
+    <div class="panel-heading">Busquedas por Mes</div>
+    <div class="panel-body">
+      <div id="requestsPerMonthChartBook" class="admin-chart"></div>
+    </div>
+  </div>
+  <div class="panel panel-default bootstrap-panel">
+    <div class="panel-heading">Tipos de Busqueda</div>
+    <div class="panel-body">
+      <div id="typeOfSearchesChartBook" class="admin-chart"></div>
+    </div>
+  </div>
+</div>
+
+  <div class="col-xs-6">
+    <div class="panel panel-default bootstrap-panel">
+      <div class="panel-heading">Datos Generales</div>
+      <div class="panel-body">
+        <ul class="blur">
+          <li> <b>Nombre:</b> {{vm.journals.selectedOption.name | null}} </li>
+          <li> <b>Editorial:</b> {{vm.journals.selectedOption.publisher | null}}</li>
+          <li> <b>Plataforma:</b> {{vm.journals.selectedOption.platform | null}} </li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel panel-default bootstrap-panel">
+    <div class="panel-heading">Busquedas por Mes</div>
+    <div class="panel-body">
+      <div id="requestsPerMonthChartJournal" class="admin-chart"></div>
+    </div>
+  </div>
+  <div class="panel panel-default bootstrap-panel">
+    <div class="panel-heading">Tipos de Busqueda</div>
+    <div class="panel-body">
+      <div id="typeOfSearchesChartJournal" class="admin-chart"></div>
+    </div>
+  </div>
   </div>
   
 </div>

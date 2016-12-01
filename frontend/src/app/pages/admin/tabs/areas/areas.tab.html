@@ -1,10 +1,10 @@
-<div class="container widgets" ng-controller="AreasController as vm">
+<div class="container" ng-controller="AreasController as vm">
   <div class="row">
     <div class="col-md-12">
       <div ba-panel ba-panel-class="with-scroll">
        <form  name="myForm">
        	 <div class="form-group">
-       	 <label for="file">Subir excel</label>
+       	 <label for="file">Cargar archivo excel</label>
 		  <!-- <input type="file" ngf-select ng-model="file" name="file"    
              accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"  required
              ngf-model-invalid="errorFile">
@@ -17,7 +17,7 @@
           <strong>Archivo:</strong> {{ vm.file.name }}
         </div>
           <button class="btn btn-primary" type="button" ng-disabled="!myForm.$valid" 
-              ng-click="vm.uploadFile(vm.file)">Subir</button>
+              ng-click="vm.uploadFile(vm.file)">Cargar</button>
 		</form>
 
 		<br>

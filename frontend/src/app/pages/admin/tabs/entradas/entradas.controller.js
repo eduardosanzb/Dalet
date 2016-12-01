@@ -8,6 +8,8 @@
         var vm = this;
         var dashboardColors = baConfig.colors.dashboard;
         var $element;
+        vm.layoutColors = baConfig.colors;
+        
 
         loadCalendar();
 
@@ -80,6 +82,7 @@
       /** @ngInject */ 
         function ModalController(Entries, $scope, $uibModalInstance, $rootScope, entriesDate, items, baConfig){
           var dashboardColors = baConfig.colors.dashboard;
+          var layoutColors =  baConfig.colors
           var dateString = entriesDate.format('YYYY-MM-DD');
           $scope.dateTitle = entriesDate.toDate(); 
           $scope.entriesObject = {};
@@ -90,12 +93,12 @@
           }
           if(angular.equals($scope.entriesObject, {})){
             $scope.entriesObject.start = dateString;
-            $scope.entriesObject.color = dashboardColors.blueStone;
+            $scope.entriesObject.color = layoutColors.primary;
           }
 
           $scope.saveEntries = function(){
               Entries.save($scope.entriesObject, function(entries, putResponseHeaders) {
-                     console.log("se guardo: " + entries);
+                     //console.log("se guardo: " + entries);
                     $uibModalInstance.dismiss();
                     $rootScope.$broadcast('Entries Added');
                  });
