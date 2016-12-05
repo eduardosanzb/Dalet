@@ -12,11 +12,12 @@
     'BlurAdmin.pages.admin',
     'BlurAdmin.pages.providers',
     'BlurAdmin.pages.books',
+    'BlurAdmin.pages.careers',
     //'BlurAdmin.pages.ui',
     //'BlurAdmin.pages.components',
     'BlurAdmin.pages.form',
     //'BlurAdmin.pages.tables',
-    //'BlurAdmin.pages.charts',
+    'BlurAdmin.pages.charts',
     //'BlurAdmin.pages.maps',
     //'BlurAdmin.pages.profile',
   ])

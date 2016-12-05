@@ -1,0 +1,116 @@
+<div class="container" ng-controller="CareersTabController as vm">
+  <div class="row">
+
+		<!-- <table class="table" st-table="displayedCollection" st-safe-src="vm.books">
+			<thead>
+			  <tr class="sortable">
+				  <th></th>
+			      <th st-sort="TITULO">Título</th>
+			      <th st-sort="NOMBRE_MATERIA">Materia</th>
+			      <th st-sort="NOMBRE_CARRERA">Carrera</th>
+			    </tr>
+			  <tr>
+		      <th></th>
+		      <th><input st-search="TITULO" placeholder="Buscar título" class="input-sm form-control search-input"
+		                 type="search"/></th>
+		      <th><input st-search="NOMBRE_MATERIA" placeholder="Buscar materia" class="input-sm form-control search-input"
+		                 type="search"/></th>
+		      <th><input st-search="NOMBRE_CARRERA" placeholder="Buscar carrera" class="input-sm form-control search-input"
+		                 type="search"/></th>
+		    </tr>
+		   </thead>
+		    <tbody>
+			  <tr ng-repeat="book in displayedCollection" class="editable-row">
+			    <td class="table-id">
+			        {{$index}}
+			    </td>
+			    <td>
+			          {{ book.TITULO}}
+			    </td>
+			    <td>
+			          {{ book.NOMBRE_MATERIA }}
+			    </td>
+			    <td>
+			          {{ book.NOMBRE_CARRERA}}
+			    </td>
+			  </tr>
+			  </tbody>
+			  <tfoot>
+			    <tr>
+			      <td colspan="6" class="text-center">
+			        <div st-pagination="" st-items-by-page="5" st-displayed-pages="5"></div>
+			      </td>
+			    </tr>
+		    </tfoot>
+		</table> -->
+		<div class="col-xs-6">
+	      <div ba-panel ba-panel-title="Carrera" ba-panel-class=" light-text">
+	          <div class="form-group" >
+	            <select class="form-control selectpicker with-search"
+	                    data-container="body" data-live-search="true"
+	                    title="Carrera" selectpicker
+	                    ng-model="vm.selectedCareer"
+	                    ng-options="key as key for (key , value) in vm.careers"
+	                    ng-change="vm.getBooks()"
+	                    >
+	            </select>
+	          </div>
+	      </div>  
+	    </div>	
+  </div>
+  <!-- <div class="row">
+  	<div class="col-md-12">
+      <div ba-panel ba-panel-class="with-scroll">
+      	<h3> {{vm.selectedCareer}} </h3>
+      	<div id="barChart" class="admin-chart"></div>
+      </div>
+     </div>
+  </div> -->
+<div cg-busy="vm.careerPromise"></div>
+  <div class="row">
+        <div class="col-md-12"
+             ba-panel
+             ba-panel-title="{{vm.selectedCareer}}"
+             ba-panel-class="with-scroll">
+        <table class="table" st-table="displayedCollection" st-safe-src="vm.booksData">
+				<thead>
+				  <tr class="sortable">
+					  <th></th>
+				      <th st-sort="book">Libro</th>
+				      <th st-sort="author">Autor</th>
+				      <th st-sort="visits">Visitas</th>
+				    </tr>
+				  <tr>
+			      <th></th>
+			      <th><input st-search="book" placeholder="Buscar libro" class="input-sm form-control search-input"
+			                 type="search"/></th>
+			      <th><input st-search="author" placeholder="Buscar autor" class="input-sm form-control search-input"
+			                 type="search"/></th>
+			       <th></th>
+			    </tr>
+			   </thead>
+			    <tbody>
+				  <tr ng-repeat="item in displayedCollection" class="editable-row">
+				    <td class="table-id">
+				        {{$index + 1}}
+				    </td>
+				    <td>
+				          {{ item.book }}
+				    </td>
+				    <td> {{item.author}} </td>
+				    <td>
+				          {{ item.visits }}
+				    </td>
+				  </tr>
+				  </tbody>
+				 <!--  <tfoot>
+				    <tr>
+				      <td colspan="6" class="text-center">
+				        <div st-pagination="" st-items-by-page="5" st-displayed-pages="5"></div>
+				      </td>
+				    </tr>
+			    </tfoot> -->
+			</table>
+        </div>
+      </div>
+</div>

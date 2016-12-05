@@ -115,3 +115,31 @@ export function destroy(req, res) {
     .then(removeEntity(res))
     .catch(handleError(res));
 }
+
+//databases content
+
+export function contentSearchStatistics(req,res){
+
+  var contentStatistics = [];
+  var pdf = 0;
+  var html = 0;
+  Books.find({}).exec().then(function(result){
+    for(var i = 0; i < result.length; i++){
+      for(var j = 0; j < result[i].stats.length; j++){
+        if(result[i]["stats"][j]["month"] === req.params.contentSearchMonth){
+            pdf += parseInt(result[i]["stats"][j]["ft_pdf"]);
+            html += parseInt(result[i]["stats"][j]["ft_html"]);
+          }
+      }
+    }
+    var pdfResult = new Object();
+    var htmlResult = new Object();
+    pdfResult["label"] = "PDF";
+    htmlResult["label"] = "Web";
+    pdfResult["value"] = pdf;
+    htmlResult["value"] = html;
+    contentStatistics.push(pdfResult);
+    contentStatistics.push(htmlResult);
+    res.send(contentStatistics);
+  });
+}
