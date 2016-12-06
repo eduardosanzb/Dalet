@@ -65,11 +65,18 @@ function handleError(res, statusCode) {
 
 // Gets a list of Journals
 export function index(req, res) {
-  return Journal.find().exec()
+  return Journal.find().limit(25).exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
+// Gets a journal AJAX
+export function ajaxSearch(req, res){
+  var regex = req.query.regex
+  return Journal.find({name:{'$regex' : regex, '$options' : 'i'}}).exec()
+    .then(respondWithResult(res))
+    .catch(handleError(res))
+}
 // Gets a single Journal from the DB
 export function show(req, res) {
   return Journal.findById(req.params.id).exec()

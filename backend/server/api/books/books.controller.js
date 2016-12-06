@@ -70,6 +70,14 @@ export function index(req, res) {
     .catch(handleError(res));
 }
 
+// Gets a journal AJAX
+export function ajaxSearch(req, res){
+  var regex = req.query.regex
+  return Books.find({name:{'$regex' : regex, '$options' : 'i'}}).exec()
+    .then(respondWithResult(res))
+    .catch(handleError(res))
+}
+
 // Gets a single Books from the DB
 export function show(req, res) {
   return Books.findById(req.params.id).exec()

@@ -1,7 +1,9 @@
 angular.module('BlurAdmin.pages.admin').filter('cut', function () {
         return function (value, wordwise, max, tail) {
             if (!value) return '';
-
+            max = max || 35
+            wordwise = wordwise || true
+            tail = tail || '...'
             max = parseInt(max, 10);
             if (!max) return value;
             if (value.length <= max) return value;

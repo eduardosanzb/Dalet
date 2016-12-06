@@ -4,10 +4,16 @@
       .controller('BooksTabController', BooksTabController);
 
       /** @ngInject */ 
-      function BooksTabController(Books, Journals, localStorageService, $q, baConfig, baUtil, layoutPaths){
+      function BooksTabController($http, Books, Journals, localStorageService, $q, baConfig, baUtil, layoutPaths){
         var vm = this;
         var pieColor = baUtil.hexToRGB(baConfig.colors.defaultText, 0.2);
         var layoutColors = baConfig.colors;
+
+        vm.ajaxSearchJournal = ajaxSearchJournal
+        vm.updateChartsJournal = updateChartsJournal
+        vm.ajaxSearchBook = ajaxSearchBook
+        vm.updateChartsBook = updateChartsBook
+
         getData()
         
         function getData(){
@@ -27,11 +33,44 @@
               }
               vm.actualBook = vm.books.selectedOption
               vm.actualJournal = vm.journals.selectedOption
-              vm.createFirstChartBook()
-              vm.createSecondChartBook()
-              vm.createFirstChartJournal()
-              vm.createSecondChartJournal()
+              updateChartsBook()
+              updateChartsJournal()
             })
+        }
+
+        function ajaxSearchJournal(value){
+          if(value.length < 3)
+            return [{name:value}]
+          return $http.get('http://localhost:5000/api/journals/search',{
+            params:{
+              regex:value
+            }
+          }).then(function(response){
+            return response.data.map(function(item){
+              return item
+            })
+          })
+        }
+        function ajaxSearchBook(value){
+          if(value.length < 3)
+            return [{name:value}]
+          return $http.get('http://localhost:5000/api/books/search',{
+            params:{
+              regex:value
+            }
+          }).then(function(response){
+            return response.data.map(function(item){
+              return item
+            })
+          })
+        }
+        function updateChartsJournal(){
+          createFirstChartJournal()
+          createSecondChartJournal()
+        }
+        function updateChartsBook(){
+          createFirstChartBook()
+          createSecondChartBook()
         }
         /*CREATING THE requestsPerMonthChart*/
         function labelFunction(item, label) {
@@ -40,9 +79,7 @@
             else
               return "";
           }
-        vm.createFirstChartBook = function (){
-          console.log('test');
-          console.log(vm.books.selectedOption.stats);
+        function createFirstChartBook (){
           var chartRequests = AmCharts.makeChart("requestsPerMonthChartBook",{
             type: 'serial',
             theme: 'blur',
@@ -125,7 +162,7 @@
               chartRequests.zoomToIndexes(Math.round(chartRequests.dataProvider.length * 0.4), Math.round(chartRequests.dataProvider.length * 0.55));
             }
         }
-        vm.createSecondChartBook = function(){
+        function createSecondChartBook (){
           var pieChart = AmCharts.makeChart('typeOfSearchesChartBook', {
             type: 'pie',
             startDuration: 0,
@@ -224,7 +261,7 @@
             wedge.parentNode.appendChild(wedge);
           }
         }
-        vm.createFirstChartJournal = function (){
+        function createFirstChartJournal (){
           var chartRequests = AmCharts.makeChart("requestsPerMonthChartJournal",{
             type: 'serial',
             theme: 'blur',
@@ -307,7 +344,7 @@
               chartRequests.zoomToIndexes(Math.round(chartRequests.dataProvider.length * 0.4), Math.round(chartRequests.dataProvider.length * 0.55));
             }
         }
-        vm.createSecondChartJournal = function(){
+        function createSecondChartJournal (){
           var pieChart = AmCharts.makeChart('typeOfSearchesChartJournal', {
             type: 'pie',
             startDuration: 0,
@@ -407,14 +444,13 @@
           }
         }
 
-      function createDataForPie(stats){
-        var result = [{type:'ft_pdf', value:0},{type:'ft_html', value:0}]
-        stats.map(function(stat){
-          result[0].value += parseInt(stat.ft_pdf)
-          result[1].value += parseInt(stat.ft_html)
-        })
-        console.log(result);
-        return result
-      }
+        function createDataForPie(stats){
+          var result = [{type:'ft_pdf', value:0},{type:'ft_html', value:0}]
+          stats.map(function(stat){
+            result[0].value += parseInt(stat.ft_pdf)
+            result[1].value += parseInt(stat.ft_html)
+          })
+          return result
+        }
       }//controller
 })();

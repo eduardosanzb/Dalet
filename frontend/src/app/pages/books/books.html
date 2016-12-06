@@ -3,26 +3,24 @@
     <div class="col-xs-6">
       <div ba-panel ba-panel-title="Libros" ba-panel-class=" light-text">
           <div class="form-group" >
-            <select class="form-control selectpicker with-search"
-                    data-container="body" data-live-search="true"
-                    title="Libros" selectpicker
-                    ng-model="vm.books.selectedOption"
-                    ng-options="option.name for option in vm.books.availableOptions track by option._id"
-                    ng-change="vm.createFirstChartBook(); vm.createSecondChartBook()">
-            </select>
+          <input type="text" ng-model="vm.books.selectedOption" 
+                placeholder="Busca un Artículo" 
+                uib-typeahead="option as ( option.name | cut:true:35:'...' ) for option in vm.ajaxSearchBook($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control" typeahead-on-select="vm.updateChartsBook()"
+                typeahead-append-to-body="true" select-on-click>
+              <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+              <div ng-show="noResults">
+                <i class="glyphicon glyphicon-remove"></i>Sin resultados</div>
           </div>
       </div>  
     </div>
      <div class="col-xs-6">
       <div ba-panel ba-panel-title="Revistas" ba-panel-class=" light-text">
           <div class="form-group" >
-            <select class="form-control selectpicker with-search"
-                    data-container="body" data-live-search="true"
-                    title="Revistas" selectpicker
-                    ng-model="vm.journals.selectedOption"
-                    ng-options="option.name for option in vm.journals.availableOptions track by option._id"
-                    ng-change="vm.createFirstChartJournal(); vm.createSecondChartJournal()">
-            </select>
+            <input type="text" ng-model="vm.journals.selectedOption" 
+              placeholder="Busca un Artículo" uib-typeahead="option as ( option.name | cut:true:35:'...' ) for option in vm.ajaxSearchJournal($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control" typeahead-on-select="vm.updateChartsJournal()" typeahead-append-to-body="true" select-on-click>
+            <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+            <div ng-show="noResults">
+              <i class="glyphicon glyphicon-remove"></i>Sin resultados</div>
           </div>
       </div>  
     </div>
