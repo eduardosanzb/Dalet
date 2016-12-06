@@ -208,11 +208,14 @@ function zoomChart() {
 
       var pieChart = AmCharts.makeChart("contentSearchChart", {
       type: 'pie',
-      startDuration: 0,
+      startDuration: 100,
       theme: 'light',
       addClassNames: true,
       color: layoutColors.defaultText,
       labelTickColor: layoutColors.borderDark,
+      precision: 2,
+      showZeroSlices: true,
+      labelFunction: labelFunction,
       legend: {
         position: 'right',
         marginRight: 100,
@@ -298,6 +301,18 @@ function zoomChart() {
    vm.contentTypeSearchData = [];
 
    contentTypeSearchStatistics();
+   function labelFunction(info) {
+    var data = info.dataContext;
+
+    if (info.index != null && data.country) {
+      var previous = chart.chartData[info.index + 1];
+      var percents = AmCharts.formatNumber(previous.percents, chart);
+      return data.country + ": " + percents + "%";
+
+    } else {
+      return "";
+    }
+  }
 
    function contentTypeSearchStatistics(){
     var month = vm.dt.getMonth();

@@ -13,24 +13,22 @@
       </div>
 
       <div class="row">
-          <div class="col-md-12"
+          <div class="xs-6 col-md-4"
                ba-panel
                ba-panel-title="Entradas"
                ba-panel-class="with-scroll">
            <div id="entriesChart" class="admin-chart" ng-show="vm.entriesArray.length > 0"></div>
            <h3 ng-hide="vm.entriesArray.length > 0">No hay registro de entradas</h3>
           </div>
-      </div>
-      <div class="row">
-          <div class="col-md-12" >
+
+          <div class="xs-6 col-md-4" >
             <div ba-panel ba-panel-title="Presentaciones buscadas" ba-panel-class="with-scroll">
                 <div id="contentSearchChart" class="admin-chart" ng-show="vm.contentSearchData[0].value > 0 || vm.contentSearchData[0].value > 0"></div>
                 <h3 ng-hide="vm.contentSearchData[0].value > 0 || vm.contentSearchData[0].value > 0">No hay datos de búsquedas</h3>
             </div>
         </div>
-      </div>
-      <div class="row">
-          <div class="col-md-12" >
+
+          <div class="xs-6 col-md-4" >
             <div ba-panel ba-panel-title="Contenido buscado" ba-panel-class="with-scroll">
                 <div id="contentTypeSearchChart" class="admin-chart" ng-show="vm.contentSearchData[0].value > 0 || vm.contentSearchData[0].value > 0"></div>
                 <h3 ng-hide="vm.contentTypeSearchData[0].value > 0 || vm.contentTypeSearchData[0].value > 0">No hay datos de búsquedas</h3>
