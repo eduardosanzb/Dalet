@@ -1,43 +1,10 @@
-<!-- <dashboard-pie-chart></dashboard-pie-chart>
-
-<div class="row">
-  <div class="col-lg-6 col-md-12 col-sm-12"
-       ba-panel
-       ba-panel-title="Entradas por proveedores"
-       ba-panel-class="medium-panel traffic-panel">
-    <traffic-chart></traffic-chart>
-  </div>
-  <div class="col-lg-6 col-md-12 col-sm-12"
-           ba-panel
-           ba-panel-title="Ganancias"
-           ba-panel-class="medium-panel">
-        <dashboard-line-chart></dashboard-line-chart>
-      </div>
-</div> -->
-
-<!-- <div class="row"> -->
-  <!-- we could list the dalet users here, but mmm naaa -->
-  <!-- <div class="col-xlg-3 col-lg-6 col-md-6 col-sm-12 col-xs-12"
-       ba-panel
-       ba-panel-title="Usuarios"
-       ba-panel-class="large-panel with-scroll feed-panel">
-    <blur-feed></blur-feed>
-  </div> -->
-<!--   <div class="col-xlg-6 col-lg-6 col-md-6 col-xs-12"
-       ba-panel
-       ba-panel-title="Usuarios por día"
-       ba-panel-class="xmedium-panel feed-comply-panel with-scroll calendar-panel">
-    <dashboard-calendar></dashboard-calendar>
-  </div>
-</div>
- -->
 
 <div ng-controller="DashboardCtrl as vm">
   <h4>Mes</h4>
       <div class="row">
         <div class="col-md-6">
           <p class="input-group">
-            <input type="text" class="form-control" uib-datepicker-popup="{{vm.format}}" ng-model="vm.dt" is-open="vm.popup1.opened" datepicker-options="vm.dateOptions"  show-button-bar="false" ng-readonly="true" style="color: #666666;" ng-change="vm.monthChange()"/>
+            <input type="text" class="form-control" uib-datepicker-popup="{{vm.format}}" ng-model="vm.dt" is-open="vm.popup1.opened" datepicker-options="vm.dateOptions"  show-button-bar="false" ng-readonly="true" style="color: #666666;" ng-change="vm.monthChange(); vm.contentSearchStatistics(); vm.contentTypeSearchStatistics()"/>
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="vm.open1()"><i class="glyphicon glyphicon-calendar"></i></button>
             </span>
@@ -45,15 +12,29 @@
         </div>
       </div>
 
-      <!-- <div id="entriesChart" class="admin-chart"></div> -->
-
       <div class="row">
-        <div class="col-md-6"
-             ba-panel
-             ba-panel-title="Entradas"
-             ba-panel-class="with-scroll">
-         <div id="entriesChart" class="admin-chart"></div>
-
+          <div class="col-md-12"
+               ba-panel
+               ba-panel-title="Entradas"
+               ba-panel-class="with-scroll">
+           <div id="entriesChart" class="admin-chart" ng-show="vm.entriesArray.length > 0"></div>
+           <h3 ng-hide="vm.entriesArray.length > 0">No hay registro de entradas</h3>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12" >
+            <div ba-panel ba-panel-title="Presentaciones buscadas" ba-panel-class="with-scroll">
+                <div id="contentSearchChart" class="admin-chart" ng-show="vm.contentSearchData[0].value > 0 || vm.contentSearchData[0].value > 0"></div>
+                <h3 ng-hide="vm.contentSearchData[0].value > 0 || vm.contentSearchData[0].value > 0">No hay datos de búsquedas</h3>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12" >
+            <div ba-panel ba-panel-title="Contenido buscado" ba-panel-class="with-scroll">
+                <div id="contentTypeSearchChart" class="admin-chart" ng-show="vm.contentSearchData[0].value > 0 || vm.contentSearchData[0].value > 0"></div>
+                <h3 ng-hide="vm.contentTypeSearchData[0].value > 0 || vm.contentTypeSearchData[0].value > 0">No hay datos de búsquedas</h3>
+            </div>
         </div>
       </div>
 

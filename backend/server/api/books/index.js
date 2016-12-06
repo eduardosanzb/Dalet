@@ -7,6 +7,8 @@ var router = express.Router();
 
 router.get('/', controller.index);
 router.get('/:id', controller.show);
+router.get('/:contentSearchMonth/:contentSearchYear', controller.contentSearchStatistics);
+router.get('/contentType/:contentTypeSearchMonth/:contentTypeSearchYear', controller.contentTypeSearchStatistics);
 router.post('/', controller.create);
 router.put('/:id', controller.upsert);
 router.patch('/:id', controller.patch);

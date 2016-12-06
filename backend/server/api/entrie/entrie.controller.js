@@ -81,7 +81,7 @@ export function show(req, res) {
 // gets a collection of entries in a ertain month
 
 export function getEntries(req, res){
-  return Entrie.find(req.query)
+  return Entrie.find({})
     .where('start')
     .gt(req.params.param1)
     .lt(req.params.param2)
