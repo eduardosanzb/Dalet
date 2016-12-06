@@ -143,7 +143,6 @@
         isLoggedIn : function(callback) {
           return Auth.getCurrentUser(undefined)
             .then(function(user) {
-              console.log(user);
               var is = User.get(user, 'role');
 
               safeCb(callback)(is);

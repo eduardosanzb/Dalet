@@ -19,14 +19,12 @@
 
         function getProviders(){
           Provider.query().$promise.then(function(providers){
-            console.log("providers");
-            console.log(providers);
+        
             vm.providers = providers;
           })  
         }
 
         function addProvider(){
-          console.log('Adding a new provider');
           $uibModal.open({
             animation: true,
             templateUrl: 'app/pages/admin/tabs/proveedores/addProviderModal.html',
@@ -41,7 +39,6 @@
         }
 
         function editProvider(provider){
-          console.log('Editing provider');
           $uibModal.open({
             animation: true,
             templateUrl: 'app/pages/admin/tabs/proveedores/addProviderModal.html',
@@ -77,7 +74,6 @@
               }
                if(!exists){
                    Provider.save($scope.provider, function(provider, putResponseHeaders) {
-                     console.log("se guardo: " + provider);
                     $uibModalInstance.dismiss();
                     $rootScope.$broadcast('Provider Added');
                   });
@@ -106,7 +102,6 @@
               }
                if(!exists){
                    Provider.save($scope.provider, function(provider, putResponseHeaders) {
-                     console.log("se guardo: " + provider);
                     $uibModalInstance.dismiss();
                     $rootScope.$broadcast('Provider Added');
                   });
