@@ -16,7 +16,7 @@
 	      <div class="alert bg-success" ng-show="vm.file">
           <strong>Archivo:</strong> {{ vm.file.name }}
         </div>
-          <button class="btn btn-primary" type="button" ng-disabled="!myForm.$valid" 
+          <button class="btn btn-primary" type="button" ng-disabled="vm.file === null" 
               ng-click="vm.uploadFile(vm.file)">Cargar</button>
 		</form>
 
@@ -25,48 +25,6 @@
 		<div cg-busy="vm.filePromise"></div>
 		<div cg-busy="vm.careerPromise"></div>
 		<h1>Carreras</h1>
-		<!-- <table class="table" st-table="displayedCollection" st-safe-src="vm.books">
-			<thead>
-			  <tr class="sortable">
-				  <th></th>
-			      <th st-sort="TITULO">Título</th>
-			      <th st-sort="NOMBRE_MATERIA">Materia</th>
-			      <th st-sort="NOMBRE_CARRERA">Carrera</th>
-			    </tr>
-			  <tr>
-		      <th></th>
-		      <th><input st-search="TITULO" placeholder="Buscar título" class="input-sm form-control search-input"
-		                 type="search"/></th>
-		      <th><input st-search="NOMBRE_MATERIA" placeholder="Buscar materia" class="input-sm form-control search-input"
-		                 type="search"/></th>
-		      <th><input st-search="NOMBRE_CARRERA" placeholder="Buscar carrera" class="input-sm form-control search-input"
-		                 type="search"/></th>
-		    </tr>
-		   </thead>
-		    <tbody>
-			  <tr ng-repeat="book in displayedCollection" class="editable-row">
-			    <td class="table-id">
-			        {{$index}}
-			    </td>
-			    <td>
-			          {{ book.TITULO}}
-			    </td>
-			    <td>
-			          {{ book.NOMBRE_MATERIA }}
-			    </td>
-			    <td>
-			          {{ book.NOMBRE_CARRERA}}
-			    </td>
-			  </tr>
-			  </tbody>
-			  <tfoot>
-			    <tr>
-			      <td colspan="6" class="text-center">
-			        <div st-pagination="" st-items-by-page="5" st-displayed-pages="5"></div>
-			      </td>
-			    </tr>
-		    </tfoot>
-		</table> -->
 		<table class="table" st-table="displayedCollection" st-safe-src="vm.careers">
 				<thead>
 				  <tr class="sortable">

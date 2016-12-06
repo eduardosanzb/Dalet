@@ -11,6 +11,7 @@
     	 vm.careers = [];
        vm.filePromise = {};
        vm.careerPromise = {};
+       vm.file = null;
 
        getCareers();
        
