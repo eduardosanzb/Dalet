@@ -197,15 +197,19 @@ function zoomChart() {
    vm.contentSearchStatistics = contentSearchStatistics;
    contentSearchStatistics();
    vm.colors = [layoutColors.primary, layoutColors.warning, layoutColors.danger, layoutColors.info, layoutColors.success, layoutColors.primaryDark];
+
+
    function contentSearchStatistics(){
-    var month = vm.dt.getMonth()+1;
+
+    var month = vm.dt.getMonth();
     var year = vm.dt.getFullYear();
     Books.contentSearchStatistics({contentSearchMonth: month, contentSearchYear: year},function(res){
       vm.contentSearchData = res;
+
       var pieChart = AmCharts.makeChart("contentSearchChart", {
       type: 'pie',
       startDuration: 0,
-      theme: 'blur',
+      theme: 'light',
       addClassNames: true,
       color: layoutColors.defaultText,
       labelTickColor: layoutColors.borderDark,
@@ -246,7 +250,7 @@ function zoomChart() {
       export: {
         enabled: true
       },
-      creditsPosition: 'bottom-left',
+      creditsPosition: 'top-right',
 
       autoMargins: false,
       marginTop: 10,
@@ -288,6 +292,102 @@ function zoomChart() {
 
     });
    }
-  
+
+   //////////////////////////////////////////////////// content type
+   vm.contentTypeSearchStatistics = contentTypeSearchStatistics;
+   vm.contentTypeSearchData = [];
+
+   contentTypeSearchStatistics();
+
+   function contentTypeSearchStatistics(){
+    var month = vm.dt.getMonth();
+    var year = vm.dt.getFullYear();
+    Books.contentTypeSearchStatistics({contentTypeSearchMonth: month, contentTypeSearchYear: year},function(res){
+      vm.contentTypeSearchData = res;
+      var pieChart = AmCharts.makeChart("contentTypeSearchChart", {
+            type: 'pie',
+            startDuration: 0,
+            theme: 'light',
+            addClassNames: true,
+            color: layoutColors.defaultText,
+            labelTickColor: layoutColors.borderDark,
+            legend: {
+              position: 'right',
+              marginRight: 100,
+              autoMargins: false,
+            },
+            innerRadius: '40%',
+            defs: {
+              filter: [
+                {
+                  id: 'shadow',
+                  width: '200%',
+                  height: '200%',
+                  feOffset: {
+                    result: 'offOut',
+                    in: 'SourceAlpha',
+                    dx: 0,
+                    dy: 0
+                  },
+                  feGaussianBlur: {
+                    result: 'blurOut',
+                    in: 'offOut',
+                    stdDeviation: 5
+                  },
+                  feBlend: {
+                    in: 'SourceGraphic',
+                    in2: 'blurOut',
+                    mode: 'normal'
+                  }
+                }
+              ]
+            },
+            dataProvider: vm.contentTypeSearchData,
+            valueField: 'value',
+            titleField: 'label',
+            export: {
+              enabled: true
+            },
+            creditsPosition: 'top-right',
+
+            autoMargins: false,
+            marginTop: 10,
+            alpha: 0.8,
+            marginBottom: 0,
+            marginLeft: 0,
+            marginRight: 0,
+            pullOutRadius: 0,
+            pathToImages: layoutPaths.images.amChart,
+            responsive: {
+              enabled: true,
+              rules: [
+                // at 900px wide, we hide legend
+                {
+                  maxWidth: 900,
+                  overrides: {
+                    legend: {
+                      enabled: false
+                    }
+                  }
+                },
+
+                // at 200 px we hide value axis labels altogether
+                {
+                  maxWidth: 200,
+                  overrides: {
+                    valueAxes: {
+                      labelsEnabled: false
+                    },
+                    marginTop: 30,
+                    marginBottom: 30,
+                    marginLeft: 30,
+                    marginRight: 30
+                  }
+                }
+              ]
+            }
+          });
+    });
+   }
   }
 })();

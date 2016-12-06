@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-md-6">
           <p class="input-group">
-            <input type="text" class="form-control" uib-datepicker-popup="{{vm.format}}" ng-model="vm.dt" is-open="vm.popup1.opened" datepicker-options="vm.dateOptions"  show-button-bar="false" ng-readonly="true" style="color: #666666;" ng-change="vm.monthChange(); vm.contentSearchStatistics()"/>
+            <input type="text" class="form-control" uib-datepicker-popup="{{vm.format}}" ng-model="vm.dt" is-open="vm.popup1.opened" datepicker-options="vm.dateOptions"  show-button-bar="false" ng-readonly="true" style="color: #666666;" ng-change="vm.monthChange(); vm.contentSearchStatistics(); vm.contentTypeSearchStatistics()"/>
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="vm.open1()"><i class="glyphicon glyphicon-calendar"></i></button>
             </span>
@@ -17,13 +17,23 @@
                ba-panel
                ba-panel-title="Entradas"
                ba-panel-class="with-scroll">
-           <div id="entriesChart" class="admin-chart"></div>
+           <div id="entriesChart" class="admin-chart" ng-show="vm.entriesArray.length > 0"></div>
+           <h3 ng-hide="vm.entriesArray.length > 0">No hay registro de entradas</h3>
           </div>
       </div>
       <div class="row">
           <div class="col-md-12" >
+            <div ba-panel ba-panel-title="Presentaciones buscadas" ba-panel-class="with-scroll">
+                <div id="contentSearchChart" class="admin-chart" ng-show="vm.contentSearchData[0].value > 0 || vm.contentSearchData[0].value > 0"></div>
+                <h3 ng-hide="vm.contentSearchData[0].value > 0 || vm.contentSearchData[0].value > 0">No hay datos de búsquedas</h3>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12" >
             <div ba-panel ba-panel-title="Contenido buscado" ba-panel-class="with-scroll">
-                <div id="contentSearchChart" class="admin-chart"></div>
+                <div id="contentTypeSearchChart" class="admin-chart" ng-show="vm.contentSearchData[0].value > 0 || vm.contentSearchData[0].value > 0"></div>
+                <h3 ng-hide="vm.contentTypeSearchData[0].value > 0 || vm.contentTypeSearchData[0].value > 0">No hay datos de búsquedas</h3>
             </div>
         </div>
       </div>
