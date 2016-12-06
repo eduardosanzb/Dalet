@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel index.js -d build -s",
     "babel-version": "babel --version",
-    "start": "babel-node --presets es2015 index.js"
+    "start": "babel-node --presets es2015 src/index.js"
   },
   "author": "eduardosanzb",
   "license": "ISC",

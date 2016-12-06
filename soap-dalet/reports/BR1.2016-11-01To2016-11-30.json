@@ -1,0 +1,4062 @@
+{
+  "attributes": {
+    "Created": "2016-12-05T18:42:41.4793847-05:00",
+    "ID": "345"
+  },
+  "Requestor": {
+    "ID": "9973682b-a09d-4cb0-b7ba-da770d3dde93",
+    "Name": "UPAEP-Universidad  Popular Autónoma del Estado de Puebla",
+    "Email": "dalet@upaep.mx"
+  },
+  "CustomerReference": {
+    "ID": "s7391400",
+    "Name": "UPAEP-Universidad  Popular Autónoma del Estado de Puebla"
+  },
+  "ReportDefinition": {
+    "attributes": {
+      "Name": "BR1",
+      "Release": "4"
+    },
+    "Filters": {
+      "UsageDateRange": {
+        "Begin": "2016-11-01",
+        "End": "2016-11-30"
+      }
+    }
+  },
+  "Report": {
+    "Report": {
+      "attributes": {
+        "Created": "2016-12-05T23:42:57",
+        "ID": "BR1",
+        "Version": "4",
+        "Name": "BR1"
+      },
+      "Vendor": {
+        "Name": "EBSCO Information Services",
+        "ID": "EBSCO",
+        "Contact": {
+          "E-mail": "support@ebsco.com"
+        }
+      },
+      "Customer": {
+        "Name": "UPAEP - UNIVERSIDAD POPULAR AUTONOMA DEL ESTADO DE PUEBLA",
+        "ID": "UPAEP - UNIVERSIDAD POPULAR AUTONOMA DEL ESTADO DE PUEBLA",
+        "ReportItems": [
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-92-5-307304-7"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-92-5-307633-8"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2460002"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Food Agriculture Organization (FAO)",
+            "ItemName": "Afrontar la escasez de agua. Un marco de acción para la agricultura y la seguridad alimentaria",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-84-9031-464-7"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-84-9031-858-4"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2767549"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Dykinson, S.L.",
+            "ItemName": "Agua, trasvases y medio ambiente. Las Cuencas Fluviales y el Nuevo Plan Hidrológico Nacional",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "3"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "3"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-521-79381-0"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-280-41809-9"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "323764"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Cambridge University Press",
+            "ItemName": "Alasdair MacIntyre (Contemporary philosophy in focus)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "3"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "3"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-932603-50-7"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-934559-04-8"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1037134"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Demos Medical Publishing",
+            "ItemName": "Alternative Medicine and Spinal Cord Injury: Beyond the Banks of the Mainstream",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-84-460-2539-9"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-84-460-3814-6"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2374394"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Ediciones AKAL SA",
+            "ItemName": "Arte y archivo, 1920-2010: genealogías, tipologías y discontinuidades",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-7546-6415-4"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-78402-009-5"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1354177"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Ashgate Publishing Group",
+            "ItemName": "The Ashgate Research Companion to Modern Imperial Histories (Research Companion to Modern Imperial Histories)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-8330-4774-8"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-282-39861-0"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1114233"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Rand Corporation",
+            "ItemName": "Assessing Patient Safety Practices and Outcomes in the U.S. Health Care System (Rand Corporation technical report series ; TR-725-AHRQ)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-61811-312-2"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-61811-319-1"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2683829"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Academic Studies Press",
+            "ItemName": "At the Intersection of Education, Marketing, and Transformation",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-4260-2025-4"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-4260-3093-2"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1169229"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Axzo Press",
+            "ItemName": "Atención al cliente de calidad para el área del comercio minorista: más inglés básico para el trabajo (Un libro de la Serie Crisp 50-minute)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "4"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "4"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-968-9342-21-2"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "551993"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Cacciani",
+            "ItemName": "Barro y canto: una mirada al pensamiento náhuatl",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-8389-1367-3"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-0-8389-1376-5"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "7007826"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "American Library Association",
+            "ItemName": "Becoming an Embedded Librarian: Making Connections in the Classroom",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "3"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-63321-397-5"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-63321-398-2"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "3123049"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Nova Science Publishers Incorporated",
+            "ItemName": "Big Data: An Exploration of Opportunities, Values, and Privacy Issues",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-3-631-63756-2"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-3-653-01546-1"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1588391"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Peter Lang Publishing Group",
+            "ItemName": "Bildung und literarische Kompetenz nach PISA: Konzeptualisierungen literar-ästhetischen Verstehens am Beispiel von Test-, Prüf- und Lernaufgaben (Studien zur Pädagogik der Schule)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-987-591-294-6"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-987-591-435-3"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2605634"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Editorial Brujas",
+            "ItemName": "Biologia celular",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-56414-898-8"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-60163-895-3"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "362008"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Career Press",
+            "ItemName": "Bridging the Generation Gap: How to Get Radio Babies, Boomers, Gen Xers, and Gen Yers to Work Together and Achieve More",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-904811-13-8"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-84719-007-9"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "598671"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Packt Publishing",
+            "ItemName": "Building online communities with phpBB 2",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-295-99512-0"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-0-295-80626-6"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "7440409"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "University of Washington Press",
+            "ItemName": "Classical Seattle",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "3"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "3"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-19-511888-9"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-280-76166-9"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "218678"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Oxford University Press",
+            "ItemName": "Cognitive Neuroscience of Emotion (Series in affective science)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-470-88129-3"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-283-02600-0"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "909052"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "John Wiley & Sons Incorporated",
+            "ItemName": "The complete guide to knowledge management : a strategic plan to leverage your company's intellectual capital",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-958-741-444-8"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-958-741-445-5"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "3119606"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Universidad del Norte",
+            "ItemName": "Comunicación organizacional - Técnicas y estrategias",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-84-9031-992-5"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-84-9031-992-5"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2996457"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Dykinson, S.L.",
+            "ItemName": "Comunicación social y accesibilidad",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-3-03785-228-6"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-3-03813-514-2"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1719661"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Trans Tech Publications",
+            "ItemName": "Control Engineering in Materials Processing: Special Topic Volume with Invited Peer Reviewed Papers Only (Solid State Phenomena. Part B of Diffusion and Defect Data)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-61735-704-6"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-61735-706-0"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1415498"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Information Age Publishing, Inc",
+            "ItemName": "Crossroads in the History of Mathematics and Mathematics Education (Montana Mathematics Enthusiast)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-958-741-024-2"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-958-741-043-3"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "919755"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Universidad del Norte",
+            "ItemName": "Cómo escribir textos académicos según normas internacionales: APA, IEEE, MLA, Vancouver e Icontec",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-84-9749-243-0"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-4416-6808-0"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1110170"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Digitalia, Inc.",
+            "ItemName": "De culturas, lenguas y tradiciones (Cursos, congresos e simposios)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-3-8366-8146-9"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-3-8366-3146-4"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "3119722"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Diplomica Verlag",
+            "ItemName": "Der Einfluss der neuen Medien auf Leben und Werk F. Scott Fitzgeralds",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-607-462-636-0"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-607-462-755-8"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "4526304"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "El Colegio de México",
+            "ItemName": "Desafios y paradojas: Los jóvenes frente a las desigualdades sociales",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": {
+                "MetricType": "ft_total",
+                "Count": "2"
+              }
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-958-741-277-2"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-958-741-467-7"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2376437"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Universidad del Norte",
+            "ItemName": "Desarrollo e integración: reflexiones sobre Colombia y la Unión Europea",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-958-8133-90-4"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-958-741-468-4"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "919769"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Universidad del Norte",
+            "ItemName": "Desarrollo infantil y construcción del mundo social",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-7914-3872-5"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-4384-1329-7"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "962353"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "State University of New York Press",
+            "ItemName": "Devotional Poetics and the Indian Sublime (SUNY Series on the Sublime)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "4"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "4"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-12-405885-9"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-306-07790-3"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2423290"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Academic Press",
+            "ItemName": "Diabetes: Oxidative Stress and Dietary Antioxidants",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-84-9749-185-3"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-4416-6801-1"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1110183"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Digitalia, Inc.",
+            "ItemName": "Discapacidad intelectual y envejecimiento (Monografía)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-968-23-2531-1"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-4175-9455-9"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1033066"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Siglo XXI de España Editores",
+            "ItemName": "Diseño: estrategia y táctica (Diseño y comunicación)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-84816-782-7"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-84816-783-4"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1203714"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Imperial College Press",
+            "ItemName": "Economic Policy Making and Business Culture: Why Is Russia So Different?",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-958-741-248-2"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-958-741-368-7"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2448644"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Universidad del Norte",
+            "ItemName": "Educación y cultura",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "3"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-968-23-2572-4"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-4237-1886-4"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1034627"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Siglo XXI de España Editores",
+            "ItemName": "El budismo zen (Mosaicos)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-84-9031-469-2"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-84-9031-672-6"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2451264"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Dykinson, S.L.",
+            "ItemName": "El derecho y el poder. Realismo crítico y filosofía del derecho",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-968-23-2451-2"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-4237-1898-7"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1034636"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Siglo XXI de España Editores",
+            "ItemName": "El sistema nervioso (Mosaicos)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-4724-3103-5"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-4724-3105-9"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2788013"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Ashgate Publishing Group",
+            "ItemName": "Emotions, Decision-Making and Mass Atrocities",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-84663-940-1"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-84663-941-8"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "588123"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Emerald Group Publishing Ltd",
+            "ItemName": "Emotions, Ethics and Decision-making : Research on Emotion in Organizations Vol 4",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "3"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "3"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-90-272-1726-4"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-90-272-7995-8"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1197637"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "John Benjamins Publishing Company",
+            "ItemName": "En nombre de Don Juan: (estructura de un mito literario) (Purdue University monographs in Romance languages)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-8308-2943-9"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-78539-111-8"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2650180"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "InterVarsity Press",
+            "ItemName": "Encyclopedia of Ancient Christianity",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-0-585-01069-4"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "389743"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Project Gutenberg Literary Archive Foundation",
+            "ItemName": "The Epistle of the Apostle Paul to the Galatians",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-60406-726-2"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-60406-727-9"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1811193"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Thieme Medical Publishers Incorporated",
+            "ItemName": "Essentials of Spinal Cord Injury: Basic Research to Clinical Practice",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "3"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "3"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-3-631-63243-7"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-3-653-02271-1"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1908854"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Peter Lang Publishing Group",
+            "ItemName": "Estudios sobre lengua, cultura y cognición",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-57675-348-4"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-57675-796-3"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "474374"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Berrett-Koehler",
+            "ItemName": "Evaluating Training Programs: The Four Levels",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-90-04-26112-9"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-90-04-26115-0"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2489765"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Global Oriental",
+            "ItemName": "Everyday Life in Joseon-Era Korea: Economy and Society",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-262-01808-1"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-283-87014-6"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1715779"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "MIT Press",
+            "ItemName": "Evolution and the Mechanisms of Decision Making (Strüngmann Forum Reports)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-61811-482-2"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-61811-483-9"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "10129158"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Academic Studies Press",
+            "ItemName": "First Words: On Dostoevsky's Introductions",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-78049-072-4"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-84940-980-3"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1372440"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Karnac Books",
+            "ItemName": "Gestalt Therapy: Roots and Branches: Collected Papers",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-981-4603-30-0"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-981-4603-33-1"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "3093294"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "World Scientific",
+            "ItemName": "Global Health Perspectives In Prediabetes And Diabetes Prevention",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-61324-125-7"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-62081-907-4"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1908204"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Nova Science Publishers Incorporated",
+            "ItemName": "Hernias: Types, Symptoms and Treatment (Public Health in the 21st Century)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-607-462-553-0"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-607-462-631-5"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "4433701"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "El Colegio de México",
+            "ItemName": "Historia mínima de las ideas políticas en América Latina",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": {
+                "MetricType": "ft_total",
+                "Count": "1"
+              }
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-87480-260-3"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-0-585-36616-6"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "965386"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "University of Utah",
+            "ItemName": "Human Body and Ideology: Concepts of the Ancient Nahuas",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-958-8252-10-0"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-958-741-477-6"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2449086"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Universidad del Norte",
+            "ItemName": "Infancia, familia y derechos humanos",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "6"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "6"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-84816-356-0"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-84816-357-7"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "663020"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Imperial College Press",
+            "ItemName": "Innovation and Strategy of Online Games (Series on technology management ; v. 14)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-970-830-006-3"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-958-648-986-7"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1345930"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Ecoe Ediciones",
+            "ItemName": "Investigación de mercados",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-60876-003-9"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-61122-441-2"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1127265"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Nova Science Publishers Incorporated",
+            "ItemName": "Jatropha Curcas As a Premier Biofuel: Cost, Growing and Management (Energy science, engineering and technology series)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-8144-1329-6"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-68015-917-2"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "307971"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "AMACOM",
+            "ItemName": "Kanban Made Simple - Demystifying and Applying Toyota's Legendary Manufacturing Process",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "3"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "3"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-981-256-890-8"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-981-270-672-0"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "663123"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "World Scientific",
+            "ItemName": "Knowledge Management and Risk Strategies (Knowledge management and risk strategy)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-987-591-379-0"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-987-591-425-4"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2606027"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Editorial Brujas",
+            "ItemName": "La enseñanza de la psicología en las ciencias de la educación",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-84-9031-600-9"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-84-9031-840-9"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2779560"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Dykinson, S.L.",
+            "ItemName": "La evolución de la justicia constitucional",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-84-9910-047-0"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-84-9910-121-7"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1168612"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Editorial Paidotribo",
+            "ItemName": "La guía de nutrición deportiva de Nancy Clark: el mejor libro de nutrición para la gente activa",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": {
+                "MetricType": "ft_total",
+                "Count": "1"
+              }
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-84-9031-563-7"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-84-9031-700-6"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2466580"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Dykinson, S.L.",
+            "ItemName": "La medicina ante el derecho. Problemas del lenguaje y de riesgo profesional",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "6"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "6"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-84-9031-606-1"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-84-9031-842-3"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2767519"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Dykinson, S.L.",
+            "ItemName": "La recapitalización de las entidades financieras",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "3"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "3"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-84-9031-661-0"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-84-9031-839-3"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2767520"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Dykinson, S.L.",
+            "ItemName": "La verdad biológica en la determinación de la filiación",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-55250-573-1"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-55250-576-2"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2766433"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "International Development Research Centre",
+            "ItemName": "Los pobres en la era de la información : Combatiendo La Pobreza Con Technología",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-470-42347-9"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-282-25343-8"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1141264"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "John Wiley & Sons Incorporated",
+            "ItemName": "Managing Customer Relationships, Second Edition: A Strategic Framework",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-987-591-517-6"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-987-591-529-9"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "3252213"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Editorial Brujas",
+            "ItemName": "Manual De Diseño Giométrico Vial.",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-84-8019-725-0"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-84-9910-132-3"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1168609"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Editorial Paidotribo",
+            "ItemName": "Manual profesional del masaje: guía práctica (Masaje)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": {
+                "MetricType": "ft_total",
+                "Count": "1"
+              }
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-981-4405-85-0"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-981-4405-87-4"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1585787"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "World Scientific",
+            "ItemName": "Mathematics Education in Korea - Volume 1: Curricular and Teaching and Learning Practices",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-84-8019-988-9"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-84-9910-135-4"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1168601"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Editorial Paidotribo",
+            "ItemName": "Medicina energética: acupuntura",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": {
+                "MetricType": "ft_total",
+                "Count": "2"
+              }
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-62396-744-4"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-62396-746-8"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "3120983"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Information Age Publishing, Inc",
+            "ItemName": "Millennial Spring: Designing the Future of Organizations (LMX Leadership: the Series)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-8144-7378-8"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-281-12811-9"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "453647"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "AMACOM",
+            "ItemName": "More Quick Team-building Activities for Busy Managers: 50 New Exercises That Get Results in Just 15 Minutes",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-84331-789-0"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-84331-816-3"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "971845"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Anthem Press India",
+            "ItemName": "National Strategies for Regional Integration: South and East Asian Case Studies",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-90-272-1207-8"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-90-272-7099-3"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2431040"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "John Benjamins Publishing Company",
+            "ItemName": "New Perspectives on English As a European Lingua Franca.",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-958-741-217-8"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-958-741-233-8"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1409609"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Universidad del Norte",
+            "ItemName": "Nostalgia y mito",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-8389-0823-5"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-0-8389-9902-8"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1012798"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "American Library Association",
+            "ItemName": "Online Community Information: Creating a Nexus at Your Library",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-954-642-492-1"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-954-642-493-8"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1148804"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Pensoft Publishers",
+            "ItemName": "The Pantanal: Ecology, Biodiversity and Sustainable Management of a Large Neotropical Seasonal Wetland",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-3-11-028173-6"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-3-11-028192-7"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2655170"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "De Gruyter",
+            "ItemName": "Patient Safety - A Psychological Perspective",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-4094-4814-3"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-4724-0635-4"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "3243479"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Ashgate Publishing Group",
+            "ItemName": "Patient Safety Culture: Theory, Methods, and Application",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-4094-3857-1"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-4724-0243-1"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2788157"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Gower Publishing Company Limited",
+            "ItemName": "Patient Safety: Perspectives on Evidence, Information and Knowledge Transfer",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-988-19934-5-8"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-988-8167-03-6"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1355243"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Proverse Hong Kong",
+            "ItemName": "Perceptions",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-60750-685-0"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-60750-686-7"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1139099"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "IOS Press",
+            "ItemName": "Perspectives on Immigration and Terrorism (NATO science for peace and security. Series E, Human and societal dynamics ; v. 78)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "10"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "10"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-84-9031-798-3"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-84-9031-905-5"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2767564"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Dykinson, S.L.",
+            "ItemName": "Planificación y gestión. Manual para la acción social",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-262-70093-1"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-0-262-28529-2"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1034946"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "MIT Press",
+            "ItemName": "Preference, Belief, and Similarity: Selected Writings",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "3"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "3"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-8261-0718-3"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-78539-866-7"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2267563"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Springer Publishing Company",
+            "ItemName": "The Psych 101 Series: Evolutionary Psychology 101",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": {
+                "MetricType": "ft_total",
+                "Count": "1"
+              }
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-674-06689-2"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-0-674-06754-7"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1812486"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Harvard University Press",
+            "ItemName": "Public Policy in an Uncertain World: Analysis and Decisions",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-607-9361-48-8"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-607-9361-67-9"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "10609219"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "ITESO",
+            "ItemName": "Raíces y tradiciones de la psicología social en México",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-84-8019-890-5"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-84-9910-144-6"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1168610"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Editorial Paidotribo",
+            "ItemName": "Reeducación postural integral SOTAI",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": {
+                "MetricType": "ft_total",
+                "Count": "1"
+              }
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-987-591-370-7"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-987-591-433-9"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2606244"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Editorial Brujas",
+            "ItemName": "Representación en ciencia y arte. Vol. 4",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "3"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "3"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-931576-18-5"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-60752-952-1"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1415565"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Information Age Publishing, Inc",
+            "ItemName": "Research Syntheses (Research on Technology and the Teaching and Learning of Mathematics: Syntheses, Cases, and Perspectives)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-90-272-0609-1"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-90-272-7115-0"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2409387"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "John Benjamins Publishing Company",
+            "ItemName": "Responses to Language Endangerment: In Honor of Mickey Noonan. New Directions in Language Documentation and Language Revitalization.",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-3-0343-1077-2"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-3-0351-0386-1"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1579818"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Peter Lang Publishing Group",
+            "ItemName": "Simone de Beauvoir, filosofía, literatura y vida (Espacios literarios en contacto)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-19-928387-3"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-280-75796-9"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "951107"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Oxford University Press",
+            "ItemName": "Social Entrepreneurship: New Models of Sustainable Social Change",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-19-539634-8"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-282-50117-1"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1122568"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Oxford University Press",
+            "ItemName": "Social Entrepreneurship: What Everyone Needs to Know",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-62081-866-4"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-62081-950-0"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1885326"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Nova Science Publishers Incorporated",
+            "ItemName": "Spinal Cord Injuries: Causes, Risk Factors & Management",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-933864-47-1"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-935281-67-2"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "675018"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Demos Medical Publishing",
+            "ItemName": "Spinal Cord Injury (Rehabilitation medicine quick reference)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-63321-797-3"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-63321-812-3"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "3254310"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Nova Science Publishers Incorporated",
+            "ItemName": "Teaching Language Skills (Languages and Linguistics)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-84-8019-979-7"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-84-9910-147-7"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1168608"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Editorial Paidotribo",
+            "ItemName": "Tendón: valoración y tratamiento en fisioterapia",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": {
+                "MetricType": "ft_total",
+                "Count": "1"
+              }
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-968-23-2505-2"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-4175-3228-5"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1022233"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemName": "Tercera vía y neoliberalismo: un análisis crítico (mundo del siglo XXI)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-84-96049-85-7"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-84-8359-105-5"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1110424"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Digitalia, Inc.",
+            "ItemName": "Tesauro de la cultura escrita en la Edad Moderna (Biblioteca litterae)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-81-321-0314-1"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-81-321-1211-2"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1136424"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Sage Publications",
+            "ItemName": "Thinking Design",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-958-741-078-5"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-958-741-078-5"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "919775"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Universidad del Norte",
+            "ItemName": "TIC, comunicación y periodismo digital. Tomo II: escenario de enseñanza y ciberperiodismo",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-90-5867-994-9"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-94-6166-146-3"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "3163967"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Leuven University Press",
+            "ItemName": "Unsayable Music: Six Reflections on Musical Semiotics, Electroacoustic and Digital Music",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-63117-180-2"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-63117-181-9"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "2685169"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Nova Science Publishers Incorporated",
+            "ItemName": "Urinary Tract Infections: Epidemiology, Pathogenesis and Prevention",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-85604-809-5"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-85604-899-6"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1911283"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Facet Publishing",
+            "ItemName": "Using Mobile Technology to Deliver Library Services: A Handbook",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-968-6295-75-7"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-1-4237-4510-5"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1030339"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Editorial Conexion Grafica",
+            "ItemName": "Utopía de piedra: el arte de Tequitqui de México",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-3-631-61071-8"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-3-653-02179-0"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1908281"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemName": "Valenz, Konstruktion und Deutsch als Fremdsprache",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-84-9085-054-1"
+              },
+              {
+                "Type": "Online_ISBN",
+                "Value": "978-84-9085-107-4"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "4052758"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Dykinson, S.L.",
+            "ItemName": "Ética de la publicidad. Retos en la era digital",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

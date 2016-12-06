@@ -1,0 +1,981 @@
+{
+  "attributes": {
+    "Created": "2016-12-05T18:42:41.4713021-05:00",
+    "ID": "345"
+  },
+  "Requestor": {
+    "ID": "9973682b-a09d-4cb0-b7ba-da770d3dde93",
+    "Name": "UPAEP-Universidad  Popular Autónoma del Estado de Puebla",
+    "Email": "dalet@upaep.mx"
+  },
+  "CustomerReference": {
+    "ID": "s7391400",
+    "Name": "UPAEP-Universidad  Popular Autónoma del Estado de Puebla"
+  },
+  "ReportDefinition": {
+    "attributes": {
+      "Name": "BR2",
+      "Release": "4"
+    },
+    "Filters": {
+      "UsageDateRange": {
+        "Begin": "2016-11-01",
+        "End": "2016-11-30"
+      }
+    }
+  },
+  "Report": {
+    "Report": {
+      "attributes": {
+        "Created": "2016-12-05T23:42:47",
+        "ID": "BR2",
+        "Version": "4",
+        "Name": "BR2"
+      },
+      "Vendor": {
+        "Name": "EBSCO Information Services",
+        "ID": "EBSCO",
+        "Contact": {
+          "E-mail": "support@ebsco.com"
+        }
+      },
+      "Customer": {
+        "Name": "UPAEP - UNIVERSIDAD POPULAR AUTONOMA DEL ESTADO DE PUEBLA",
+        "ID": "UPAEP - UNIVERSIDAD POPULAR AUTONOMA DEL ESTADO DE PUEBLA",
+        "ReportItems": [
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "4737922"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Acquisdata Pty Ltd",
+            "ItemName": "Acquisdata Industry SnapShots: Saudi Arabia Petroleum, Oil & Gas",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "4619769"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Marketline",
+            "ItemName": "Advertising Industry Profile: South Korea",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemPlatform": "EBSCOhost",
+            "ItemName": "Applied Science (Online Edition)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_html",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "3504007"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Marketline",
+            "ItemName": "Banks Industry Profile: Mexico",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "4669762"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Marketline",
+            "ItemName": "Chevron Corporation SWOT Analysis",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "146624"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Marketline",
+            "ItemName": "Chocolate Confectionery Industry Profile: Mexico",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "381190"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Marketline",
+            "ItemName": "Coca-Cola FEMSA, S.A. de C.V. SWOT Analysis",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-0-7876-5015-5"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "576175"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Columbia University Press",
+            "ItemName": "Columbia Electronic Encyclopedia, 6th Edition",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "5"
+                },
+                {
+                  "MetricType": "ft_html",
+                  "Count": "5"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "21606"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Global Insight, Inc.",
+            "ItemName": "Crude Petroleum Industry Yearbook",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemPlatform": "EBSCOhost",
+            "ItemName": "Cyclopedia of World Authors, Fourth Revised Edition (Online Edition)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_html",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemPlatform": "EBSCOhost",
+            "ItemName": "DynaMed",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "79"
+                },
+                {
+                  "MetricType": "ft_html",
+                  "Count": "79"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "4513011"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "CQ-Roll Call, Inc.",
+            "ItemName": "eMedia",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_html",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISSN",
+                "Value": "1359-0006"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "26040"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Business Monitor International",
+            "ItemName": "Emerging Markets Monitor",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "3"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "3"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-84-7908-882-8"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1122200"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Universidad de Alicante",
+            "ItemName": "Ensayos sobre literatura hispanoamericana (1977-1997) (MG, Monografías)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "4"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "4"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "160496"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Marketline",
+            "ItemName": "Express Scripts SWOT Analysis",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemPlatform": "EBSCOhost",
+            "ItemName": "Harvard Business Review Digital Articles",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "4"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "4"
+                }
+              ]
+            }
+          },
+          {
+            "ItemPlatform": "EBSCOhost",
+            "ItemName": "International Business Times",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_html",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "3924968"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Marketline",
+            "ItemName": "Liebherr-International AG SWOT Analysis",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "152084"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Marketline",
+            "ItemName": "Liquid Petroleum Gas Industry Profile: Global",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "154460"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Marketline",
+            "ItemName": "MarketWatch: Financial Services",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "5"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "5"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "154462"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Marketline",
+            "ItemName": "MarketWatch: Global Round-up",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-85418-123-7"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "301945"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Thorogood Publishing Ltd.",
+            "ItemName": "Mastering Marketing",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemPlatform": "EBSCOhost",
+            "ItemName": "MedCalc",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_html",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-1-58268-057-6"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "488348"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "International Council of Shopping Centers",
+            "ItemName": "Mercadotecnia de Centros Comerciales",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISSN",
+                "Value": "1747-8650"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "487401"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Business Monitor International",
+            "ItemName": "Mexico Commercial Banking Report",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "4"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "4"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "643833"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Business Monitor International",
+            "ItemName": "Mexico Real Estate Report",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemPlatform": "EBSCOhost",
+            "ItemName": "Micromedex",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "6"
+                },
+                {
+                  "MetricType": "ft_html",
+                  "Count": "6"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISSN",
+                "Value": "1502-5780"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "358995"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Norges Bank",
+            "ItemName": "Norges Bank: Working Papers",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISBN",
+                "Value": "978-84-7908-893-4"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "1120735"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Universidad de Alicante",
+            "ItemName": "Química del suelo y medio ambiente (TD, Textos docentes Publicaciones de la Universidad de Alicante)",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemPlatform": "EBSCOhost",
+            "ItemName": "Research Starters: Diseases & Disorders",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_html",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "2365743"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemName": "Retail Snapshot",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "2"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "2"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": [
+              {
+                "Type": "Print_ISSN",
+                "Value": "1520-1244"
+              },
+              {
+                "Type": "Proprietary",
+                "Value": "62027"
+              }
+            ],
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "CountryWatch Incorporated",
+            "ItemName": "Saint Lucia Country Review",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "1352885"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "C. Barnes & Co.",
+            "ItemName": "United States Pharmaceutical Preparation Mfg Industry Capital & Expenses Report",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          },
+          {
+            "ItemIdentifier": {
+              "Type": "Proprietary",
+              "Value": "192335"
+            },
+            "ItemPlatform": "EBSCOhost",
+            "ItemPublisher": "Faculdade de Economia da Universidade do Porto",
+            "ItemName": "Working Papers (FEP) -- Universidade do Porto",
+            "ItemDataType": "Book",
+            "ItemPerformance": {
+              "Period": {
+                "Begin": "2016-11-01",
+                "End": "2016-11-30"
+              },
+              "Category": "Requests",
+              "Instance": [
+                {
+                  "MetricType": "ft_total",
+                  "Count": "1"
+                },
+                {
+                  "MetricType": "ft_pdf",
+                  "Count": "1"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}
